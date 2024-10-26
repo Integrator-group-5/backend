@@ -40,4 +40,14 @@ public class ProductModel {
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
     @JsonManagedReference
     private List<ImageModel> images;
+
+    // Constructor
+    public ProductModel(String name, String description, String material, String color, String designer, BigDecimal price) {
+        this.name = name;
+        this.description = description;
+        this.material = material;
+        this.color = color;
+        this.designer = designer;
+        this.price = price;
+    }
 }
