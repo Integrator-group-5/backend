@@ -50,4 +50,21 @@ public class ProductController {
             return ResponseEntity.status(500).body(cr);
         }
     }
+
+    @GetMapping("/random")
+    public ResponseEntity<CustomResponse> getRandomProducts() {
+        try {
+            List<ProductModel> productos = productService.findRandomProducts();
+            CustomResponse cr;
+            if (productos.isEmpty()) {
+                cr = new CustomResponse(true, "No products in DB", "Empty list");
+            } else {
+                cr = new CustomResponse(true, "Random products found", productos);
+            }
+            return ResponseEntity.status(200).body(cr);
+        } catch (Exception e) {
+            CustomResponse cr = new CustomResponse(false, "Error in DB: " + e.getMessage(), null);
+            return ResponseEntity.status(500).body(cr);
+        }
+    }
 }

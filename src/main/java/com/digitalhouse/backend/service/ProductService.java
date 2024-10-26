@@ -45,4 +45,8 @@ public class ProductService implements IService<ProductModel> {
     public ProductModel delete(Long id) throws ResourceNotFoundException {
         return null;
     }
+
+    public List<ProductModel> findRandomProducts() {
+        return productRepository.findRandomProducts();
+    }
 }
