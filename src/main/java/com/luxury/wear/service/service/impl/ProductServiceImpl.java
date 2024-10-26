@@ -1,40 +1,40 @@
-package com.luxury.wear.service.service;
+package com.luxury.wear.service.service.impl;
 
-
-import com.luxury.wear.service.entity.ProductModel;
+import com.luxury.wear.service.entity.Product;
 import com.luxury.wear.service.repository.ProductRepository;
+import com.luxury.wear.service.service.IService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class ProductService implements IService<ProductModel> {
+public class ProductServiceImpl implements IService<Product> {
     @Autowired
     private ProductRepository productRepository;
 
     @Override
-    public List<ProductModel> findAll() {
+    public List<Product> findAll() {
         return productRepository.findAll();
     }
 
     @Override
-    public ProductModel findById(Long id) {
+    public Product findById(Long id) {
         return null;
     }
 
     @Override
-    public ProductModel save(ProductModel product) {
+    public Product save(Product product) {
         return null;
     }
 
     @Override
-    public ProductModel update(ProductModel product) {
+    public Product update(Product product) {
         return null;
     }
 
     @Override
-    public ProductModel delete(Long id) {
+    public Product delete(Long id) {
         return null;
     }
 }
