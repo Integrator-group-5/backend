@@ -21,15 +21,15 @@ public class ProductController {
     public ResponseEntity<CustomResponse> getProducts() {
         try {
             List<ProductModel> productos = productService.findAll();
+            CustomResponse cr;
             if (productos.isEmpty()) {
-                CustomResponse cr = new CustomResponse(true, "No se encontraron productos", "Empty list");
-                return ResponseEntity.status(404).body(cr);
+                cr = new CustomResponse(true, "No products found", "Empty list");
             } else {
-                CustomResponse cr = new CustomResponse(true, "Productos encontrados", productos);
-                return ResponseEntity.status(200).body(cr);
+                cr = new CustomResponse(true, "Products found", productos);
             }
+            return ResponseEntity.status(200).body(cr);
         } catch (Exception e) {
-            CustomResponse cr = new CustomResponse(false, "Error en DB: " + e.getMessage(), null);
+            CustomResponse cr = new CustomResponse(false, "Error in DB: " + e.getMessage(), null);
             return ResponseEntity.status(500).body(cr);
         }
     }
