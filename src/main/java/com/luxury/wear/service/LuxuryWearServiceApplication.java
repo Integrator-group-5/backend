@@ -8,7 +8,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class BackendLuxuryWearApplication {
+public class LuxuryWearServiceApplication {
     @Autowired
     private LoadData loadData;
 
@@ -19,7 +19,7 @@ public class BackendLuxuryWearApplication {
         System.setProperty("spring.datasource.password", dotenv.get("DB_PASSWORD"));
         System.setProperty("spring.jpa.properties.hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
 
-        SpringApplication.run(BackendLuxuryWearApplication.class, args);
+        SpringApplication.run(LuxuryWearServiceApplication.class, args);
     }
 
     @PostConstruct
