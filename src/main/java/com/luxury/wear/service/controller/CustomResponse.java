@@ -1,4 +1,4 @@
-package com.digitalhouse.backend.controller;
+package com.luxury.wear.service.controller;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

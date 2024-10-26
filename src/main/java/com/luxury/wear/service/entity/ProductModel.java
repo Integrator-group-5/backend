@@ -1,4 +1,4 @@
-package com.digitalhouse.backend.entity;
+package com.luxury.wear.service.entity;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;

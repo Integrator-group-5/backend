@@ -1,4 +1,4 @@
-package com.digitalhouse.backend;
+package com.luxury.wear.service;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

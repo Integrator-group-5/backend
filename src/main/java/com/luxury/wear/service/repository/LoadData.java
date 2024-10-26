@@ -1,7 +1,7 @@
-package com.digitalhouse.backend.repository;
+package com.luxury.wear.service.repository;
 
-import com.digitalhouse.backend.entity.ImageModel;
-import com.digitalhouse.backend.entity.ProductModel;
+import com.luxury.wear.service.entity.ImageModel;
+import com.luxury.wear.service.entity.ProductModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

@@ -1,4 +1,4 @@
-package com.digitalhouse.backend.service;
+package com.luxury.wear.service.service;
 
 import java.util.List;
 

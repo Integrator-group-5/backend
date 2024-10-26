@@ -1,6 +1,6 @@
-package com.digitalhouse.backend;
+package com.luxury.wear.service;
 
-import com.digitalhouse.backend.repository.LoadData;
+import com.luxury.wear.service.repository.LoadData;
 import io.github.cdimascio.dotenv.Dotenv;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;

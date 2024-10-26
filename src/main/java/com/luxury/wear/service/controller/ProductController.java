@@ -1,8 +1,8 @@
-package com.digitalhouse.backend.controller;
+package com.luxury.wear.service.controller;
 
 
-import com.digitalhouse.backend.entity.ProductModel;
-import com.digitalhouse.backend.service.ProductService;
+import com.luxury.wear.service.entity.ProductModel;
+import com.luxury.wear.service.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

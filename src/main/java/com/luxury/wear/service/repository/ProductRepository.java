@@ -1,6 +1,6 @@
-package com.digitalhouse.backend.repository;
+package com.luxury.wear.service.repository;
 
-import com.digitalhouse.backend.entity.ProductModel;
+import com.luxury.wear.service.entity.ProductModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
