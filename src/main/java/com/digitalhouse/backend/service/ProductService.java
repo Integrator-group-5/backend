@@ -2,6 +2,8 @@ package com.digitalhouse.backend.service;
 
 
 import com.digitalhouse.backend.entity.ProductModel;
+import com.digitalhouse.backend.exception.EntityAlreadyExistsException;
+import com.digitalhouse.backend.exception.ResourceNotFoundException;
 import com.digitalhouse.backend.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,22 +21,22 @@ public class ProductService implements IService<ProductModel> {
     }
 
     @Override
-    public ProductModel findById(Long id) {
+    public ProductModel findById(Long id) throws ResourceNotFoundException {
         return null;
     }
 
     @Override
-    public ProductModel save(ProductModel product) {
+    public ProductModel save(ProductModel productModel) throws ResourceNotFoundException, EntityAlreadyExistsException {
         return null;
     }
 
     @Override
-    public ProductModel update(ProductModel product) {
+    public ProductModel update(ProductModel productModel) throws ResourceNotFoundException, EntityAlreadyExistsException {
         return null;
     }
 
     @Override
-    public ProductModel delete(Long id) {
+    public ProductModel delete(Long id) throws ResourceNotFoundException {
         return null;
     }
 }
