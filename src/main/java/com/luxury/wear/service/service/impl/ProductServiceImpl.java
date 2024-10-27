@@ -1,6 +1,7 @@
 package com.luxury.wear.service.service.impl;
 
 import com.luxury.wear.service.entity.Product;
+import com.luxury.wear.service.exception.ResourceNotFoundException;
 import com.luxury.wear.service.repository.ProductRepository;
 import com.luxury.wear.service.service.ProductService;
 import lombok.AllArgsConstructor;
@@ -24,7 +25,7 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public Product GetProductByID(Long id) {
         return productRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException(PRODUCT_NOT_FOUND_ID + id));
+                .orElseThrow(() -> new ResourceNotFoundException(PRODUCT_NOT_FOUND_ID + id));
     }
 
     @Override
@@ -40,7 +41,7 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public Product updateProduct(Product product) {
         Product existingProduct = productRepository.findById(product.getProductId())
-                .orElseThrow(() -> new RuntimeException(PRODUCT_NOT_FOUND_ID + product.getProductId()));
+                .orElseThrow(() -> new ResourceNotFoundException(PRODUCT_NOT_FOUND_ID + product.getProductId()));
 
         return updateExistingProduct(existingProduct, product);
     }
@@ -48,7 +49,7 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public void deleteProductById(Long id) {
         productRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException(PRODUCT_NOT_FOUND_ID + id));
+                .orElseThrow(() -> new ResourceNotFoundException(PRODUCT_NOT_FOUND_ID + id));
 
         productRepository.deleteById(id);
     }
