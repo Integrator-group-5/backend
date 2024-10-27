@@ -10,11 +10,12 @@ Diseñado para ser escalable, seguro y de fácil despliegue, el servicio utiliza
 
 A continuación se detallan los endpoints disponibles en la API de **Luxury Wear Service** y sus respectivas funcionalidades.
 
-| Método | Endpoint                     | Descripción                                        |
-|--------|------------------------------|----------------------------------------------------|
-| GET    | `/api/v1/products/{id}`      | Obtiene la información de un producto por `id`.    |
-| GET    | `/api/v1/products`           | Obtiene una lista de todos los productos.          |
-| GET    | `/api/v1/products/top-rents` | Obtiene una lista de productos en orden aleatorio. |
+| Método | Endpoint                               | Descripción                                        |
+|--------|----------------------------------------|----------------------------------------------------|
+| GET    | `/api/v1/products/{id}`                | Obtiene la información de un producto por `id`.    |
+| GET    | `/api/v1/products`                     | Obtiene una lista de todos los productos.          |
+| GET    | `/api/v1/products/top-rents`           | Obtiene una lista de productos en orden aleatorio. |
+| DELETE | `/api/v1/products/delete-product/{id}` | Elimina un producto por `id`.                      |
 
 
 ## Ejecutar Luxury Wear Service Localmente con Docker
