@@ -1,6 +1,6 @@
 package com.luxury.wear.service.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -29,12 +29,6 @@ public class Image {
 
     @ManyToOne
     @JoinColumn(name = "product_id", nullable = false)
-    @JsonBackReference
+    @JsonIgnore
     private Product product;
-
-    // Constructors
-    public Image(String url, Product product) {
-        this.url = url;
-        this.product = product;
-    }
 }

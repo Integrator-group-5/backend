@@ -1,6 +1,6 @@
 package com.luxury.wear.service.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -32,6 +32,6 @@ public class Category {
     private String description;
 
     @ManyToMany(mappedBy = "categories")
-    @JsonBackReference
+    @JsonIgnore
     private List<Product> products;
 }
