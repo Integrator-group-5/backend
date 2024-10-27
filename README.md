@@ -68,3 +68,28 @@ Antes de comenzar, asegúrate de que el `daemon` de Docker esté ejecutándose e
 ### Probar la API
 
 Para probar los endpoints de la API, se incluye una **colección de Postman** con solicitudes preconfiguradas para todos los endpoints disponibles.
+
+
+### Detener la Aplicación
+
+Para detener los contenedores en ejecución, utiliza el siguiente comando:
+
+```bash
+docker-compose -f docker-compose.yml down
+```
+
+Esto detendrá y eliminará los contenedores, pero mantendrá intactos los datos de la base de datos en el volumen.
+
+### Eliminar Todos los Recursos
+
+Si deseas detener los contenedores y también eliminar los recursos asociados, como volúmenes, redes e imágenes creadas por Docker Compose, ejecuta:
+
+```bash
+docker-compose -f docker-compose.yml down --volumes --rmi all
+```
+
+Este comando limpiará todos los recursos, incluidos los datos de MySQL que se hayan persistido.
+
+### Resumen
+
+Al usar Docker y Docker Compose, puedes ejecutar rápidamente y de manera sencilla el **Luxury Wear Service** en tu entorno local sin necesidad de configurar manualmente la base de datos o el entorno. La aplicación está completamente containerizada, lo que facilita la prueba, el desarrollo y la implementación en cualquier entorno.
