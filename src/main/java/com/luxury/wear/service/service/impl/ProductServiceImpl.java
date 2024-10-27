@@ -55,6 +55,7 @@ public class ProductServiceImpl implements ProductService {
 
     private Product updateExistingProduct(Product existingProduct, Product newProductData) {
         existingProduct.setName(newProductData.getName());
+        existingProduct.setReference(newProductData.getReference());
         existingProduct.setDescription(newProductData.getDescription());
         existingProduct.setMaterial(newProductData.getMaterial());
         existingProduct.setColor(newProductData.getColor());

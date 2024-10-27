@@ -13,11 +13,11 @@ INSERT INTO size (id, size) VALUES
     (4, 'XL');
 
 -- Insert products
-INSERT INTO product (product_id, name, description, material, color, designer, price) VALUES
-    (1, 'Vestido de Gala Elegante', 'Un vestido de gala de seda con detalles brillantes.', 'Seda', 'Rojo', 'Carolina Herrera', 120.50),
-    (2, 'Vestido Casual Veraniego', 'Un vestido ligero y fresco, perfecto para el verano.', 'Algodón', 'Blanco con estampado floral', 'Zara', 45.00),
-    (3, 'Vestido de Fiesta con Lentejuelas', 'Un vestido corto y llamativo, perfecto para una fiesta nocturna.', 'Poliéster con lentejuelas', 'Negro', 'Balmain', 85.00),
-    (4, 'Vestido Vintage Clásico', 'Un vestido inspirado en los años 50 con un diseño clásico.', 'Seda y encaje', 'Azul claro', 'Dior', 95.00);
+INSERT INTO product (product_id, name, reference, description, material, color, designer, price) VALUES
+    (1, 'Vestido de Gala Elegante', 'G-235', 'Un vestido de gala de seda con detalles brillantes.', 'Seda', 'Rojo', 'Carolina Herrera', 120.50),
+    (2, 'Vestido Casual Veraniego', 'Q-784', 'Un vestido ligero y fresco, perfecto para el verano.', 'Algodón', 'Blanco con estampado floral', 'Zara', 45.00),
+    (3, 'Vestido de Fiesta con Lentejuelas', 'N-453', 'Un vestido corto y llamativo, perfecto para una fiesta nocturna.', 'Poliéster con lentejuelas', 'Negro', 'Balmain', 85.00),
+    (4, 'Vestido Vintage Clásico', 'C-784', 'Un vestido inspirado en los años 50 con un diseño clásico.', 'Seda y encaje', 'Azul claro', 'Dior', 95.00);
 
 -- Insert images for each product
 INSERT INTO image (image_id, url, product_id) VALUES

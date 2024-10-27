@@ -2,6 +2,7 @@
 CREATE TABLE IF NOT EXISTS product (
     product_id BIGINT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
+    reference VARCHAR(50),
     description TEXT,
     material VARCHAR(100),
     color VARCHAR(50),

@@ -33,6 +33,9 @@ public class Product {
     @Column(nullable = false, length = 100)
     private String name;
 
+    @Column(length = 50)
+    private String reference;
+
     @Column(columnDefinition = "TEXT")
     private String description;
 
