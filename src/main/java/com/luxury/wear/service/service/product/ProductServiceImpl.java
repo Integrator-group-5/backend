@@ -6,6 +6,7 @@ import com.luxury.wear.service.exception.ResourceNotFoundException;
 import com.luxury.wear.service.repository.ProductRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -47,7 +48,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public List<Product> getAllTopProducts() {
-        return productRepository.findAllRandom();
+        return productRepository.findAllRandom(PageRequest.of(0, 8));
     }
 
     @Override
