@@ -16,6 +16,7 @@ A continuación se detallan los endpoints disponibles en la API de **Luxury Wear
 |--------|----------------------------------------|----------------------------------------------------|
 | GET    | `/api/v1/products/{id}`                | Obtiene la información de un producto por `id`.    |
 | GET    | `/api/v1/products`                     | Obtiene una lista de todos los productos.          |
+| GET    | `/api/v1/products/page/{page}`         | Obtiene una lista paginada de todos los productos. |
 | GET    | `/api/v1/products/top-rents`           | Obtiene una lista de productos en orden aleatorio. |
 | POST   | `/api/v1/products`                     | Crea un producto.                                  |
 | DELETE | `/api/v1/products/delete-product/{id}` | Elimina un producto por `id`.                      |

@@ -202,6 +202,102 @@
 					]
 				},
 				{
+					"name": "Paginated Products",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/products/page/:page",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"products",
+								"page",
+								":page"
+							],
+							"variable": [
+								{
+									"key": "page",
+									"value": "0",
+									"description": "(Required) Page number"
+								}
+							]
+						},
+						"description": "returns the product list in pages of 10 items and accepts the page number as a path variable.\n\n### Response\n\nReturn `Page<Product>`**: The response will be a `Page<Product>`, which includes pagination metadata like total pages, current page, and total elements."
+					},
+					"response": [
+						{
+							"name": "Paginated Products first page",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/api/v1/products/page/:page",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"products",
+										"page",
+										":page"
+									],
+									"variable": [
+										{
+											"key": "page",
+											"value": "0",
+											"description": "(Required) Page number"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 28 Oct 2024 04:05:52 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"content\": [\n        {\n            \"productId\": 1,\n            \"name\": \"Sueño de quince\",\n            \"reference\": \"Q-235\",\n            \"description\": \"Un vestido de quince años que te hará sentir como una verdadera princesa. Su diseño romántico y elegante, combinado con el delicado tono rosa, lo convierten en la elección perfecta para celebrar tu gran noche.\",\n            \"material\": \"Tafetán de seda natural, encaje francés.\",\n            \"color\": \"Rosa cuarzo\",\n            \"designer\": \"Ariana Vara\",\n            \"price\": 900000,\n            \"images\": [\n                {\n                    \"imageId\": 1,\n                    \"url\": \"img/quince1.jpg\"\n                },\n                {\n                    \"imageId\": 2,\n                    \"url\": \"img/quince2.jpg\"\n                },\n                {\n                    \"imageId\": 3,\n                    \"url\": \"img/quince3.jpg\"\n                },\n                {\n                    \"imageId\": 4,\n                    \"url\": \"img/quince4.jpg\"\n                },\n                {\n                    \"imageId\": 5,\n                    \"url\": \"img/quince5.jpg\"\n                }\n            ],\n            \"categories\": [\n                {\n                    \"id\": 3,\n                    \"name\": \"Quinces\",\n                    \"description\": \"Vestidos de gala amplios y elegantes para celebrar los quince años.\"\n                }\n            ],\n            \"sizes\": [\n                {\n                    \"id\": 1,\n                    \"size\": \"S\"\n                },\n                {\n                    \"id\": 2,\n                    \"size\": \"M\"\n                }\n            ]\n        },\n        {\n            \"productId\": 2,\n            \"name\": \"Camelia\",\n            \"reference\": \"N-784\",\n            \"description\": \"Libera tu espíritu bohemio con este vestido de novia único. El encaje floral, con motivos botánicos, cubre el cuerpo de manera ligera y sensual.\",\n            \"material\": \"Seda natural con encaje\",\n            \"color\": \"Blanco\",\n            \"designer\": \"Inbal Dror\",\n            \"price\": 2500000,\n            \"images\": [\n                {\n                    \"imageId\": 6,\n                    \"url\": \"img/novia1.jpg\"\n                },\n                {\n                    \"imageId\": 7,\n                    \"url\": \"img/novia2.jpg\"\n                },\n                {\n                    \"imageId\": 8,\n                    \"url\": \"img/novia3.jpg\"\n                },\n                {\n                    \"imageId\": 9,\n                    \"url\": \"img/novia4.jpg\"\n                },\n                {\n                    \"imageId\": 10,\n                    \"url\": \"img/novia5.jpg\"\n                }\n            ],\n            \"categories\": [\n                {\n                    \"id\": 2,\n                    \"name\": \"Novias\",\n                    \"description\": \"Vestidos únicos y románticos, perfectos para el día de la boda.\"\n                }\n            ],\n            \"sizes\": [\n                {\n                    \"id\": 3,\n                    \"size\": \"L\"\n                },\n                {\n                    \"id\": 4,\n                    \"size\": \"XL\"\n                }\n            ]\n        }\n    ],\n    \"pageable\": {\n        \"pageNumber\": 0,\n        \"pageSize\": 2,\n        \"sort\": {\n            \"empty\": true,\n            \"unsorted\": true,\n            \"sorted\": false\n        },\n        \"offset\": 0,\n        \"paged\": true,\n        \"unpaged\": false\n    },\n    \"last\": false,\n    \"totalElements\": 6,\n    \"totalPages\": 3,\n    \"numberOfElements\": 2,\n    \"first\": true,\n    \"size\": 2,\n    \"number\": 0,\n    \"sort\": {\n        \"empty\": true,\n        \"unsorted\": true,\n        \"sorted\": false\n    },\n    \"empty\": false\n}"
+						}
+					]
+				},
+				{
 					"name": "List Products Random",
 					"request": {
 						"method": "GET",
@@ -323,10 +419,12 @@
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "{{baseUrl}}/api/v1/products/delete-product/:id",
+									"raw": "http://localhost:8080/api/v1/products/delete-product/:id",
+									"protocol": "http",
 									"host": [
-										"{{baseUrl}}"
+										"localhost"
 									],
+									"port": "8080",
 									"path": [
 										"api",
 										"v1",
@@ -459,10 +557,12 @@
 									}
 								},
 								"url": {
-									"raw": "{{baseUrl}}/api/v1/products",
+									"raw": "http://localhost:8080/api/v1/products",
+									"protocol": "http",
 									"host": [
-										"{{baseUrl}}"
+										"localhost"
 									],
+									"port": "8080",
 									"path": [
 										"api",
 										"v1",
@@ -741,10 +841,12 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{baseUrl}}/api/v1/categories",
+									"raw": "http://localhost:8080/api/v1/categories",
+									"protocol": "http",
 									"host": [
-										"{{baseUrl}}"
+										"localhost"
 									],
+									"port": "8080",
 									"path": [
 										"api",
 										"v1",
@@ -825,10 +927,12 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{baseUrl}}/api/v1/sizes",
+									"raw": "http://localhost:8080/api/v1/sizes",
+									"protocol": "http",
 									"host": [
-										"{{baseUrl}}"
+										"localhost"
 									],
+									"port": "8080",
 									"path": [
 										"api",
 										"v1",

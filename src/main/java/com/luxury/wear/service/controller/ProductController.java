@@ -3,6 +3,9 @@ package com.luxury.wear.service.controller;
 import com.luxury.wear.service.entity.Product;
 import com.luxury.wear.service.service.product.ProductService;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -37,6 +40,14 @@ public class ProductController {
     @GetMapping
     public ResponseEntity<List<Product>> getAllProducts() {
         List<Product> products = productService.getAllProducts();
+        return ResponseEntity.status(HttpStatus.OK).body(products);
+    }
+
+    @GetMapping("/page/{page}")
+    public ResponseEntity<Page<Product>> getAllProductsPaginated(@PathVariable int page) {
+        int pageSize = 10;
+        Pageable pageable = PageRequest.of(page, pageSize);
+        Page<Product> products = productService.getAllProducts(pageable);
         return ResponseEntity.status(HttpStatus.OK).body(products);
     }
 
