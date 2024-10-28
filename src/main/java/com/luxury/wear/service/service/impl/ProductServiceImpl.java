@@ -1,5 +1,6 @@
 package com.luxury.wear.service.service.impl;
 
+import com.luxury.wear.service.entity.Image;
 import com.luxury.wear.service.entity.Product;
 import com.luxury.wear.service.exception.ResourceNotFoundException;
 import com.luxury.wear.service.repository.ProductRepository;
@@ -19,6 +20,11 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Product createProduct(Product product) {
+
+        for (Image image : product.getImages()) {
+            image.setProduct(product);
+        }
+
         return productRepository.save(product);
     }
 
