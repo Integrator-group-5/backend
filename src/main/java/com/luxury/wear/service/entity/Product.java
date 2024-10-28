@@ -16,6 +16,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -51,7 +52,7 @@ public class Product {
     private BigDecimal price;
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.PERSIST, orphanRemoval = true)
-    private List<Image> images;
+    private List<Image> images = new ArrayList<>();
 
     @ManyToMany
     @JoinTable(
@@ -59,7 +60,7 @@ public class Product {
             joinColumns = @JoinColumn(name = "product_id"),
             inverseJoinColumns = @JoinColumn(name = "category_id")
     )
-    private List<Category> categories;
+    private List<Category> categories = new ArrayList<>();
 
     @ManyToMany
     @JoinTable(
@@ -67,5 +68,5 @@ public class Product {
             joinColumns = @JoinColumn(name = "product_id"),
             inverseJoinColumns = @JoinColumn(name = "size_id")
     )
-    private List<Size> sizes;
+    private List<Size> sizes = new ArrayList<>();
 }
