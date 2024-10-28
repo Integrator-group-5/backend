@@ -2,6 +2,7 @@
 	"info": {
 		"_postman_id": "80c3e6cf-76c3-40a4-baac-99fa20882755",
 		"name": "Luxury Wear",
+		"description": "The available endpoints in the **Luxury Wear Service** API and their respective functionalities.",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "21179631"
 	},
@@ -322,12 +323,10 @@
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8080/api/v1/products/delete-product/:id",
-									"protocol": "http",
+									"raw": "{{baseUrl}}/api/v1/products/delete-product/:id",
 									"host": [
-										"localhost"
+										"{{baseUrl}}"
 									],
-									"port": "8080",
 									"path": [
 										"api",
 										"v1",
@@ -409,7 +408,6 @@
 								{
 									"key": "Content-Type",
 									"value": "application/json",
-									"name": "Content-Type",
 									"description": "",
 									"type": "text"
 								}
@@ -461,12 +459,10 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:8080/api/v1/products",
-									"protocol": "http",
+									"raw": "{{baseUrl}}/api/v1/products",
 									"host": [
-										"localhost"
+										"{{baseUrl}}"
 									],
-									"port": "8080",
 									"path": [
 										"api",
 										"v1",
@@ -754,18 +750,136 @@
 										"v1",
 										"categories"
 									]
-								},
-								"description": "List all categories that exist at the the database.\n\n### Response\n\nUpon a successful request, the response will return an array of nested categories."
+								}
 							},
-							"_postman_previewlanguage": "",
-							"header": "",
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 28 Oct 2024 01:41:16 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
 							"cookie": [],
-							"body": ""
+							"body": "[\n    {\n        \"id\": 1,\n        \"name\": \"Cóctel\",\n        \"description\": \"Vestidos elegantes y modernos, ideales para eventos semiformales.\"\n    },\n    {\n        \"id\": 2,\n        \"name\": \"Novias\",\n        \"description\": \"Vestidos únicos y románticos, perfectos para el día de la boda.\"\n    },\n    {\n        \"id\": 3,\n        \"name\": \"Quinces\",\n        \"description\": \"Vestidos de gala amplios y elegantes para celebrar los quince años.\"\n    },\n    {\n        \"id\": 4,\n        \"name\": \"Dama honor\",\n        \"description\": \"Vestidos coordinados y sencillos para acompañantes de la novia.\"\n    },\n    {\n        \"id\": 5,\n        \"name\": \"Grado\",\n        \"description\": \"Vestidos formales y juveniles, perfectos para la ceremonia de graduación.\"\n    }\n]"
 						}
 					]
 				}
 			],
 			"description": "Operations related to `Category` management."
+		},
+		{
+			"name": "Size",
+			"item": [
+				{
+					"name": "List Categories",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/sizes",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"sizes"
+							]
+						},
+						"description": "List all sizes that exist at the the database.\n\n### Response\n\nUpon a successful request, the response will return an array of nested sizes."
+					},
+					"response": [
+						{
+							"name": "Successful Response List Categories",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/api/v1/sizes",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"sizes"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 28 Oct 2024 01:45:49 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": 1,\n        \"size\": \"S\"\n    },\n    {\n        \"id\": 2,\n        \"size\": \"M\"\n    },\n    {\n        \"id\": 3,\n        \"size\": \"L\"\n    },\n    {\n        \"id\": 4,\n        \"size\": \"XL\"\n    }\n]"
+						}
+					]
+				}
+			],
+			"description": "Operations related to `Size` management."
 		}
 	],
 	"event": [

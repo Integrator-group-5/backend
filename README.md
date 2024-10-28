@@ -26,6 +26,12 @@ A continuación se detallan los endpoints disponibles en la API de **Luxury Wear
 |--------|----------------------|--------------------------------------------|
 | GET    | `/api/v1/categories` | Obtiene una lista de todos las categorías. |
 
+### Operaciones relacionadas con la gestión de Tallas.
+
+| Método | Endpoint        | Descripción                            |
+|--------|-----------------|----------------------------------------|
+| GET    | `/api/v1/sizes` | Obtiene una lista de todos las tallas. |
+
 ## Ejecutar Luxury Wear Service Localmente con Docker
 
 Esta sección explica cómo ejecutar el **Luxury Wear Service** localmente utilizando Docker. El archivo `docker-compose.yml` provisiona tanto la base de datos MySQL como la aplicación Spring Boot en contenedores separados, permitiendo una configuración rápida y sencilla en tu entorno local.
