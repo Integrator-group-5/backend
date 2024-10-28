@@ -1,4 +1,4 @@
-package com.luxury.wear.service.service;
+package com.luxury.wear.service.service.product;
 
 import com.luxury.wear.service.entity.Product;
 

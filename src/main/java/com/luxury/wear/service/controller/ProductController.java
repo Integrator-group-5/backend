@@ -1,7 +1,7 @@
 package com.luxury.wear.service.controller;
 
 import com.luxury.wear.service.entity.Product;
-import com.luxury.wear.service.service.ProductService;
+import com.luxury.wear.service.service.product.ProductService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

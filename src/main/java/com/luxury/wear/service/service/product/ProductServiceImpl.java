@@ -1,10 +1,9 @@
-package com.luxury.wear.service.service.impl;
+package com.luxury.wear.service.service.product;
 
 import com.luxury.wear.service.entity.Image;
 import com.luxury.wear.service.entity.Product;
 import com.luxury.wear.service.exception.ResourceNotFoundException;
 import com.luxury.wear.service.repository.ProductRepository;
-import com.luxury.wear.service.service.ProductService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
