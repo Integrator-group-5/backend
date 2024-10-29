@@ -57,14 +57,6 @@ git clone https://github.com/Integrator-group-5/backend.git
 cd backend
 ```
 
-### Cambiar a la rama `fernando`
-
-Cámbiate a la rama `fernando` con el siguiente comando:
-
-```bash
-git checkout fernando
-```
-
 ### Pasos para Ejecutar Localmente
 
 Antes de comenzar, asegúrate de que el `daemon` de Docker esté ejecutándose en tu máquina o abre **Docker Desktop** para iniciarlo.
