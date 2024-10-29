@@ -1,0 +1,1018 @@
+{
+	"info": {
+		"_postman_id": "80c3e6cf-76c3-40a4-baac-99fa20882755",
+		"name": "Luxury Wear",
+		"description": "The available endpoints in the **Luxury Wear Service** API and their respective functionalities.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21179631"
+	},
+	"item": [
+		{
+			"name": "Product",
+			"item": [
+				{
+					"name": "Get Product by Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/products/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"products",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1",
+									"description": "(Required) ID of the product"
+								}
+							]
+						},
+						"description": "Get information about a product by passing the product `id` as a path parameter.\n\n### Response\n\nUpon a successful request, the response will contain a `product` object matching the search criteria.\n\nIf no product with that ID is found, the request will return a `Not Found` error."
+					},
+					"response": [
+						{
+							"name": "Succesful Response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/v1/products/:id",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"products",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "1",
+											"description": "(Required) ID of the product"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sat, 17 Feb 2024 14:46:30 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "84"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "uWebSockets",
+									"value": "20"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"productId\": 1,\n    \"name\": \"Sueño de quince\",\n    \"reference\": \"Q-235\",\n    \"description\": \"Un vestido de quince años que te hará sentir como una verdadera princesa. Su diseño romántico y elegante, combinado con el delicado tono rosa, lo convierten en la elección perfecta para celebrar tu gran noche.\",\n    \"material\": \"Tafetán de seda natural, encaje francés.\",\n    \"color\": \"Rosa cuarzo\",\n    \"designer\": \"Ariana Vara\",\n    \"price\": 900000.00,\n    \"images\": [\n        {\n            \"imageId\": 1,\n            \"url\": \"quince1.jpg\"\n        },\n        {\n            \"imageId\": 2,\n            \"url\": \"quince2.jpg\"\n        },\n        {\n            \"imageId\": 3,\n            \"url\": \"quince3.jpg\"\n        },\n        {\n            \"imageId\": 4,\n            \"url\": \"quince4.jpg\"\n        },\n        {\n            \"imageId\": 5,\n            \"url\": \"quince5.jpg\"\n        }\n    ],\n    \"categories\": [\n        {\n            \"id\": 3,\n            \"name\": \"Quinces\",\n            \"description\": \"Vestidos de gala amplios y elegantes para celebrar los quince años.\"\n        }\n    ],\n    \"sizes\": [\n        {\n            \"id\": 1,\n            \"size\": \"S\"\n        },\n        {\n            \"id\": 2,\n            \"size\": \"M\"\n        }\n    ]\n}"
+						},
+						{
+							"name": "Product Not found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/api/v1/products/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"products",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "999",
+											"description": "(Required) ID of the product"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sat, 17 Feb 2024 13:18:51 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "63"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "uWebSockets",
+									"value": "20"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"timestamp\": \"2024-10-24T22:47:30.5668289\",\n    \"message\": \"Product not found with id: 999\",\n    \"details\": \"/api/v1/products/999\"\n}"
+						}
+					]
+				},
+				{
+					"name": "List Products",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/products",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"products"
+							]
+						},
+						"description": "List all products that exist at the the database.\n\n### Response\n\nUpon a successful request, the response will return an array of nested products."
+					},
+					"response": [
+						{
+							"name": "Successful Response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/v1/products",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"products"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"productId\": 1,\n        \"name\": \"Sueño de quince\",\n        \"reference\": \"Q-235\",\n        \"description\": \"Un vestido de quince años que te hará sentir como una verdadera princesa. Su diseño romántico y elegante, combinado con el delicado tono rosa, lo convierten en la elección perfecta para celebrar tu gran noche.\",\n        \"material\": \"Tafetán de seda natural, encaje francés.\",\n        \"color\": \"Rosa cuarzo\",\n        \"designer\": \"Ariana Vara\",\n        \"price\": 900000.00,\n        \"images\": [\n            {\n                \"imageId\": 1,\n                \"url\": \"quince1.jpg\"\n            },\n            {\n                \"imageId\": 2,\n                \"url\": \"quince2.jpg\"\n            },\n            {\n                \"imageId\": 3,\n                \"url\": \"quince3.jpg\"\n            },\n            {\n                \"imageId\": 4,\n                \"url\": \"quince4.jpg\"\n            },\n            {\n                \"imageId\": 5,\n                \"url\": \"quince5.jpg\"\n            }\n        ],\n        \"categories\": [\n            {\n                \"id\": 3,\n                \"name\": \"Quinces\",\n                \"description\": \"Vestidos de gala amplios y elegantes para celebrar los quince años.\"\n            }\n        ],\n        \"sizes\": [\n            {\n                \"id\": 1,\n                \"size\": \"S\"\n            },\n            {\n                \"id\": 2,\n                \"size\": \"M\"\n            }\n        ]\n    },\n    {\n        \"productId\": 2,\n        \"name\": \"Camelia\",\n        \"reference\": \"N-784\",\n        \"description\": \"Libera tu espíritu bohemio con este vestido de novia único. El encaje floral, con motivos botánicos, cubre el cuerpo de manera ligera y sensual.\",\n        \"material\": \"Seda natural con encaje\",\n        \"color\": \"Blanco\",\n        \"designer\": \"Inbal Dror\",\n        \"price\": 2500000.00,\n        \"images\": [\n            {\n                \"imageId\": 6,\n                \"url\": \"novia1.jpg\"\n            },\n            {\n                \"imageId\": 7,\n                \"url\": \"novia2.jpg\"\n            },\n            {\n                \"imageId\": 8,\n                \"url\": \"novia3.jpg\"\n            },\n            {\n                \"imageId\": 9,\n                \"url\": \"novia4.jpg\"\n            },\n            {\n                \"imageId\": 10,\n                \"url\": \"novia5.jpg\"\n            }\n        ],\n        \"categories\": [\n            {\n                \"id\": 2,\n                \"name\": \"Novias\",\n                \"description\": \"Vestidos únicos y románticos, perfectos para el día de la boda.\"\n            }\n        ],\n        \"sizes\": [\n            {\n                \"id\": 3,\n                \"size\": \"L\"\n            },\n            {\n                \"id\": 4,\n                \"size\": \"XL\"\n            }\n        ]\n    },\n    {\n        \"productId\": 3,\n        \"name\": \"Hollywood\",\n        \"reference\": \"C-453\",\n        \"description\": \"Deslumbra en cualquier evento con este vestido de cóctel. Adornado con lentejuelas brillantes, este vestido no solo capta todas las miradas, sino que también realza tu figura de manera espectacular. Perfecto para cualquier ocasión especial, te hará sentir segura y radiante.\",\n        \"material\": \"Algodón con lentejuelas\",\n        \"color\": \"Plateado\",\n        \"designer\": \"Carolina Herrera\",\n        \"price\": 200000.00,\n        \"images\": [\n            {\n                \"imageId\": 11,\n                \"url\": \"coctel1.jpg\"\n            },\n            {\n                \"imageId\": 12,\n                \"url\": \"coctel2.jpg\"\n            },\n            {\n                \"imageId\": 13,\n                \"url\": \"coctel3.jpg\"\n            },\n            {\n                \"imageId\": 14,\n                \"url\": \"coctel4.jpg\"\n            },\n            {\n                \"imageId\": 15,\n                \"url\": \"coctel5.jpg\"\n            }\n        ],\n        \"categories\": [\n            {\n                \"id\": 1,\n                \"name\": \"Cóctel\",\n                \"description\": \"Vestidos elegantes y modernos, ideales para eventos semiformales.\"\n            }\n        ],\n        \"sizes\": [\n            {\n                \"id\": 1,\n                \"size\": \"S\"\n            },\n            {\n                \"id\": 4,\n                \"size\": \"XL\"\n            }\n        ]\n    },\n    {\n        \"productId\": 4,\n        \"name\": \"Brianna\",\n        \"reference\": \"C-784\",\n        \"description\": \"Deslumbra en cualquier evento con este vestido de cóctel plateado. Adornado con brillantes y tiras de voleros que añaden un toque visual espectacular, este vestido corto y ajustado realza tu figura de manera impresionante. Perfecto para destacar en cualquier ocasión especial.\",\n        \"material\": \"Seda y poliéster con lentejuelas de alta calidad.\",\n        \"color\": \"Plateado\",\n        \"designer\": \"Oscar de la Renta\",\n        \"price\": 150000.00,\n        \"images\": [\n            {\n                \"imageId\": 16,\n                \"url\": \"coctelTres1.jpg\"\n            },\n            {\n                \"imageId\": 17,\n                \"url\": \"coctelTres2.jpg\"\n            },\n            {\n                \"imageId\": 18,\n                \"url\": \"coctelTres3.jpg\"\n            },\n            {\n                \"imageId\": 19,\n                \"url\": \"coctelTres4.jpg\"\n            },\n            {\n                \"imageId\": 20,\n                \"url\": \"coctelTres5.jpg\"\n            }\n        ],\n        \"categories\": [\n            {\n                \"id\": 1,\n                \"name\": \"Cóctel\",\n                \"description\": \"Vestidos elegantes y modernos, ideales para eventos semiformales.\"\n            }\n        ],\n        \"sizes\": [\n            {\n                \"id\": 1,\n                \"size\": \"S\"\n            },\n            {\n                \"id\": 2,\n                \"size\": \"M\"\n            }\n        ]\n    },\n    {\n        \"productId\": 5,\n        \"name\": \"Gold party\",\n        \"reference\": \"C-754\",\n        \"description\": \"Impresiona en cualquier evento con este vestido de cóctel tipo blazer. De color dorado y adornado con brillantines, este vestido de manga larga y diseño corto combina a la perfección sensualidad y elegancia. Ideal para destacar en cualquier ocasión especial.\",\n        \"material\": \"Lurex\",\n        \"color\": \"Dorado brillante\",\n        \"designer\": \"Versace\",\n        \"price\": 300000.00,\n        \"images\": [\n            {\n                \"imageId\": 21,\n                \"url\": \"coctelDos1.jpg\"\n            },\n            {\n                \"imageId\": 22,\n                \"url\": \"coctelDos2.jpg\"\n            },\n            {\n                \"imageId\": 23,\n                \"url\": \"coctelDos3.jpg\"\n            },\n            {\n                \"imageId\": 24,\n                \"url\": \"coctelDos4.jpg\"\n            },\n            {\n                \"imageId\": 25,\n                \"url\": \"coctelDos5.jpg\"\n            }\n        ],\n        \"categories\": [\n            {\n                \"id\": 1,\n                \"name\": \"Cóctel\",\n                \"description\": \"Vestidos elegantes y modernos, ideales para eventos semiformales.\"\n            }\n        ],\n        \"sizes\": [\n            {\n                \"id\": 2,\n                \"size\": \"M\"\n            },\n            {\n                \"id\": 4,\n                \"size\": \"XL\"\n            }\n        ]\n    },\n    {\n        \"productId\": 6,\n        \"name\": \"Niebla de medianoche\",\n        \"reference\": \"D-358\",\n        \"description\": \"Este vestido largo de un solo hombro en tono gris perla, con tela fluida y detalles brillantes, es ideal para bodas y eventos formales. Su diseño elegante y movimiento etéreo destacan a quien lo lleva, añadiendo un toque de sofisticación y romanticismo.\",\n        \"material\": \"Gasa de seda\",\n        \"color\": \"Perla\",\n        \"designer\": \"Elena Castellani\",\n        \"price\": 450000.00,\n        \"images\": [\n            {\n                \"imageId\": 26,\n                \"url\": \"madrina1.jpg\"\n            },\n            {\n                \"imageId\": 27,\n                \"url\": \"madrina2.jpg\"\n            },\n            {\n                \"imageId\": 28,\n                \"url\": \"madrina3.jpg\"\n            },\n            {\n                \"imageId\": 29,\n                \"url\": \"madrina4.jpg\"\n            },\n            {\n                \"imageId\": 30,\n                \"url\": \"madrina5.jpg\"\n            }\n        ],\n        \"categories\": [\n            {\n                \"id\": 4,\n                \"name\": \"Dama honor\",\n                \"description\": \"Vestidos coordinados y sencillos para acompañantes de la novia.\"\n            },\n            {\n                \"id\": 5,\n                \"name\": \"Grado\",\n                \"description\": \"Vestidos formales y juveniles, perfectos para la ceremonia de graduación.\"\n            }\n        ],\n        \"sizes\": [\n            {\n                \"id\": 2,\n                \"size\": \"M\"\n            },\n            {\n                \"id\": 3,\n                \"size\": \"L\"\n            }\n        ]\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Paginated Products",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/products/page/:page",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"products",
+								"page",
+								":page"
+							],
+							"variable": [
+								{
+									"key": "page",
+									"value": "0",
+									"description": "(Required) Page number"
+								}
+							]
+						},
+						"description": "returns the product list in pages of 10 items and accepts the page number as a path variable.\n\n### Response\n\nReturn `Page<Product>`**: The response will be a `Page<Product>`, which includes pagination metadata like total pages, current page, and total elements."
+					},
+					"response": [
+						{
+							"name": "Paginated Products first page",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/api/v1/products/page/:page",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"products",
+										"page",
+										":page"
+									],
+									"variable": [
+										{
+											"key": "page",
+											"value": "0",
+											"description": "(Required) Page number"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 28 Oct 2024 04:05:52 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"content\": [\n        {\n            \"productId\": 1,\n            \"name\": \"Sueño de quince\",\n            \"reference\": \"Q-235\",\n            \"description\": \"Un vestido de quince años que te hará sentir como una verdadera princesa. Su diseño romántico y elegante, combinado con el delicado tono rosa, lo convierten en la elección perfecta para celebrar tu gran noche.\",\n            \"material\": \"Tafetán de seda natural, encaje francés.\",\n            \"color\": \"Rosa cuarzo\",\n            \"designer\": \"Ariana Vara\",\n            \"price\": 900000,\n            \"images\": [\n                {\n                    \"imageId\": 1,\n                    \"url\": \"img/quince1.jpg\"\n                },\n                {\n                    \"imageId\": 2,\n                    \"url\": \"img/quince2.jpg\"\n                },\n                {\n                    \"imageId\": 3,\n                    \"url\": \"img/quince3.jpg\"\n                },\n                {\n                    \"imageId\": 4,\n                    \"url\": \"img/quince4.jpg\"\n                },\n                {\n                    \"imageId\": 5,\n                    \"url\": \"img/quince5.jpg\"\n                }\n            ],\n            \"categories\": [\n                {\n                    \"id\": 3,\n                    \"name\": \"Quinces\",\n                    \"description\": \"Vestidos de gala amplios y elegantes para celebrar los quince años.\"\n                }\n            ],\n            \"sizes\": [\n                {\n                    \"id\": 1,\n                    \"size\": \"S\"\n                },\n                {\n                    \"id\": 2,\n                    \"size\": \"M\"\n                }\n            ]\n        },\n        {\n            \"productId\": 2,\n            \"name\": \"Camelia\",\n            \"reference\": \"N-784\",\n            \"description\": \"Libera tu espíritu bohemio con este vestido de novia único. El encaje floral, con motivos botánicos, cubre el cuerpo de manera ligera y sensual.\",\n            \"material\": \"Seda natural con encaje\",\n            \"color\": \"Blanco\",\n            \"designer\": \"Inbal Dror\",\n            \"price\": 2500000,\n            \"images\": [\n                {\n                    \"imageId\": 6,\n                    \"url\": \"img/novia1.jpg\"\n                },\n                {\n                    \"imageId\": 7,\n                    \"url\": \"img/novia2.jpg\"\n                },\n                {\n                    \"imageId\": 8,\n                    \"url\": \"img/novia3.jpg\"\n                },\n                {\n                    \"imageId\": 9,\n                    \"url\": \"img/novia4.jpg\"\n                },\n                {\n                    \"imageId\": 10,\n                    \"url\": \"img/novia5.jpg\"\n                }\n            ],\n            \"categories\": [\n                {\n                    \"id\": 2,\n                    \"name\": \"Novias\",\n                    \"description\": \"Vestidos únicos y románticos, perfectos para el día de la boda.\"\n                }\n            ],\n            \"sizes\": [\n                {\n                    \"id\": 3,\n                    \"size\": \"L\"\n                },\n                {\n                    \"id\": 4,\n                    \"size\": \"XL\"\n                }\n            ]\n        }\n    ],\n    \"pageable\": {\n        \"pageNumber\": 0,\n        \"pageSize\": 2,\n        \"sort\": {\n            \"empty\": true,\n            \"unsorted\": true,\n            \"sorted\": false\n        },\n        \"offset\": 0,\n        \"paged\": true,\n        \"unpaged\": false\n    },\n    \"last\": false,\n    \"totalElements\": 6,\n    \"totalPages\": 3,\n    \"numberOfElements\": 2,\n    \"first\": true,\n    \"size\": 2,\n    \"number\": 0,\n    \"sort\": {\n        \"empty\": true,\n        \"unsorted\": true,\n        \"sorted\": false\n    },\n    \"empty\": false\n}"
+						}
+					]
+				},
+				{
+					"name": "List Products Random",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/products/top-rents",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"products",
+								"top-rents"
+							]
+						},
+						"description": "List all products that exist at the the database. With the difference that with each call the products change order.\n\nResponse  \nUpon a successful request, the response will return an array of nested products."
+					},
+					"response": [
+						{
+							"name": "Successful Response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/v1/products/top-rents",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"products",
+										"top-rents"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"productId\": 3,\n        \"name\": \"Hollywood\",\n        \"reference\": \"C-453\",\n        \"description\": \"Deslumbra en cualquier evento con este vestido de cóctel. Adornado con lentejuelas brillantes, este vestido no solo capta todas las miradas, sino que también realza tu figura de manera espectacular. Perfecto para cualquier ocasión especial, te hará sentir segura y radiante.\",\n        \"material\": \"Algodón con lentejuelas\",\n        \"color\": \"Plateado\",\n        \"designer\": \"Carolina Herrera\",\n        \"price\": 200000.00,\n        \"images\": [\n            {\n                \"imageId\": 11,\n                \"url\": \"coctel1.jpg\"\n            },\n            {\n                \"imageId\": 12,\n                \"url\": \"coctel2.jpg\"\n            },\n            {\n                \"imageId\": 13,\n                \"url\": \"coctel3.jpg\"\n            },\n            {\n                \"imageId\": 14,\n                \"url\": \"coctel4.jpg\"\n            },\n            {\n                \"imageId\": 15,\n                \"url\": \"coctel5.jpg\"\n            }\n        ],\n        \"categories\": [\n            {\n                \"id\": 1,\n                \"name\": \"Cóctel\",\n                \"description\": \"Vestidos elegantes y modernos, ideales para eventos semiformales.\"\n            }\n        ],\n        \"sizes\": [\n            {\n                \"id\": 1,\n                \"size\": \"S\"\n            },\n            {\n                \"id\": 4,\n                \"size\": \"XL\"\n            }\n        ]\n    },\n    {\n        \"productId\": 5,\n        \"name\": \"Gold party\",\n        \"reference\": \"C-754\",\n        \"description\": \"Impresiona en cualquier evento con este vestido de cóctel tipo blazer. De color dorado y adornado con brillantines, este vestido de manga larga y diseño corto combina a la perfección sensualidad y elegancia. Ideal para destacar en cualquier ocasión especial.\",\n        \"material\": \"Lurex\",\n        \"color\": \"Dorado brillante\",\n        \"designer\": \"Versace\",\n        \"price\": 300000.00,\n        \"images\": [\n            {\n                \"imageId\": 21,\n                \"url\": \"coctelDos1.jpg\"\n            },\n            {\n                \"imageId\": 22,\n                \"url\": \"coctelDos2.jpg\"\n            },\n            {\n                \"imageId\": 23,\n                \"url\": \"coctelDos3.jpg\"\n            },\n            {\n                \"imageId\": 24,\n                \"url\": \"coctelDos4.jpg\"\n            },\n            {\n                \"imageId\": 25,\n                \"url\": \"coctelDos5.jpg\"\n            }\n        ],\n        \"categories\": [\n            {\n                \"id\": 1,\n                \"name\": \"Cóctel\",\n                \"description\": \"Vestidos elegantes y modernos, ideales para eventos semiformales.\"\n            }\n        ],\n        \"sizes\": [\n            {\n                \"id\": 2,\n                \"size\": \"M\"\n            },\n            {\n                \"id\": 4,\n                \"size\": \"XL\"\n            }\n        ]\n    },\n    {\n        \"productId\": 1,\n        \"name\": \"Sueño de quince\",\n        \"reference\": \"Q-235\",\n        \"description\": \"Un vestido de quince años que te hará sentir como una verdadera princesa. Su diseño romántico y elegante, combinado con el delicado tono rosa, lo convierten en la elección perfecta para celebrar tu gran noche.\",\n        \"material\": \"Tafetán de seda natural, encaje francés.\",\n        \"color\": \"Rosa cuarzo\",\n        \"designer\": \"Ariana Vara\",\n        \"price\": 900000.00,\n        \"images\": [\n            {\n                \"imageId\": 1,\n                \"url\": \"quince1.jpg\"\n            },\n            {\n                \"imageId\": 2,\n                \"url\": \"quince2.jpg\"\n            },\n            {\n                \"imageId\": 3,\n                \"url\": \"quince3.jpg\"\n            },\n            {\n                \"imageId\": 4,\n                \"url\": \"quince4.jpg\"\n            },\n            {\n                \"imageId\": 5,\n                \"url\": \"quince5.jpg\"\n            }\n        ],\n        \"categories\": [\n            {\n                \"id\": 3,\n                \"name\": \"Quinces\",\n                \"description\": \"Vestidos de gala amplios y elegantes para celebrar los quince años.\"\n            }\n        ],\n        \"sizes\": [\n            {\n                \"id\": 1,\n                \"size\": \"S\"\n            },\n            {\n                \"id\": 2,\n                \"size\": \"M\"\n            }\n        ]\n    },\n    {\n        \"productId\": 2,\n        \"name\": \"Camelia\",\n        \"reference\": \"N-784\",\n        \"description\": \"Libera tu espíritu bohemio con este vestido de novia único. El encaje floral, con motivos botánicos, cubre el cuerpo de manera ligera y sensual.\",\n        \"material\": \"Seda natural con encaje\",\n        \"color\": \"Blanco\",\n        \"designer\": \"Inbal Dror\",\n        \"price\": 2500000.00,\n        \"images\": [\n            {\n                \"imageId\": 6,\n                \"url\": \"novia1.jpg\"\n            },\n            {\n                \"imageId\": 7,\n                \"url\": \"novia2.jpg\"\n            },\n            {\n                \"imageId\": 8,\n                \"url\": \"novia3.jpg\"\n            },\n            {\n                \"imageId\": 9,\n                \"url\": \"novia4.jpg\"\n            },\n            {\n                \"imageId\": 10,\n                \"url\": \"novia5.jpg\"\n            }\n        ],\n        \"categories\": [\n            {\n                \"id\": 2,\n                \"name\": \"Novias\",\n                \"description\": \"Vestidos únicos y románticos, perfectos para el día de la boda.\"\n            }\n        ],\n        \"sizes\": [\n            {\n                \"id\": 3,\n                \"size\": \"L\"\n            },\n            {\n                \"id\": 4,\n                \"size\": \"XL\"\n            }\n        ]\n    },\n    {\n        \"productId\": 4,\n        \"name\": \"Brianna\",\n        \"reference\": \"C-784\",\n        \"description\": \"Deslumbra en cualquier evento con este vestido de cóctel plateado. Adornado con brillantes y tiras de voleros que añaden un toque visual espectacular, este vestido corto y ajustado realza tu figura de manera impresionante. Perfecto para destacar en cualquier ocasión especial.\",\n        \"material\": \"Seda y poliéster con lentejuelas de alta calidad.\",\n        \"color\": \"Plateado\",\n        \"designer\": \"Oscar de la Renta\",\n        \"price\": 150000.00,\n        \"images\": [\n            {\n                \"imageId\": 16,\n                \"url\": \"coctelTres1.jpg\"\n            },\n            {\n                \"imageId\": 17,\n                \"url\": \"coctelTres2.jpg\"\n            },\n            {\n                \"imageId\": 18,\n                \"url\": \"coctelTres3.jpg\"\n            },\n            {\n                \"imageId\": 19,\n                \"url\": \"coctelTres4.jpg\"\n            },\n            {\n                \"imageId\": 20,\n                \"url\": \"coctelTres5.jpg\"\n            }\n        ],\n        \"categories\": [\n            {\n                \"id\": 1,\n                \"name\": \"Cóctel\",\n                \"description\": \"Vestidos elegantes y modernos, ideales para eventos semiformales.\"\n            }\n        ],\n        \"sizes\": [\n            {\n                \"id\": 1,\n                \"size\": \"S\"\n            },\n            {\n                \"id\": 2,\n                \"size\": \"M\"\n            }\n        ]\n    },\n    {\n        \"productId\": 6,\n        \"name\": \"Niebla de medianoche\",\n        \"reference\": \"D-358\",\n        \"description\": \"Este vestido largo de un solo hombro en tono gris perla, con tela fluida y detalles brillantes, es ideal para bodas y eventos formales. Su diseño elegante y movimiento etéreo destacan a quien lo lleva, añadiendo un toque de sofisticación y romanticismo.\",\n        \"material\": \"Gasa de seda\",\n        \"color\": \"Perla\",\n        \"designer\": \"Elena Castellani\",\n        \"price\": 450000.00,\n        \"images\": [\n            {\n                \"imageId\": 26,\n                \"url\": \"madrina1.jpg\"\n            },\n            {\n                \"imageId\": 27,\n                \"url\": \"madrina2.jpg\"\n            },\n            {\n                \"imageId\": 28,\n                \"url\": \"madrina3.jpg\"\n            },\n            {\n                \"imageId\": 29,\n                \"url\": \"madrina4.jpg\"\n            },\n            {\n                \"imageId\": 30,\n                \"url\": \"madrina5.jpg\"\n            }\n        ],\n        \"categories\": [\n            {\n                \"id\": 4,\n                \"name\": \"Dama honor\",\n                \"description\": \"Vestidos coordinados y sencillos para acompañantes de la novia.\"\n            },\n            {\n                \"id\": 5,\n                \"name\": \"Grado\",\n                \"description\": \"Vestidos formales y juveniles, perfectos para la ceremonia de graduación.\"\n            }\n        ],\n        \"sizes\": [\n            {\n                \"id\": 2,\n                \"size\": \"M\"\n            },\n            {\n                \"id\": 3,\n                \"size\": \"L\"\n            }\n        ]\n    }\n]"
+						},
+						{
+							"name": "Successful Response different order",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/api/v1/products/top-rents",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"products",
+										"top-rents"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"productId\": 2,\n        \"name\": \"Camelia\",\n        \"reference\": \"N-784\",\n        \"description\": \"Libera tu espíritu bohemio con este vestido de novia único. El encaje floral, con motivos botánicos, cubre el cuerpo de manera ligera y sensual.\",\n        \"material\": \"Seda natural con encaje\",\n        \"color\": \"Blanco\",\n        \"designer\": \"Inbal Dror\",\n        \"price\": 2500000.00,\n        \"images\": [\n            {\n                \"imageId\": 6,\n                \"url\": \"novia1.jpg\"\n            },\n            {\n                \"imageId\": 7,\n                \"url\": \"novia2.jpg\"\n            },\n            {\n                \"imageId\": 8,\n                \"url\": \"novia3.jpg\"\n            },\n            {\n                \"imageId\": 9,\n                \"url\": \"novia4.jpg\"\n            },\n            {\n                \"imageId\": 10,\n                \"url\": \"novia5.jpg\"\n            }\n        ],\n        \"categories\": [\n            {\n                \"id\": 2,\n                \"name\": \"Novias\",\n                \"description\": \"Vestidos únicos y románticos, perfectos para el día de la boda.\"\n            }\n        ],\n        \"sizes\": [\n            {\n                \"id\": 3,\n                \"size\": \"L\"\n            },\n            {\n                \"id\": 4,\n                \"size\": \"XL\"\n            }\n        ]\n    },\n    {\n        \"productId\": 3,\n        \"name\": \"Hollywood\",\n        \"reference\": \"C-453\",\n        \"description\": \"Deslumbra en cualquier evento con este vestido de cóctel. Adornado con lentejuelas brillantes, este vestido no solo capta todas las miradas, sino que también realza tu figura de manera espectacular. Perfecto para cualquier ocasión especial, te hará sentir segura y radiante.\",\n        \"material\": \"Algodón con lentejuelas\",\n        \"color\": \"Plateado\",\n        \"designer\": \"Carolina Herrera\",\n        \"price\": 200000.00,\n        \"images\": [\n            {\n                \"imageId\": 11,\n                \"url\": \"coctel1.jpg\"\n            },\n            {\n                \"imageId\": 12,\n                \"url\": \"coctel2.jpg\"\n            },\n            {\n                \"imageId\": 13,\n                \"url\": \"coctel3.jpg\"\n            },\n            {\n                \"imageId\": 14,\n                \"url\": \"coctel4.jpg\"\n            },\n            {\n                \"imageId\": 15,\n                \"url\": \"coctel5.jpg\"\n            }\n        ],\n        \"categories\": [\n            {\n                \"id\": 1,\n                \"name\": \"Cóctel\",\n                \"description\": \"Vestidos elegantes y modernos, ideales para eventos semiformales.\"\n            }\n        ],\n        \"sizes\": [\n            {\n                \"id\": 1,\n                \"size\": \"S\"\n            },\n            {\n                \"id\": 4,\n                \"size\": \"XL\"\n            }\n        ]\n    },\n    {\n        \"productId\": 6,\n        \"name\": \"Niebla de medianoche\",\n        \"reference\": \"D-358\",\n        \"description\": \"Este vestido largo de un solo hombro en tono gris perla, con tela fluida y detalles brillantes, es ideal para bodas y eventos formales. Su diseño elegante y movimiento etéreo destacan a quien lo lleva, añadiendo un toque de sofisticación y romanticismo.\",\n        \"material\": \"Gasa de seda\",\n        \"color\": \"Perla\",\n        \"designer\": \"Elena Castellani\",\n        \"price\": 450000.00,\n        \"images\": [\n            {\n                \"imageId\": 26,\n                \"url\": \"madrina1.jpg\"\n            },\n            {\n                \"imageId\": 27,\n                \"url\": \"madrina2.jpg\"\n            },\n            {\n                \"imageId\": 28,\n                \"url\": \"madrina3.jpg\"\n            },\n            {\n                \"imageId\": 29,\n                \"url\": \"madrina4.jpg\"\n            },\n            {\n                \"imageId\": 30,\n                \"url\": \"madrina5.jpg\"\n            }\n        ],\n        \"categories\": [\n            {\n                \"id\": 4,\n                \"name\": \"Dama honor\",\n                \"description\": \"Vestidos coordinados y sencillos para acompañantes de la novia.\"\n            },\n            {\n                \"id\": 5,\n                \"name\": \"Grado\",\n                \"description\": \"Vestidos formales y juveniles, perfectos para la ceremonia de graduación.\"\n            }\n        ],\n        \"sizes\": [\n            {\n                \"id\": 2,\n                \"size\": \"M\"\n            },\n            {\n                \"id\": 3,\n                \"size\": \"L\"\n            }\n        ]\n    },\n    {\n        \"productId\": 4,\n        \"name\": \"Brianna\",\n        \"reference\": \"C-784\",\n        \"description\": \"Deslumbra en cualquier evento con este vestido de cóctel plateado. Adornado con brillantes y tiras de voleros que añaden un toque visual espectacular, este vestido corto y ajustado realza tu figura de manera impresionante. Perfecto para destacar en cualquier ocasión especial.\",\n        \"material\": \"Seda y poliéster con lentejuelas de alta calidad.\",\n        \"color\": \"Plateado\",\n        \"designer\": \"Oscar de la Renta\",\n        \"price\": 150000.00,\n        \"images\": [\n            {\n                \"imageId\": 16,\n                \"url\": \"coctelTres1.jpg\"\n            },\n            {\n                \"imageId\": 17,\n                \"url\": \"coctelTres2.jpg\"\n            },\n            {\n                \"imageId\": 18,\n                \"url\": \"coctelTres3.jpg\"\n            },\n            {\n                \"imageId\": 19,\n                \"url\": \"coctelTres4.jpg\"\n            },\n            {\n                \"imageId\": 20,\n                \"url\": \"coctelTres5.jpg\"\n            }\n        ],\n        \"categories\": [\n            {\n                \"id\": 1,\n                \"name\": \"Cóctel\",\n                \"description\": \"Vestidos elegantes y modernos, ideales para eventos semiformales.\"\n            }\n        ],\n        \"sizes\": [\n            {\n                \"id\": 1,\n                \"size\": \"S\"\n            },\n            {\n                \"id\": 2,\n                \"size\": \"M\"\n            }\n        ]\n    },\n    {\n        \"productId\": 1,\n        \"name\": \"Sueño de quince\",\n        \"reference\": \"Q-235\",\n        \"description\": \"Un vestido de quince años que te hará sentir como una verdadera princesa. Su diseño romántico y elegante, combinado con el delicado tono rosa, lo convierten en la elección perfecta para celebrar tu gran noche.\",\n        \"material\": \"Tafetán de seda natural, encaje francés.\",\n        \"color\": \"Rosa cuarzo\",\n        \"designer\": \"Ariana Vara\",\n        \"price\": 900000.00,\n        \"images\": [\n            {\n                \"imageId\": 1,\n                \"url\": \"quince1.jpg\"\n            },\n            {\n                \"imageId\": 2,\n                \"url\": \"quince2.jpg\"\n            },\n            {\n                \"imageId\": 3,\n                \"url\": \"quince3.jpg\"\n            },\n            {\n                \"imageId\": 4,\n                \"url\": \"quince4.jpg\"\n            },\n            {\n                \"imageId\": 5,\n                \"url\": \"quince5.jpg\"\n            }\n        ],\n        \"categories\": [\n            {\n                \"id\": 3,\n                \"name\": \"Quinces\",\n                \"description\": \"Vestidos de gala amplios y elegantes para celebrar los quince años.\"\n            }\n        ],\n        \"sizes\": [\n            {\n                \"id\": 1,\n                \"size\": \"S\"\n            },\n            {\n                \"id\": 2,\n                \"size\": \"M\"\n            }\n        ]\n    },\n    {\n        \"productId\": 5,\n        \"name\": \"Gold party\",\n        \"reference\": \"C-754\",\n        \"description\": \"Impresiona en cualquier evento con este vestido de cóctel tipo blazer. De color dorado y adornado con brillantines, este vestido de manga larga y diseño corto combina a la perfección sensualidad y elegancia. Ideal para destacar en cualquier ocasión especial.\",\n        \"material\": \"Lurex\",\n        \"color\": \"Dorado brillante\",\n        \"designer\": \"Versace\",\n        \"price\": 300000.00,\n        \"images\": [\n            {\n                \"imageId\": 21,\n                \"url\": \"coctelDos1.jpg\"\n            },\n            {\n                \"imageId\": 22,\n                \"url\": \"coctelDos2.jpg\"\n            },\n            {\n                \"imageId\": 23,\n                \"url\": \"coctelDos3.jpg\"\n            },\n            {\n                \"imageId\": 24,\n                \"url\": \"coctelDos4.jpg\"\n            },\n            {\n                \"imageId\": 25,\n                \"url\": \"coctelDos5.jpg\"\n            }\n        ],\n        \"categories\": [\n            {\n                \"id\": 1,\n                \"name\": \"Cóctel\",\n                \"description\": \"Vestidos elegantes y modernos, ideales para eventos semiformales.\"\n            }\n        ],\n        \"sizes\": [\n            {\n                \"id\": 2,\n                \"size\": \"M\"\n            },\n            {\n                \"id\": 4,\n                \"size\": \"XL\"\n            }\n        ]\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Delete product by Id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/products/delete-product/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"products",
+								"delete-product",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1",
+									"description": "(Required) ID of the product"
+								}
+							]
+						},
+						"description": "Deletes a `Product` by passing the product `id` as a path parameter."
+					},
+					"response": [
+						{
+							"name": "Successfull Response",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/v1/products/delete-product/:id",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"products",
+										"delete-product",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "1",
+											"description": "(Required) ID of the product"
+										}
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 27 Oct 2024 05:06:35 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": null
+						},
+						{
+							"name": "Product not found",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/api/v1/products/delete-product/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"products",
+										"delete-product",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "999",
+											"description": "(Required) ID of the product"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"timestamp\": \"2024-10-24T22:47:30.5668289\",\n    \"message\": \"Product not found with id: 999\",\n    \"details\": \"/api/v1/products/delete-product/999\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Create a product",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Vestido de Gala Elegante\",\r\n    \"reference\": \"C-785\",\r\n    \"description\": \"Un vestido de gala de seda con detalles brillantes.\",\r\n    \"material\": \"Seda Italiana\",\r\n    \"color\": \"Rojo Carmesi\",\r\n    \"designer\": \"Von Braun\",\r\n    \"price\": 450000,\r\n    \"images\": [\r\n        {\r\n            \"url\": \"gala_elegante_1.jpg\"\r\n        },\r\n        {\r\n            \"url\": \"gala_elegante_2.jpg\"\r\n        },\r\n        {\r\n            \"url\": \"gala_elegante_3.jpg\"\r\n        },\r\n        {\r\n            \"url\": \"gala_elegante_4.jpg\"\r\n        },\r\n        {\r\n            \"url\": \"gala_elegante_5.jpg\"\r\n        }\r\n    ],\r\n    \"categories\": [\r\n        {\r\n            \"id\": 1,\r\n            \"name\": \"Cóctel\",\r\n            \"description\": \"Vestidos elegantes y modernos, ideales para eventos semiformales.\"\r\n        }\r\n    ],\r\n    \"sizes\": [\r\n        {\r\n            \"id\": 1,\r\n            \"size\": \"S\"\r\n        },\r\n        {\r\n            \"id\": 2,\r\n            \"size\": \"M\"\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/products",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"products"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Create product without images, categories or sizes",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Vestido de Gala Elegante\",\r\n    \"reference\": \"C-785\",\r\n    \"description\": \"Un vestido de gala de seda con detalles brillantes.\",\r\n    \"material\": \"Seda Italiana\",\r\n    \"color\": \"Rojo Carmesi\",\r\n    \"designer\": \"Von Braun\",\r\n    \"price\": 450000,\r\n    \"images\": [],\r\n    \"categories\": [],\r\n    \"sizes\": []\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/v1/products",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"products"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 27 Oct 2024 19:03:45 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"productId\": 8,\n    \"name\": \"Vestido de Gala Elegante\",\n    \"reference\": \"C-785\",\n    \"description\": \"Un vestido de gala de seda con detalles brillantes.\",\n    \"material\": \"Seda Italiana\",\n    \"color\": \"Rojo Carmesi\",\n    \"designer\": \"Von Braun\",\n    \"price\": 450000,\n    \"images\": [],\n    \"categories\": [],\n    \"sizes\": []\n}"
+						},
+						{
+							"name": "Create Product with its respective sizes",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Vestido de Gala Elegante\",\r\n    \"reference\": \"C-785\",\r\n    \"description\": \"Un vestido de gala de seda con detalles brillantes.\",\r\n    \"material\": \"Seda Italiana\",\r\n    \"color\": \"Rojo Carmesi\",\r\n    \"designer\": \"Von Braun\",\r\n    \"price\": 450000,\r\n    \"images\": [],\r\n    \"categories\": [],\r\n    \"sizes\": [\r\n        {\r\n            \"id\": 1,\r\n            \"size\": \"S\"\r\n        },\r\n        {\r\n            \"id\": 2,\r\n            \"size\": \"M\"\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/v1/products",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"products"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 27 Oct 2024 21:14:28 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"productId\": 8,\n    \"name\": \"Vestido de Gala Elegante\",\n    \"reference\": \"C-785\",\n    \"description\": \"Un vestido de gala de seda con detalles brillantes.\",\n    \"material\": \"Seda Italiana\",\n    \"color\": \"Rojo Carmesi\",\n    \"designer\": \"Von Braun\",\n    \"price\": 450000,\n    \"images\": [],\n    \"categories\": [],\n    \"sizes\": [\n        {\n            \"id\": 1,\n            \"size\": \"S\"\n        },\n        {\n            \"id\": 2,\n            \"size\": \"M\"\n        }\n    ]\n}"
+						},
+						{
+							"name": "Create product with categories and sizes",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Vestido de Gala Elegante\",\r\n    \"reference\": \"C-785\",\r\n    \"description\": \"Un vestido de gala de seda con detalles brillantes.\",\r\n    \"material\": \"Seda Italiana\",\r\n    \"color\": \"Rojo Carmesi\",\r\n    \"designer\": \"Von Braun\",\r\n    \"price\": 450000,\r\n    \"images\": [],\r\n    \"categories\": [\r\n        {\r\n            \"id\": 1,\r\n            \"name\": \"Cóctel\",\r\n            \"description\": \"Vestidos elegantes y modernos, ideales para eventos semiformales.\"\r\n        }\r\n    ],\r\n    \"sizes\": [\r\n        {\r\n            \"id\": 1,\r\n            \"size\": \"S\"\r\n        },\r\n        {\r\n            \"id\": 2,\r\n            \"size\": \"M\"\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/v1/products",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"products"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 27 Oct 2024 22:46:35 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"productId\": 9,\n    \"name\": \"Vestido de Gala Elegante\",\n    \"reference\": \"C-785\",\n    \"description\": \"Un vestido de gala de seda con detalles brillantes.\",\n    \"material\": \"Seda Italiana\",\n    \"color\": \"Rojo Carmesi\",\n    \"designer\": \"Von Braun\",\n    \"price\": 450000,\n    \"images\": [],\n    \"categories\": [\n        {\n            \"id\": 1,\n            \"name\": \"Cóctel\",\n            \"description\": \"Vestidos elegantes y modernos, ideales para eventos semiformales.\"\n        }\n    ],\n    \"sizes\": [\n        {\n            \"id\": 1,\n            \"size\": \"S\"\n        },\n        {\n            \"id\": 2,\n            \"size\": \"M\"\n        }\n    ]\n}"
+						},
+						{
+							"name": "Create product with categories, sizes and images",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Vestido de Gala Elegante\",\r\n    \"reference\": \"C-785\",\r\n    \"description\": \"Un vestido de gala de seda con detalles brillantes.\",\r\n    \"material\": \"Seda Italiana\",\r\n    \"color\": \"Rojo Carmesi\",\r\n    \"designer\": \"Von Braun\",\r\n    \"price\": 450000,\r\n    \"images\": [\r\n        {\r\n            \"url\": \"gala_elegante_1.jpg\"\r\n        },\r\n        {\r\n            \"url\": \"gala_elegante_2.jpg\"\r\n        },\r\n        {\r\n            \"url\": \"gala_elegante_3.jpg\"\r\n        },\r\n        {\r\n            \"url\": \"gala_elegante_4.jpg\"\r\n        },\r\n        {\r\n            \"url\": \"gala_elegante_5.jpg\"\r\n        }\r\n    ],\r\n    \"categories\": [\r\n        {\r\n            \"id\": 1,\r\n            \"name\": \"Cóctel\",\r\n            \"description\": \"Vestidos elegantes y modernos, ideales para eventos semiformales.\"\r\n        }\r\n    ],\r\n    \"sizes\": [\r\n        {\r\n            \"id\": 1,\r\n            \"size\": \"S\"\r\n        },\r\n        {\r\n            \"id\": 2,\r\n            \"size\": \"M\"\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/v1/products",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"products"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 28 Oct 2024 00:29:58 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"productId\": 9,\n    \"name\": \"Vestido de Gala Elegante\",\n    \"reference\": \"C-785\",\n    \"description\": \"Un vestido de gala de seda con detalles brillantes.\",\n    \"material\": \"Seda Italiana\",\n    \"color\": \"Rojo Carmesi\",\n    \"designer\": \"Von Braun\",\n    \"price\": 450000,\n    \"images\": [\n        {\n            \"imageId\": 36,\n            \"url\": \"gala_elegante_1.jpg\"\n        },\n        {\n            \"imageId\": 37,\n            \"url\": \"gala_elegante_2.jpg\"\n        },\n        {\n            \"imageId\": 38,\n            \"url\": \"gala_elegante_3.jpg\"\n        },\n        {\n            \"imageId\": 39,\n            \"url\": \"gala_elegante_4.jpg\"\n        },\n        {\n            \"imageId\": 40,\n            \"url\": \"gala_elegante_5.jpg\"\n        }\n    ],\n    \"categories\": [\n        {\n            \"id\": 1,\n            \"name\": \"Cóctel\",\n            \"description\": \"Vestidos elegantes y modernos, ideales para eventos semiformales.\"\n        }\n    ],\n    \"sizes\": [\n        {\n            \"id\": 1,\n            \"size\": \"S\"\n        },\n        {\n            \"id\": 2,\n            \"size\": \"M\"\n        }\n    ]\n}"
+						}
+					]
+				}
+			],
+			"description": "Operations related to `Product` management."
+		},
+		{
+			"name": "Category",
+			"item": [
+				{
+					"name": "List Categories",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/categories",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"categories"
+							]
+						},
+						"description": "List all categories that exist at the the database.\n\n### Response\n\nUpon a successful request, the response will return an array of nested categories."
+					},
+					"response": [
+						{
+							"name": "Successful Response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/v1/categories",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"categories"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 28 Oct 2024 01:41:16 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": 1,\n        \"name\": \"Cóctel\",\n        \"description\": \"Vestidos elegantes y modernos, ideales para eventos semiformales.\"\n    },\n    {\n        \"id\": 2,\n        \"name\": \"Novias\",\n        \"description\": \"Vestidos únicos y románticos, perfectos para el día de la boda.\"\n    },\n    {\n        \"id\": 3,\n        \"name\": \"Quinces\",\n        \"description\": \"Vestidos de gala amplios y elegantes para celebrar los quince años.\"\n    },\n    {\n        \"id\": 4,\n        \"name\": \"Dama honor\",\n        \"description\": \"Vestidos coordinados y sencillos para acompañantes de la novia.\"\n    },\n    {\n        \"id\": 5,\n        \"name\": \"Grado\",\n        \"description\": \"Vestidos formales y juveniles, perfectos para la ceremonia de graduación.\"\n    }\n]"
+						}
+					]
+				}
+			],
+			"description": "Operations related to `Category` management."
+		},
+		{
+			"name": "Size",
+			"item": [
+				{
+					"name": "List Categories",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/sizes",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"sizes"
+							]
+						},
+						"description": "List all sizes that exist at the the database.\n\n### Response\n\nUpon a successful request, the response will return an array of nested sizes."
+					},
+					"response": [
+						{
+							"name": "Successful Response List Categories",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/v1/sizes",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"sizes"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 28 Oct 2024 01:45:49 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": 1,\n        \"size\": \"S\"\n    },\n    {\n        \"id\": 2,\n        \"size\": \"M\"\n    },\n    {\n        \"id\": 3,\n        \"size\": \"L\"\n    },\n    {\n        \"id\": 4,\n        \"size\": \"XL\"\n    }\n]"
+						}
+					]
+				}
+			],
+			"description": "Operations related to `Size` management."
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:8080",
+			"type": "string"
+		}
+	]
+}
