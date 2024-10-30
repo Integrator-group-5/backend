@@ -48,7 +48,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public List<Product> getAllTopProducts() {
-        return productRepository.findAllRandom(PageRequest.of(0, 8));
+        return productRepository.findAllRandom(PageRequest.of(0, 6));
     }
 
     @Override

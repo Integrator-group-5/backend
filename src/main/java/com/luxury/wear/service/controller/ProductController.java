@@ -45,7 +45,7 @@ public class ProductController {
 
     @GetMapping("/page/{page}")
     public ResponseEntity<Page<Product>> getAllProductsPaginated(@PathVariable int page) {
-        int pageSize = 10;
+        int pageSize = 6;
         Pageable pageable = PageRequest.of(page, pageSize);
         Page<Product> products = productService.getAllProducts(pageable);
         return ResponseEntity.status(HttpStatus.OK).body(products);
