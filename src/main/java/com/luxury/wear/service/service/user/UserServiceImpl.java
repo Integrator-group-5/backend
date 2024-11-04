@@ -1,6 +1,7 @@
 package com.luxury.wear.service.service.user;
 
 import com.luxury.wear.service.entity.User;
+import com.luxury.wear.service.exception.EntityAlreadyExistsException;
 import com.luxury.wear.service.exception.ResourceNotFoundException;
 import com.luxury.wear.service.repository.UserRepository;
 import lombok.AllArgsConstructor;
@@ -18,9 +19,13 @@ public class UserServiceImpl implements UserService {
     private final BCryptPasswordEncoder passwordEncoder;
     private static final String USER_NOT_FOUND_ID = "User not found with Id: ";
     private static final String USER_NOT_FOUND_EMAIL = "User not found with email: ";
+    private static final String USER_ALREADY_EXISTS = "User already exists with email: ";
 
     @Override
     public User createUser(User user) {
+        if (userRepository.findByEmail(user.getEmail()).isPresent()) {
+            throw new EntityAlreadyExistsException(USER_ALREADY_EXISTS + user.getEmail());
+        }
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         return userRepository.save(user);
     }
