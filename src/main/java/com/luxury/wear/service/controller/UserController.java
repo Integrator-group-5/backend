@@ -1,5 +1,6 @@
 package com.luxury.wear.service.controller;
 
+import com.luxury.wear.service.dto.EmailRequest;
 import com.luxury.wear.service.entity.User;
 import com.luxury.wear.service.service.user.UserService;
 import lombok.AllArgsConstructor;
@@ -48,5 +49,11 @@ public class UserController {
     public ResponseEntity<String> deleteUser(@PathVariable("id") Long id) {
         userService.deleteUserById(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+    }
+
+    @GetMapping("/email")
+    public ResponseEntity<User> getUserByEmail(@RequestBody EmailRequest email) {
+        User existingUser = userService.findByEmail(email.getEmail());
+        return ResponseEntity.status(HttpStatus.OK).body(existingUser);
     }
 }

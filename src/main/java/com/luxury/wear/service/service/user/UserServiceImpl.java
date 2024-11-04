@@ -17,6 +17,7 @@ public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final BCryptPasswordEncoder passwordEncoder;
     private static final String USER_NOT_FOUND_ID = "User not found with Id: ";
+    private static final String USER_NOT_FOUND_EMAIL = "User not found with email: ";
 
     @Override
     public User createUser(User user) {
@@ -53,6 +54,12 @@ public class UserServiceImpl implements UserService {
         userRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(USER_NOT_FOUND_ID + id));
         userRepository.deleteById(id);
+    }
+
+    @Override
+    public User findByEmail(String email) {
+        return userRepository.findByEmail(email)
+                .orElseThrow(() -> new ResourceNotFoundException(USER_NOT_FOUND_EMAIL + email));
     }
 
     private User updateExistingUser(User existingUser, User newUserData) {
