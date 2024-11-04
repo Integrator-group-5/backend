@@ -19,12 +19,17 @@ public class UserServiceImpl implements UserService {
     private final BCryptPasswordEncoder passwordEncoder;
     private static final String USER_NOT_FOUND_ID = "User not found with Id: ";
     private static final String USER_NOT_FOUND_EMAIL = "User not found with email: ";
+    private static final String USER_NOT_FOUND_USERNAME = "User not found with username: ";
     private static final String USER_ALREADY_EXISTS = "User already exists with email: ";
+    private static final String USER_ALREADY_EXISTS_USERNAME = "User already exists with username: ";
 
     @Override
     public User createUser(User user) {
         if (userRepository.findByEmail(user.getEmail()).isPresent()) {
             throw new EntityAlreadyExistsException(USER_ALREADY_EXISTS + user.getEmail());
+        }
+        if (userRepository.findByUsername(user.getUsername()).isPresent()) {
+            throw new EntityAlreadyExistsException(USER_ALREADY_EXISTS_USERNAME + user.getUsername());
         }
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         return userRepository.save(user);
