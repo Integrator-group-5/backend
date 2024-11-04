@@ -13,7 +13,7 @@ import java.util.Collection;
 import java.util.Collections;
 
 @Entity
-@Table(name = "user")
+@Table(name = "app_user")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -26,7 +26,7 @@ public class User implements UserDetails {
     private String name;
 
     @Column(unique = true)
-    private String userName;
+    private String username;
 
     @Column(unique = true)
     private String email;
@@ -41,11 +41,6 @@ public class User implements UserDetails {
     public Collection<? extends GrantedAuthority> getAuthorities() {
         SimpleGrantedAuthority sga = new SimpleGrantedAuthority(userRole.name());
         return Collections.singletonList(sga);
-    }
-
-    @Override
-    public String getUsername() {
-        return userName;
     }
 
     @Override

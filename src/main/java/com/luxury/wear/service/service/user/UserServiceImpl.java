@@ -52,11 +52,12 @@ public class UserServiceImpl implements UserService {
     public void deleteUserById(Long id) {
         userRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(USER_NOT_FOUND_ID + id));
+        userRepository.deleteById(id);
     }
 
     private User updateExistingUser(User existingUser, User newUserData) {
         existingUser.setName(newUserData.getName());
-        existingUser.setUserName(newUserData.getUsername());
+        existingUser.setUsername(newUserData.getUsername());
         existingUser.setEmail(newUserData.getEmail());
         existingUser.setUserRole(newUserData.getUserRole());
         if (newUserData.getPassword() != null

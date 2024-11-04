@@ -48,3 +48,13 @@ CREATE TABLE IF NOT EXISTS product_has_size (
     FOREIGN KEY (product_id) REFERENCES product(product_id) ON DELETE CASCADE,
     FOREIGN KEY (size_id) REFERENCES size(id) ON DELETE CASCADE
 );
+
+CREATE TABLE IF NOT EXISTS app_user (
+    user_id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    username VARCHAR(255) UNIQUE NOT NULL,
+    email VARCHAR(255) UNIQUE NOT NULL,
+    password VARCHAR(255),
+    user_role VARCHAR(255) NOT NULL CHECK (user_role IN ('USER', 'ADMIN'))
+);
+
