@@ -1,0 +1,70 @@
+package com.luxury.wear.service.service.user;
+
+import com.luxury.wear.service.entity.User;
+import com.luxury.wear.service.exception.ResourceNotFoundException;
+import com.luxury.wear.service.repository.UserRepository;
+import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Service
+@AllArgsConstructor
+public class UserServiceImpl implements UserService {
+    private final UserRepository userRepository;
+    private final BCryptPasswordEncoder passwordEncoder;
+    private static final String USER_NOT_FOUND_ID = "User not found with Id: ";
+
+    @Override
+    public User createUser(User user) {
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        return userRepository.save(user);
+    }
+
+    @Override
+    public User getUserById(Long id) {
+        return userRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException(USER_NOT_FOUND_ID + id));
+    }
+
+    @Override
+    public List<User> getAllUsers() {
+        return userRepository.findAll();
+    }
+
+    @Override
+    public Page<User> getAllUsers(Pageable pageable) {
+        return userRepository.findAll(pageable);
+    }
+
+    @Override
+    public User updateUser(User user) {
+        User existingUser = userRepository.findById(user.getUserId())
+                .orElseThrow(() -> new ResourceNotFoundException(USER_NOT_FOUND_ID + user.getUserId()));
+
+        return updateExistingUser(existingUser, user);
+    }
+
+    @Override
+    public void deleteUserById(Long id) {
+        userRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException(USER_NOT_FOUND_ID + id));
+    }
+
+    private User updateExistingUser(User existingUser, User newUserData) {
+        existingUser.setName(newUserData.getName());
+        existingUser.setUserName(newUserData.getUsername());
+        existingUser.setEmail(newUserData.getEmail());
+        existingUser.setUserRole(newUserData.getUserRole());
+        if (newUserData.getPassword() != null
+                && !newUserData.getPassword().isEmpty()
+                && !passwordEncoder.matches(newUserData.getPassword(), existingUser.getPassword())) {
+            existingUser.setPassword(passwordEncoder.encode(newUserData.getPassword()));
+        }
+
+        return userRepository.save(existingUser);
+    }
+}
