@@ -4,6 +4,7 @@ import com.luxury.wear.service.entity.User;
 import com.luxury.wear.service.exception.EntityAlreadyExistsException;
 import com.luxury.wear.service.exception.ResourceNotFoundException;
 import com.luxury.wear.service.repository.UserRepository;
+import com.luxury.wear.service.roles.UserRole;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -32,6 +33,7 @@ public class UserServiceImpl implements UserService {
             throw new EntityAlreadyExistsException(USER_ALREADY_EXISTS_USERNAME + user.getUsername());
         }
         user.setPassword(passwordEncoder.encode(user.getPassword()));
+        user.setUserRole(UserRole.USER);
         return userRepository.save(user);
     }
 
