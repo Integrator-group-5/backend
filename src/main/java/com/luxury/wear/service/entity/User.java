@@ -22,8 +22,11 @@ public class User implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long userId;
 
-    @Column(nullable = false)
-    private String name;
+    @Column(name = "first_name", nullable = false)
+    private String firstName;
+
+    @Column(name = "last_name", nullable = false)
+    private String lastName;
 
     @Column(unique = true)
     private String username;
@@ -37,6 +40,11 @@ public class User implements UserDetails {
     private UserRole userRole;
 
     // methods from UserDetails
+    @Override
+    public String getUsername() {
+        return email;
+    }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         SimpleGrantedAuthority sga = new SimpleGrantedAuthority(userRole.name());

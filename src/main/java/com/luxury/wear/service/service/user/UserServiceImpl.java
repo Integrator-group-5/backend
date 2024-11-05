@@ -73,7 +73,7 @@ public class UserServiceImpl implements UserService {
     }
 
     private User updateExistingUser(User existingUser, User newUserData) {
-        existingUser.setName(newUserData.getName());
+        existingUser.setFirstName(newUserData.getFirstName());
         existingUser.setUsername(newUserData.getUsername());
         existingUser.setEmail(newUserData.getEmail());
         existingUser.setUserRole(newUserData.getUserRole());
