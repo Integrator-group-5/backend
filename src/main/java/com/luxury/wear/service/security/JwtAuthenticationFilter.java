@@ -13,10 +13,13 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
+import org.springframework.util.AntPathMatcher;
 import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
+import java.util.List;
+import java.util.Map;
 
 @Component
 @AllArgsConstructor
@@ -25,11 +28,26 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     private final JwtUtil jwtUtil;
     private final UserDetailsService userDetailsService;
 
-    @Override
-    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-        String requestURI = request.getRequestURI();
+    // Map of endpoints to allowed methods without authentication
+    private static final Map<String, List<String>> EXCLUDED_PATHS = Map.of(
+        "/auth/**", List.of("GET", "POST"),
+        "/api/v1/products", List.of("GET"),
+        "/api/v1/products/page/**", List.of("GET"),
+        "/api/v1/products/top-rents", List.of("GET"),
+        "/api/v1/categories", List.of("GET"),
+        "/api/v1/sizes", List.of("GET")
+    );
 
-        if (requestURI.startsWith("/auth")) {
+    private final AntPathMatcher pathMatcher = new AntPathMatcher();
+
+    @Override
+    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
+            throws ServletException, IOException {
+
+        String requestURI = request.getRequestURI();
+        String requestMethod = request.getMethod();
+
+        if (isExcludedPath(requestURI, requestMethod)) {
             filterChain.doFilter(request, response);
             return;
         }
@@ -66,6 +84,11 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         }
 
         filterChain.doFilter(request, response);
+    }
+
+    private boolean isExcludedPath(String requestURI, String requestMethod) {
+        return EXCLUDED_PATHS.entrySet().stream()
+                .anyMatch(entry -> pathMatcher.match(entry.getKey(), requestURI) && entry.getValue().contains(requestMethod));
     }
 
     private String getJwtFromRequest(HttpServletRequest request) {
