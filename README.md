@@ -2,13 +2,17 @@
 
 ## Descripción del Proyecto
 
-**Luxury Wear Service** es el backend de **Luxury Wear**, una plataforma de alquiler de moda de alta gama. Este servicio, desarrollado en Java con Spring Boot, proporciona una API robusta para gestionar las funcionalidades principales de la plataforma, incluyendo la administración de productos, usuarios, alquileres y pagos. 
+**Luxury Wear Service** es el backend de **Luxury Wear**, una plataforma de alquiler de moda de alta gama. Este
+servicio, desarrollado en Java con Spring Boot, proporciona una API robusta para gestionar las funcionalidades
+principales de la plataforma, incluyendo la administración de productos, usuarios, alquileres y pagos.
 
-Diseñado para ser escalable, seguro y de fácil despliegue, el servicio utiliza Docker para la contenedorización y MySQL como base de datos, asegurando una configuración consistente y confiable tanto en desarrollo como en producción.
+Diseñado para ser escalable, seguro y de fácil despliegue, el servicio utiliza Docker para la contenedorización y MySQL
+como base de datos, asegurando una configuración consistente y confiable tanto en desarrollo como en producción.
 
 ## Endpoints Disponibles
 
-A continuación se detallan los endpoints disponibles en la API de **Luxury Wear Service** y sus respectivas funcionalidades.
+A continuación se detallan los endpoints disponibles en la API de **Luxury Wear Service** y sus respectivas
+funcionalidades.
 
 ### Operaciones relacionadas con la gestión de productos.
 
@@ -33,9 +37,22 @@ A continuación se detallan los endpoints disponibles en la API de **Luxury Wear
 |--------|-----------------|----------------------------------------|
 | GET    | `/api/v1/sizes` | Obtiene una lista de todos las tallas. |
 
+### Operaciones relacionadas con la gestión de Usuarios.
+
+| Método | Endpoint                    | Descripción                                       |
+|--------|-----------------------------|---------------------------------------------------|
+| GET    | `/api/v1/users/{id}`        | Obtiene la información de un usuario por `id`.    |
+| GET    | `/api/v1/users`             | Obtiene una lista de todos los usuarios.          |
+| GET    | `/api/v1/users/page/{page}` | Obtiene una lista paginada de todos los usuarios. |
+| GET    | `/api/v1/users/email`       | Obtiene la información de un usuario por `email`. |
+| POST   | `/api/v1/users`             | Crea un usuario.                                  |
+| DELETE | `/api/v1/users/delete/{id}` | Elimina un usuario por `id`.                      |
+
 ## Ejecutar Luxury Wear Service Localmente con Docker
 
-Esta sección explica cómo ejecutar el **Luxury Wear Service** localmente utilizando Docker. El archivo `docker-compose.yml` provisiona tanto la base de datos MySQL como la aplicación Spring Boot en contenedores separados, permitiendo una configuración rápida y sencilla en tu entorno local.
+Esta sección explica cómo ejecutar el **Luxury Wear Service** localmente utilizando Docker. El archivo
+`docker-compose.yml` provisiona tanto la base de datos MySQL como la aplicación Spring Boot en contenedores separados,
+permitiendo una configuración rápida y sencilla en tu entorno local.
 
 ### Requisitos
 
@@ -59,7 +76,8 @@ cd backend
 
 ### Pasos para Ejecutar Localmente
 
-Antes de comenzar, asegúrate de que el `daemon` de Docker esté ejecutándose en tu máquina o abre **Docker Desktop** para iniciarlo.
+Antes de comenzar, asegúrate de que el `daemon` de Docker esté ejecutándose en tu máquina o abre **Docker Desktop** para
+iniciarlo.
 
 1. **Construir e Iniciar los Contenedores**:
    Para iniciar la aplicación localmente con Docker, ejecuta el siguiente comando:
@@ -67,16 +85,16 @@ Antes de comenzar, asegúrate de que el `daemon` de Docker esté ejecutándose e
    ```bash
    docker-compose -f docker-compose.yml up --build -d
    ```
-   
+
    Este comando:
-   - Construirá la aplicación Spring Boot usando el `Dockerfile`.
-   - Iniciará la base de datos MySQL.
-   - Iniciará la aplicación Spring Boot y la conectará a la base de datos MySQL.
+    - Construirá la aplicación Spring Boot usando el `Dockerfile`.
+    - Iniciará la base de datos MySQL.
+    - Iniciará la aplicación Spring Boot y la conectará a la base de datos MySQL.
 
 ### Probar la API
 
-Para probar los endpoints de la API, se incluye una **colección de Postman** con solicitudes preconfiguradas para todos los endpoints disponibles.
-
+Para probar los endpoints de la API, se incluye una **colección de Postman** con solicitudes preconfiguradas para todos
+los endpoints disponibles.
 
 ### Detener la Aplicación
 
@@ -90,7 +108,8 @@ Esto detendrá y eliminará los contenedores, pero mantendrá intactos los datos
 
 ### Eliminar Todos los Recursos
 
-Si deseas detener los contenedores y también eliminar los recursos asociados, como volúmenes, redes e imágenes creadas por Docker Compose, ejecuta:
+Si deseas detener los contenedores y también eliminar los recursos asociados, como volúmenes, redes e imágenes creadas
+por Docker Compose, ejecuta:
 
 ```bash
 docker-compose -f docker-compose.yml down --volumes --rmi all
@@ -100,4 +119,6 @@ Este comando limpiará todos los recursos, incluidos los datos de MySQL que se h
 
 ### Resumen
 
-Al usar Docker y Docker Compose, puedes ejecutar rápidamente y de manera sencilla el **Luxury Wear Service** en tu entorno local sin necesidad de configurar manualmente la base de datos o el entorno. La aplicación está completamente containerizada, lo que facilita la prueba, el desarrollo y la implementación en cualquier entorno.
+Al usar Docker y Docker Compose, puedes ejecutar rápidamente y de manera sencilla el **Luxury Wear Service** en tu
+entorno local sin necesidad de configurar manualmente la base de datos o el entorno. La aplicación está completamente
+containerizada, lo que facilita la prueba, el desarrollo y la implementación en cualquier entorno.
