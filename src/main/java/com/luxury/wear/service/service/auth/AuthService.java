@@ -4,6 +4,8 @@ import com.luxury.wear.service.dto.auth.AuthResponse;
 import com.luxury.wear.service.dto.auth.LoginRequest;
 import com.luxury.wear.service.dto.auth.TokenRefreshRequest;
 import com.luxury.wear.service.entity.User;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 public interface AuthService {
 
@@ -13,5 +15,5 @@ public interface AuthService {
 
     AuthResponse refreshAccessToken(TokenRefreshRequest tokenRefreshRequest);
 
-    void logoutUser();
+    void logoutUser(HttpServletRequest request, HttpServletResponse response);
 }

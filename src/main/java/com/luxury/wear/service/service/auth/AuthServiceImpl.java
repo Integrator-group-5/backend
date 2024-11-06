@@ -6,6 +6,9 @@ import com.luxury.wear.service.dto.auth.TokenRefreshRequest;
 import com.luxury.wear.service.entity.User;
 import com.luxury.wear.service.security.JwtUtil;
 import com.luxury.wear.service.service.user.UserService;
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -19,6 +22,7 @@ public class AuthServiceImpl implements AuthService {
     private final AuthenticationManager authenticationManager;
     private final JwtUtil jwtUtil;
     private final UserService userService;
+    private final TokenBlacklistServiceImpl tokenBlacklistService;
 
     @Override
     public void registerUser(User user) {
@@ -54,7 +58,17 @@ public class AuthServiceImpl implements AuthService {
     }
 
     @Override
-    public void logoutUser() {
+    public void logoutUser(HttpServletRequest request, HttpServletResponse response) {
+        request.getSession().invalidate();
+        Cookie cookie = new Cookie("JSESSIONID", null);
+        cookie.setPath("/");
+        cookie.setHttpOnly(true);
+        cookie.setMaxAge(0);
+        response.addCookie(cookie);
+        String token = jwtUtil.extractTokenFromRequest(request);
+        if (token != null) {
+            tokenBlacklistService.addTokenToBlacklist(token);
+        }
 
     }
 }

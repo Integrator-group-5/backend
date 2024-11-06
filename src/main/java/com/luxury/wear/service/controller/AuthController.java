@@ -7,6 +7,8 @@ import com.luxury.wear.service.entity.User;
 import com.luxury.wear.service.repository.UserRepository;
 import com.luxury.wear.service.security.JwtUtil;
 import com.luxury.wear.service.service.auth.AuthService;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -49,8 +51,8 @@ public class AuthController {
     }
 
     @PostMapping("/logout")
-    public ResponseEntity<?> logoutUser() {
-        // Token invalidation logic (e.g., adding to a blacklist) should be implemented here.
+    public ResponseEntity<?> logoutUser(HttpServletRequest request, HttpServletResponse response) {
+        authService.logoutUser(request, response);
         return ResponseEntity.ok("User logged out successfully");
     }
 }
