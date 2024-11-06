@@ -95,4 +95,12 @@ public class UserServiceImpl implements UserService {
         existingUser.setUserRole(UserRole.ADMIN);
         userRepository.save(existingUser);
     }
+
+    @Override
+    public void removeAdmin(String email) {
+        User existingUser = userRepository.findByEmail(email)
+                .orElseThrow(() -> new ResourceNotFoundException(USER_NOT_FOUND_EMAIL + email));
+        existingUser.setUserRole(UserRole.USER);
+        userRepository.save(existingUser);
+    }
 }

@@ -19,6 +19,8 @@ public interface UserService {
 
     void setAdmin(String email);
 
+    void removeAdmin(String email);
+
     void deleteUserById(Long id);
 
     User findByEmail(String email);

@@ -62,4 +62,10 @@ public class UserController {
         userService.setAdmin(email.getEmail());
         return ResponseEntity.status(HttpStatus.OK).body("User with email: " + email.getEmail() + " is now an admin");
     }
+
+    @PutMapping("/remove-admin")
+    public ResponseEntity<String> removeAdmin(@RequestBody EmailRequest email) {
+        userService.removeAdmin(email.getEmail());
+        return ResponseEntity.status(HttpStatus.OK).body("User with email: " + email.getEmail() + " is no longer an admin");
+    }
 }
