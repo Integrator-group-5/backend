@@ -353,19 +353,19 @@ INSERT INTO product_has_size (product_id, size_id) VALUES
     (30, 3);
 
 -- Insert users
-INSERT INTO app_user (first_name, last_name, username, email, password, user_role) VALUES
-    ('Tineo', 'Tineo', 'tineojf', 'tineojf@mail.com', 'hashedPassword', 'ADMIN'),
-    ('Andrea', 'G', 'andreaaGM', 'andreaaGM@mail.com', 'hashedPassword', 'ADMIN'),
-    ('Avril', 'Tihista', 'avril-tihista', 'avril@mail.com', 'hashedPassword', 'ADMIN'),
-    ('Helen', 'Bernal', 'bhelening', 'helen.b@mail.com', 'hashedPassword', 'ADMIN'),
-    ('Carol', 'Velez', 'CarolJVelez', 'carolv@mail.com', 'hashedPassword', 'ADMIN'),
-    ('Claudia', 'Heredia', 'cheredia10', 'cheredia@mail.com', 'hashedPassword', 'ADMIN'),
-    ('David', 'Blanco', 'DavidBlanco2825', 'davidb@mail.com', 'hashedPassword', 'ADMIN'),
-    ('Ingrid', 'Munera Valencia', 'ingridmv24', 'ingridmv@mail.com', 'hashedPassword', 'ADMIN'),
-    ('Karenpe', 'Perez', 'Karenpe1', 'karenpe1@mail.com', 'hashedPassword', 'ADMIN'),
-    ('Victor', 'Falconí', 'VictorFalconi', 'victorf@mail.com', 'hashedPassword', 'ADMIN'),
-    ('Luis', 'Pérez', 'luisperez', 'luis.perez@mail.com', 'hashedPassword', 'USER'),
-    ('María', 'Gómez', 'mariagomez', 'maria.gomez@mail.com', 'hashedPassword', 'USER'),
-    ('Sofia', 'Martínez', 'sofimartinez', 'sofia.m@mail.com', 'hashedPassword', 'USER'),
-    ('Carlos', 'Ruiz', 'carlosruiz', 'carlos.ruiz@mail.com', 'hashedPassword', 'USER'),
-    ('Ana', 'López', 'analopez', 'analopez@mail.com', 'hashedPassword', 'USER');
+--INSERT INTO app_user (first_name, last_name, username, email, password, user_role) VALUES
+--    ('Tineo', 'Tineo', 'tineojf', 'tineojf@mail.com', 'hashedPassword', 'ADMIN'),
+--    ('Andrea', 'G', 'andreaaGM', 'andreaaGM@mail.com', 'hashedPassword', 'ADMIN'),
+--    ('Avril', 'Tihista', 'avril-tihista', 'avril@mail.com', 'hashedPassword', 'ADMIN'),
+--    ('Helen', 'Bernal', 'bhelening', 'helen.b@mail.com', 'hashedPassword', 'ADMIN'),
+--    ('Carol', 'Velez', 'CarolJVelez', 'carolv@mail.com', 'hashedPassword', 'ADMIN'),
+--    ('Claudia', 'Heredia', 'cheredia10', 'cheredia@mail.com', 'hashedPassword', 'ADMIN'),
+--    ('David', 'Blanco', 'DavidBlanco2825', 'davidb@mail.com', 'hashedPassword', 'ADMIN'),
+--    ('Ingrid', 'Munera Valencia', 'ingridmv24', 'ingridmv@mail.com', 'hashedPassword', 'ADMIN'),
+--    ('Karenpe', 'Perez', 'Karenpe1', 'karenpe1@mail.com', 'hashedPassword', 'ADMIN'),
+--    ('Victor', 'Falconí', 'VictorFalconi', 'victorf@mail.com', 'hashedPassword', 'ADMIN'),
+--    ('Luis', 'Pérez', 'luisperez', 'luis.perez@mail.com', 'hashedPassword', 'USER'),
+--    ('María', 'Gómez', 'mariagomez', 'maria.gomez@mail.com', 'hashedPassword', 'USER'),
+--    ('Sofia', 'Martínez', 'sofimartinez', 'sofia.m@mail.com', 'hashedPassword', 'USER'),
+--    ('Carlos', 'Ruiz', 'carlosruiz', 'carlos.ruiz@mail.com', 'hashedPassword', 'USER'),
+--    ('Ana', 'López', 'analopez', 'analopez@mail.com', 'hashedPassword', 'USER');

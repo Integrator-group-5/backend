@@ -8,6 +8,7 @@ import org.springframework.security.config.annotation.authentication.configurati
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+import org.springframework.security.config.annotation.web.configurers.HeadersConfigurer;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
@@ -28,6 +29,7 @@ public class SecurityConfig {
                         .requestMatchers("/auth/**").permitAll()
                         .requestMatchers("/api/v1/products", "/api/v1/products/page/{page}", "/api/v1/products/top-rents").permitAll()
                         .requestMatchers("/api/v1/categories", "/api/v1/sizes").permitAll()
+                        .requestMatchers("/h2-console/**").permitAll()
 
                         // Endpoints requiring authentication with USER or ADMIN roles
                         .requestMatchers("/api/v1/users/email", "/api/v1/users/{id}").hasAnyRole("USER", "ADMIN")
@@ -43,6 +45,7 @@ public class SecurityConfig {
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
+        http.headers((headers) -> headers.frameOptions(HeadersConfigurer.FrameOptionsConfig::disable));
 
         return http.build();
     }
