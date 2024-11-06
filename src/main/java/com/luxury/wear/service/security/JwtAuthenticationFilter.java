@@ -30,7 +30,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
     // Map of endpoints to allowed methods without authentication
     private static final Map<String, List<String>> EXCLUDED_PATHS = Map.of(
-        "/auth/**", List.of("GET", "POST"),
+        "/auth/**", List.of("POST"),
         "/api/v1/products", List.of("GET"),
         "/api/v1/products/page/**", List.of("GET"),
         "/api/v1/products/top-rents", List.of("GET"),
