@@ -67,6 +67,11 @@ public class ProductServiceImpl implements ProductService {
         productRepository.deleteById(id);
     }
 
+    @Override
+    public Page<Product> getProductsByCategory(String categoryName, Pageable pageable) {
+        return productRepository.findByCategories_Name(categoryName, pageable);
+    }
+
     private Product updateExistingProduct(Product existingProduct, Product newProductData) {
         existingProduct.setName(newProductData.getName());
         existingProduct.setReference(newProductData.getReference());
