@@ -1,13 +1,538 @@
 {
 	"info": {
-		"_postman_id": "82e10973-3b0a-471a-8c74-a6988ca08b4c",
+		"_postman_id": "80c3e6cf-76c3-40a4-baac-99fa20882755",
 		"name": "Luxury Wear",
 		"description": "The available endpoints in the **Luxury Wear Service** API and their respective functionalities.",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "31370436",
-		"_collection_link": "https://backend-9752.postman.co/workspace/backend-Workspace~81436d71-bfab-4f69-80c6-0fe7a676020f/collection/31370436-82e10973-3b0a-471a-8c74-a6988ca08b4c?action=share&source=collection_link&creator=31370436"
+		"_exporter_id": "21179631"
 	},
 	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\": \"David\",\r\n    \"lastName\": \"Blanco\",\r\n    \"email\": \"david@blanco.com\",\r\n    \"password\": \"1234567\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/auth/register",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "New Request",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"firstName\": \"David\",\r\n    \"lastName\": \"Blanco\",\r\n    \"email\": \"david@blanco.com\",\r\n    \"password\": \"1234567\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/auth/register",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"auth",
+										"register"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/plain;charset=UTF-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "28"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 04 Nov 2024 02:09:48 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "User registered successfully"
+						}
+					]
+				},
+				{
+					"name": "Login endpoint",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"david@blanco.com\",\r\n    \"password\": \"1234567\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/auth/login",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Successfull user authentication",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"david@blanco.com\",\r\n    \"password\": \"1234567\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/auth/login",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"auth",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 05 Nov 2024 20:41:53 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"accessToken\": \"eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkYXZpZEBibGFuY28uY29tIiwicm9sZSI6IlVTRVIiLCJpYXQiOjE3MzA4MzkzMTMsImV4cCI6MTczMDgzOTQzM30.-EgrftsHDYEYzC7sY1uNhzXsw3fRPRuR0ckBVPEXYgf5jYbkQ150TZE67nZv8JB5PYPJs11gdWLCQy1gC5KgBA\",\n    \"refreshToken\": \"eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkYXZpZEBibGFuY28uY29tIiwiaWF0IjoxNzMwODM5MzEzLCJleHAiOjE3MzA4NTM3MTN9.PchOCbVqtp1w39x6C4QQlUW7DpW8JGKO3WRZI7UcKUz4fe9go9w-G9HUUvbWXGKht3s-bTIgQi-rjsG3N4FLMw\"\n}"
+						},
+						{
+							"name": "User not found",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\": \"david@blanco.co\",\r\n    \"password\": \"1234567\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/auth/login",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"auth",
+										"login"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 03 Nov 2024 22:23:31 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"timestamp\": \"2024-11-03T17:23:31.6172314\",\n    \"message\": \"User not found with email: david@blanco.co\",\n    \"details\": \"/auth/login\"\n}"
+						},
+						{
+							"name": "Bad credentials",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\": \"david@blanco.com\",\r\n    \"password\": \"123456\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/auth/login",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"auth",
+										"login"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 03 Nov 2024 22:23:51 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"timestamp\": \"2024-11-03T17:23:51.0739529\",\n    \"message\": \"Bad credentials\",\n    \"details\": \"/auth/login\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Token refresh",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"refreshToken\": \"eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkYXZpZEBibGFuY28uY29tIiwiaWF0IjoxNzMwODM5MzEzLCJleHAiOjE3MzA4NTM3MTN9.PchOCbVqtp1w39x6C4QQlUW7DpW8JGKO3WRZI7UcKUz4fe9go9w-G9HUUvbWXGKht3s-bTIgQi-rjsG3N4FLMw\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/auth/token-refresh",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"auth",
+								"token-refresh"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success new access token",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"refreshToken\": \"eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkYXZpZEBibGFuY28uY29tIiwiaWF0IjoxNzMwODM4MDIwLCJleHAiOjE3MzA4NTI0MjB9.DoW1tDhG-DVfX6sXpjhs5cSvCt4LdDog6I3sgAZGPS5Zb8MTlosifx8-4YLkZE7gqhN3u2e9BXe5CI_FgUqUAA\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/auth/token-refresh",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"auth",
+										"token-refresh"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 05 Nov 2024 20:22:40 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"accessToken\": \"eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkYXZpZEBibGFuY28uY29tIiwicm9sZSI6IlVTRVIiLCJpYXQiOjE3MzA4MzgxNjAsImV4cCI6MTczMDgzODI4MH0.rO4xCXreVh0h5UZGtCBWZ7wsNYOy1Gv27082XL-PaJJnt8_B_fIxaNLQH8EsRj6yr_A5rLnLu5Rp2ItWnly6Nw\",\n    \"refreshToken\": \"eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkYXZpZEBibGFuY28uY29tIiwiaWF0IjoxNzMwODM4MDIwLCJleHAiOjE3MzA4NTI0MjB9.DoW1tDhG-DVfX6sXpjhs5cSvCt4LdDog6I3sgAZGPS5Zb8MTlosifx8-4YLkZE7gqhN3u2e9BXe5CI_FgUqUAA\"\n}"
+						}
+					]
+				}
+			]
+		},
 		{
 			"name": "Product",
 			"item": [
@@ -208,7 +733,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/api/v1/products/page/:page",
+							"raw": "{{baseUrl}}/api/v1/products/top-rents/page/:page",
 							"host": [
 								"{{baseUrl}}"
 							],
@@ -216,6 +741,7 @@
 								"api",
 								"v1",
 								"products",
+								"top-rents",
 								"page",
 								":page"
 							],
@@ -294,7 +820,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"content\": [\n        {\n            \"productId\": 1,\n            \"name\": \"Sueño de quince\",\n            \"reference\": \"Q-235\",\n            \"description\": \"Un vestido de quince años que te hará sentir como una verdadera princesa. Su diseño romántico y elegante, combinado con el delicado tono rosa, lo convierten en la elección perfecta para celebrar tu gran noche.\",\n            \"material\": \"Tafetán de seda natural, encaje francés.\",\n            \"color\": \"Rosa cuarzo\",\n            \"designer\": \"Ariana Vara\",\n            \"price\": 900000,\n            \"images\": [\n                {\n                    \"imageId\": 1,\n                    \"url\": \"img/quince1.jpg\"\n                },\n                {\n                    \"imageId\": 2,\n                    \"url\": \"img/quince2.jpg\"\n                },\n                {\n                    \"imageId\": 3,\n                    \"url\": \"img/quince3.jpg\"\n                },\n                {\n                    \"imageId\": 4,\n                    \"url\": \"img/quince4.jpg\"\n                },\n                {\n                    \"imageId\": 5,\n                    \"url\": \"img/quince5.jpg\"\n                }\n            ],\n            \"categories\": [\n                {\n                    \"id\": 3,\n                    \"name\": \"Quinces\",\n                    \"description\": \"Vestidos de gala amplios y elegantes para celebrar los quince años.\"\n                }\n            ],\n            \"sizes\": [\n                {\n                    \"id\": 1,\n                    \"size\": \"S\"\n                },\n                {\n                    \"id\": 2,\n                    \"size\": \"M\"\n                }\n            ]\n        },\n        {\n            \"productId\": 2,\n            \"name\": \"Camelia\",\n            \"reference\": \"N-784\",\n            \"description\": \"Libera tu espíritu bohemio con este vestido de novia único. El encaje floral, con motivos botánicos, cubre el cuerpo de manera ligera y sensual.\",\n            \"material\": \"Seda natural con encaje\",\n            \"color\": \"Blanco\",\n            \"designer\": \"Inbal Dror\",\n            \"price\": 2500000,\n            \"images\": [\n                {\n                    \"imageId\": 6,\n                    \"url\": \"img/novia1.jpg\"\n                },\n                {\n                    \"imageId\": 7,\n                    \"url\": \"img/novia2.jpg\"\n                },\n                {\n                    \"imageId\": 8,\n                    \"url\": \"img/novia3.jpg\"\n                },\n                {\n                    \"imageId\": 9,\n                    \"url\": \"img/novia4.jpg\"\n                },\n                {\n                    \"imageId\": 10,\n                    \"url\": \"img/novia5.jpg\"\n                }\n            ],\n            \"categories\": [\n                {\n                    \"id\": 2,\n                    \"name\": \"Novias\",\n                    \"description\": \"Vestidos únicos y románticos, perfectos para el día de la boda.\"\n                }\n            ],\n            \"sizes\": [\n                {\n                    \"id\": 3,\n                    \"size\": \"L\"\n                },\n                {\n                    \"id\": 4,\n                    \"size\": \"XL\"\n                }\n            ]\n        }\n    ],\n    \"pageable\": {\n        \"pageNumber\": 0,\n        \"pageSize\": 2,\n        \"sort\": {\n            \"empty\": true,\n            \"unsorted\": true,\n            \"sorted\": false\n        },\n        \"offset\": 0,\n        \"paged\": true,\n        \"unpaged\": false\n    },\n    \"last\": false,\n    \"totalElements\": 6,\n    \"totalPages\": 3,\n    \"numberOfElements\": 2,\n    \"first\": true,\n    \"size\": 2,\n    \"number\": 0,\n    \"sort\": {\n        \"empty\": true,\n        \"unsorted\": true,\n        \"sorted\": false\n    },\n    \"empty\": false\n}"
+							"body": "{\n    \"content\": [\n        {\n            \"productId\": 1,\n            \"name\": \"Hollywood\",\n            \"reference\": \"C-453\",\n            \"description\": \"Deslumbra en cualquier evento con este vestido de cóctel. Adornado con lentejuelas brillantes, este vestido no solo capta todas las miradas, sino que también realza tu figura de manera espectacular. Perfecto para cualquier ocasión especial, te hará sentir segura y radiante.\",\n            \"material\": \"Algodón con lentejuelas\",\n            \"color\": \"Plateado\",\n            \"designer\": \"Carolina Herrera\",\n            \"price\": 200000.00,\n            \"images\": [\n                {\n                    \"imageId\": 1,\n                    \"url\": \"img/products/coctel/hollywood_1.jpg\"\n                },\n                {\n                    \"imageId\": 2,\n                    \"url\": \"img/products/coctel/hollywood_2.jpg\"\n                },\n                {\n                    \"imageId\": 3,\n                    \"url\": \"img/products/coctel/hollywood_3.jpg\"\n                },\n                {\n                    \"imageId\": 4,\n                    \"url\": \"img/products/coctel/hollywood_4.jpg\"\n                },\n                {\n                    \"imageId\": 5,\n                    \"url\": \"img/products/coctel/hollywood_5.jpg\"\n                }\n            ],\n            \"categories\": [\n                {\n                    \"id\": 1,\n                    \"name\": \"Cóctel\",\n                    \"description\": \"Vestidos elegantes y modernos, ideales para eventos semiformales.\"\n                }\n            ],\n            \"sizes\": [\n                {\n                    \"id\": 1,\n                    \"size\": \"S\"\n                },\n                {\n                    \"id\": 2,\n                    \"size\": \"M\"\n                }\n            ]\n        },\n        {\n            \"productId\": 2,\n            \"name\": \"Brianna\",\n            \"reference\": \"C-784\",\n            \"description\": \"Deslumbra en cualquier evento con este vestido de cóctel plateado. Adornado con brillantes y tiras de voleros que añaden un toque visual espectacular, este vestido corto y ajustado realza tu figura de manera impresionante. Perfecto para destacar en cualquier ocasión especial.\",\n            \"material\": \"Seda y poliéster con lentejuelas de alta calidad.\",\n            \"color\": \"Plateado\",\n            \"designer\": \"Oscar de la Renta\",\n            \"price\": 150000.00,\n            \"images\": [\n                {\n                    \"imageId\": 6,\n                    \"url\": \"img/products/coctel/brianna_1.jpg\"\n                },\n                {\n                    \"imageId\": 7,\n                    \"url\": \"img/products/coctel/brianna_2.jpg\"\n                },\n                {\n                    \"imageId\": 8,\n                    \"url\": \"img/products/coctel/brianna_3.jpg\"\n                },\n                {\n                    \"imageId\": 9,\n                    \"url\": \"img/products/coctel/brianna_4.jpg\"\n                },\n                {\n                    \"imageId\": 10,\n                    \"url\": \"img/products/coctel/brianna_5.jpg\"\n                }\n            ],\n            \"categories\": [\n                {\n                    \"id\": 1,\n                    \"name\": \"Cóctel\",\n                    \"description\": \"Vestidos elegantes y modernos, ideales para eventos semiformales.\"\n                }\n            ],\n            \"sizes\": [\n                {\n                    \"id\": 3,\n                    \"size\": \"L\"\n                },\n                {\n                    \"id\": 4,\n                    \"size\": \"XL\"\n                }\n            ]\n        },\n        {\n            \"productId\": 3,\n            \"name\": \"Gold party\",\n            \"reference\": \"C-754\",\n            \"description\": \"Impresiona en cualquier evento con este vestido de cóctel tipo blazer. De color dorado y adornado con brillantines, este vestido de manga larga y diseño corto combina a la perfección sensualidad y elegancia. Ideal para destacar en cualquier ocasión especial.\",\n            \"material\": \"Lurex\",\n            \"color\": \"Dorado brillante\",\n            \"designer\": \"Versace\",\n            \"price\": 300000.00,\n            \"images\": [\n                {\n                    \"imageId\": 11,\n                    \"url\": \"img/products/coctel/gold_party_1.png\"\n                },\n                {\n                    \"imageId\": 12,\n                    \"url\": \"img/products/coctel/gold_party_2.png\"\n                },\n                {\n                    \"imageId\": 13,\n                    \"url\": \"img/products/coctel/gold_party_3.png\"\n                },\n                {\n                    \"imageId\": 14,\n                    \"url\": \"img/products/coctel/gold_party_4.png\"\n                },\n                {\n                    \"imageId\": 15,\n                    \"url\": \"img/products/coctel/gold_party_5.png\"\n                }\n            ],\n            \"categories\": [\n                {\n                    \"id\": 1,\n                    \"name\": \"Cóctel\",\n                    \"description\": \"Vestidos elegantes y modernos, ideales para eventos semiformales.\"\n                }\n            ],\n            \"sizes\": [\n                {\n                    \"id\": 1,\n                    \"size\": \"S\"\n                },\n                {\n                    \"id\": 4,\n                    \"size\": \"XL\"\n                }\n            ]\n        },\n        {\n            \"productId\": 4,\n            \"name\": \"Esplendor Dorado\",\n            \"reference\": \"C-882\",\n            \"description\": \"Este vestido de cóctel dorado es perfecto para brillar. Con detalles en encaje y corte ajustado, resalta la figura de manera elegante.\",\n            \"material\": \"Seda y encaje\",\n            \"color\": \"Dorado\",\n            \"designer\": \"Elie Saab\",\n            \"price\": 270000.00,\n            \"images\": [\n                {\n                    \"imageId\": 16,\n                    \"url\": \"img/products/coctel/esplendor_dorado_1.jpg\"\n                },\n                {\n                    \"imageId\": 17,\n                    \"url\": \"img/products/coctel/esplendor_dorado_2.jpg\"\n                },\n                {\n                    \"imageId\": 18,\n                    \"url\": \"img/products/coctel/esplendor_dorado_3.jpg\"\n                },\n                {\n                    \"imageId\": 19,\n                    \"url\": \"img/products/coctel/esplendor_dorado_4.jpg\"\n                },\n                {\n                    \"imageId\": 20,\n                    \"url\": \"img/products/coctel/esplendor_dorado_5.jpg\"\n                }\n            ],\n            \"categories\": [\n                {\n                    \"id\": 1,\n                    \"name\": \"Cóctel\",\n                    \"description\": \"Vestidos elegantes y modernos, ideales para eventos semiformales.\"\n                }\n            ],\n            \"sizes\": [\n                {\n                    \"id\": 1,\n                    \"size\": \"S\"\n                },\n                {\n                    \"id\": 2,\n                    \"size\": \"M\"\n                }\n            ]\n        },\n        {\n            \"productId\": 5,\n            \"name\": \"Luz de Medianoche\",\n            \"reference\": \"C-475\",\n            \"description\": \"Un vestido azul oscuro con lentejuelas que refleja la elegancia de la noche. Ideal para eventos formales y ocasiones especiales.\",\n            \"material\": \"Poliéster con lentejuelas\",\n            \"color\": \"Azul oscuro\",\n            \"designer\": \"Dolce & Gabbana\",\n            \"price\": 220000.00,\n            \"images\": [\n                {\n                    \"imageId\": 21,\n                    \"url\": \"img/products/coctel/luz_de_medianoche_1.jpg\"\n                },\n                {\n                    \"imageId\": 22,\n                    \"url\": \"img/products/coctel/luz_de_medianoche_2.jpg\"\n                },\n                {\n                    \"imageId\": 23,\n                    \"url\": \"img/products/coctel/luz_de_medianoche_3.jpg\"\n                },\n                {\n                    \"imageId\": 24,\n                    \"url\": \"img/products/coctel/luz_de_medianoche_4.jpg\"\n                },\n                {\n                    \"imageId\": 25,\n                    \"url\": \"img/products/coctel/luz_de_medianoche_5.jpg\"\n                }\n            ],\n            \"categories\": [\n                {\n                    \"id\": 1,\n                    \"name\": \"Cóctel\",\n                    \"description\": \"Vestidos elegantes y modernos, ideales para eventos semiformales.\"\n                }\n            ],\n            \"sizes\": [\n                {\n                    \"id\": 2,\n                    \"size\": \"M\"\n                },\n                {\n                    \"id\": 4,\n                    \"size\": \"XL\"\n                }\n            ]\n        },\n        {\n            \"productId\": 6,\n            \"name\": \"Esencia Esmeralda\",\n            \"reference\": \"C-993\",\n            \"description\": \"Vestido de cóctel en un tono verde esmeralda con detalles en encaje. Ideal para ocasiones especiales.\",\n            \"material\": \"Encaje y satén\",\n            \"color\": \"Verde esmeralda\",\n            \"designer\": \"Zuhair Murad\",\n            \"price\": 250000.00,\n            \"images\": [\n                {\n                    \"imageId\": 26,\n                    \"url\": \"img/products/coctel/esencia_esmeralda_1.jpg\"\n                },\n                {\n                    \"imageId\": 27,\n                    \"url\": \"img/products/coctel/esencia_esmeralda_2.jpg\"\n                },\n                {\n                    \"imageId\": 28,\n                    \"url\": \"img/products/coctel/esencia_esmeralda_3.jpg\"\n                },\n                {\n                    \"imageId\": 29,\n                    \"url\": \"img/products/coctel/esencia_esmeralda_4.jpg\"\n                },\n                {\n                    \"imageId\": 30,\n                    \"url\": \"img/products/coctel/esencia_esmeralda_5.jpg\"\n                }\n            ],\n            \"categories\": [\n                {\n                    \"id\": 1,\n                    \"name\": \"Cóctel\",\n                    \"description\": \"Vestidos elegantes y modernos, ideales para eventos semiformales.\"\n                }\n            ],\n            \"sizes\": [\n                {\n                    \"id\": 2,\n                    \"size\": \"M\"\n                },\n                {\n                    \"id\": 3,\n                    \"size\": \"L\"\n                }\n            ]\n        },\n        {\n            \"productId\": 7,\n            \"name\": \"Camelia\",\n            \"reference\": \"N-784\",\n            \"description\": \"Libera tu espíritu bohemio con este vestido de novia único. El encaje floral, con motivos botánicos, cubre el cuerpo de manera ligera y sensual.\",\n            \"material\": \"Seda natural con encaje\",\n            \"color\": \"Blanco\",\n            \"designer\": \"Inbal Dror\",\n            \"price\": 2500000.00,\n            \"images\": [\n                {\n                    \"imageId\": 31,\n                    \"url\": \"img/products/novia/camelia_1.jpg\"\n                },\n                {\n                    \"imageId\": 32,\n                    \"url\": \"img/products/novia/camelia_2.jpg\"\n                },\n                {\n                    \"imageId\": 33,\n                    \"url\": \"img/products/novia/camelia_3.jpg\"\n                },\n                {\n                    \"imageId\": 34,\n                    \"url\": \"img/products/novia/camelia_4.jpg\"\n                },\n                {\n                    \"imageId\": 35,\n                    \"url\": \"img/products/novia/camelia_5.jpg\"\n                }\n            ],\n            \"categories\": [\n                {\n                    \"id\": 2,\n                    \"name\": \"Novias\",\n                    \"description\": \"Vestidos únicos y románticos, perfectos para el día de la boda.\"\n                }\n            ],\n            \"sizes\": [\n                {\n                    \"id\": 1,\n                    \"size\": \"S\"\n                },\n                {\n                    \"id\": 2,\n                    \"size\": \"M\"\n                }\n            ]\n        },\n        {\n            \"productId\": 8,\n            \"name\": \"Flor de Lirio\",\n            \"reference\": \"N-321\",\n            \"description\": \"Vestido de novia con detalles florales y un corte princesa. Perfecto para una boda de cuento de hadas.\",\n            \"material\": \"Encaje francés y tul\",\n            \"color\": \"Marfil\",\n            \"designer\": \"Zuhair Murad\",\n            \"price\": 2800000.00,\n            \"images\": [\n                {\n                    \"imageId\": 36,\n                    \"url\": \"img/products/novia/flor_de_lirio_1.jpg\"\n                },\n                {\n                    \"imageId\": 37,\n                    \"url\": \"img/products/novia/flor_de_lirio_2.jpg\"\n                },\n                {\n                    \"imageId\": 38,\n                    \"url\": \"img/products/novia/flor_de_lirio_3.jpg\"\n                },\n                {\n                    \"imageId\": 39,\n                    \"url\": \"img/products/novia/flor_de_lirio_4.jpg\"\n                },\n                {\n                    \"imageId\": 40,\n                    \"url\": \"img/products/novia/flor_de_lirio_5.jpg\"\n                }\n            ],\n            \"categories\": [\n                {\n                    \"id\": 2,\n                    \"name\": \"Novias\",\n                    \"description\": \"Vestidos únicos y románticos, perfectos para el día de la boda.\"\n                }\n            ],\n            \"sizes\": [\n                {\n                    \"id\": 3,\n                    \"size\": \"L\"\n                },\n                {\n                    \"id\": 4,\n                    \"size\": \"XL\"\n                }\n            ]\n        },\n        {\n            \"productId\": 9,\n            \"name\": \"Encanto Real\",\n            \"reference\": \"N-892\",\n            \"description\": \"Este vestido de novia estilo sirena cuenta con un elegante encaje y una cola larga que agrega sofisticación.\",\n            \"material\": \"Encaje y tul\",\n            \"color\": \"Blanco puro\",\n            \"designer\": \"Marchesa\",\n            \"price\": 3000000.00,\n            \"images\": [\n                {\n                    \"imageId\": 41,\n                    \"url\": \"img/products/novia/encanto_real_1.jpg\"\n                },\n                {\n                    \"imageId\": 42,\n                    \"url\": \"img/products/novia/encanto_real_2.jpg\"\n                },\n                {\n                    \"imageId\": 43,\n                    \"url\": \"img/products/novia/encanto_real_3.jpg\"\n                },\n                {\n                    \"imageId\": 44,\n                    \"url\": \"img/products/novia/encanto_real_4.jpg\"\n                },\n                {\n                    \"imageId\": 45,\n                    \"url\": \"img/products/novia/encanto_real_5.jpg\"\n                }\n            ],\n            \"categories\": [\n                {\n                    \"id\": 2,\n                    \"name\": \"Novias\",\n                    \"description\": \"Vestidos únicos y románticos, perfectos para el día de la boda.\"\n                }\n            ],\n            \"sizes\": [\n                {\n                    \"id\": 1,\n                    \"size\": \"S\"\n                },\n                {\n                    \"id\": 4,\n                    \"size\": \"XL\"\n                }\n            ]\n        },\n        {\n            \"productId\": 10,\n            \"name\": \"Sueño Eterno\",\n            \"reference\": \"N-561\",\n            \"description\": \"Un vestido de novia clásico, con una larga cola y detalles en encaje, ideal para un toque romántico y elegante.\",\n            \"material\": \"Seda y encaje\",\n            \"color\": \"Blanco puro\",\n            \"designer\": \"Pronovias\",\n            \"price\": 2800000.00,\n            \"images\": [\n                {\n                    \"imageId\": 46,\n                    \"url\": \"img/products/novia/sueno_eterno_1.jpg\"\n                },\n                {\n                    \"imageId\": 47,\n                    \"url\": \"img/products/novia/sueno_eterno_2.jpg\"\n                },\n                {\n                    \"imageId\": 48,\n                    \"url\": \"img/products/novia/sueno_eterno_3.jpg\"\n                },\n                {\n                    \"imageId\": 49,\n                    \"url\": \"img/products/novia/sueno_eterno_4.jpg\"\n                },\n                {\n                    \"imageId\": 50,\n                    \"url\": \"img/products/novia/sueno_eterno_5.jpg\"\n                }\n            ],\n            \"categories\": [\n                {\n                    \"id\": 2,\n                    \"name\": \"Novias\",\n                    \"description\": \"Vestidos únicos y románticos, perfectos para el día de la boda.\"\n                }\n            ],\n            \"sizes\": [\n                {\n                    \"id\": 1,\n                    \"size\": \"S\"\n                },\n                {\n                    \"id\": 2,\n                    \"size\": \"M\"\n                }\n            ]\n        }\n    ],\n    \"pageable\": {\n        \"pageNumber\": 0,\n        \"pageSize\": 10,\n        \"sort\": {\n            \"empty\": true,\n            \"sorted\": false,\n            \"unsorted\": true\n        },\n        \"offset\": 0,\n        \"paged\": true,\n        \"unpaged\": false\n    },\n    \"last\": false,\n    \"totalPages\": 3,\n    \"totalElements\": 30,\n    \"size\": 10,\n    \"number\": 0,\n    \"sort\": {\n        \"empty\": true,\n        \"sorted\": false,\n        \"unsorted\": true\n    },\n    \"first\": true,\n    \"numberOfElements\": 10,\n    \"empty\": false\n}"
 						}
 					]
 				},
@@ -420,12 +946,10 @@
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8080/api/v1/products/delete-product/:id",
-									"protocol": "http",
+									"raw": "{{baseUrl}}/api/v1/products/delete-product/:id",
 									"host": [
-										"localhost"
+										"{{baseUrl}}"
 									],
-									"port": "8080",
 									"path": [
 										"api",
 										"v1",
@@ -472,7 +996,7 @@
 								}
 							],
 							"cookie": [],
-							"body": ""
+							"body": null
 						},
 						{
 							"name": "Product not found",
@@ -558,12 +1082,10 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:8080/api/v1/products",
-									"protocol": "http",
+									"raw": "{{baseUrl}}/api/v1/products",
 									"host": [
-										"localhost"
+										"{{baseUrl}}"
 									],
-									"port": "8080",
 									"path": [
 										"api",
 										"v1",
@@ -842,12 +1364,10 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8080/api/v1/categories",
-									"protocol": "http",
+									"raw": "{{baseUrl}}/api/v1/categories",
 									"host": [
-										"localhost"
+										"{{baseUrl}}"
 									],
-									"port": "8080",
 									"path": [
 										"api",
 										"v1",
@@ -904,7 +1424,7 @@
 			"name": "Size",
 			"item": [
 				{
-					"name": "List Categories",
+					"name": "List Sizes",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -928,12 +1448,10 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8080/api/v1/sizes",
-									"protocol": "http",
+									"raw": "{{baseUrl}}/api/v1/sizes",
 									"host": [
-										"localhost"
+										"{{baseUrl}}"
 									],
-									"port": "8080",
 									"path": [
 										"api",
 										"v1",
@@ -1567,7 +2085,7 @@
 								}
 							],
 							"cookie": [],
-							"body": null
+							"body": ""
 						},
 						{
 							"name": "Not found",
@@ -2066,15 +2584,6 @@
 							"originalRequest": {
 								"method": "GET",
 								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"email\":\"tineojf@mail.com\"\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
 								"url": {
 									"raw": "{{baseUrl}}/api/v1/users/email",
 									"host": [
@@ -2153,15 +2662,6 @@
 							"originalRequest": {
 								"method": "GET",
 								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"email\":\"tineoasjf@mail.com\"\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
 								"url": {
 									"raw": "{{baseUrl}}/api/v1/users/email",
 									"host": [
