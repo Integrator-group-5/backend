@@ -56,4 +56,10 @@ public class UserController {
         User existingUser = userService.findByEmail(email.getEmail());
         return ResponseEntity.status(HttpStatus.OK).body(existingUser);
     }
+
+    @PutMapping("/set-admin")
+    public ResponseEntity<String> setAdmin(@RequestBody EmailRequest email) {
+        userService.setAdmin(email.getEmail());
+        return ResponseEntity.status(HttpStatus.OK).body("User with email: " + email.getEmail() + " is now an admin");
+    }
 }
