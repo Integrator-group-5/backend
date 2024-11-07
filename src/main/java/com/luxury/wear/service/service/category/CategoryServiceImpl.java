@@ -2,6 +2,7 @@ package com.luxury.wear.service.service.category;
 
 import com.luxury.wear.service.entity.Category;
 import com.luxury.wear.service.entity.Image;
+import com.luxury.wear.service.exception.ResourceNotFoundException;
 import com.luxury.wear.service.repository.CategoryRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -23,7 +24,7 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public Category getCategoryById(Long id) {
         return categoryRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException(CATEGORY_NOT_FOUND_ID + id));
+                .orElseThrow(() -> new ResourceNotFoundException(CATEGORY_NOT_FOUND_ID + id));
     }
 
     @Override
@@ -34,7 +35,7 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public Category updateCategory(Long id, Category category) {
         Category existingCategory = categoryRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException(CATEGORY_NOT_FOUND_ID + id));
+                .orElseThrow(() -> new ResourceNotFoundException(CATEGORY_NOT_FOUND_ID + id));
 
         return updateExistingCategory(existingCategory, category);
     }
@@ -42,7 +43,7 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public void deleteCategoryById(Long id) {
         categoryRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException(CATEGORY_NOT_FOUND_ID + id));
+                .orElseThrow(() -> new ResourceNotFoundException(CATEGORY_NOT_FOUND_ID + id));
         categoryRepository.deleteById(id);
     }
 
