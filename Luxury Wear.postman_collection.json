@@ -1861,7 +1861,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTczMDkyNjgxMywiZXhwIjoxNzMwOTI2OTMzfQ.gSLy97KtGAOI4ikWCHOQesFGByYjOUqzN1aN6npWsk3y7ZeO-OTiqGGH_-4DRuPveoFeEmGdc8U8Fk9BxoeQLg",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbkBhZG1pbi5jb20iLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3MzA5NDQ2MjYsImV4cCI6MTczMDk0NDc0Nn0.JogCvoLpm1AOYTvB-E5S6vT6tckAY3OJrNoRz3tALQk3y423WhasaLwC0S6Y_lR_PKCVfBcjzSdpUO5LnddXQQ",
 									"type": "string"
 								}
 							]
@@ -1944,7 +1944,7 @@
 								},
 								{
 									"key": "Date",
-									"value": "Mon, 04 Nov 2024 19:02:58 GMT"
+									"value": "Thu, 07 Nov 2024 01:57:19 GMT"
 								},
 								{
 									"key": "Keep-Alive",
@@ -1956,13 +1956,23 @@
 								}
 							],
 							"cookie": [],
-							"body": "[\n    {\n        \"userId\": 1,\n        \"name\": \"Tineo\",\n        \"username\": \"tineojf\",\n        \"email\": \"tineojf@mail.com\",\n        \"password\": \"hashedPassword\",\n        \"userRole\": \"ADMIN\",\n        \"enabled\": true,\n        \"authorities\": [\n            {\n                \"authority\": \"ADMIN\"\n            }\n        ],\n        \"accountNonExpired\": true,\n        \"accountNonLocked\": true,\n        \"credentialsNonExpired\": true\n    },\n    {\n        \"userId\": 2,\n        \"name\": \"AndreaaGM\",\n        \"username\": \"andreaaGM\",\n        \"email\": \"andreaaGM@mail.com\",\n        \"password\": \"hashedPassword\",\n        \"userRole\": \"ADMIN\",\n        \"enabled\": true,\n        \"authorities\": [\n            {\n                \"authority\": \"ADMIN\"\n            }\n        ],\n        \"accountNonExpired\": true,\n        \"accountNonLocked\": true,\n        \"credentialsNonExpired\": true\n    },\n    {\n        \"userId\": 3,\n        \"name\": \"avril-tihista\",\n        \"username\": \"avril-tihista\",\n        \"email\": \"avril@mail.com\",\n        \"password\": \"hashedPassword\",\n        \"userRole\": \"ADMIN\",\n        \"enabled\": true,\n        \"authorities\": [\n            {\n                \"authority\": \"ADMIN\"\n            }\n        ],\n        \"accountNonExpired\": true,\n        \"accountNonLocked\": true,\n        \"credentialsNonExpired\": true\n    },\n    {\n        \"userId\": 4,\n        \"name\": \"Helen Bernal\",\n        \"username\": \"bhelening\",\n        \"email\": \"helen.b@mail.com\",\n        \"password\": \"hashedPassword\",\n        \"userRole\": \"ADMIN\",\n        \"enabled\": true,\n        \"authorities\": [\n            {\n                \"authority\": \"ADMIN\"\n            }\n        ],\n        \"accountNonExpired\": true,\n        \"accountNonLocked\": true,\n        \"credentialsNonExpired\": true\n    },\n    {\n        \"userId\": 5,\n        \"name\": \"Carol Julieth Velez\",\n        \"username\": \"CarolJVelez\",\n        \"email\": \"carolv@mail.com\",\n        \"password\": \"hashedPassword\",\n        \"userRole\": \"ADMIN\",\n        \"enabled\": true,\n        \"authorities\": [\n            {\n                \"authority\": \"ADMIN\"\n            }\n        ],\n        \"accountNonExpired\": true,\n        \"accountNonLocked\": true,\n        \"credentialsNonExpired\": true\n    },\n    {\n        \"userId\": 6,\n        \"name\": \"Claudia Heredia\",\n        \"username\": \"cheredia10\",\n        \"email\": \"cheredia@mail.com\",\n        \"password\": \"hashedPassword\",\n        \"userRole\": \"ADMIN\",\n        \"enabled\": true,\n        \"authorities\": [\n            {\n                \"authority\": \"ADMIN\"\n            }\n        ],\n        \"accountNonExpired\": true,\n        \"accountNonLocked\": true,\n        \"credentialsNonExpired\": true\n    },\n    {\n        \"userId\": 7,\n        \"name\": \"David Blanco\",\n        \"username\": \"DavidBlanco2825\",\n        \"email\": \"davidb@mail.com\",\n        \"password\": \"hashedPassword\",\n        \"userRole\": \"ADMIN\",\n        \"enabled\": true,\n        \"authorities\": [\n            {\n                \"authority\": \"ADMIN\"\n            }\n        ],\n        \"accountNonExpired\": true,\n        \"accountNonLocked\": true,\n        \"credentialsNonExpired\": true\n    },\n    {\n        \"userId\": 8,\n        \"name\": \"Ingrid Munera Valencia\",\n        \"username\": \"ingridmv24\",\n        \"email\": \"ingridmv@mail.com\",\n        \"password\": \"hashedPassword\",\n        \"userRole\": \"ADMIN\",\n        \"enabled\": true,\n        \"authorities\": [\n            {\n                \"authority\": \"ADMIN\"\n            }\n        ],\n        \"accountNonExpired\": true,\n        \"accountNonLocked\": true,\n        \"credentialsNonExpired\": true\n    },\n    {\n        \"userId\": 9,\n        \"name\": \"Karenpe1\",\n        \"username\": \"Karenpe1\",\n        \"email\": \"karenpe1@mail.com\",\n        \"password\": \"hashedPassword\",\n        \"userRole\": \"ADMIN\",\n        \"enabled\": true,\n        \"authorities\": [\n            {\n                \"authority\": \"ADMIN\"\n            }\n        ],\n        \"accountNonExpired\": true,\n        \"accountNonLocked\": true,\n        \"credentialsNonExpired\": true\n    },\n    {\n        \"userId\": 10,\n        \"name\": \"Victor Falconí\",\n        \"username\": \"VictorFalconi\",\n        \"email\": \"victorf@mail.com\",\n        \"password\": \"hashedPassword\",\n        \"userRole\": \"ADMIN\",\n        \"enabled\": true,\n        \"authorities\": [\n            {\n                \"authority\": \"ADMIN\"\n            }\n        ],\n        \"accountNonExpired\": true,\n        \"accountNonLocked\": true,\n        \"credentialsNonExpired\": true\n    },\n    {\n        \"userId\": 11,\n        \"name\": \"Luis Pérez\",\n        \"username\": \"luisperez\",\n        \"email\": \"luis.perez@mail.com\",\n        \"password\": \"hashedPassword\",\n        \"userRole\": \"USER\",\n        \"enabled\": true,\n        \"authorities\": [\n            {\n                \"authority\": \"USER\"\n            }\n        ],\n        \"accountNonExpired\": true,\n        \"accountNonLocked\": true,\n        \"credentialsNonExpired\": true\n    },\n    {\n        \"userId\": 12,\n        \"name\": \"María Gómez\",\n        \"username\": \"mariagomez\",\n        \"email\": \"maria.gomez@mail.com\",\n        \"password\": \"hashedPassword\",\n        \"userRole\": \"USER\",\n        \"enabled\": true,\n        \"authorities\": [\n            {\n                \"authority\": \"USER\"\n            }\n        ],\n        \"accountNonExpired\": true,\n        \"accountNonLocked\": true,\n        \"credentialsNonExpired\": true\n    },\n    {\n        \"userId\": 13,\n        \"name\": \"Sofia Martínez\",\n        \"username\": \"sofimartinez\",\n        \"email\": \"sofia.m@mail.com\",\n        \"password\": \"hashedPassword\",\n        \"userRole\": \"USER\",\n        \"enabled\": true,\n        \"authorities\": [\n            {\n                \"authority\": \"USER\"\n            }\n        ],\n        \"accountNonExpired\": true,\n        \"accountNonLocked\": true,\n        \"credentialsNonExpired\": true\n    },\n    {\n        \"userId\": 14,\n        \"name\": \"Carlos Ruiz\",\n        \"username\": \"carlosruiz\",\n        \"email\": \"carlos.ruiz@mail.com\",\n        \"password\": \"hashedPassword\",\n        \"userRole\": \"USER\",\n        \"enabled\": true,\n        \"authorities\": [\n            {\n                \"authority\": \"USER\"\n            }\n        ],\n        \"accountNonExpired\": true,\n        \"accountNonLocked\": true,\n        \"credentialsNonExpired\": true\n    },\n    {\n        \"userId\": 15,\n        \"name\": \"Ana López\",\n        \"username\": \"analopez\",\n        \"email\": \"analopez@mail.com\",\n        \"password\": \"hashedPassword\",\n        \"userRole\": \"USER\",\n        \"enabled\": true,\n        \"authorities\": [\n            {\n                \"authority\": \"USER\"\n            }\n        ],\n        \"accountNonExpired\": true,\n        \"accountNonLocked\": true,\n        \"credentialsNonExpired\": true\n    }\n]"
+							"body": "[\n    {\n        \"userId\": 1,\n        \"username\": \"admin@admin.com\",\n        \"email\": \"admin@admin.com\",\n        \"password\": \"$2a$10$PswS6NoCm8bNqTZWIHiut.WX21NBWVQ3/zHwVvAoBpIzXHFrO3qHi\",\n        \"userRole\": \"ADMIN\",\n        \"enabled\": true,\n        \"authorities\": [\n            {\n                \"authority\": \"ROLE_ADMIN\"\n            }\n        ],\n        \"accountNonExpired\": true,\n        \"accountNonLocked\": true,\n        \"credentialsNonExpired\": true,\n        \"first_name\": \"admin\",\n        \"last_name\": \"admin\"\n    }\n]"
 						}
 					]
 				},
 				{
 					"name": "Get User by ID",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbkBhZG1pbi5jb20iLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3MzA5NDQ2MjYsImV4cCI6MTczMDk0NDc0Nn0.JogCvoLpm1AOYTvB-E5S6vT6tckAY3OJrNoRz3tALQk3y423WhasaLwC0S6Y_lR_PKCVfBcjzSdpUO5LnddXQQ",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -1979,84 +1989,6 @@
 						}
 					},
 					"response": [
-						{
-							"name": "OK",
-							"originalRequest": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "{{baseUrl}}/api/v1/users/1",
-									"host": [
-										"{{baseUrl}}"
-									],
-									"path": [
-										"api",
-										"v1",
-										"users",
-										"1"
-									]
-								}
-							},
-							"status": "OK",
-							"code": 200,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "Vary",
-									"value": "Origin"
-								},
-								{
-									"key": "Vary",
-									"value": "Access-Control-Request-Method"
-								},
-								{
-									"key": "Vary",
-									"value": "Access-Control-Request-Headers"
-								},
-								{
-									"key": "X-Content-Type-Options",
-									"value": "nosniff"
-								},
-								{
-									"key": "X-XSS-Protection",
-									"value": "0"
-								},
-								{
-									"key": "Cache-Control",
-									"value": "no-cache, no-store, max-age=0, must-revalidate"
-								},
-								{
-									"key": "Pragma",
-									"value": "no-cache"
-								},
-								{
-									"key": "Expires",
-									"value": "0"
-								},
-								{
-									"key": "Content-Type",
-									"value": "application/json"
-								},
-								{
-									"key": "Transfer-Encoding",
-									"value": "chunked"
-								},
-								{
-									"key": "Date",
-									"value": "Mon, 04 Nov 2024 19:03:43 GMT"
-								},
-								{
-									"key": "Keep-Alive",
-									"value": "timeout=60"
-								},
-								{
-									"key": "Connection",
-									"value": "keep-alive"
-								}
-							],
-							"cookie": [],
-							"body": "{\n    \"userId\": 1,\n    \"name\": \"Tineo\",\n    \"username\": \"tineojf\",\n    \"email\": \"tineojf@mail.com\",\n    \"password\": \"hashedPassword\",\n    \"userRole\": \"ADMIN\",\n    \"enabled\": true,\n    \"authorities\": [\n        {\n            \"authority\": \"ADMIN\"\n        }\n    ],\n    \"accountNonExpired\": true,\n    \"accountNonLocked\": true,\n    \"credentialsNonExpired\": true\n}"
-						},
 						{
 							"name": "Not found",
 							"originalRequest": {
@@ -2134,12 +2066,100 @@
 							],
 							"cookie": [],
 							"body": "{\n    \"timestamp\": \"2024-11-04T14:03:56.535526855\",\n    \"message\": \"User not found with Id: 88\",\n    \"details\": \"/api/v1/users/88\"\n}"
+						},
+						{
+							"name": "OK",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/api/v1/users/1",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"users",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 07 Nov 2024 01:57:47 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"userId\": 1,\n    \"username\": \"admin@admin.com\",\n    \"email\": \"admin@admin.com\",\n    \"password\": \"$2a$10$PswS6NoCm8bNqTZWIHiut.WX21NBWVQ3/zHwVvAoBpIzXHFrO3qHi\",\n    \"userRole\": \"ADMIN\",\n    \"enabled\": true,\n    \"authorities\": [\n        {\n            \"authority\": \"ROLE_ADMIN\"\n        }\n    ],\n    \"accountNonExpired\": true,\n    \"accountNonLocked\": true,\n    \"credentialsNonExpired\": true,\n    \"first_name\": \"admin\",\n    \"last_name\": \"admin\"\n}"
 						}
 					]
 				},
 				{
 					"name": "Paginated Users",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbkBhZG1pbi5jb20iLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3MzA5NDQ2MjYsImV4cCI6MTczMDk0NDc0Nn0.JogCvoLpm1AOYTvB-E5S6vT6tckAY3OJrNoRz3tALQk3y423WhasaLwC0S6Y_lR_PKCVfBcjzSdpUO5LnddXQQ",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -2547,7 +2567,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTczMDkzMzg4NSwiZXhwIjoxNzMwOTM0MDA1fQ.IFZWsksh8LL769qvQ0medx2AFDYhuEpqQB3EuiLZuwmF2UhfNPmMKsPeJ0PqJqhPhJkAo5_zkqZHGESMrE4Umg",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbkBhZG1pbi5jb20iLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3MzA5NDQ3NjUsImV4cCI6MTczMDk0NDg4NX0.djtXLhMdzQDzTpGwaneXHA3HECsPLNaZcFZPNBezatFx9q0ezoPR85y1tl6LjX-BOTExuNPbx6cd_-YpsZbP3w",
 									"type": "string"
 								}
 							]
@@ -2556,7 +2576,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"first_name\": \"demo\",\n    \"last_name\": \"demo\",\n    \"email\": \"demo@mail.com\",\n    \"password\": \"demo\",\n    \"user_role\": \"ADMIN\",\n    \"username\": \"demo2\"\n}",
+							"raw": "{\n    \"first_name\": \"demo\",\n    \"last_name\": \"demo\",\n    \"email\": \"demo@mail.com\",\n    \"password\": \"demo\",\n    \"username\": \"demo2\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -2576,178 +2596,6 @@
 						}
 					},
 					"response": [
-						{
-							"name": "OK admin",
-							"originalRequest": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"name\": \"Demo\",\n    \"username\": \"demo\",\n    \"email\": \"demo@mail.com\",\n    \"password\": \"hashedPassword\",\n    \"userRole\": \"ADMIN\"\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{baseUrl}}/api/v1/users",
-									"host": [
-										"{{baseUrl}}"
-									],
-									"path": [
-										"api",
-										"v1",
-										"users"
-									]
-								}
-							},
-							"status": "Created",
-							"code": 201,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "Vary",
-									"value": "Origin"
-								},
-								{
-									"key": "Vary",
-									"value": "Access-Control-Request-Method"
-								},
-								{
-									"key": "Vary",
-									"value": "Access-Control-Request-Headers"
-								},
-								{
-									"key": "X-Content-Type-Options",
-									"value": "nosniff"
-								},
-								{
-									"key": "X-XSS-Protection",
-									"value": "0"
-								},
-								{
-									"key": "Cache-Control",
-									"value": "no-cache, no-store, max-age=0, must-revalidate"
-								},
-								{
-									"key": "Pragma",
-									"value": "no-cache"
-								},
-								{
-									"key": "Expires",
-									"value": "0"
-								},
-								{
-									"key": "Content-Type",
-									"value": "application/json"
-								},
-								{
-									"key": "Transfer-Encoding",
-									"value": "chunked"
-								},
-								{
-									"key": "Date",
-									"value": "Mon, 04 Nov 2024 19:06:17 GMT"
-								},
-								{
-									"key": "Keep-Alive",
-									"value": "timeout=60"
-								},
-								{
-									"key": "Connection",
-									"value": "keep-alive"
-								}
-							],
-							"cookie": [],
-							"body": "{\n    \"userId\": 16,\n    \"name\": \"Demo\",\n    \"username\": \"demo\",\n    \"email\": \"demo@mail.com\",\n    \"password\": \"$2a$10$1mURyKkT3L3p1i.zWtSNRelWAnE2Po09PUwYKIdcoSPtOPNER9xzW\",\n    \"userRole\": \"ADMIN\",\n    \"enabled\": true,\n    \"authorities\": [\n        {\n            \"authority\": \"ADMIN\"\n        }\n    ],\n    \"accountNonExpired\": true,\n    \"accountNonLocked\": true,\n    \"credentialsNonExpired\": true\n}"
-						},
-						{
-							"name": "OK user",
-							"originalRequest": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"name\": \"userdemo\",\n    \"username\": \"userdemo\",\n    \"email\": \"userdemo@mail.com\",\n    \"password\": \"hashedPassword\",\n    \"userRole\": \"USER\"\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{baseUrl}}/api/v1/users",
-									"host": [
-										"{{baseUrl}}"
-									],
-									"path": [
-										"api",
-										"v1",
-										"users"
-									]
-								}
-							},
-							"status": "Created",
-							"code": 201,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "Vary",
-									"value": "Origin"
-								},
-								{
-									"key": "Vary",
-									"value": "Access-Control-Request-Method"
-								},
-								{
-									"key": "Vary",
-									"value": "Access-Control-Request-Headers"
-								},
-								{
-									"key": "X-Content-Type-Options",
-									"value": "nosniff"
-								},
-								{
-									"key": "X-XSS-Protection",
-									"value": "0"
-								},
-								{
-									"key": "Cache-Control",
-									"value": "no-cache, no-store, max-age=0, must-revalidate"
-								},
-								{
-									"key": "Pragma",
-									"value": "no-cache"
-								},
-								{
-									"key": "Expires",
-									"value": "0"
-								},
-								{
-									"key": "Content-Type",
-									"value": "application/json"
-								},
-								{
-									"key": "Transfer-Encoding",
-									"value": "chunked"
-								},
-								{
-									"key": "Date",
-									"value": "Mon, 04 Nov 2024 19:06:42 GMT"
-								},
-								{
-									"key": "Keep-Alive",
-									"value": "timeout=60"
-								},
-								{
-									"key": "Connection",
-									"value": "keep-alive"
-								}
-							],
-							"cookie": [],
-							"body": "{\n    \"userId\": 17,\n    \"name\": \"userdemo\",\n    \"username\": \"userdemo\",\n    \"email\": \"userdemo@mail.com\",\n    \"password\": \"$2a$10$Nn983zPAHyR5I7nhVEqPeOHwEjAvLDTia4OIGbnJiwBjRmIa0SX1G\",\n    \"userRole\": \"USER\",\n    \"enabled\": true,\n    \"authorities\": [\n        {\n            \"authority\": \"USER\"\n        }\n    ],\n    \"accountNonExpired\": true,\n    \"accountNonLocked\": true,\n    \"credentialsNonExpired\": true\n}"
-						},
 						{
 							"name": "Email exists",
 							"originalRequest": {
