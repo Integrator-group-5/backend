@@ -56,8 +56,10 @@ public class AuthController {
     }
 
     @PostMapping("/logout")
-    public ResponseEntity<?> logoutUser(HttpServletRequest request, HttpServletResponse response) {
+    public ResponseEntity<Map<String, String>> logoutUser(HttpServletRequest request, HttpServletResponse response) {
         authService.logoutUser(request, response);
-        return ResponseEntity.ok("User logged out successfully");
+        Map<String, String> apiResponse = new HashMap<>();
+        apiResponse.put("response", "User logged out successfully");
+        return ResponseEntity.status(HttpStatus.OK).body(apiResponse);
     }
 }
