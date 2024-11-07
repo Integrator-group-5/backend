@@ -10,11 +10,19 @@ CREATE TABLE IF NOT EXISTS product (
     price DECIMAL(10, 2) NOT NULL
 );
 
+-- Tabla de Imagen de Categoría
+CREATE TABLE IF NOT EXISTS cover (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    url VARCHAR(255) NOT NULL
+);
+
 -- Create the 'category' table
 CREATE TABLE IF NOT EXISTS category (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
-    description TEXT
+    description TEXT,
+    cover_id BIGINT NOT NULL,
+    FOREIGN KEY (cover_id) REFERENCES cover(id) ON DELETE CASCADE
 );
 
 -- Create the 'size' table

@@ -39,10 +39,15 @@ public class SecurityConfig {
                         // Endpoints requiring authentication with ADMIN role
                         .requestMatchers(HttpMethod.POST, "/api/v1/products").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.DELETE, "/api/v1/products/delete-product/{id}").hasRole("ADMIN")
+
                         .requestMatchers(HttpMethod.DELETE, "/api/v1/users/delete-user/{id}").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.GET, "/api/v1/users/page/{page}", "/api/v1/users").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.POST, "/api/v1/users").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.PUT, "/api/v1/users/set-admin", "/api/v1/users/remove-admin").hasRole("ADMIN")
+
+                        .requestMatchers(HttpMethod.POST, "/api/v1/categories").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.PUT, "/api/v1/categories").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.DELETE, "/api/v1/categories/delete-category/{id}").hasRole("ADMIN")
 
                         // All other requests
                         .anyRequest().authenticated()
