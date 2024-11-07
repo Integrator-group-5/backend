@@ -14,6 +14,15 @@ como base de datos, asegurando una configuración consistente y confiable tanto 
 A continuación se detallan los endpoints disponibles en la API de **Luxury Wear Service** y sus respectivas
 funcionalidades.
 
+### Operaciones relacionadas con autorización y autenticación
+
+| Método | Endpoint              | Descripción                                                  |
+|--------|-----------------------|--------------------------------------------------------------|
+| POST   | `/auth/register`      | Permite el registro de un nuevo usuario en la aplicación     |
+| POST   | `/auth/login`         | Permite a un usuario iniciar sesión en la aplicación         |
+| POST   | `/auth/token-refresh` | Permite obtener un nuevo token utilizando un `refresh-token` |
+
+
 ### Operaciones relacionadas con la gestión de productos.
 
 | Método | Endpoint                               | Descripción                                        |

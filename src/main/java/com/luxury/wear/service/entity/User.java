@@ -1,5 +1,6 @@
 package com.luxury.wear.service.entity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.luxury.wear.service.roles.UserRole;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -22,8 +23,13 @@ public class User implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long userId;
 
-    @Column(nullable = false)
-    private String name;
+    @Column(name = "first_name", nullable = false)
+    @JsonProperty("first_name")
+    private String firstName;
+
+    @Column(name = "last_name", nullable = false)
+    @JsonProperty("last_name")
+    private String lastName;
 
     @Column(unique = true)
     private String username;
@@ -38,8 +44,13 @@ public class User implements UserDetails {
 
     // methods from UserDetails
     @Override
+    public String getUsername() {
+        return email;
+    }
+
+    @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        SimpleGrantedAuthority sga = new SimpleGrantedAuthority(userRole.name());
+        SimpleGrantedAuthority sga = new SimpleGrantedAuthority("ROLE_" + userRole.name());
         return Collections.singletonList(sga);
     }
 
