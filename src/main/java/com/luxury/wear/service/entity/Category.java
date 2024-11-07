@@ -29,7 +29,7 @@ public class Category {
     @JsonIgnore
     private List<Product> products;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "cover_id", nullable = false, referencedColumnName = "id")
     private Cover cover;
 }

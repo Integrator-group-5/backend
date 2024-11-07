@@ -32,9 +32,9 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public Category updateCategory(Category category) {
-        Category existingCategory = categoryRepository.findById(category.getId())
-                .orElseThrow(() -> new RuntimeException(CATEGORY_NOT_FOUND_ID + category.getId()));
+    public Category updateCategory(Long id, Category category) {
+        Category existingCategory = categoryRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException(CATEGORY_NOT_FOUND_ID + id));
 
         return updateExistingCategory(existingCategory, category);
     }
