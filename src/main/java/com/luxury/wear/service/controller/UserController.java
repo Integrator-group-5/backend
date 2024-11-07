@@ -11,7 +11,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/v1/users")
@@ -46,14 +48,37 @@ public class UserController {
     }
 
     @DeleteMapping("/delete-user/{id}")
-    public ResponseEntity<String> deleteUser(@PathVariable("id") Long id) {
+    public ResponseEntity<Map<String, String>> deleteUser(@PathVariable("id") Long id) {
         userService.deleteUserById(id);
-        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+        Map<String, String> response = new HashMap<>();
+        response.put("message", "User deleted successfully");
+        response.put("userId", id.toString());
+        return ResponseEntity.status(HttpStatus.OK).body(response);
     }
+
 
     @GetMapping("/email")
     public ResponseEntity<User> getUserByEmail(@RequestBody EmailRequest email) {
         User existingUser = userService.findByEmail(email.getEmail());
         return ResponseEntity.status(HttpStatus.OK).body(existingUser);
     }
+
+    @PutMapping("/set-admin")
+    public ResponseEntity<Map<String, String>> setAdmin(@RequestBody EmailRequest email) {
+        userService.setAdmin(email.getEmail());
+        Map<String, String> response = new HashMap<>();
+        response.put("message", "User is now an admin");
+        response.put("email", email.getEmail());
+        return ResponseEntity.status(HttpStatus.OK).body(response);
+    }
+
+    @PutMapping("/remove-admin")
+    public ResponseEntity<Map<String, String>> removeAdmin(@RequestBody EmailRequest email) {
+        userService.removeAdmin(email.getEmail());
+        Map<String, String> response = new HashMap<>();
+        response.put("message", "User is no longer an admin");
+        response.put("email", email.getEmail());
+        return ResponseEntity.status(HttpStatus.OK).body(response);
+    }
+
 }
