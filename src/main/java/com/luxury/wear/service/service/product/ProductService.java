@@ -19,6 +19,8 @@ public interface ProductService {
 
     List<Product> getAllTopProducts();
 
+    Page<Product> getProductsByCategory(String categoryName, Pageable pageable);
+
     Product updateProduct(Product product);
 
     void deleteProductById(Long id);

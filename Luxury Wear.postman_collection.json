@@ -1,10 +1,11 @@
 {
 	"info": {
-		"_postman_id": "80c3e6cf-76c3-40a4-baac-99fa20882755",
+		"_postman_id": "2152dfca-5896-454e-9e6f-ea3dd3ec2185",
 		"name": "Luxury Wear",
 		"description": "The available endpoints in the **Luxury Wear Service** API and their respective functionalities.",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "21179631"
+		"_exporter_id": "31370436",
+		"_collection_link": "https://backend-9752.postman.co/workspace/backend-Workspace~81436d71-bfab-4f69-80c6-0fe7a676020f/collection/31370436-2152dfca-5896-454e-9e6f-ea3dd3ec2185?action=share&source=collection_link&creator=31370436"
 	},
 	"item": [
 		{
@@ -1210,7 +1211,7 @@
 								}
 							],
 							"cookie": [],
-							"body": null
+							"body": ""
 						},
 						{
 							"name": "Product not found",
@@ -1554,6 +1555,127 @@
 							],
 							"cookie": [],
 							"body": "{\n    \"productId\": 9,\n    \"name\": \"Vestido de Gala Elegante\",\n    \"reference\": \"C-785\",\n    \"description\": \"Un vestido de gala de seda con detalles brillantes.\",\n    \"material\": \"Seda Italiana\",\n    \"color\": \"Rojo Carmesi\",\n    \"designer\": \"Von Braun\",\n    \"price\": 450000,\n    \"images\": [\n        {\n            \"imageId\": 36,\n            \"url\": \"gala_elegante_1.jpg\"\n        },\n        {\n            \"imageId\": 37,\n            \"url\": \"gala_elegante_2.jpg\"\n        },\n        {\n            \"imageId\": 38,\n            \"url\": \"gala_elegante_3.jpg\"\n        },\n        {\n            \"imageId\": 39,\n            \"url\": \"gala_elegante_4.jpg\"\n        },\n        {\n            \"imageId\": 40,\n            \"url\": \"gala_elegante_5.jpg\"\n        }\n    ],\n    \"categories\": [\n        {\n            \"id\": 1,\n            \"name\": \"Cóctel\",\n            \"description\": \"Vestidos elegantes y modernos, ideales para eventos semiformales.\"\n        }\n    ],\n    \"sizes\": [\n        {\n            \"id\": 1,\n            \"size\": \"S\"\n        },\n        {\n            \"id\": 2,\n            \"size\": \"M\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Products by Category",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/products/by-category?category=Cóctel&page=0",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"products",
+								"by-category"
+							],
+							"query": [
+								{
+									"key": "category",
+									"value": "Cóctel",
+									"description": "Required"
+								},
+								{
+									"key": "page",
+									"value": "0",
+									"description": "Required"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "OK",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/api/v1/products/by-category?category=Cóctel&page=0",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"products",
+										"by-category"
+									],
+									"query": [
+										{
+											"key": "category",
+											"value": "Cóctel"
+										},
+										{
+											"key": "page",
+											"value": "0"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 06 Nov 2024 18:48:29 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"content\": [\n        {\n            \"productId\": 1,\n            \"name\": \"Hollywood\",\n            \"reference\": \"C-453\",\n            \"description\": \"Deslumbra en cualquier evento con este vestido de cóctel. Adornado con lentejuelas brillantes, este vestido no solo capta todas las miradas, sino que también realza tu figura de manera espectacular. Perfecto para cualquier ocasión especial, te hará sentir segura y radiante.\",\n            \"material\": \"Algodón con lentejuelas\",\n            \"color\": \"Plateado\",\n            \"designer\": \"Carolina Herrera\",\n            \"price\": 200000,\n            \"images\": [\n                {\n                    \"imageId\": 1,\n                    \"url\": \"img/products/coctel/hollywood_1.jpg\"\n                },\n                {\n                    \"imageId\": 2,\n                    \"url\": \"img/products/coctel/hollywood_2.jpg\"\n                },\n                {\n                    \"imageId\": 3,\n                    \"url\": \"img/products/coctel/hollywood_3.jpg\"\n                },\n                {\n                    \"imageId\": 4,\n                    \"url\": \"img/products/coctel/hollywood_4.jpg\"\n                },\n                {\n                    \"imageId\": 5,\n                    \"url\": \"img/products/coctel/hollywood_5.jpg\"\n                }\n            ],\n            \"categories\": [\n                {\n                    \"id\": 1,\n                    \"name\": \"Cóctel\",\n                    \"description\": \"Vestidos elegantes y modernos, ideales para eventos semiformales.\"\n                }\n            ],\n            \"sizes\": [\n                {\n                    \"id\": 1,\n                    \"size\": \"S\"\n                },\n                {\n                    \"id\": 2,\n                    \"size\": \"M\"\n                }\n            ]\n        },\n        {\n            \"productId\": 2,\n            \"name\": \"Brianna\",\n            \"reference\": \"C-784\",\n            \"description\": \"Deslumbra en cualquier evento con este vestido de cóctel plateado. Adornado con brillantes y tiras de voleros que añaden un toque visual espectacular, este vestido corto y ajustado realza tu figura de manera impresionante. Perfecto para destacar en cualquier ocasión especial.\",\n            \"material\": \"Seda y poliéster con lentejuelas de alta calidad.\",\n            \"color\": \"Plateado\",\n            \"designer\": \"Oscar de la Renta\",\n            \"price\": 150000,\n            \"images\": [\n                {\n                    \"imageId\": 6,\n                    \"url\": \"img/products/coctel/brianna_1.jpg\"\n                },\n                {\n                    \"imageId\": 7,\n                    \"url\": \"img/products/coctel/brianna_2.jpg\"\n                },\n                {\n                    \"imageId\": 8,\n                    \"url\": \"img/products/coctel/brianna_3.jpg\"\n                },\n                {\n                    \"imageId\": 9,\n                    \"url\": \"img/products/coctel/brianna_4.jpg\"\n                },\n                {\n                    \"imageId\": 10,\n                    \"url\": \"img/products/coctel/brianna_5.jpg\"\n                }\n            ],\n            \"categories\": [\n                {\n                    \"id\": 1,\n                    \"name\": \"Cóctel\",\n                    \"description\": \"Vestidos elegantes y modernos, ideales para eventos semiformales.\"\n                }\n            ],\n            \"sizes\": [\n                {\n                    \"id\": 3,\n                    \"size\": \"L\"\n                },\n                {\n                    \"id\": 4,\n                    \"size\": \"XL\"\n                }\n            ]\n        },\n        {\n            \"productId\": 3,\n            \"name\": \"Gold party\",\n            \"reference\": \"C-754\",\n            \"description\": \"Impresiona en cualquier evento con este vestido de cóctel tipo blazer. De color dorado y adornado con brillantines, este vestido de manga larga y diseño corto combina a la perfección sensualidad y elegancia. Ideal para destacar en cualquier ocasión especial.\",\n            \"material\": \"Lurex\",\n            \"color\": \"Dorado brillante\",\n            \"designer\": \"Versace\",\n            \"price\": 300000,\n            \"images\": [\n                {\n                    \"imageId\": 11,\n                    \"url\": \"img/products/coctel/gold_party_1.png\"\n                },\n                {\n                    \"imageId\": 12,\n                    \"url\": \"img/products/coctel/gold_party_2.png\"\n                },\n                {\n                    \"imageId\": 13,\n                    \"url\": \"img/products/coctel/gold_party_3.png\"\n                },\n                {\n                    \"imageId\": 14,\n                    \"url\": \"img/products/coctel/gold_party_4.png\"\n                },\n                {\n                    \"imageId\": 15,\n                    \"url\": \"img/products/coctel/gold_party_5.png\"\n                }\n            ],\n            \"categories\": [\n                {\n                    \"id\": 1,\n                    \"name\": \"Cóctel\",\n                    \"description\": \"Vestidos elegantes y modernos, ideales para eventos semiformales.\"\n                }\n            ],\n            \"sizes\": [\n                {\n                    \"id\": 1,\n                    \"size\": \"S\"\n                },\n                {\n                    \"id\": 4,\n                    \"size\": \"XL\"\n                }\n            ]\n        }\n    ],\n    \"pageable\": {\n        \"pageNumber\": 0,\n        \"pageSize\": 3,\n        \"sort\": {\n            \"sorted\": false,\n            \"empty\": true,\n            \"unsorted\": true\n        },\n        \"offset\": 0,\n        \"paged\": true,\n        \"unpaged\": false\n    },\n    \"last\": false,\n    \"totalPages\": 2,\n    \"totalElements\": 6,\n    \"size\": 3,\n    \"number\": 0,\n    \"sort\": {\n        \"sorted\": false,\n        \"empty\": true,\n        \"unsorted\": true\n    },\n    \"first\": true,\n    \"numberOfElements\": 3,\n    \"empty\": false\n}"
 						}
 					]
 				}
