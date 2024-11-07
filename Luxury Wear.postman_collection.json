@@ -129,123 +129,6 @@
 					]
 				},
 				{
-					"name": "Register Admin User",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"first_name\": \"David\",\r\n    \"last_name\": \"Blanco\",\r\n    \"email\": \"david@Adminblanco.com\",\r\n    \"password\": \"1234567\",\r\n    \"user_role\": \"ADMIN\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{baseUrl}}/auth/register",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"auth",
-								"register"
-							]
-						}
-					},
-					"response": [
-						{
-							"name": "New Request",
-							"originalRequest": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"firstName\": \"David\",\r\n    \"lastName\": \"Blanco\",\r\n    \"email\": \"david@blanco.com\",\r\n    \"password\": \"1234567\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{baseUrl}}/auth/register",
-									"host": [
-										"{{baseUrl}}"
-									],
-									"path": [
-										"auth",
-										"register"
-									]
-								}
-							},
-							"status": "Created",
-							"code": 201,
-							"_postman_previewlanguage": "plain",
-							"header": [
-								{
-									"key": "Vary",
-									"value": "Origin"
-								},
-								{
-									"key": "Vary",
-									"value": "Access-Control-Request-Method"
-								},
-								{
-									"key": "Vary",
-									"value": "Access-Control-Request-Headers"
-								},
-								{
-									"key": "X-Content-Type-Options",
-									"value": "nosniff"
-								},
-								{
-									"key": "X-XSS-Protection",
-									"value": "0"
-								},
-								{
-									"key": "Cache-Control",
-									"value": "no-cache, no-store, max-age=0, must-revalidate"
-								},
-								{
-									"key": "Pragma",
-									"value": "no-cache"
-								},
-								{
-									"key": "Expires",
-									"value": "0"
-								},
-								{
-									"key": "X-Frame-Options",
-									"value": "DENY"
-								},
-								{
-									"key": "Content-Type",
-									"value": "text/plain;charset=UTF-8"
-								},
-								{
-									"key": "Content-Length",
-									"value": "28"
-								},
-								{
-									"key": "Date",
-									"value": "Mon, 04 Nov 2024 02:09:48 GMT"
-								},
-								{
-									"key": "Keep-Alive",
-									"value": "timeout=60"
-								},
-								{
-									"key": "Connection",
-									"value": "keep-alive"
-								}
-							],
-							"cookie": [],
-							"body": "User registered successfully"
-						}
-					]
-				},
-				{
 					"name": "Login endpoint",
 					"request": {
 						"method": "POST",
@@ -360,6 +243,204 @@
 							"cookie": [],
 							"body": "{\n    \"accessToken\": \"eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkYXZpZEBibGFuY28uY29tIiwicm9sZSI6IlVTRVIiLCJpYXQiOjE3MzA4MzkzMTMsImV4cCI6MTczMDgzOTQzM30.-EgrftsHDYEYzC7sY1uNhzXsw3fRPRuR0ckBVPEXYgf5jYbkQ150TZE67nZv8JB5PYPJs11gdWLCQy1gC5KgBA\",\n    \"refreshToken\": \"eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkYXZpZEBibGFuY28uY29tIiwiaWF0IjoxNzMwODM5MzEzLCJleHAiOjE3MzA4NTM3MTN9.PchOCbVqtp1w39x6C4QQlUW7DpW8JGKO3WRZI7UcKUz4fe9go9w-G9HUUvbWXGKht3s-bTIgQi-rjsG3N4FLMw\"\n}"
 						},
+						{
+							"name": "User not found",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\": \"david@blanco.co\",\r\n    \"password\": \"1234567\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/auth/login",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"auth",
+										"login"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 03 Nov 2024 22:23:31 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"timestamp\": \"2024-11-03T17:23:31.6172314\",\n    \"message\": \"User not found with email: david@blanco.co\",\n    \"details\": \"/auth/login\"\n}"
+						},
+						{
+							"name": "Bad credentials",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\": \"david@blanco.com\",\r\n    \"password\": \"123456\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/auth/login",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"auth",
+										"login"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 03 Nov 2024 22:23:51 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"timestamp\": \"2024-11-03T17:23:51.0739529\",\n    \"message\": \"Bad credentials\",\n    \"details\": \"/auth/login\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Admin login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"david@Adminblanco.com\",\r\n    \"password\": \"1234567\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/auth/login",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": [
 						{
 							"name": "User not found",
 							"originalRequest": {
@@ -657,6 +738,9 @@
 				{
 					"name": "Get Product by Id",
 					"request": {
+						"auth": {
+							"type": "noauth"
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -794,6 +878,9 @@
 				{
 					"name": "List Products",
 					"request": {
+						"auth": {
+							"type": "noauth"
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -1033,6 +1120,16 @@
 				{
 					"name": "Delete product by Id",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTczMDkzMzc2OSwiZXhwIjoxNzMwOTMzODg5fQ.vlXaGkqpzAC0y5Bqo8tRfOJ8_7qQaFut_pjiaw3dQUFlYjzdN4hzhi7qQvUmu38X5SuzxkJrqGgp23tCL7jIfw",
+									"type": "string"
+								}
+							]
+						},
 						"method": "DELETE",
 						"header": [],
 						"url": {
@@ -1161,6 +1258,16 @@
 				{
 					"name": "Create a product",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTczMDkzMzc2OSwiZXhwIjoxNzMwOTMzODg5fQ.vlXaGkqpzAC0y5Bqo8tRfOJ8_7qQaFut_pjiaw3dQUFlYjzdN4hzhi7qQvUmu38X5SuzxkJrqGgp23tCL7jIfw",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
@@ -1749,6 +1856,16 @@
 				{
 					"name": "List Users",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTczMDkyNjgxMywiZXhwIjoxNzMwOTI2OTMzfQ.gSLy97KtGAOI4ikWCHOQesFGByYjOUqzN1aN6npWsk3y7ZeO-OTiqGGH_-4DRuPveoFeEmGdc8U8Fk9BxoeQLg",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -2417,11 +2534,21 @@
 				{
 					"name": "Create user",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTczMDkzMzg4NSwiZXhwIjoxNzMwOTM0MDA1fQ.IFZWsksh8LL769qvQ0medx2AFDYhuEpqQB3EuiLZuwmF2UhfNPmMKsPeJ0PqJqhPhJkAo5_zkqZHGESMrE4Umg",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"demo\",\n    \"email\": \"demo@mail.com\",\n    \"password\": \"demo\",\n    \"userRole\": \"ADMIN\",\n    \"username\": \"demo2\"\n}",
+							"raw": "{\n    \"first_name\": \"demo\",\n    \"last_name\": \"demo\",\n    \"email\": \"demo@mail.com\",\n    \"password\": \"demo\",\n    \"user_role\": \"ADMIN\",\n    \"username\": \"demo2\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -2793,11 +2920,21 @@
 						"disableBodyPruning": true
 					},
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkYXZpZEBibGFuY28uY29tIiwicm9sZSI6IlVTRVIiLCJpYXQiOjE3MzA5MzM0NDMsImV4cCI6MTczMDkzMzU2M30.h4UhWtku0StDrkz6g8GDtzUw0Hy4LiZPl3MY8LBGge11ZrwE1w80t3ZWWvoVe69suelYnKe2hR_c55MiCyJOhw",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"tineojf@mail.com\"\n}\n",
+							"raw": "{\n    \"email\": \"david@blanco.com\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
