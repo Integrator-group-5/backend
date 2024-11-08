@@ -29,7 +29,8 @@ public class SecurityConfig {
                         // Endpoints accessible without authentication
                         .requestMatchers("/auth/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/v1/products", "/api/v1/products/{id}", "/api/v1/products/page/{page}", "/api/v1/products/top-rents").permitAll()
-                        .requestMatchers("/api/v1/categories", "/api/v1/sizes").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/v1/categories", "/api/v1/categories/{id}").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/v1/sizes").permitAll()
                         .requestMatchers("/h2-console/**").permitAll()
                         .requestMatchers("/api/v1/products/by-category/**").permitAll()
 
@@ -39,10 +40,15 @@ public class SecurityConfig {
                         // Endpoints requiring authentication with ADMIN role
                         .requestMatchers(HttpMethod.POST, "/api/v1/products").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.DELETE, "/api/v1/products/delete-product/{id}").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.DELETE, "/api/v1/users/delete-user/{id}").hasRole("ADMIN")
+
                         .requestMatchers(HttpMethod.GET, "/api/v1/users/page/{page}", "/api/v1/users").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.POST, "/api/v1/users").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.PUT, "/api/v1/users/set-admin", "/api/v1/users/remove-admin").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.DELETE, "/api/v1/users/delete-user/{id}").hasRole("ADMIN")
+
+                        .requestMatchers(HttpMethod.POST, "/api/v1/categories").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.PUT, "/api/v1/categories/{id}").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.DELETE, "/api/v1/categories/delete-category/{id}").hasRole("ADMIN")
 
                         // All other requests
                         .anyRequest().authenticated()

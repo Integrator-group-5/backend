@@ -1,10 +1,18 @@
+-- Insert category images
+INSERT INTO cover (url) VALUES
+    ('img/products/coctel/hollywood_1.jpg'),
+    ('img/products/novia/camelia_1.jpg'),
+    ('img/products/quince/sueno_de_quince_1.jpg'),
+    ('img/products/dama_honor/niebla_de_medianoche_1.jpg'),
+    ('img/products/grado/destello_plateado_1.png');
+
 -- Insert categories
-INSERT INTO category (id, name, description) VALUES
-    (1, 'Cóctel', 'Vestidos elegantes y modernos, ideales para eventos semiformales.'),
-    (2, 'Novias', 'Vestidos únicos y románticos, perfectos para el día de la boda.'),
-    (3, 'Quinces', 'Vestidos de gala amplios y elegantes para celebrar los quince años.'),
-    (4, 'Dama honor', 'Vestidos coordinados y sencillos para acompañantes de la novia.'),
-    (5, 'Grado', 'Vestidos formales y juveniles, perfectos para la ceremonia de graduación.');
+INSERT INTO category (name, description, cover_id) VALUES
+    ('Cóctel', 'Vestidos elegantes y modernos, ideales para eventos semiformales.', 1),
+    ('Novias', 'Vestidos únicos y románticos, perfectos para el día de la boda.', 2),
+    ('Quinces', 'Vestidos de gala amplios y elegantes para celebrar los quince años.', 3),
+    ('Dama honor', 'Vestidos coordinados y sencillos para acompañantes de la novia.', 4),
+    ('Grado', 'Vestidos formales y juveniles, perfectos para la ceremonia de graduación.', 5);
 
 -- Insert sizes
 INSERT INTO size (id, size) VALUES
@@ -351,21 +359,3 @@ INSERT INTO product_has_size (product_id, size_id) VALUES
     (29, 2),
     (30, 2),
     (30, 3);
-
--- Insert users
---INSERT INTO app_user (first_name, last_name, username, email, password, user_role) VALUES
---    ('Tineo', 'Tineo', 'tineojf', 'tineojf@mail.com', 'hashedPassword', 'ADMIN'),
---    ('Andrea', 'G', 'andreaaGM', 'andreaaGM@mail.com', 'hashedPassword', 'ADMIN'),
---    ('Avril', 'Tihista', 'avril-tihista', 'avril@mail.com', 'hashedPassword', 'ADMIN'),
---    ('Helen', 'Bernal', 'bhelening', 'helen.b@mail.com', 'hashedPassword', 'ADMIN'),
---    ('Carol', 'Velez', 'CarolJVelez', 'carolv@mail.com', 'hashedPassword', 'ADMIN'),
---    ('Claudia', 'Heredia', 'cheredia10', 'cheredia@mail.com', 'hashedPassword', 'ADMIN'),
---    ('David', 'Blanco', 'DavidBlanco2825', 'davidb@mail.com', 'hashedPassword', 'ADMIN'),
---    ('Ingrid', 'Munera Valencia', 'ingridmv24', 'ingridmv@mail.com', 'hashedPassword', 'ADMIN'),
---    ('Karenpe', 'Perez', 'Karenpe1', 'karenpe1@mail.com', 'hashedPassword', 'ADMIN'),
---    ('Victor', 'Falconí', 'VictorFalconi', 'victorf@mail.com', 'hashedPassword', 'ADMIN'),
---    ('Luis', 'Pérez', 'luisperez', 'luis.perez@mail.com', 'hashedPassword', 'USER'),
---    ('María', 'Gómez', 'mariagomez', 'maria.gomez@mail.com', 'hashedPassword', 'USER'),
---    ('Sofia', 'Martínez', 'sofimartinez', 'sofia.m@mail.com', 'hashedPassword', 'USER'),
---    ('Carlos', 'Ruiz', 'carlosruiz', 'carlos.ruiz@mail.com', 'hashedPassword', 'USER'),
---    ('Ana', 'López', 'analopez', 'analopez@mail.com', 'hashedPassword', 'USER');
