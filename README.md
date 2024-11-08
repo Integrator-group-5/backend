@@ -36,9 +36,13 @@ funcionalidades.
 
 ### Operaciones relacionadas con la gestión de categorías.
 
-| Método | Endpoint             | Descripción                                |
-|--------|----------------------|--------------------------------------------|
-| GET    | `/api/v1/categories` | Obtiene una lista de todos las categorías. |
+| Método | Endpoint                                  | Descripción                                       |
+|--------|-------------------------------------------|---------------------------------------------------|
+| GET    | `/api/v1/categories`                      | Obtiene una lista de todos las categorías.        |
+| GET    | `/api/v1/categories/{id}`                 | Obtiene la información de una categoría por `id`. |
+| POST   | `/api/v1/categories`                      | Crea una categoría.                               |
+| PUT    | `/api/v1/categories/{id}`                 | Actualiza una categoría por `id`.                 |
+| DELETE | `/api/v1/categories/delete-category/{id}` | Elimina una categoría por `id`.                   |
 
 ### Operaciones relacionadas con la gestión de Tallas.
 
