@@ -9,6 +9,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -61,6 +62,12 @@ public class UserController {
     public ResponseEntity<User> getUserByEmail(@RequestBody EmailRequest email) {
         User existingUser = userService.findByEmail(email.getEmail());
         return ResponseEntity.status(HttpStatus.OK).body(existingUser);
+    }
+
+    @GetMapping("/user-info")
+    public ResponseEntity<User> getUserByToken(Authentication authentication) {
+        User user = userService.findByEmail(authentication.getName());
+        return ResponseEntity.status(HttpStatus.OK).body(user);
     }
 
     @PutMapping("/set-admin")
