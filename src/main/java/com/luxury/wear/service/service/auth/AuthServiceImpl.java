@@ -65,7 +65,7 @@ public class AuthServiceImpl implements AuthService {
         cookie.setHttpOnly(true);
         cookie.setMaxAge(0);
         response.addCookie(cookie);
-        String token = jwtUtil.extractTokenFromRequest(request);
+        String token = jwtUtil.getJwtFromRequest(request);
         if (token != null) {
             tokenBlacklistService.addTokenToBlacklist(token);
         }

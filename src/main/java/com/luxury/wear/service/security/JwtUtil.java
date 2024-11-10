@@ -1,6 +1,8 @@
 package com.luxury.wear.service.security;
 
 import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.ExpiredJwtException;
+import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.io.Decoders;
@@ -8,6 +10,7 @@ import io.jsonwebtoken.security.Keys;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 
 import javax.crypto.SecretKey;
 import java.util.Date;
@@ -15,13 +18,11 @@ import java.util.Date;
 @Component
 public class JwtUtil {
 
+    private final SecretKey secretKey;
     @Value("${jwt.expiration.access-token}")
     private long jwtExpirationAccessToken;
-
     @Value("${jwt.expiration.refresh-token}")
     private long jwtExpirationRefreshToken;
-
-    private final SecretKey secretKey;
 
     public JwtUtil(@Value("${jwt.secret}") String jwtSecret) {
         this.secretKey = Keys.hmacShaKeyFor(Decoders.BASE64.decode(jwtSecret));
@@ -47,34 +48,34 @@ public class JwtUtil {
     }
 
     public String getEmailFromToken(String token) {
-        return parseClaims(token).getSubject();
+        return parseClaims(token).getPayload().getSubject();
     }
 
-    private Claims parseClaims(String token) {
+    private Jws<Claims> parseClaims(String token) {
         return Jwts.parser()
                 .verifyWith(secretKey)
                 .build()
-                .parseSignedClaims(token)
-                .getPayload();
+                .parseSignedClaims(token);
     }
 
     public boolean validateToken(String token) {
         try {
-            Jwts.parser()
-                    .verifyWith(secretKey)
-                    .build()
-                    .parseSignedClaims(token);
+            parseClaims(token); // This will throw exceptions for invalid or expired tokens
             return true;
-        } catch (JwtException | IllegalArgumentException e) {
-            return false;
+        } catch (ExpiredJwtException e) {
+            throw new ExpiredJwtException(e.getHeader(), e.getClaims(), "Token has expired.");
+        } catch (JwtException e) {
+            throw new JwtException("Invalid JWT token.", e);
+        } catch (IllegalArgumentException e) {
+            throw new JwtException("Malformed token.", e);
         }
     }
 
-    public String extractTokenFromRequest(HttpServletRequest request) {
+    public String getJwtFromRequest(HttpServletRequest request) {
         String bearerToken = request.getHeader("Authorization");
-        if (bearerToken != null && bearerToken.startsWith("Bearer ")) {
-            return bearerToken.substring(7);
+        if (StringUtils.hasText(bearerToken) && bearerToken.startsWith("Bearer ")) {
+            return bearerToken.substring(7); // "Bearer ".length()
         }
-        return null;
+        throw new JwtException("Missing or malformed JWT");
     }
 }

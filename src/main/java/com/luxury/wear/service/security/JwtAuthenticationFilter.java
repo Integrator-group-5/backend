@@ -30,7 +30,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
     // Map of endpoints to allowed methods without authentication
     private static final Map<String, List<String>> EXCLUDED_PATHS = Map.of(
-            "/auth/**", List.of("POST", "OPTIONS"),
+            "/auth/**", List.of("POST"),
             "/api/v1/products", List.of("GET"),
             "/api/v1/products/{id}", List.of("GET"),
             "/api/v1/products/page/**", List.of("GET"),
@@ -38,7 +38,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             "/api/v1/categories", List.of("GET"),
             "/api/v1/categories/{id}", List.of("GET"),
             "/api/v1/sizes", List.of("GET"),
-            "/h2-console/**", List.of("GET", "POST", "PUT", "DELETE", "OPTIONS")
+            "/h2-console/**", List.of("GET", "POST", "PUT", "DELETE")
     );
 
     private final AntPathMatcher pathMatcher = new AntPathMatcher();
@@ -50,13 +50,14 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         String requestURI = request.getRequestURI();
         String requestMethod = request.getMethod();
 
-        if (isExcludedPath(requestURI, requestMethod)) {
+        // Bypass OPTIONS requests and excluded paths
+        if ("OPTIONS".equalsIgnoreCase(requestMethod) || isExcludedPath(requestURI, requestMethod)) {
             filterChain.doFilter(request, response);
             return;
         }
 
         try {
-            String jwt = getJwtFromRequest(request);
+            String jwt = jwtUtil.getJwtFromRequest(request);
 
             if (StringUtils.hasText(jwt) && jwtUtil.validateToken(jwt)) {
                 String username = jwtUtil.getEmailFromToken(jwt);
@@ -92,13 +93,5 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     private boolean isExcludedPath(String requestURI, String requestMethod) {
         return EXCLUDED_PATHS.entrySet().stream()
                 .anyMatch(entry -> pathMatcher.match(entry.getKey(), requestURI) && entry.getValue().contains(requestMethod));
-    }
-
-    private String getJwtFromRequest(HttpServletRequest request) {
-        String bearerToken = request.getHeader("Authorization");
-        if (StringUtils.hasText(bearerToken) && bearerToken.startsWith("Bearer ")) {
-            return bearerToken.substring(7); // "Bearer ".length()
-        }
-        throw new JwtException("Missing or malformed JWT");
     }
 }
