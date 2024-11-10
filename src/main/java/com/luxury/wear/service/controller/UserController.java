@@ -70,6 +70,15 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.OK).body(user);
     }
 
+    @GetMapping("/user-initials")
+    public ResponseEntity<Map<String, String>> getUserInitialsByToken(Authentication authentication) {
+        User user = userService.findByEmail(authentication.getName());
+        Map<String, String> response = new HashMap<>();
+        response.put("initials", user.getFirstName().charAt(0) + user.getLastName().substring(0, 1));
+        response.put("first_name", user.getFirstName());
+        return ResponseEntity.status(HttpStatus.OK).body(response);
+    }
+
     @PutMapping("/set-admin")
     public ResponseEntity<Map<String, String>> setAdmin(@RequestBody EmailRequest email) {
         userService.setAdmin(email.getEmail());
