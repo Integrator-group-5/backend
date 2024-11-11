@@ -3,45 +3,52 @@ package com.luxury.wear.service.config;
 import com.luxury.wear.service.entity.User;
 import com.luxury.wear.service.repository.UserRepository;
 import com.luxury.wear.service.roles.UserRole;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
 @Component
+@Slf4j
 public class LoadAdmin implements CommandLineRunner {
-    @Autowired
-    private UserRepository userRepository;
-    @Autowired
-    private BCryptPasswordEncoder passwordEncoder;
+
+    private final UserRepository userRepository;
+    private final BCryptPasswordEncoder passwordEncoder;
 
     @Value("${admin.email}")
     private String adminEmail;
+
     @Value("${admin.password}")
     private String adminPassword;
 
+    public LoadAdmin(UserRepository userRepository, BCryptPasswordEncoder passwordEncoder) {
+        this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
+    }
+
     @Override
     public void run(String... args) {
+        if (adminEmail == null || adminPassword == null) {
+            log.error("Admin email or password is not configured properly.");
+            return;
+        }
+
         try {
             if (userRepository.findByEmail(adminEmail).isPresent()) {
-                System.out.println("Admin with email " + adminEmail + " already exists.");
-                return;
-            }
-            if (userRepository.findByUsername("admin").isPresent()) {
-                System.out.println("Admin with username 'admin' already exists.");
+                log.info("Admin with email {} already exists.", adminEmail);
                 return;
             }
 
-            String password = passwordEncoder.encode(adminPassword);
-            User user = new User(1L, "admin", "admin", "admin", adminEmail, password, UserRole.ADMIN);
+            String encodedPassword = passwordEncoder.encode(adminPassword);
+            User user = new User(null, "admin", "admin", adminEmail, encodedPassword, UserRole.ADMIN);
             userRepository.save(user);
-            System.out.println("Admin user created successfully.");
+            log.info("Admin user created successfully.");
 
         } catch (IllegalStateException e) {
-            System.out.println("Error creating admin user: " + e.getMessage());
+            log.error("Error creating admin user: {}", e.getMessage(), e);
         } catch (Exception e) {
-            System.out.println("Unexpected error occurred while creating admin user: " + e.getMessage());
+            log.error("Unexpected error occurred while creating admin user: {}", e.getMessage(), e);
         }
     }
 }

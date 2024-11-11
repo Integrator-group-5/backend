@@ -38,9 +38,17 @@ public class AuthServiceImpl implements AuthService {
                 )
         );
 
-        User user = (User) authentication.getPrincipal();
-        String accessToken = jwtUtil.generateAccessToken(user.getEmail(), user.getUserRole().name());
-        String refreshToken = jwtUtil.generateRefreshToken(user.getEmail());
+        org.springframework.security.core.userdetails.User userDetails =
+                (org.springframework.security.core.userdetails.User) authentication.getPrincipal();
+
+        String email = userDetails.getUsername();
+        String role = userDetails.getAuthorities().stream()
+                .findFirst()
+                .orElseThrow(() -> new RuntimeException("Role not found"))
+                .getAuthority().replace("ROLE_", ""); // Clean up the ROLE_ prefix
+
+        String accessToken = jwtUtil.generateAccessToken(email, role);
+        String refreshToken = jwtUtil.generateRefreshToken(email);
 
         return new AuthResponse(accessToken, refreshToken);
     }
