@@ -3,6 +3,7 @@ package com.luxury.wear.service.service.auth;
 import com.luxury.wear.service.dto.auth.AuthResponse;
 import com.luxury.wear.service.dto.auth.LoginRequest;
 import com.luxury.wear.service.dto.auth.TokenRefreshRequest;
+import com.luxury.wear.service.dto.user.UserRequestDto;
 import com.luxury.wear.service.entity.User;
 import com.luxury.wear.service.security.JwtUtil;
 import com.luxury.wear.service.service.user.UserService;
@@ -25,8 +26,8 @@ public class AuthServiceImpl implements AuthService {
     private final TokenBlacklistServiceImpl tokenBlacklistService;
 
     @Override
-    public void registerUser(User user) {
-        userService.createUser(user);
+    public void registerUser(UserRequestDto userRequestDto) {
+        userService.createUser(userRequestDto);
     }
 
     @Override

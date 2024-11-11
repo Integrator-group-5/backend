@@ -3,7 +3,7 @@ package com.luxury.wear.service.controller;
 import com.luxury.wear.service.dto.auth.AuthResponse;
 import com.luxury.wear.service.dto.auth.LoginRequest;
 import com.luxury.wear.service.dto.auth.TokenRefreshRequest;
-import com.luxury.wear.service.entity.User;
+import com.luxury.wear.service.dto.user.UserRequestDto;
 import com.luxury.wear.service.repository.UserRepository;
 import com.luxury.wear.service.security.JwtUtil;
 import com.luxury.wear.service.service.auth.AuthService;
@@ -35,8 +35,8 @@ public class AuthController {
     private final AuthService authService;
 
     @PostMapping("/register")
-    public ResponseEntity<Map<String, String>> registerUser(@RequestBody User user) {
-        authService.registerUser(user);
+    public ResponseEntity<Map<String, String>> registerUser(@RequestBody UserRequestDto userRequestDto) {
+        authService.registerUser(userRequestDto);
         Map<String, String> response = new HashMap<>();
         response.put("response", "User registered successfully");
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
@@ -48,7 +48,8 @@ public class AuthController {
         return ResponseEntity.status(HttpStatus.OK).body(authResponse);
     }
 
-    @PostMapping("/token-refresh") // todo should the token come in the requestbody or would be better in the Authorization Header?
+    @PostMapping("/token-refresh")
+    // todo should the token come in the requestbody or would be better in the Authorization Header?
     public ResponseEntity<AuthResponse> refreshToken(@RequestBody TokenRefreshRequest tokenRefreshRequest) {
 
         AuthResponse refreshAccessTokenResponse = authService.refreshAccessToken(tokenRefreshRequest);
