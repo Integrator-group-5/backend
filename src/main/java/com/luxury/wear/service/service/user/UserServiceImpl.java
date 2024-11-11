@@ -111,7 +111,6 @@ public class UserServiceImpl implements UserService {
     private void updateExistingUser(User existingUser, UserRequestDto newUserData) {
         existingUser.setFirstName(newUserData.getFirstName());
         existingUser.setEmail(newUserData.getEmail());
-        existingUser.setUserRole(newUserData.getUserRole());
 
         if (newUserData.getPassword() != null
                 && !newUserData.getPassword().isEmpty()

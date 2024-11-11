@@ -32,7 +32,6 @@ public class UserMapper {
                 .lastName(userRequestDto.getLastName())
                 .email(userRequestDto.getEmail())
                 .password(userRequestDto.getPassword())
-                .userRole(userRequestDto.getUserRole())
                 .build();
     }
 }

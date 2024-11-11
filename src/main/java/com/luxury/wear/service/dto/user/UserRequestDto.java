@@ -1,12 +1,13 @@
 package com.luxury.wear.service.dto.user;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.luxury.wear.service.roles.UserRole;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 public class UserRequestDto {
 
     @JsonProperty("first_name")
@@ -18,6 +19,4 @@ public class UserRequestDto {
     private String email;
 
     private String password;
-
-    private UserRole userRole;
 }
