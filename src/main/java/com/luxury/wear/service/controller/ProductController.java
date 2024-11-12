@@ -37,19 +37,16 @@ public class ProductController {
         return ResponseEntity.status(HttpStatus.OK).body(products);
     }
 
-    @GetMapping("/page/{page}")
-    public ResponseEntity<Page<Product>> getAllProductsPaginated(@PathVariable int page) {
-        int pageSize = 6;
-        Pageable pageable = PageRequest.of(page, pageSize);
+    @GetMapping("/paginated")
+    public ResponseEntity<Page<Product>> getAllProductsPaginated(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "6") int size,
+            @RequestParam String category) {
+        Pageable pageable = PageRequest.of(page, size);
         Page<Product> products = productService.getAllProducts(pageable);
-        return ResponseEntity.status(HttpStatus.OK).body(products);
-    }
-
-    @GetMapping("/by-category")
-    public ResponseEntity<Page<Product>> getProductsByCategory(@RequestParam("category") String category, @RequestParam("page") int page) {
-        int pageSize = 6;
-        Pageable pageable = PageRequest.of(page, pageSize);
-        Page<Product> products = productService.getProductsByCategory(category, pageable);
+        if (category != null && !category.isEmpty()) {
+            products = productService.getProductsByCategory(category, pageable);
+        }
         return ResponseEntity.status(HttpStatus.OK).body(products);
     }
 

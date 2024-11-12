@@ -28,11 +28,10 @@ public class SecurityConfig {
                         // Endpoints accessible without authentication
                         .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll() // Allow all OPTIONS requests
                         .requestMatchers("/auth/**").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/api/v1/products", "/api/v1/products/{id}", "/api/v1/products/page/{page}", "/api/v1/products/top-rents").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/v1/products", "/api/v1/products/{id}", "/api/v1/products/paginated", "/api/v1/products/top-rents").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/v1/categories", "/api/v1/categories/{id}").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/v1/sizes").permitAll()
                         .requestMatchers("/h2-console/**").permitAll()
-                        .requestMatchers("/api/v1/products/by-category/**").permitAll()
 
                         // Endpoints requiring authentication with USER or ADMIN roles
                         .requestMatchers(HttpMethod.GET, "/api/v1/users/email", "/api/v1/users/{id}").hasAnyRole("USER", "ADMIN")
