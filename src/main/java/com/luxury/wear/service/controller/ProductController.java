@@ -31,6 +31,12 @@ public class ProductController {
         return ResponseEntity.status(HttpStatus.OK).body(existingProduct);
     }
 
+    @GetMapping("/by-reference/{reference}")
+    public ResponseEntity<Product> getProductByReference(@PathVariable("reference") String reference) {
+        Product existingProduct = productService.getProductByReference(reference);
+        return ResponseEntity.status(HttpStatus.OK).body(existingProduct);
+    }
+
     @GetMapping
     public ResponseEntity<List<Product>> getAllProducts() {
         List<Product> products = productService.getAllProducts();

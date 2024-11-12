@@ -32,6 +32,7 @@ public class Constants {
     public static final String ERROR_USER_NOT_FOUND_ID = "User not found with Id: ";
 
     public static final String ERROR_PRODUCT_NOT_FOUND_ID = "Product not found with Id: ";
+    public static final String ERROR_PRODUCT_NOT_FOUND_REFERENCE = "Product not found with reference: ";
 
     public static final String ERROR_CATEGORY_NOT_FOUND_ID = "Category not found with Id: ";
 }

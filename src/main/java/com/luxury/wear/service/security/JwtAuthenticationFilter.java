@@ -33,6 +33,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             "/auth/**", List.of("POST"),
             "/api/v1/products", List.of("GET"),
             "/api/v1/products/{id}", List.of("GET"),
+            "/api/v1/products/by-reference/{reference}", List.of("GET"),
             "/api/v1/products/paginated", List.of("GET"),
             "/api/v1/products/top-rents", List.of("GET"),
             "/api/v1/categories", List.of("GET"),
