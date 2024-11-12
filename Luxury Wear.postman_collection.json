@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "d74f0d9d-7fe3-4803-b66f-f79f559427fc",
+		"_postman_id": "20f3133e-e688-4709-ad40-60bd5b29972a",
 		"name": "Luxury Wear",
 		"description": "The available endpoints in the **Luxury Wear Service** API and their respective functionalities.",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
@@ -970,6 +970,204 @@
 							],
 							"cookie": [],
 							"body": "{\n    \"timestamp\": \"2024-10-24T22:47:30.5668289\",\n    \"message\": \"Product not found with id: 999\",\n    \"details\": \"/api/v1/products/999\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Get by reference",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/products/by-reference/:reference",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"products",
+								"by-reference",
+								":reference"
+							],
+							"variable": [
+								{
+									"key": "reference",
+									"value": "C-453"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "OK",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/api/v1/products/by-reference/:reference",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"products",
+										"by-reference",
+										":reference"
+									],
+									"variable": [
+										{
+											"key": "reference",
+											"value": "C-453"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 12 Nov 2024 16:14:03 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"productId\": 1,\n    \"name\": \"Hollywood\",\n    \"reference\": \"C-453\",\n    \"description\": \"Deslumbra en cualquier evento con este vestido de cóctel. Adornado con lentejuelas brillantes, este vestido no solo capta todas las miradas, sino que también realza tu figura de manera espectacular. Perfecto para cualquier ocasión especial, te hará sentir segura y radiante.\",\n    \"material\": \"Algodón con lentejuelas\",\n    \"color\": \"Plateado\",\n    \"designer\": \"Carolina Herrera\",\n    \"price\": 200000,\n    \"images\": [\n        {\n            \"imageId\": 1,\n            \"url\": \"img/products/coctel/hollywood_1.jpg\"\n        },\n        {\n            \"imageId\": 2,\n            \"url\": \"img/products/coctel/hollywood_2.jpg\"\n        },\n        {\n            \"imageId\": 3,\n            \"url\": \"img/products/coctel/hollywood_3.jpg\"\n        },\n        {\n            \"imageId\": 4,\n            \"url\": \"img/products/coctel/hollywood_4.jpg\"\n        },\n        {\n            \"imageId\": 5,\n            \"url\": \"img/products/coctel/hollywood_5.jpg\"\n        }\n    ],\n    \"categories\": [\n        {\n            \"id\": 1,\n            \"name\": \"Cóctel\",\n            \"description\": \"Vestidos elegantes y modernos, ideales para eventos semiformales.\",\n            \"cover\": {\n                \"id\": 1,\n                \"url\": \"img/products/coctel/hollywood_1.jpg\"\n            }\n        }\n    ],\n    \"sizes\": [\n        {\n            \"id\": 1,\n            \"size\": \"S\"\n        },\n        {\n            \"id\": 2,\n            \"size\": \"M\"\n        }\n    ]\n}"
+						},
+						{
+							"name": "Not Found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/api/v1/products/by-reference/:reference",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"products",
+										"by-reference",
+										":reference"
+									],
+									"variable": [
+										{
+											"key": "reference",
+											"value": "C-451"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 12 Nov 2024 16:14:16 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"timestamp\": \"2024-11-12T11:14:16.443962481\",\n    \"message\": \"Product not found with reference: C-451\",\n    \"details\": \"/api/v1/products/by-reference/C-451\"\n}"
 						}
 					]
 				},
@@ -2469,7 +2667,7 @@
 								}
 							],
 							"cookie": [],
-							"body": null
+							"body": ""
 						}
 					]
 				}
