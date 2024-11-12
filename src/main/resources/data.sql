@@ -359,3 +359,21 @@ INSERT INTO product_has_size (product_id, size_id) VALUES
     (29, 2),
     (30, 2),
     (30, 3);
+
+-- Insert users
+INSERT INTO app_user (first_name, last_name, email, password, user_role) VALUES
+    ('Tineo', 'Tineo', 'tineojf@mail.com', 'hashedPassword', 'ADMIN'),
+    ('Andrea', 'G', 'andreaaGM@mail.com', 'hashedPassword', 'ADMIN'),
+    ('Avril', 'Tihista', 'avril@mail.com', 'hashedPassword', 'ADMIN'),
+    ('Helen', 'Bernal', 'helen.b@mail.com', 'hashedPassword', 'ADMIN'),
+    ('Carol', 'Velez', 'carolv@mail.com', 'hashedPassword', 'ADMIN'),
+    ('Claudia', 'Heredia', 'cheredia@mail.com', 'hashedPassword', 'ADMIN'),
+    ('David', 'Blanco', 'davidb@mail.com', 'hashedPassword', 'ADMIN'),
+    ('Ingrid', 'Munera Valencia', 'ingridmv@mail.com', 'hashedPassword', 'ADMIN'),
+    ('Karenpe', 'Perez', 'karenpe1@mail.com', 'hashedPassword', 'ADMIN'),
+    ('Victor', 'Falconí', 'victorf@mail.com', 'hashedPassword', 'ADMIN'),
+    ('Luis', 'Pérez', 'luis.perez@mail.com', 'hashedPassword', 'USER'),
+    ('María', 'Gómez', 'maria.gomez@mail.com', 'hashedPassword', 'USER'),
+    ('Sofia', 'Martínez', 'sofia.m@mail.com', 'hashedPassword', 'USER'),
+    ('Carlos', 'Ruiz', 'carlos.ruiz@mail.com', 'hashedPassword', 'USER'),
+    ('Ana', 'López', 'analopez@mail.com', 'hashedPassword', 'USER');
