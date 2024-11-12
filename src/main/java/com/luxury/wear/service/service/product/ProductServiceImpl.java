@@ -1,5 +1,6 @@
 package com.luxury.wear.service.service.product;
 
+import com.luxury.wear.service.commons.Constants;
 import com.luxury.wear.service.entity.Image;
 import com.luxury.wear.service.entity.Product;
 import com.luxury.wear.service.exception.ResourceNotFoundException;
@@ -18,8 +19,6 @@ public class ProductServiceImpl implements ProductService {
 
     private final ProductRepository productRepository;
 
-    private static final String PRODUCT_NOT_FOUND_ID = "Product not found with Id: ";
-
     @Override
     public Product createProduct(Product product) {
 
@@ -33,7 +32,7 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public Product GetProductByID(Long id) {
         return productRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException(PRODUCT_NOT_FOUND_ID + id));
+                .orElseThrow(() -> new ResourceNotFoundException(Constants.ERROR_PRODUCT_NOT_FOUND_ID + id));
     }
 
     @Override
@@ -54,7 +53,7 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public Product updateProduct(Product product) {
         Product existingProduct = productRepository.findById(product.getProductId())
-                .orElseThrow(() -> new ResourceNotFoundException(PRODUCT_NOT_FOUND_ID + product.getProductId()));
+                .orElseThrow(() -> new ResourceNotFoundException(Constants.ERROR_PRODUCT_NOT_FOUND_ID + product.getProductId()));
 
         return updateExistingProduct(existingProduct, product);
     }
@@ -62,7 +61,7 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public void deleteProductById(Long id) {
         productRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException(PRODUCT_NOT_FOUND_ID + id));
+                .orElseThrow(() -> new ResourceNotFoundException(Constants.ERROR_PRODUCT_NOT_FOUND_ID + id));
 
         productRepository.deleteById(id);
     }

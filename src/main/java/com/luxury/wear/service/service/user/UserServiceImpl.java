@@ -1,5 +1,6 @@
 package com.luxury.wear.service.service.user;
 
+import com.luxury.wear.service.commons.Constants;
 import com.luxury.wear.service.dto.user.UserRequestDto;
 import com.luxury.wear.service.dto.user.UserResponseDto;
 import com.luxury.wear.service.entity.User;
@@ -24,14 +25,10 @@ public class UserServiceImpl implements UserService {
     private final BCryptPasswordEncoder passwordEncoder;
     private final UserMapper userMapper;
 
-    private static final String USER_NOT_FOUND_ID = "User not found with Id: ";
-    private static final String USER_NOT_FOUND_EMAIL = "User not found with email: ";
-    private static final String USER_ALREADY_EXISTS = "User already exists with email: ";
-
     @Override
     public UserResponseDto createUser(UserRequestDto userRequestDto) {
         if (userRepository.existsByEmail(userRequestDto.getEmail())) {
-            throw new EntityAlreadyExistsException(USER_ALREADY_EXISTS + userRequestDto.getEmail());
+            throw new EntityAlreadyExistsException(Constants.ERROR_EMAIL_ALREADY_EXISTS + userRequestDto.getEmail());
         }
 
         User user = userMapper.toEntity(userRequestDto);
@@ -47,7 +44,7 @@ public class UserServiceImpl implements UserService {
     public UserResponseDto getUserById(Long id) {
         return userRepository.findById(id)
                 .map(userMapper::toResponseDto)
-                .orElseThrow(() -> new ResourceNotFoundException(USER_NOT_FOUND_ID + id));
+                .orElseThrow(() -> new ResourceNotFoundException(Constants.ERROR_USER_NOT_FOUND_ID + id));
     }
 
     @Override
@@ -67,7 +64,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserResponseDto updateUser(Long userId, UserRequestDto userRequestDto) {
         User existingUser = userRepository.findById(userId)
-                .orElseThrow(() -> new ResourceNotFoundException(USER_NOT_FOUND_ID + userId));
+                .orElseThrow(() -> new ResourceNotFoundException(Constants.ERROR_USER_NOT_FOUND_ID + userId));
 
         validateUserUpdateRequest(userRequestDto, existingUser);
 
@@ -81,7 +78,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public void deleteUserById(Long id) {
         userRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException(USER_NOT_FOUND_ID + id));
+                .orElseThrow(() -> new ResourceNotFoundException(Constants.ERROR_USER_NOT_FOUND_ID + id));
         userRepository.deleteById(id);
     }
 
@@ -89,13 +86,13 @@ public class UserServiceImpl implements UserService {
     public UserResponseDto findByEmail(String email) {
         return userRepository.findByEmail(email)
                 .map(userMapper::toResponseDto)
-                .orElseThrow(() -> new ResourceNotFoundException(USER_NOT_FOUND_EMAIL + email));
+                .orElseThrow(() -> new ResourceNotFoundException(Constants.ERROR_USER_NOT_FOUND_EMAIL + email));
     }
 
     @Override
     public void setAdmin(String email) {
         User existingUser = userRepository.findByEmail(email)
-                .orElseThrow(() -> new ResourceNotFoundException(USER_NOT_FOUND_EMAIL + email));
+                .orElseThrow(() -> new ResourceNotFoundException(Constants.ERROR_USER_NOT_FOUND_EMAIL + email));
         existingUser.setUserRole(UserRole.ADMIN);
         userRepository.save(existingUser);
     }
@@ -103,7 +100,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public void removeAdmin(String email) {
         User existingUser = userRepository.findByEmail(email)
-                .orElseThrow(() -> new ResourceNotFoundException(USER_NOT_FOUND_EMAIL + email));
+                .orElseThrow(() -> new ResourceNotFoundException(Constants.ERROR_USER_NOT_FOUND_EMAIL + email));
         existingUser.setUserRole(UserRole.USER);
         userRepository.save(existingUser);
     }
@@ -122,7 +119,7 @@ public class UserServiceImpl implements UserService {
     private void validateUserUpdateRequest(UserRequestDto userRequestDto, User existingUser) {
         if (userRequestDto.getEmail() != null && !userRequestDto.getEmail().equals(existingUser.getEmail())) {
             if (userRepository.existsByEmail(userRequestDto.getEmail())) {
-                throw new EntityAlreadyExistsException("Email is already in use: " + userRequestDto.getEmail());
+                throw new EntityAlreadyExistsException(Constants.ERROR_EMAIL_ALREADY_EXISTS + userRequestDto.getEmail());
             }
         }
     }

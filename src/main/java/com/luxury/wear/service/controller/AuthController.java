@@ -9,6 +9,7 @@ import com.luxury.wear.service.security.JwtUtil;
 import com.luxury.wear.service.service.auth.AuthService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -35,7 +36,7 @@ public class AuthController {
     private final AuthService authService;
 
     @PostMapping("/register")
-    public ResponseEntity<Map<String, String>> registerUser(@RequestBody UserRequestDto userRequestDto) {
+    public ResponseEntity<Map<String, String>> registerUser(@RequestBody @Valid UserRequestDto userRequestDto) {
         authService.registerUser(userRequestDto);
         Map<String, String> response = new HashMap<>();
         response.put("response", "User registered successfully");

@@ -4,6 +4,7 @@ import com.luxury.wear.service.dto.EmailRequest;
 import com.luxury.wear.service.dto.user.UserRequestDto;
 import com.luxury.wear.service.dto.user.UserResponseDto;
 import com.luxury.wear.service.service.user.UserService;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -32,7 +33,7 @@ public class UserController {
     private final UserService userService;
 
     @PostMapping
-    public ResponseEntity<UserResponseDto> createUser(@RequestBody UserRequestDto userRequestDto) {
+    public ResponseEntity<UserResponseDto> createUser(@RequestBody @Valid UserRequestDto userRequestDto) {
         UserResponseDto createdUser = userService.createUser(userRequestDto);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdUser);
     }
