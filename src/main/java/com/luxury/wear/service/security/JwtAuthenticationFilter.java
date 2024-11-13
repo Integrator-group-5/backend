@@ -38,6 +38,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             "/api/v1/categories", List.of("GET"),
             "/api/v1/categories/{id}", List.of("GET"),
             "/api/v1/sizes", List.of("GET"),
+            "/public/**", List.of("GET"),
             "/h2-console/**", List.of("GET", "POST", "PUT", "DELETE")
     );
 

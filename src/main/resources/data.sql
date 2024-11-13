@@ -1,10 +1,10 @@
 -- Insert category images
 INSERT INTO cover (url) VALUES
-    ('img/products/coctel/hollywood_1.jpg'),
-    ('img/products/novia/camelia_1.jpg'),
-    ('img/products/quince/sueno_de_quince_1.jpg'),
-    ('img/products/dama_honor/niebla_de_medianoche_1.jpg'),
-    ('img/products/grado/destello_plateado_1.png');
+    ('/public/img/categories/c-ctel__47f48fad-a34f-451e-867e-eb07b8390414.png'),
+    ('/public/img/categories/novias__7b7599c9-db21-4a27-8417-01246bd15450.png'),
+    ('/public/img/categories/quinces__4cab6898-828b-42c2-8f80-6ecde13f01e1.jpeg'),
+    ('/public/img/categories/dama-honor__15b94168-44ee-4572-b1f2-955d1b5ecc22.png'),
+    ('/public/img/categories/grado__48b7b12a-ef17-40e9-a6f3-18ed0dfc6eb7.png');
 
 -- Insert categories
 INSERT INTO category (name, description, cover_id) VALUES

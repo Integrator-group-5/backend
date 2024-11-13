@@ -32,6 +32,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.GET, "/api/v1/categories", "/api/v1/categories/{id}").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/v1/sizes").permitAll()
                         .requestMatchers("/h2-console/**").permitAll()
+                        .requestMatchers("/public/**").permitAll()
 
                         // Endpoints requiring authentication with USER or ADMIN roles
                         .requestMatchers(HttpMethod.GET, "/api/v1/users/email", "/api/v1/users/{id}").hasAnyRole("USER", "ADMIN")
