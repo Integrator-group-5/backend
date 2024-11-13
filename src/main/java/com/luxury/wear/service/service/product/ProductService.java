@@ -13,6 +13,8 @@ public interface ProductService {
 
     Product GetProductByID(Long id);
 
+    Product getProductByReference(String reference);
+
     List<Product> getAllProducts();
 
     Page<Product> getAllProducts(Pageable pageable);

@@ -36,6 +36,12 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    public Product getProductByReference(String reference) {
+        return productRepository.findByReference(reference)
+                .orElseThrow(() -> new ResourceNotFoundException(Constants.ERROR_PRODUCT_NOT_FOUND_REFERENCE + reference));
+    }
+
+    @Override
     public List<Product> getAllProducts() {
         return productRepository.findAll();
     }
