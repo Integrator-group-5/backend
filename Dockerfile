@@ -6,7 +6,11 @@ WORKDIR /app
 
 # Copy the pom.xml and download project dependencies
 COPY pom.xml .
+RUN mvn dependency:go-offline -B
+
+# Copy the source code and public directory
 COPY src ./src
+COPY public ./public
 
 # Package the application (this will generate a .jar file)
 RUN mvn clean package -DskipTests
@@ -19,6 +23,8 @@ WORKDIR /app
 
 # Copy the built .jar file from the previous stage
 COPY --from=build /app/target/*.jar app.jar
+# Copy the public directory
+COPY --from=build /app/public ./public
 
 # Expose the task-service port
 EXPOSE 8080
