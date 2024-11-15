@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashMap;
@@ -50,10 +51,11 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.OK).body(users);
     }
 
-    @GetMapping("/page/{page}")
-    public ResponseEntity<Page<UserResponseDto>> getAllUsersPaginated(@PathVariable int page) {
-        int pageSize = 6;
-        Pageable pageable = PageRequest.of(page, pageSize);
+    @GetMapping("/paginated")
+    public ResponseEntity<Page<UserResponseDto>> getAllUsersPaginated(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "6") int size) {
+        Pageable pageable = PageRequest.of(page, size);
         Page<UserResponseDto> users = userService.getAllUsersPaginated(pageable);
         return ResponseEntity.status(HttpStatus.OK).body(users);
     }
