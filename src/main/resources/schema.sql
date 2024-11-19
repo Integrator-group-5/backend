@@ -1,8 +1,8 @@
 -- Create the 'product' table first as other tables depend on it
 CREATE TABLE IF NOT EXISTS product (
     product_id BIGINT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(100) NOT NULL,
-    reference VARCHAR(50),
+    name VARCHAR(100) NOT NULL UNIQUE,
+    reference VARCHAR(50) NOT NULL UNIQUE,
     description TEXT,
     material VARCHAR(100),
     color VARCHAR(50),
