@@ -30,10 +30,10 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long productId;
 
-    @Column(nullable = false, length = 100)
+    @Column(unique = true, nullable = false, length = 100)
     private String name;
 
-    @Column(length = 50)
+    @Column(unique = true, nullable = false, length = 50)
     private String reference;
 
     @Column(columnDefinition = "TEXT")

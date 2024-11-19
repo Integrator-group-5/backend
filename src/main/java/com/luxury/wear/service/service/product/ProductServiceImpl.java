@@ -3,6 +3,7 @@ package com.luxury.wear.service.service.product;
 import com.luxury.wear.service.commons.Constants;
 import com.luxury.wear.service.entity.Image;
 import com.luxury.wear.service.entity.Product;
+import com.luxury.wear.service.exception.EntityAlreadyExistsException;
 import com.luxury.wear.service.exception.ResourceNotFoundException;
 import com.luxury.wear.service.repository.ProductRepository;
 import lombok.AllArgsConstructor;
@@ -21,6 +22,15 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Product createProduct(Product product) {
+        Product existingNameProduct = productRepository.findByName(product.getName()).orElse(null);
+        if (existingNameProduct != null) {
+            throw new EntityAlreadyExistsException(Constants.ERROR_PRODUCT_ALREADY_EXISTS_NAME + product.getName());
+        }
+
+        Product existingReferenceProduct = productRepository.findByReference(product.getReference()).orElse(null);
+        if (existingReferenceProduct != null) {
+            throw new EntityAlreadyExistsException(Constants.ERROR_PRODUCT_ALREADY_EXISTS_REFERENCE + product.getReference());
+        }
 
         for (Image image : product.getImages()) {
             image.setProduct(product);

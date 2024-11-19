@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "20f3133e-e688-4709-ad40-60bd5b29972a",
+		"_postman_id": "a1b3d7d5-20cb-428d-8b54-31631a364b7f",
 		"name": "Luxury Wear",
 		"description": "The available endpoints in the **Luxury Wear Service** API and their respective functionalities.",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
@@ -417,7 +417,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\": \"admin@admin.com\",\r\n    \"password\": \"admin\"\r\n}",
+							"raw": "{\r\n    \"email\": \"admin@admin.com\",\r\n    \"password\": \"admin1\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1680,7 +1680,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTczMDkzMzc2OSwiZXhwIjoxNzMwOTMzODg5fQ.vlXaGkqpzAC0y5Bqo8tRfOJ8_7qQaFut_pjiaw3dQUFlYjzdN4hzhi7qQvUmu38X5SuzxkJrqGgp23tCL7jIfw",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbkBhZG1pbi5jb20iLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3MzIwNDI2MjIsImV4cCI6MTczMjA0Mjc0Mn0.-C3_rYMk__a_I3Lmu8BOkvQLm5c9ZGoUOisGajPTXqiLbDhKVNFuLYLMhRfW9bmD6q1WJEIeZacE8szj96SDXw",
 									"type": "string"
 								}
 							]
@@ -1972,6 +1972,178 @@
 							],
 							"cookie": [],
 							"body": "{\n    \"productId\": 9,\n    \"name\": \"Vestido de Gala Elegante\",\n    \"reference\": \"C-785\",\n    \"description\": \"Un vestido de gala de seda con detalles brillantes.\",\n    \"material\": \"Seda Italiana\",\n    \"color\": \"Rojo Carmesi\",\n    \"designer\": \"Von Braun\",\n    \"price\": 450000,\n    \"images\": [\n        {\n            \"imageId\": 36,\n            \"url\": \"gala_elegante_1.jpg\"\n        },\n        {\n            \"imageId\": 37,\n            \"url\": \"gala_elegante_2.jpg\"\n        },\n        {\n            \"imageId\": 38,\n            \"url\": \"gala_elegante_3.jpg\"\n        },\n        {\n            \"imageId\": 39,\n            \"url\": \"gala_elegante_4.jpg\"\n        },\n        {\n            \"imageId\": 40,\n            \"url\": \"gala_elegante_5.jpg\"\n        }\n    ],\n    \"categories\": [\n        {\n            \"id\": 1,\n            \"name\": \"Cóctel\",\n            \"description\": \"Vestidos elegantes y modernos, ideales para eventos semiformales.\"\n        }\n    ],\n    \"sizes\": [\n        {\n            \"id\": 1,\n            \"size\": \"S\"\n        },\n        {\n            \"id\": 2,\n            \"size\": \"M\"\n        }\n    ]\n}"
+						},
+						{
+							"name": "Already exists: name",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Vestido de Gala Elegante\",\r\n    \"reference\": \"C-785\",\r\n    \"description\": \"Un vestido de gala de seda con detalles brillantes.\",\r\n    \"material\": \"Seda Italiana\",\r\n    \"color\": \"Rojo Carmesi\",\r\n    \"designer\": \"Von Braun\",\r\n    \"price\": 450000,\r\n    \"images\": [\r\n        {\r\n            \"url\": \"gala_elegante_1.jpg\"\r\n        },\r\n        {\r\n            \"url\": \"gala_elegante_2.jpg\"\r\n        },\r\n        {\r\n            \"url\": \"gala_elegante_3.jpg\"\r\n        },\r\n        {\r\n            \"url\": \"gala_elegante_4.jpg\"\r\n        },\r\n        {\r\n            \"url\": \"gala_elegante_5.jpg\"\r\n        }\r\n    ],\r\n    \"categories\": [\r\n        {\r\n            \"id\": 1,\r\n            \"name\": \"Cóctel\",\r\n            \"description\": \"Vestidos elegantes y modernos, ideales para eventos semiformales.\"\r\n        }\r\n    ],\r\n    \"sizes\": [\r\n        {\r\n            \"id\": 1,\r\n            \"size\": \"S\"\r\n        },\r\n        {\r\n            \"id\": 2,\r\n            \"size\": \"M\"\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/v1/products",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"products"
+									]
+								}
+							},
+							"status": "Conflict",
+							"code": 409,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 19 Nov 2024 18:58:49 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"timestamp\": \"2024-11-19T13:58:49.717174968\",\n    \"message\": \"Product already exists with name: Vestido de Gala Elegante\",\n    \"details\": \"/api/v1/products\"\n}"
+						},
+						{
+							"name": "Already exists: reference",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Vestido de Gasla Elegante\",\r\n    \"reference\": \"C-785\",\r\n    \"description\": \"Un vestido de gala de seda con detalles brillantes.\",\r\n    \"material\": \"Seda Italiana\",\r\n    \"color\": \"Rojo Carmesi\",\r\n    \"designer\": \"Von Braun\",\r\n    \"price\": 450000,\r\n    \"images\": [\r\n        {\r\n            \"url\": \"gala_elegante_1.jpg\"\r\n        },\r\n        {\r\n            \"url\": \"gala_elegante_2.jpg\"\r\n        },\r\n        {\r\n            \"url\": \"gala_elegante_3.jpg\"\r\n        },\r\n        {\r\n            \"url\": \"gala_elegante_4.jpg\"\r\n        },\r\n        {\r\n            \"url\": \"gala_elegante_5.jpg\"\r\n        }\r\n    ],\r\n    \"categories\": [\r\n        {\r\n            \"id\": 1,\r\n            \"name\": \"Cóctel\",\r\n            \"description\": \"Vestidos elegantes y modernos, ideales para eventos semiformales.\"\r\n        }\r\n    ],\r\n    \"sizes\": [\r\n        {\r\n            \"id\": 1,\r\n            \"size\": \"S\"\r\n        },\r\n        {\r\n            \"id\": 2,\r\n            \"size\": \"M\"\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/v1/products",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"products"
+									]
+								}
+							},
+							"status": "Conflict",
+							"code": 409,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 19 Nov 2024 18:59:19 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"timestamp\": \"2024-11-19T13:59:19.196807227\",\n    \"message\": \"Product already exists with reference: C-785\",\n    \"details\": \"/api/v1/products\"\n}"
 						}
 					]
 				}
