@@ -31,7 +31,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.GET, "/api/v1/products", "/api/v1/products/{id}", "/api/v1/products/paginated", "/api/v1/products/top-rents", "api/v1/products/by-reference/{reference}").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/v1/categories", "/api/v1/categories/{id}", "/api/v1/categories/paginated").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/v1/sizes").permitAll()
-                        .requestMatchers("/h2-console/**").permitAll()
+                        .requestMatchers("/h2-console/**", "/v3/api-docs/**", "/webjars/swagger-ui/**", "/swagger-ui/**").permitAll()
                         .requestMatchers("/public/**").permitAll()
 
                         // Endpoints requiring authentication with USER or ADMIN roles

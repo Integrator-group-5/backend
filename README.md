@@ -11,57 +11,7 @@ como base de datos, asegurando una configuración consistente y confiable tanto 
 
 ## Endpoints Disponibles
 
-A continuación se detallan los endpoints disponibles en la API de **Luxury Wear Service** y sus respectivas
-funcionalidades.
-
-### Operaciones relacionadas con autorización y autenticación
-
-| Método | Endpoint              | Descripción                                                  |
-|--------|-----------------------|--------------------------------------------------------------|
-| POST   | `/auth/register`      | Permite el registro de un nuevo usuario en la aplicación     |
-| POST   | `/auth/login`         | Permite a un usuario iniciar sesión en la aplicación         |
-| POST   | `/auth/token-refresh` | Permite obtener un nuevo token utilizando un `refresh-token` |
-
-### Operaciones relacionadas con la gestión de productos.
-
-| Método | Endpoint                                               | Descripción                                        |
-|--------|--------------------------------------------------------|----------------------------------------------------|
-| GET    | `/api/v1/products/{id}`                                | Obtiene la información de un producto por `id`.    |
-| GET    | `/api/v1/products`                                     | Obtiene lista de todos los productos.              |
-| GET    | `/api/v1/products/page/{page}`                         | Obtiene lista paginada de todos los productos.     |
-| GET    | `/api/v1/products/top-rents`                           | Obtiene lista de productos en orden aleatorio.     |
-| GET    | `/api/v1/products/by-category?category=Cóctel&page=0'` | Obtiene lista de productos por categoría paginada. |
-| POST   | `/api/v1/products`                                     | Crea un producto.                                  |
-| DELETE | `/api/v1/products/delete-product/{id}`                 | Elimina un producto por `id`.                      |
-
-### Operaciones relacionadas con la gestión de categorías.
-
-| Método | Endpoint                                  | Descripción                                       |
-|--------|-------------------------------------------|---------------------------------------------------|
-| GET    | `/api/v1/categories`                      | Obtiene una lista de todos las categorías.        |
-| GET    | `/api/v1/categories/{id}`                 | Obtiene la información de una categoría por `id`. |
-| POST   | `/api/v1/categories`                      | Crea una categoría.                               |
-| PUT    | `/api/v1/categories/{id}`                 | Actualiza una categoría por `id`.                 |
-| DELETE | `/api/v1/categories/delete-category/{id}` | Elimina una categoría por `id`.                   |
-
-### Operaciones relacionadas con la gestión de Tallas.
-
-| Método | Endpoint        | Descripción                            |
-|--------|-----------------|----------------------------------------|
-| GET    | `/api/v1/sizes` | Obtiene una lista de todos las tallas. |
-
-### Operaciones relacionadas con la gestión de Usuarios.
-
-| Método | Endpoint                         | Descripción                                           |
-|--------|----------------------------------|-------------------------------------------------------|
-| GET    | `/api/v1/users/{id}`             | Obtiene la información de un usuario por `id`.        |
-| GET    | `/api/v1/users`                  | Obtiene una lista de todos los usuarios.              |
-| GET    | `/api/v1/users/page/{page}`      | Obtiene una lista paginada de todos los usuarios.     |
-| GET    | `/api/v1/users/email`            | Obtiene la información de un usuario por `email`.     |
-| POST   | `/api/v1/users`                  | Crea un usuario.                                      |
-| DELETE | `/api/v1/users/delete-user/{id}` | Elimina un usuario por `id`.                          |
-| PUT    | `/api/v1/users/set-admin`        | Convierte un usuario en administrador mediante email. |
-| PUT    | `/api/v1/users/remove-admin`     | Convierte un administrador en usuario mediante email. |
+La documentación de la API Swagger se puede acceder en `http://localhost:8080/swagger-ui/index.html`.
 
 ## Ejecutar Luxury Wear Service Localmente con Docker
 
