@@ -52,16 +52,16 @@ funcionalidades.
 
 ### Operaciones relacionadas con la gestión de Usuarios.
 
-| Método | Endpoint                     | Descripción                                           |
-|--------|------------------------------|-------------------------------------------------------|
-| GET    | `/api/v1/users/{id}`         | Obtiene la información de un usuario por `id`.        |
-| GET    | `/api/v1/users`              | Obtiene una lista de todos los usuarios.              |
-| GET    | `/api/v1/users/page/{page}`  | Obtiene una lista paginada de todos los usuarios.     |
-| GET    | `/api/v1/users/email`        | Obtiene la información de un usuario por `email`.     |
-| POST   | `/api/v1/users`              | Crea un usuario.                                      |
-| DELETE | `/api/v1/users/delete/{id}`  | Elimina un usuario por `id`.                          |
-| PUT    | `/api/v1/users/set-admin`    | Convierte un usuario en administrador mediante email. |
-| PUT    | `/api/v1/users/remove-admin` | Convierte un administrador en usuario mediante email. |
+| Método | Endpoint                         | Descripción                                           |
+|--------|----------------------------------|-------------------------------------------------------|
+| GET    | `/api/v1/users/{id}`             | Obtiene la información de un usuario por `id`.        |
+| GET    | `/api/v1/users`                  | Obtiene una lista de todos los usuarios.              |
+| GET    | `/api/v1/users/page/{page}`      | Obtiene una lista paginada de todos los usuarios.     |
+| GET    | `/api/v1/users/email`            | Obtiene la información de un usuario por `email`.     |
+| POST   | `/api/v1/users`                  | Crea un usuario.                                      |
+| DELETE | `/api/v1/users/delete-user/{id}` | Elimina un usuario por `id`.                          |
+| PUT    | `/api/v1/users/set-admin`        | Convierte un usuario en administrador mediante email. |
+| PUT    | `/api/v1/users/remove-admin`     | Convierte un administrador en usuario mediante email. |
 
 ## Ejecutar Luxury Wear Service Localmente con Docker
 
