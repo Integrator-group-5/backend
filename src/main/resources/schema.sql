@@ -57,6 +57,7 @@ CREATE TABLE IF NOT EXISTS product_has_size (
     FOREIGN KEY (size_id) REFERENCES size(id) ON DELETE CASCADE
 );
 
+-- Create the 'app_user' table
 CREATE TABLE IF NOT EXISTS app_user (
     user_id BIGINT AUTO_INCREMENT PRIMARY KEY,
     first_name VARCHAR(255) NOT NULL,
@@ -67,3 +68,16 @@ CREATE TABLE IF NOT EXISTS app_user (
     user_role VARCHAR(255) CHECK (user_role IN ('USER', 'ADMIN'))
 );
 
+-- Create the 'reservation' table
+CREATE TABLE IF NOT EXISTS reservation (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    user_id BIGINT NOT NULL,
+    product_id BIGINT NOT NULL,
+    start_date DATE NOT NULL,
+    end_date DATE NOT NULL,
+    total_cost DECIMAL(10, 2) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    CONSTRAINT fk_reservation_user FOREIGN KEY (user_id) REFERENCES app_user(user_id) ON DELETE CASCADE,
+    CONSTRAINT fk_reservation_product FOREIGN KEY (product_id) REFERENCES product(product_id) ON DELETE CASCADE
+);
