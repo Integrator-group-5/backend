@@ -1,21 +1,3 @@
--- Create the 'product' table first as other tables depend on it
-CREATE TABLE IF NOT EXISTS product (
-    product_id BIGINT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(100) NOT NULL UNIQUE,
-    reference VARCHAR(50) NOT NULL UNIQUE,
-    description TEXT,
-    material VARCHAR(100),
-    color VARCHAR(50),
-    designer VARCHAR(100),
-    price DECIMAL(10, 2) NOT NULL
-);
-
--- Add indexes for the 'product' table
-CREATE INDEX idx_product_name ON product (name);
-CREATE INDEX idx_product_color ON product (color);
-CREATE INDEX idx_product_designer ON product (designer);
-CREATE INDEX idx_product_reference ON product (reference);
-
 -- Tabla de Imagen de Categoría
 CREATE TABLE IF NOT EXISTS cover (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
@@ -31,6 +13,26 @@ CREATE TABLE IF NOT EXISTS category (
     FOREIGN KEY (cover_id) REFERENCES cover(id) ON DELETE CASCADE
 );
 
+-- Create the 'product' table first as other tables depend on it
+CREATE TABLE IF NOT EXISTS product (
+    product_id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL UNIQUE,
+    reference VARCHAR(50) NOT NULL UNIQUE,
+    description TEXT,
+    material VARCHAR(100),
+    color VARCHAR(50),
+    designer VARCHAR(100),
+    price DECIMAL(10, 2) NOT NULL,
+    category_id BIGINT NOT NULL,
+    FOREIGN KEY (category_id) REFERENCES category(id) ON DELETE CASCADE
+);
+
+-- Add indexes for the 'product' table
+CREATE INDEX idx_product_name ON product (name);
+CREATE INDEX idx_product_color ON product (color);
+CREATE INDEX idx_product_designer ON product (designer);
+CREATE INDEX idx_product_reference ON product (reference);
+
 -- Create the 'size' table
 CREATE TABLE IF NOT EXISTS size (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
@@ -43,15 +45,6 @@ CREATE TABLE IF NOT EXISTS image (
     url VARCHAR(255) NOT NULL,
     product_id BIGINT NOT NULL,
     FOREIGN KEY (product_id) REFERENCES product(product_id) ON DELETE CASCADE
-);
-
--- Create the 'product_has_category' join table
-CREATE TABLE IF NOT EXISTS product_has_category (
-    product_id BIGINT NOT NULL,
-    category_id BIGINT NOT NULL,
-    PRIMARY KEY (product_id, category_id),
-    FOREIGN KEY (product_id) REFERENCES product(product_id) ON DELETE CASCADE,
-    FOREIGN KEY (category_id) REFERENCES category(id) ON DELETE CASCADE
 );
 
 -- Create the 'product_has_size' join table
