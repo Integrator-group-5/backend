@@ -1,5 +1,6 @@
 package com.luxury.wear.service.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -69,4 +70,8 @@ public class Product {
             inverseJoinColumns = @JoinColumn(name = "size_id")
     )
     private List<Size> sizes = new ArrayList<>();
+
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
+    private List<Reservation> reservations = new ArrayList<>();
 }

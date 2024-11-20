@@ -10,6 +10,12 @@ CREATE TABLE IF NOT EXISTS product (
     price DECIMAL(10, 2) NOT NULL
 );
 
+-- Add indexes for the 'product' table
+CREATE INDEX idx_product_name ON product (name);
+CREATE INDEX idx_product_color ON product (color);
+CREATE INDEX idx_product_designer ON product (designer);
+CREATE INDEX idx_product_reference ON product (reference);
+
 -- Tabla de Imagen de Categoría
 CREATE TABLE IF NOT EXISTS cover (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
@@ -57,6 +63,7 @@ CREATE TABLE IF NOT EXISTS product_has_size (
     FOREIGN KEY (size_id) REFERENCES size(id) ON DELETE CASCADE
 );
 
+-- Create the 'app_user' table
 CREATE TABLE IF NOT EXISTS app_user (
     user_id BIGINT AUTO_INCREMENT PRIMARY KEY,
     first_name VARCHAR(255) NOT NULL,
@@ -67,3 +74,20 @@ CREATE TABLE IF NOT EXISTS app_user (
     user_role VARCHAR(255) CHECK (user_role IN ('USER', 'ADMIN'))
 );
 
+-- Create the 'reservation' table
+CREATE TABLE IF NOT EXISTS reservation (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    user_id BIGINT NOT NULL,
+    product_id BIGINT NOT NULL,
+    start_date DATE NOT NULL,
+    end_date DATE NOT NULL,
+    total_cost DECIMAL(10, 2) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    CONSTRAINT fk_reservation_user FOREIGN KEY (user_id) REFERENCES app_user(user_id) ON DELETE CASCADE,
+    CONSTRAINT fk_reservation_product FOREIGN KEY (product_id) REFERENCES product(product_id) ON DELETE CASCADE
+);
+
+-- Add indexes for the 'reservation' table
+CREATE INDEX idx_reservation_date_range ON reservation (start_date, end_date);
+CREATE INDEX idx_reservation_product_id ON reservation (product_id);
