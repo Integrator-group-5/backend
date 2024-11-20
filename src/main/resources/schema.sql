@@ -84,3 +84,11 @@ CREATE TABLE IF NOT EXISTS reservation (
 -- Add indexes for the 'reservation' table
 CREATE INDEX idx_reservation_date_range ON reservation (start_date, end_date);
 CREATE INDEX idx_reservation_product_id ON reservation (product_id);
+
+CREATE TABLE user_favorites (
+    user_id BIGINT NOT NULL,
+    product_id BIGINT NOT NULL,
+    PRIMARY KEY (user_id, product_id),
+    FOREIGN KEY (user_id) REFERENCES app_user(user_id),
+    FOREIGN KEY (product_id) REFERENCES product(product_id)
+);
