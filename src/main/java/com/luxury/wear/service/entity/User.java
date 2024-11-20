@@ -45,6 +45,4 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "product_id")
     )
     private List<Product> favoriteProducts;
-
-
 }

@@ -123,36 +123,33 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 
-    @PostMapping("/{userId}/favorites")
-    @Operation(summary = "Add favorite products to user")
-    public ResponseEntity toggleFavoriteProduct(@PathVariable Long userId, @RequestBody Product product) {
-        User updatedUser = userService.toggleFavoriteProduct(userId, product);
-        if (updatedUser != null) {
-            return ResponseEntity.status(HttpStatus.OK).body(updatedUser);
-        } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
-        }
+    @PostMapping("/toggle-favorites")
+    @Operation(summary = "Add/remove favorite products to user")
+    public ResponseEntity<Page<Product>> toggleFavoriteProduct(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "6") int size,
+            @RequestParam Long productId,
+            Authentication authentication) {
+        Pageable pageable = PageRequest.of(page, size);
+        Page<Product> favoriteProducts = userService.toggleFavoriteProduct(authentication.getName(), productId, pageable);
+        return ResponseEntity.status(HttpStatus.OK).body(favoriteProducts);
     }
 
-    @GetMapping("/{userId}/favorites")
+    @GetMapping("/favorites")
     @Operation(summary = "Get list of favorites by user")
-    public ResponseEntity getFavoriteProducts(@PathVariable Long userId) {
-        List<Product> favoriteProducts = userService.getFavoriteProducts(userId);
-        if (favoriteProducts != null) {
-            return ResponseEntity.status(HttpStatus.OK).body(favoriteProducts);
-        } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
-        }
+    public ResponseEntity<Page<Product>> getFavoriteProducts(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "6") int size,
+            Authentication authentication) {
+        Pageable pageable = PageRequest.of(page, size);
+        Page<Product> favoriteProducts = userService.getFavoriteProducts(authentication.getName(), pageable);
+        return ResponseEntity.status(HttpStatus.OK).body(favoriteProducts);
     }
 
-    @DeleteMapping("/{userId}/favorites/{productId}")
-    @Operation(summary = "Delete favorite product by user")
-    public ResponseEntity removeFavoriteProduct(@PathVariable Long userId, @PathVariable Long productId) {
-        User updatedUser = userService.removeFavoriteProduct(userId, productId);
-        if (updatedUser != null) {
-            return ResponseEntity.status(HttpStatus.OK).body(updatedUser);
-        } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
-        }
+    @GetMapping("/favorites-id")
+    @Operation(summary = "Get list of favorites products id by user")
+    public ResponseEntity<List<Long>> getFavoriteProductsId(Authentication authentication) {
+        List<Long> favoriteProductIds = userService.getFavoriteProductIds(authentication.getName());
+        return ResponseEntity.status(HttpStatus.OK).body(favoriteProductIds);
     }
 }

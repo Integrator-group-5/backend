@@ -3,7 +3,6 @@ package com.luxury.wear.service.service.user;
 import com.luxury.wear.service.dto.user.UserRequestDto;
 import com.luxury.wear.service.dto.user.UserResponseDto;
 import com.luxury.wear.service.entity.Product;
-import com.luxury.wear.service.entity.User;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -31,9 +30,9 @@ public interface UserService {
 
     void removeAdmin(String email);
 
-    User toggleFavoriteProduct(Long userId, Product product);
+    Page<Product> toggleFavoriteProduct(String email, Long productId, Pageable pageable);
 
-    List<Product> getFavoriteProducts(Long userId);
+    Page<Product> getFavoriteProducts(String email, Pageable pageable);
 
-    User removeFavoriteProduct(Long userId, Long productId);
+    List<Long> getFavoriteProductIds(String email);
 }

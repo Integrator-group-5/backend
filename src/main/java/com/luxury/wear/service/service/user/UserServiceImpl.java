@@ -10,14 +10,15 @@ import com.luxury.wear.service.exception.ResourceNotFoundException;
 import com.luxury.wear.service.mapper.UserMapper;
 import com.luxury.wear.service.repository.UserRepository;
 import com.luxury.wear.service.roles.UserRole;
+import com.luxury.wear.service.service.product.ProductService;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -26,6 +27,7 @@ public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final BCryptPasswordEncoder passwordEncoder;
     private final UserMapper userMapper;
+    private final ProductService productService;
 
     @Override
     public UserResponseDto createUser(UserRequestDto userRequestDto) {
@@ -127,31 +129,45 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User toggleFavoriteProduct(Long userId, Product product) {
-        Optional<User> optionalUser = userRepository.findById(userId);
-        if (optionalUser.isPresent()) {
-            User user = optionalUser.get();
-            if (!user.getFavoriteProducts().contains(product)) {
-                user.getFavoriteProducts().add(product);
-            }
-            return userRepository.save(user);
+    public Page<Product> toggleFavoriteProduct(String email, Long productId, Pageable pageable) {
+        User existingUser = userRepository.findByEmail(email)
+                .orElseThrow(() -> new ResourceNotFoundException(Constants.ERROR_USER_NOT_FOUND_EMAIL + email));
+
+        Product existingProduct = productService.GetProductByID(productId);
+
+        // Toggle favorite logic
+        List<Product> favoriteProducts = existingUser.getFavoriteProducts();
+        if (favoriteProducts.stream().anyMatch(product -> product.getProductId().equals(productId))) {
+            favoriteProducts.removeIf(product -> product.getProductId().equals(productId));// Remove the product if it's already a favorite
+        } else {
+            favoriteProducts.add(existingProduct);// Add the product if it's not already a favorite
         }
-        return null;
+
+        userRepository.save(existingUser);
+        return convertListToPage(favoriteProducts, pageable);
     }
 
     @Override
-    public List<Product> getFavoriteProducts(Long userId) {
-        Optional<User> optionalUser = userRepository.findById(userId);
-        return optionalUser.map(User::getFavoriteProducts).orElse(null);
+    public Page<Product> getFavoriteProducts(String email, Pageable pageable) {
+        User existingUser = userRepository.findByEmail(email)
+                .orElseThrow(() -> new ResourceNotFoundException(Constants.ERROR_USER_NOT_FOUND_EMAIL + email));
+        List<Product> favoriteProducts = existingUser.getFavoriteProducts();
+        return convertListToPage(favoriteProducts, pageable);
     }
 
-    public User removeFavoriteProduct(Long userId, Long productId) {
-        Optional<User> optionalUser = userRepository.findById(userId);
-        if (optionalUser.isPresent()) {
-            User user = optionalUser.get();
-            user.getFavoriteProducts().removeIf(product -> product.getProductId().equals(productId));
-            return userRepository.save(user);
-        }
-        return null;
+    private Page<Product> convertListToPage(List<Product> list, Pageable pageable) {
+        int start = (int) pageable.getOffset();
+        int end = Math.min(start + pageable.getPageSize(), list.size());
+        return new PageImpl<>(list.subList(start, end), pageable, list.size());
+    }
+
+    @Override
+    public List<Long> getFavoriteProductIds(String email) {
+        User existingUser = userRepository.findByEmail(email)
+                .orElseThrow(() -> new ResourceNotFoundException(Constants.ERROR_USER_NOT_FOUND_EMAIL + email));
+        return existingUser.getFavoriteProducts()
+                .stream()
+                .map(Product::getProductId)
+                .toList();
     }
 }
