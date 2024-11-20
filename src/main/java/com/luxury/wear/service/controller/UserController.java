@@ -124,6 +124,7 @@ public class UserController {
     }
 
     @PostMapping("/{userId}/favorites")
+    @Operation(summary = "Add favorite products to user")
     public ResponseEntity toggleFavoriteProduct(@PathVariable Long userId, @RequestBody Product product) {
         User updatedUser = userService.toggleFavoriteProduct(userId, product);
         if (updatedUser != null) {
@@ -134,6 +135,7 @@ public class UserController {
     }
 
     @GetMapping("/{userId}/favorites")
+    @Operation(summary = "Get list of favorites by user")
     public ResponseEntity getFavoriteProducts(@PathVariable Long userId) {
         List<Product> favoriteProducts = userService.getFavoriteProducts(userId);
         if (favoriteProducts != null) {
@@ -144,6 +146,7 @@ public class UserController {
     }
 
     @DeleteMapping("/{userId}/favorites/{productId}")
+    @Operation(summary = "Delete favorite product by user")
     public ResponseEntity removeFavoriteProduct(@PathVariable Long userId, @PathVariable Long productId) {
         User updatedUser = userService.removeFavoriteProduct(userId, productId);
         if (updatedUser != null) {
