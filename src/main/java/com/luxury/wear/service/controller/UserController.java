@@ -3,6 +3,8 @@ package com.luxury.wear.service.controller;
 import com.luxury.wear.service.dto.EmailRequest;
 import com.luxury.wear.service.dto.user.UserRequestDto;
 import com.luxury.wear.service.dto.user.UserResponseDto;
+import com.luxury.wear.service.entity.Product;
+import com.luxury.wear.service.entity.User;
 import com.luxury.wear.service.service.user.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -119,5 +121,35 @@ public class UserController {
         response.put("message", "User is no longer an admin");
         response.put("email", email.getEmail());
         return ResponseEntity.status(HttpStatus.OK).body(response);
+    }
+
+    @PostMapping("/{userId}/favorites")
+    public ResponseEntity toggleFavoriteProduct(@PathVariable Long userId, @RequestBody Product product) {
+        User updatedUser = userService.toggleFavoriteProduct(userId, product);
+        if (updatedUser != null) {
+            return ResponseEntity.status(HttpStatus.OK).body(updatedUser);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
+        }
+    }
+
+    @GetMapping("/{userId}/favorites")
+    public ResponseEntity getFavoriteProducts(@PathVariable Long userId) {
+        List<Product> favoriteProducts = userService.getFavoriteProducts(userId);
+        if (favoriteProducts != null) {
+            return ResponseEntity.status(HttpStatus.OK).body(favoriteProducts);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
+        }
+    }
+
+    @DeleteMapping("/{userId}/favorites/{productId}")
+    public ResponseEntity removeFavoriteProduct(@PathVariable Long userId, @PathVariable Long productId) {
+        User updatedUser = userService.removeFavoriteProduct(userId, productId);
+        if (updatedUser != null) {
+            return ResponseEntity.status(HttpStatus.OK).body(updatedUser);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
+        }
     }
 }

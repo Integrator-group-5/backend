@@ -3,6 +3,7 @@ package com.luxury.wear.service.service.user;
 import com.luxury.wear.service.commons.Constants;
 import com.luxury.wear.service.dto.user.UserRequestDto;
 import com.luxury.wear.service.dto.user.UserResponseDto;
+import com.luxury.wear.service.entity.Product;
 import com.luxury.wear.service.entity.User;
 import com.luxury.wear.service.exception.EntityAlreadyExistsException;
 import com.luxury.wear.service.exception.ResourceNotFoundException;
@@ -16,6 +17,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -122,5 +124,34 @@ public class UserServiceImpl implements UserService {
                 throw new EntityAlreadyExistsException(Constants.ERROR_EMAIL_ALREADY_EXISTS + userRequestDto.getEmail());
             }
         }
+    }
+
+    @Override
+    public User toggleFavoriteProduct(Long userId, Product product) {
+        Optional<User> optionalUser = userRepository.findById(userId);
+        if (optionalUser.isPresent()) {
+            User user = optionalUser.get();
+            if (!user.getFavoriteProducts().contains(product)) {
+                user.getFavoriteProducts().add(product);
+            }
+            return userRepository.save(user);
+        }
+        return null;
+    }
+
+    @Override
+    public List<Product> getFavoriteProducts(Long userId) {
+        Optional<User> optionalUser = userRepository.findById(userId);
+        return optionalUser.map(User::getFavoriteProducts).orElse(null);
+    }
+
+    public User removeFavoriteProduct(Long userId, Long productId) {
+        Optional<User> optionalUser = userRepository.findById(userId);
+        if (optionalUser.isPresent()) {
+            User user = optionalUser.get();
+            user.getFavoriteProducts().removeIf(product -> product.getProductId().equals(productId));
+            return userRepository.save(user);
+        }
+        return null;
     }
 }
