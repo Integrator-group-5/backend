@@ -10,6 +10,12 @@ CREATE TABLE IF NOT EXISTS product (
     price DECIMAL(10, 2) NOT NULL
 );
 
+-- Add indexes for the 'product' table
+CREATE INDEX idx_product_name ON product (name);
+CREATE INDEX idx_product_color ON product (color);
+CREATE INDEX idx_product_designer ON product (designer);
+CREATE INDEX idx_product_reference ON product (reference);
+
 -- Tabla de Imagen de Categoría
 CREATE TABLE IF NOT EXISTS cover (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
@@ -81,3 +87,7 @@ CREATE TABLE IF NOT EXISTS reservation (
     CONSTRAINT fk_reservation_user FOREIGN KEY (user_id) REFERENCES app_user(user_id) ON DELETE CASCADE,
     CONSTRAINT fk_reservation_product FOREIGN KEY (product_id) REFERENCES product(product_id) ON DELETE CASCADE
 );
+
+-- Add indexes for the 'reservation' table
+CREATE INDEX idx_reservation_date_range ON reservation (start_date, end_date);
+CREATE INDEX idx_reservation_product_id ON reservation (product_id);

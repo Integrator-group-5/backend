@@ -6,12 +6,14 @@ import com.luxury.wear.service.entity.Product;
 import com.luxury.wear.service.exception.EntityAlreadyExistsException;
 import com.luxury.wear.service.exception.ResourceNotFoundException;
 import com.luxury.wear.service.repository.ProductRepository;
+import com.luxury.wear.service.repository.ReservationRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -19,10 +21,12 @@ import java.util.List;
 public class ProductServiceImpl implements ProductService {
 
     private final ProductRepository productRepository;
+    private final ReservationRepository reservationRepository;
 
     @Override
     public Product createProduct(Product product) {
         Product existingNameProduct = productRepository.findByName(product.getName()).orElse(null);
+
         if (existingNameProduct != null) {
             throw new EntityAlreadyExistsException(Constants.ERROR_PRODUCT_ALREADY_EXISTS_NAME + product.getName());
         }
@@ -80,6 +84,15 @@ public class ProductServiceImpl implements ProductService {
                 .orElseThrow(() -> new ResourceNotFoundException(Constants.ERROR_PRODUCT_NOT_FOUND_ID + id));
 
         productRepository.deleteById(id);
+    }
+
+    @Override
+    public Page<Product> getAvailableProducts(LocalDate startDate, LocalDate endDate, String search, Pageable pageable) {
+        // Retrieve unavailable product IDs for the given date range
+        List<Long> unavailableProductIds = reservationRepository.findUnavailableProductIds(startDate, endDate);
+
+        // Return available products matching the search criteria
+        return productRepository.findAvailableProductsWithSearch(unavailableProductIds, search, pageable);
     }
 
     @Override

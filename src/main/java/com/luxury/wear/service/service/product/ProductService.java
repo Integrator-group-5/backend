@@ -4,6 +4,7 @@ import com.luxury.wear.service.entity.Product;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public interface ProductService {
@@ -26,4 +27,6 @@ public interface ProductService {
     Product updateProduct(Product product);
 
     void deleteProductById(Long id);
+
+    Page<Product> getAvailableProducts(LocalDate startDate, LocalDate endDate, String search, Pageable pageable);
 }
