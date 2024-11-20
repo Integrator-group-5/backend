@@ -7,6 +7,11 @@ import com.luxury.wear.service.entity.Product;
 import com.luxury.wear.service.entity.User;
 import com.luxury.wear.service.service.user.UserService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -124,10 +129,30 @@ public class UserController {
     }
 
     @PostMapping("/toggle-favorites")
-    @Operation(summary = "Add/remove favorite products to user")
+    @Operation(
+            summary = "Add/remove favorite products to user",
+            description = "Toggles a product's presence in the user's list of favorite products. If the product is already in the list, it will be removed. Otherwise, it will be added."
+    )
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Successfully updated favorite products list.",
+                    content = @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = Page.class))),
+            @ApiResponse(responseCode = "401", description = "Unauthorized. User is not authenticated.",
+                    content = @Content(mediaType = "application/json",
+                            schema = @Schema(type = "string", example = "Unauthorized access."))),
+            @ApiResponse(responseCode = "404", description = "User or product not found.",
+                    content = @Content(mediaType = "application/json",
+                            schema = @Schema(type = "string", example = "User or product not found."))),
+            @ApiResponse(responseCode = "500", description = "Internal server error.",
+                    content = @Content(mediaType = "application/json",
+                            schema = @Schema(type = "string", example = "An error occurred while processing your request.")))
+    })
     public ResponseEntity<Page<Product>> toggleFavoriteProduct(
+            @Parameter(description = "The page number to retrieve", example = "0")
             @RequestParam(defaultValue = "0") int page,
+            @Parameter(description = "The page size to retrieve", example = "6")
             @RequestParam(defaultValue = "6") int size,
+            @Parameter(description = "The ID of the product to add or remove from favorites", required = true, example = "1")
             @RequestParam Long productId,
             Authentication authentication) {
         Pageable pageable = PageRequest.of(page, size);
@@ -136,9 +161,28 @@ public class UserController {
     }
 
     @GetMapping("/favorites")
-    @Operation(summary = "Get list of favorites by user")
+    @Operation(
+            summary = "Get list of favorites by user",
+            description = "Retrieves a paginated list of products that the user has marked as favorites."
+    )
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Successfully retrieved favorite products.",
+                    content = @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = Page.class))),
+            @ApiResponse(responseCode = "401", description = "Unauthorized. User is not authenticated.",
+                    content = @Content(mediaType = "application/json",
+                            schema = @Schema(type = "string", example = "Unauthorized access."))),
+            @ApiResponse(responseCode = "404", description = "User not found.",
+                    content = @Content(mediaType = "application/json",
+                            schema = @Schema(type = "string", example = "User not found."))),
+            @ApiResponse(responseCode = "500", description = "Internal server error.",
+                    content = @Content(mediaType = "application/json",
+                            schema = @Schema(type = "string", example = "An error occurred while processing your request.")))
+    })
     public ResponseEntity<Page<Product>> getFavoriteProducts(
+            @Parameter(description = "The page number to retrieve", example = "0")
             @RequestParam(defaultValue = "0") int page,
+            @Parameter(description = "The page size to retrieve", example = "6")
             @RequestParam(defaultValue = "6") int size,
             Authentication authentication) {
         Pageable pageable = PageRequest.of(page, size);
@@ -147,7 +191,24 @@ public class UserController {
     }
 
     @GetMapping("/favorites-id")
-    @Operation(summary = "Get list of favorites products id by user")
+    @Operation(
+            summary = "Get list of favorite product IDs by user",
+            description = "Retrieves a list of product IDs that the user has marked as favorites."
+    )
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Successfully retrieved favorite product IDs.",
+                    content = @Content(mediaType = "application/json",
+                            schema = @Schema(type = "array", example = "[1, 2, 3]"))),
+            @ApiResponse(responseCode = "401", description = "Unauthorized. User is not authenticated.",
+                    content = @Content(mediaType = "application/json",
+                            schema = @Schema(type = "string", example = "Unauthorized access."))),
+            @ApiResponse(responseCode = "404", description = "User not found.",
+                    content = @Content(mediaType = "application/json",
+                            schema = @Schema(type = "string", example = "User not found."))),
+            @ApiResponse(responseCode = "500", description = "Internal server error.",
+                    content = @Content(mediaType = "application/json",
+                            schema = @Schema(type = "string", example = "An error occurred while processing your request.")))
+    })
     public ResponseEntity<List<Long>> getFavoriteProductsId(Authentication authentication) {
         List<Long> favoriteProductIds = userService.getFavoriteProductIds(authentication.getName());
         return ResponseEntity.status(HttpStatus.OK).body(favoriteProductIds);
