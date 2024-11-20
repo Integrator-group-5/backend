@@ -4,6 +4,8 @@ import com.luxury.wear.service.dto.EmailRequest;
 import com.luxury.wear.service.dto.user.UserRequestDto;
 import com.luxury.wear.service.dto.user.UserResponseDto;
 import com.luxury.wear.service.service.user.UserService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -29,29 +31,34 @@ import java.util.Map;
 @RestController
 @RequestMapping("/api/v1/users")
 @AllArgsConstructor
+@Tag(name = "User", description = "Endpoints for managing users")
 public class UserController {
 
     private final UserService userService;
 
     @PostMapping
+    @Operation(summary = "Create a new user")
     public ResponseEntity<UserResponseDto> createUser(@RequestBody @Valid UserRequestDto userRequestDto) {
         UserResponseDto createdUser = userService.createUser(userRequestDto);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdUser);
     }
 
     @GetMapping("/{id}")
+    @Operation(summary = "Get a user by id")
     public ResponseEntity<UserResponseDto> getUserById(@PathVariable("id") Long id) {
         UserResponseDto existingUser = userService.getUserById(id);
         return ResponseEntity.status(HttpStatus.OK).body(existingUser);
     }
 
     @GetMapping
+    @Operation(summary = "Get all users")
     public ResponseEntity<List<UserResponseDto>> getAllUsers() {
         List<UserResponseDto> users = userService.getAllUsers();
         return ResponseEntity.status(HttpStatus.OK).body(users);
     }
 
     @GetMapping("/paginated")
+    @Operation(summary = "Get all users paginated with default page size of 6")
     public ResponseEntity<Page<UserResponseDto>> getAllUsersPaginated(
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "6") int size) {
@@ -61,6 +68,7 @@ public class UserController {
     }
 
     @DeleteMapping("/delete-user/{id}")
+    @Operation(summary = "Delete a user by id")
     public ResponseEntity<Map<String, String>> deleteUser(@PathVariable("id") Long id) {
         userService.deleteUserById(id);
         Map<String, String> response = new HashMap<>();
@@ -70,18 +78,21 @@ public class UserController {
     }
 
     @GetMapping("/email")
+    @Operation(summary = "Get a user by email")
     public ResponseEntity<UserResponseDto> getUserByEmail(@RequestBody EmailRequest email) {
         UserResponseDto existingUser = userService.findByEmail(email.getEmail());
         return ResponseEntity.status(HttpStatus.OK).body(existingUser);
     }
 
     @GetMapping("/user-info")
+    @Operation(summary = "Get a user by token")
     public ResponseEntity<UserResponseDto> getUserByToken(Authentication authentication) {
         UserResponseDto user = userService.findByEmail(authentication.getName());
         return ResponseEntity.status(HttpStatus.OK).body(user);
     }
 
     @GetMapping("/user-initials")
+    @Operation(summary = "Get a user initials by token")
     public ResponseEntity<Map<String, String>> getUserInitialsByToken(Authentication authentication) {
         UserResponseDto user = userService.findByEmail(authentication.getName());
         Map<String, String> response = new HashMap<>();
@@ -91,6 +102,7 @@ public class UserController {
     }
 
     @PutMapping("/set-admin")
+    @Operation(summary = "Set a user as an admin")
     public ResponseEntity<Map<String, String>> setAdmin(@RequestBody EmailRequest email) {
         userService.setAdmin(email.getEmail());
         Map<String, String> response = new HashMap<>();
@@ -100,6 +112,7 @@ public class UserController {
     }
 
     @PutMapping("/remove-admin")
+    @Operation(summary = "Remove a user as an admin")
     public ResponseEntity<Map<String, String>> removeAdmin(@RequestBody EmailRequest email) {
         userService.removeAdmin(email.getEmail());
         Map<String, String> response = new HashMap<>();
