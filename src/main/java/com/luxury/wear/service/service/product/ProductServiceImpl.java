@@ -1,12 +1,14 @@
 package com.luxury.wear.service.service.product;
 
 import com.luxury.wear.service.commons.Constants;
+import com.luxury.wear.service.entity.Category;
 import com.luxury.wear.service.entity.Image;
 import com.luxury.wear.service.entity.Product;
 import com.luxury.wear.service.exception.EntityAlreadyExistsException;
 import com.luxury.wear.service.exception.ResourceNotFoundException;
 import com.luxury.wear.service.repository.ProductRepository;
 import com.luxury.wear.service.repository.ReservationRepository;
+import com.luxury.wear.service.service.category.CategoryService;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -22,11 +24,12 @@ public class ProductServiceImpl implements ProductService {
 
     private final ProductRepository productRepository;
     private final ReservationRepository reservationRepository;
+    private final CategoryService categoryService;
 
     @Override
     public Product createProduct(Product product) {
-        Product existingNameProduct = productRepository.findByName(product.getName()).orElse(null);
 
+        Product existingNameProduct = productRepository.findByName(product.getName()).orElse(null);
         if (existingNameProduct != null) {
             throw new EntityAlreadyExistsException(Constants.ERROR_PRODUCT_ALREADY_EXISTS_NAME + product.getName());
         }
@@ -34,6 +37,11 @@ public class ProductServiceImpl implements ProductService {
         Product existingReferenceProduct = productRepository.findByReference(product.getReference()).orElse(null);
         if (existingReferenceProduct != null) {
             throw new EntityAlreadyExistsException(Constants.ERROR_PRODUCT_ALREADY_EXISTS_REFERENCE + product.getReference());
+        }
+
+        Category existingCategory = categoryService.getCategoryById(product.getCategory().getId());
+        if (existingCategory == null) {
+            throw new ResourceNotFoundException(Constants.ERROR_CATEGORY_NOT_FOUND_ID + product.getCategory().getId());
         }
 
         for (Image image : product.getImages()) {
@@ -97,10 +105,15 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Page<Product> getProductsByCategory(String categoryName, Pageable pageable) {
-        return productRepository.findByCategories_Name(categoryName, pageable);
+        return productRepository.findByCategory_Name(categoryName, pageable);
     }
 
     public Product updateExistingProduct(Product existingProduct, Product newProductData) {
+        Category existingCategory = categoryService.getCategoryById(newProductData.getCategory().getId());
+        if (existingCategory == null) {
+            throw new ResourceNotFoundException(Constants.ERROR_CATEGORY_NOT_FOUND_ID + newProductData.getCategory().getId());
+        }
+
         existingProduct.setName(newProductData.getName());
         existingProduct.setReference(newProductData.getReference());
         existingProduct.setDescription(newProductData.getDescription());
@@ -109,7 +122,7 @@ public class ProductServiceImpl implements ProductService {
         existingProduct.setDesigner(newProductData.getDesigner());
         existingProduct.setPrice(newProductData.getPrice());
         existingProduct.setImages(newProductData.getImages());
-        existingProduct.setCategories(newProductData.getCategories());
+        existingProduct.setCategory(newProductData.getCategory());
         existingProduct.setSizes(newProductData.getSizes());
         List<Image> existingImages = existingProduct.getImages();
         List<Image> newImages = newProductData.getImages();
