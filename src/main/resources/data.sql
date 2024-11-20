@@ -24,49 +24,49 @@ INSERT INTO size (id, size) VALUES
 -- Insert products
 
 -- Category: Cóctel (total 6 products)
-INSERT INTO product (name, reference, description, material, color, designer, price) VALUES
-    ('Hollywood', 'C-453', 'Deslumbra en cualquier evento con este vestido de cóctel. Adornado con lentejuelas brillantes, este vestido no solo capta todas las miradas, sino que también realza tu figura de manera espectacular. Perfecto para cualquier ocasión especial, te hará sentir segura y radiante.', 'Algodón con lentejuelas', 'Plateado', 'Carolina Herrera', 200000),
-    ('Brianna', 'C-784', 'Deslumbra en cualquier evento con este vestido de cóctel plateado. Adornado con brillantes y tiras de voleros que añaden un toque visual espectacular, este vestido corto y ajustado realza tu figura de manera impresionante. Perfecto para destacar en cualquier ocasión especial.', 'Seda y poliéster con lentejuelas de alta calidad.', 'Plateado', 'Oscar de la Renta', 150000),
-    ('Gold party', 'C-754', 'Impresiona en cualquier evento con este vestido de cóctel tipo blazer. De color dorado y adornado con brillantines, este vestido de manga larga y diseño corto combina a la perfección sensualidad y elegancia. Ideal para destacar en cualquier ocasión especial.', 'Lurex', 'Dorado brillante', 'Versace', 300000),
-    ('Esplendor Dorado', 'C-882', 'Este vestido de cóctel dorado es perfecto para brillar. Con detalles en encaje y corte ajustado, resalta la figura de manera elegante.', 'Seda y encaje', 'Dorado', 'Elie Saab', 270000),
-    ('Luz de Medianoche', 'C-475', 'Un vestido azul oscuro con lentejuelas que refleja la elegancia de la noche. Ideal para eventos formales y ocasiones especiales.', 'Poliéster con lentejuelas', 'Azul oscuro', 'Dolce & Gabbana', 220000),
-    ('Esencia Esmeralda', 'C-993', 'Vestido de cóctel en un tono verde esmeralda con detalles en encaje. Ideal para ocasiones especiales.', 'Encaje y satén', 'Verde esmeralda', 'Zuhair Murad', 250000);
+INSERT INTO product (name, reference, description, material, color, designer, price, category_id) VALUES
+    ('Hollywood', 'C-453', 'Deslumbra en cualquier evento con este vestido de cóctel. Adornado con lentejuelas brillantes, este vestido no solo capta todas las miradas, sino que también realza tu figura de manera espectacular. Perfecto para cualquier ocasión especial, te hará sentir segura y radiante.', 'Algodón con lentejuelas', 'Plateado', 'Carolina Herrera', 200000, 1),
+    ('Brianna', 'C-784', 'Deslumbra en cualquier evento con este vestido de cóctel plateado. Adornado con brillantes y tiras de voleros que añaden un toque visual espectacular, este vestido corto y ajustado realza tu figura de manera impresionante. Perfecto para destacar en cualquier ocasión especial.', 'Seda y poliéster con lentejuelas de alta calidad.', 'Plateado', 'Oscar de la Renta', 150000, 1),
+    ('Gold party', 'C-754', 'Impresiona en cualquier evento con este vestido de cóctel tipo blazer. De color dorado y adornado con brillantines, este vestido de manga larga y diseño corto combina a la perfección sensualidad y elegancia. Ideal para destacar en cualquier ocasión especial.', 'Lurex', 'Dorado brillante', 'Versace', 300000, 1),
+    ('Esplendor Dorado', 'C-882', 'Este vestido de cóctel dorado es perfecto para brillar. Con detalles en encaje y corte ajustado, resalta la figura de manera elegante.', 'Seda y encaje', 'Dorado', 'Elie Saab', 270000, 1),
+    ('Luz de Medianoche', 'C-475', 'Un vestido azul oscuro con lentejuelas que refleja la elegancia de la noche. Ideal para eventos formales y ocasiones especiales.', 'Poliéster con lentejuelas', 'Azul oscuro', 'Dolce & Gabbana', 220000, 1),
+    ('Esencia Esmeralda', 'C-993', 'Vestido de cóctel en un tono verde esmeralda con detalles en encaje. Ideal para ocasiones especiales.', 'Encaje y satén', 'Verde esmeralda', 'Zuhair Murad', 250000, 1);
 
 -- Category: Novias (total 6 products)
-INSERT INTO product (name, reference, description, material, color, designer, price) VALUES
-    ('Camelia', 'N-784', 'Libera tu espíritu bohemio con este vestido de novia único. El encaje floral, con motivos botánicos, cubre el cuerpo de manera ligera y sensual.', 'Seda natural con encaje', 'Blanco', 'Inbal Dror', 2500000),
-    ('Flor de Lirio', 'N-321', 'Vestido de novia con detalles florales y un corte princesa. Perfecto para una boda de cuento de hadas.', 'Encaje francés y tul', 'Marfil', 'Zuhair Murad', 2800000),
-    ('Encanto Real', 'N-892', 'Este vestido de novia estilo sirena cuenta con un elegante encaje y una cola larga que agrega sofisticación.', 'Encaje y tul', 'Blanco puro', 'Marchesa', 3000000),
-    ('Sueño Eterno', 'N-561', 'Un vestido de novia clásico, con una larga cola y detalles en encaje, ideal para un toque romántico y elegante.', 'Seda y encaje', 'Blanco puro', 'Pronovias', 2800000),
-    ('Primavera Floral', 'N-762', 'Vestido de novia de estilo bohemio con flores bordadas en tonos pastel. Ligero y cómodo, perfecto para una boda al aire libre.', 'Tul y seda', 'Blanco marfil', 'Claire Pettibone', 2700000),
-    ('Eterna Elegancia', 'N-213', 'Un vestido de novia sofisticado, estilo sirena, con bordados de encaje que destacan la figura.', 'Encaje francés', 'Blanco perla', 'Rosa Clará', 3000000);
+INSERT INTO product (name, reference, description, material, color, designer, price, category_id) VALUES
+    ('Camelia', 'N-784', 'Libera tu espíritu bohemio con este vestido de novia único. El encaje floral, con motivos botánicos, cubre el cuerpo de manera ligera y sensual.', 'Seda natural con encaje', 'Blanco', 'Inbal Dror', 2500000, 2),
+    ('Flor de Lirio', 'N-321', 'Vestido de novia con detalles florales y un corte princesa. Perfecto para una boda de cuento de hadas.', 'Encaje francés y tul', 'Marfil', 'Zuhair Murad', 2800000, 2),
+    ('Encanto Real', 'N-892', 'Este vestido de novia estilo sirena cuenta con un elegante encaje y una cola larga que agrega sofisticación.', 'Encaje y tul', 'Blanco puro', 'Marchesa', 3000000, 2),
+    ('Sueño Eterno', 'N-561', 'Un vestido de novia clásico, con una larga cola y detalles en encaje, ideal para un toque romántico y elegante.', 'Seda y encaje', 'Blanco puro', 'Pronovias', 2800000, 2),
+    ('Primavera Floral', 'N-762', 'Vestido de novia de estilo bohemio con flores bordadas en tonos pastel. Ligero y cómodo, perfecto para una boda al aire libre.', 'Tul y seda', 'Blanco marfil', 'Claire Pettibone', 2700000, 2),
+    ('Eterna Elegancia', 'N-213', 'Un vestido de novia sofisticado, estilo sirena, con bordados de encaje que destacan la figura.', 'Encaje francés', 'Blanco perla', 'Rosa Clará', 3000000, 2);
 
 -- Category: Quinces (total 6 products)
-INSERT INTO product (name, reference, description, material, color, designer, price) VALUES
-    ('Sueño de quince', 'Q-235', 'Un vestido de quince años que te hará sentir como una verdadera princesa. Su diseño romántico y elegante, combinado con el delicado tono rosa, lo convierten en la elección perfecta para celebrar tu gran noche.', 'Tafetán de seda natural, encaje francés.', 'Rosa cuarzo', 'Ariana Vara', 900000),
-    ('Rosa Pastel', 'Q-322', 'Vestido de quinceañera en un tono rosa pastel con falda amplia y detalles brillantes. Ideal para una celebración memorable.', 'Organza y seda', 'Rosa pastel', 'Michael Cinco', 950000),
-    ('Noche de Estrellas', 'Q-128', 'Vestido azul con falda en capas y detalles de pedrería, perfecto para celebrar los quince años con estilo.', 'Gasa y pedrería', 'Azul celeste', 'Sherri Hill', 920000),
-    ('Nuevo amanecer', 'Q-453', 'Vestido de quinceañera en tono rosa claro con detalles brillantes que reflejan la luz. Ideal para destacar en una noche especial.', 'Organza y pedrería', 'Rosa Claro', 'Alfred Angelo', 930000),
-    ('Fantasía Rosa', 'Q-652', 'Vestido de quinceañera rosa con un diseño de falda en capas y detalles de pedrería. Perfecto para sentirte como una princesa.', 'Seda y tul', 'Rosa pastel', 'Sherri Hill', 950000),
-    ('Encanto de la Realeza', 'Q-818', 'Vestido de quinceañera en un tono dorado claro con detalles de encaje y brillos. Aporta elegancia y sofisticación.', 'Encaje y seda', 'Dorado claro', 'Giovanna', 970000);
+INSERT INTO product (name, reference, description, material, color, designer, price, category_id) VALUES
+    ('Sueño de quince', 'Q-235', 'Un vestido de quince años que te hará sentir como una verdadera princesa. Su diseño romántico y elegante, combinado con el delicado tono rosa, lo convierten en la elección perfecta para celebrar tu gran noche.', 'Tafetán de seda natural, encaje francés.', 'Rosa cuarzo', 'Ariana Vara', 900000, 3),
+    ('Rosa Pastel', 'Q-322', 'Vestido de quinceañera en un tono rosa pastel con falda amplia y detalles brillantes. Ideal para una celebración memorable.', 'Organza y seda', 'Rosa pastel', 'Michael Cinco', 950000, 3),
+    ('Noche de Estrellas', 'Q-128', 'Vestido azul con falda en capas y detalles de pedrería, perfecto para celebrar los quince años con estilo.', 'Gasa y pedrería', 'Azul celeste', 'Sherri Hill', 920000, 3),
+    ('Nuevo amanecer', 'Q-453', 'Vestido de quinceañera en tono rosa claro con detalles brillantes que reflejan la luz. Ideal para destacar en una noche especial.', 'Organza y pedrería', 'Rosa Claro', 'Alfred Angelo', 930000, 3),
+    ('Fantasía Rosa', 'Q-652', 'Vestido de quinceañera rosa con un diseño de falda en capas y detalles de pedrería. Perfecto para sentirte como una princesa.', 'Seda y tul', 'Rosa pastel', 'Sherri Hill', 950000, 3),
+    ('Encanto de la Realeza', 'Q-818', 'Vestido de quinceañera en un tono dorado claro con detalles de encaje y brillos. Aporta elegancia y sofisticación.', 'Encaje y seda', 'Dorado claro', 'Giovanna', 970000, 3);
 
 -- Category: Dama de honor (total 6 products)
-INSERT INTO product (name, reference, description, material, color, designer, price) VALUES
-    ('Niebla de medianoche', 'D-358', 'Este vestido largo de un solo hombro en tono gris perla, con tela fluida y detalles brillantes, es ideal para bodas y eventos formales. Su diseño elegante y movimiento etéreo destacan a quien lo lleva, añadiendo un toque de sofisticación y romanticismo.', 'Gasa de seda', 'Perla', 'Elena Castellani', 450000),
-    ('Amanecer Coral', 'D-412', 'Un vestido largo color coral con un diseño sencillo y elegante, perfecto para una dama de honor.', 'Seda y gasa', 'Coral', 'Jenny Yoo', 350000),
-    ('Rosa Encantada', 'D-503', 'Vestido en tono rosa con un corte fluido, ideal para acompañar a la novia en su día especial.', 'Gasa de seda', 'Rosa', 'Amsale', 400000),
-    ('Belleza Natural', 'D-213', 'Vestido largo color verde oliva con un corte elegante y simple, ideal para cualquier dama de honor.', 'Chiffon', 'Verde oliva', 'Adrianna Papell', 360000),
-    ('Brisa de Mar', 'D-789', 'Un vestido azul cielo de estilo griego con tirantes, perfecto para una boda al aire libre.', 'Seda y gasa', 'Azul cielo', 'Davids Bridal', 370000),
-    ('Rosa de Ensueño', 'D-654', 'Vestido rosa claro con un diseño simple y corte recto, ideal para acompañar a la novia en su día especial.', 'Gasa', 'Rosa claro', 'Jenny Yoo', 390000);
+INSERT INTO product (name, reference, description, material, color, designer, price, category_id) VALUES
+    ('Niebla de medianoche', 'D-358', 'Este vestido largo de un solo hombro en tono gris perla, con tela fluida y detalles brillantes, es ideal para bodas y eventos formales. Su diseño elegante y movimiento etéreo destacan a quien lo lleva, añadiendo un toque de sofisticación y romanticismo.', 'Gasa de seda', 'Perla', 'Elena Castellani', 450000, 4),
+    ('Amanecer Coral', 'D-412', 'Un vestido largo color coral con un diseño sencillo y elegante, perfecto para una dama de honor.', 'Seda y gasa', 'Coral', 'Jenny Yoo', 350000, 4),
+    ('Rosa Encantada', 'D-503', 'Vestido en tono rosa con un corte fluido, ideal para acompañar a la novia en su día especial.', 'Gasa de seda', 'Rosa', 'Amsale', 400000, 4),
+    ('Belleza Natural', 'D-213', 'Vestido largo color verde oliva con un corte elegante y simple, ideal para cualquier dama de honor.', 'Chiffon', 'Verde oliva', 'Adrianna Papell', 360000, 4),
+    ('Brisa de Mar', 'D-789', 'Un vestido azul cielo de estilo griego con tirantes, perfecto para una boda al aire libre.', 'Seda y gasa', 'Azul cielo', 'Davids Bridal', 370000, 4),
+    ('Rosa de Ensueño', 'D-654', 'Vestido rosa claro con un diseño simple y corte recto, ideal para acompañar a la novia en su día especial.', 'Gasa', 'Rosa claro', 'Jenny Yoo', 390000, 4);
 
 -- Category: Grado (total 6 products)
-INSERT INTO product (name, reference, description, material, color, designer, price) VALUES
-    ('Destello Plateado', 'G-216', 'Un vestido de graduación corto en tono plateado, ideal para resaltar en la ceremonia.', 'Seda y lentejuelas', 'Plateado', 'Alice + Olivia', 200000),
-    ('Primavera Azul', 'G-319', 'Vestido juvenil en tono azul claro, perfecto para una ceremonia de graduación.', 'Chiffon', 'Azul claro', 'Reem Acra', 230000),
-    ('Elegancia Púrpura', 'G-472', 'Vestido de graduación en un tono púrpura profundo, corto y elegante, perfecto para una celebración.', 'Seda y encaje', 'Púrpura', 'BCBG Max Azria', 210000),
-    ('Estrella Plateada', 'G-583', 'Vestido corto en color plateado con detalles brillantes, ideal para una ceremonia de graduación.', 'Lentejuelas y tul', 'Plateado', 'Jovani', 230000),
-    ('Primavera Rosa', 'G-334', 'Vestido rosa claro, perfecto para una graduación en primavera. Corte juvenil y elegante.', 'Chiffon', 'Rosa claro', 'Alyce Paris', 220000),
-    ('Atardecer Dorado', 'G-421', 'Vestido dorado con corte en A y detalles de encaje, perfecto para una ceremonia de graduación.', 'Encaje y seda', 'Dorado', 'Mac Duggal', 250000);
+INSERT INTO product (name, reference, description, material, color, designer, price, category_id) VALUES
+    ('Destello Plateado', 'G-216', 'Un vestido de graduación corto en tono plateado, ideal para resaltar en la ceremonia.', 'Seda y lentejuelas', 'Plateado', 'Alice + Olivia', 200000, 5),
+    ('Primavera Azul', 'G-319', 'Vestido juvenil en tono azul claro, perfecto para una ceremonia de graduación.', 'Chiffon', 'Azul claro', 'Reem Acra', 230000, 5),
+    ('Elegancia Púrpura', 'G-472', 'Vestido de graduación en un tono púrpura profundo, corto y elegante, perfecto para una celebración.', 'Seda y encaje', 'Púrpura', 'BCBG Max Azria', 210000, 5),
+    ('Estrella Plateada', 'G-583', 'Vestido corto en color plateado con detalles brillantes, ideal para una ceremonia de graduación.', 'Lentejuelas y tul', 'Plateado', 'Jovani', 230000, 5),
+    ('Primavera Rosa', 'G-334', 'Vestido rosa claro, perfecto para una graduación en primavera. Corte juvenil y elegante.', 'Chiffon', 'Rosa claro', 'Alyce Paris', 220000, 5),
+    ('Atardecer Dorado', 'G-421', 'Vestido dorado con corte en A y detalles de encaje, perfecto para una ceremonia de graduación.', 'Encaje y seda', 'Dorado', 'Mac Duggal', 250000, 5);
 
 -- Insert images
 
@@ -235,53 +235,6 @@ INSERT INTO image (url, product_id) VALUES
     ('img/products/grado/atardecer_dorado_4.png', 30),
     ('img/products/grado/atardecer_dorado_5.png', 30);
 
--- Associate products with categories
-
--- Category: Cóctel
-INSERT INTO product_has_category (product_id, category_id) VALUES
-    (1, 1),
-    (2, 1),
-    (3, 1),
-    (4, 1),
-    (5, 1),
-    (6, 1);
-
--- Category: Novias
-INSERT INTO product_has_category (product_id, category_id) VALUES
-    (7, 2),
-    (8, 2),
-    (9, 2),
-    (10, 2),
-    (11, 2),
-    (12, 2);
-
--- Category: Quinces
-INSERT INTO product_has_category (product_id, category_id) VALUES
-    (13, 3),
-    (14, 3),
-    (15, 3),
-    (16, 3),
-    (17, 3),
-    (18, 3);
-
--- Category: Dama de honor
-INSERT INTO product_has_category (product_id, category_id) VALUES
-    (19, 4),
-    (20, 4),
-    (21, 4),
-    (22, 4),
-    (23, 4),
-    (24, 4);
-
-
--- Category: Grado
-INSERT INTO product_has_category (product_id, category_id) VALUES
-    (25, 5),
-    (26, 5),
-    (27, 5),
-    (28, 5),
-    (29, 5),
-    (30, 5);
 
 -- Associate products with sizes
 

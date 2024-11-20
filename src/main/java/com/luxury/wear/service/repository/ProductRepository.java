@@ -15,7 +15,7 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     @Query("SELECT p FROM Product p ORDER BY function('RAND')")
     List<Product> findAllRandom(Pageable pageable);
 
-    Page<Product> findByCategories_Name(String categoryName, Pageable pageable);
+    Page<Product> findByCategory_Name(String categoryName, Pageable pageable);
 
     Optional<Product> findByReference(String reference);
 

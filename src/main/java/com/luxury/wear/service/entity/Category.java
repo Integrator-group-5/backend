@@ -1,18 +1,17 @@
 package com.luxury.wear.service.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.util.List;
 
 @Entity
 @Table(name = "category")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class Category {
 
     @Id
@@ -24,10 +23,6 @@ public class Category {
 
     @Column(columnDefinition = "TEXT")
     private String description;
-
-    @ManyToMany(mappedBy = "categories")
-    @JsonIgnore
-    private List<Product> products;
 
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "cover_id", nullable = false, referencedColumnName = "id")
