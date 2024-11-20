@@ -20,9 +20,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/api/v1/products")
@@ -149,5 +147,12 @@ public class ProductController {
         AvailabilityResponse response = new AvailabilityResponse(unavailableDates);
 
         return ResponseEntity.ok(response);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Product> updateProduct(@PathVariable Long id, @RequestBody Product product) {
+        product.setProductId(id);
+        Product updatedProduct = productService.updateProduct(product);
+        return ResponseEntity.status(HttpStatus.OK).body(updatedProduct);
     }
 }

@@ -52,7 +52,7 @@ public class Product {
     @Column(nullable = false, precision = 10, scale = 2)
     private BigDecimal price;
 
-    @OneToMany(mappedBy = "product", cascade = CascadeType.PERSIST, orphanRemoval = true)
+    @OneToMany(mappedBy = "product")
     private List<Image> images = new ArrayList<>();
 
     @ManyToMany

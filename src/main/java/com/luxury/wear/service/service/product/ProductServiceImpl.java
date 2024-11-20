@@ -100,7 +100,7 @@ public class ProductServiceImpl implements ProductService {
         return productRepository.findByCategories_Name(categoryName, pageable);
     }
 
-    private Product updateExistingProduct(Product existingProduct, Product newProductData) {
+    public Product updateExistingProduct(Product existingProduct, Product newProductData) {
         existingProduct.setName(newProductData.getName());
         existingProduct.setReference(newProductData.getReference());
         existingProduct.setDescription(newProductData.getDescription());
@@ -111,6 +111,18 @@ public class ProductServiceImpl implements ProductService {
         existingProduct.setImages(newProductData.getImages());
         existingProduct.setCategories(newProductData.getCategories());
         existingProduct.setSizes(newProductData.getSizes());
+        List<Image> existingImages = existingProduct.getImages();
+        List<Image> newImages = newProductData.getImages();
+        // Eliminar imágenes que ya no están presentes
+        existingImages.removeIf(image -> !newImages.contains(image));
+        // Agregar nuevas imágenes y asociarlas con el producto
+        for (Image newImage : newImages) {
+            if (!existingImages.contains(newImage)) {
+                newImage.setProduct(existingProduct);
+                existingImages.add(newImage);
+            }
+        }
+        existingProduct.setImages(existingImages);
 
         return productRepository.save(existingProduct);
     }
