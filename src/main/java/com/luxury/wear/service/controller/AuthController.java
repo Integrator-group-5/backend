@@ -7,6 +7,8 @@ import com.luxury.wear.service.dto.user.UserRequestDto;
 import com.luxury.wear.service.repository.UserRepository;
 import com.luxury.wear.service.security.JwtUtil;
 import com.luxury.wear.service.service.auth.AuthService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
@@ -26,6 +28,7 @@ import java.util.Map;
 @RestController
 @RequestMapping("/auth")
 @RequiredArgsConstructor
+@Tag(name = "Authentication", description = "Endpoints for user authentication")
 public class AuthController {
 
     private final AuthenticationManager authenticationManager;
@@ -36,6 +39,7 @@ public class AuthController {
     private final AuthService authService;
 
     @PostMapping("/register")
+    @Operation(summary = "Register a new user")
     public ResponseEntity<Map<String, String>> registerUser(@RequestBody @Valid UserRequestDto userRequestDto) {
         authService.registerUser(userRequestDto);
         Map<String, String> response = new HashMap<>();
@@ -44,13 +48,15 @@ public class AuthController {
     }
 
     @PostMapping("/login")
+    @Operation(summary = "Login a user")
     public ResponseEntity<AuthResponse> loginUser(@RequestBody LoginRequest loginRequest) {
         AuthResponse authResponse = authService.authenticateUser(loginRequest);
         return ResponseEntity.status(HttpStatus.OK).body(authResponse);
     }
 
     @PostMapping("/token-refresh")
-    // todo should the token come in the requestbody or would be better in the Authorization Header?
+    @Operation(summary = "Refresh the access token")
+// todo should the token come in the requestbody or would be better in the Authorization Header?
     public ResponseEntity<AuthResponse> refreshToken(@RequestBody TokenRefreshRequest tokenRefreshRequest) {
 
         AuthResponse refreshAccessTokenResponse = authService.refreshAccessToken(tokenRefreshRequest);
@@ -58,6 +64,7 @@ public class AuthController {
     }
 
     @PostMapping("/logout")
+    @Operation(summary = "Logout a user")
     public ResponseEntity<Map<String, String>> logoutUser(HttpServletRequest request, HttpServletResponse response) {
         authService.logoutUser(request, response);
         Map<String, String> apiResponse = new HashMap<>();

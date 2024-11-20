@@ -2,6 +2,8 @@ package com.luxury.wear.service.controller;
 
 import com.luxury.wear.service.entity.Size;
 import com.luxury.wear.service.service.size.SizeService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,11 +16,13 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/v1/sizes")
 @AllArgsConstructor
+@Tag(name = "Size", description = "Endpoints for managing sizes")
 public class SizeController {
 
     private final SizeService sizeService;
 
     @GetMapping
+    @Operation(summary = "Get all sizes")
     public ResponseEntity<List<Size>> getAllCategories() {
         List<Size> products = sizeService.getAllSizes();
         return ResponseEntity.status(HttpStatus.OK).body(products);

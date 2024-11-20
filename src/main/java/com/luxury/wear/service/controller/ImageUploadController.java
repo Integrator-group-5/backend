@@ -1,5 +1,7 @@
 package com.luxury.wear.service.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,6 +24,7 @@ import java.util.Objects;
 @RestController
 @RequestMapping("/api/v1/categories/upload")
 @Slf4j
+@Tag(name = "Image Upload", description = "Endpoints for uploading category images")
 public class ImageUploadController {
 
     private static final String UPLOAD_DIR = "public/img/categories";
@@ -29,6 +32,7 @@ public class ImageUploadController {
     private static final String[] ALLOWED_EXTENSIONS = {"jpg", "jpeg", "png", "webp", "svg", "gif"};
 
     @PostMapping
+    @Operation(summary = "Upload an image")
     public ResponseEntity<Map<String, String>> uploadImage(
             @RequestParam("file") MultipartFile file,
             @RequestParam("name") String name) {
