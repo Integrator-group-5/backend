@@ -1,5 +1,7 @@
 package com.luxury.wear.service.service.product;
 
+import com.luxury.wear.service.dto.product.ProductRequestDto;
+import com.luxury.wear.service.dto.product.ProductResponseDto;
 import com.luxury.wear.service.entity.Product;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -10,7 +12,7 @@ import java.util.List;
 public interface ProductService {
 
     // CRUD operations
-    Product createProduct(Product product);
+    ProductResponseDto createProduct(ProductRequestDto productRequestDto);
 
     Product GetProductByID(Long id);
 

@@ -2,6 +2,8 @@ package com.luxury.wear.service.controller;
 
 import com.luxury.wear.service.commons.Constants;
 import com.luxury.wear.service.dto.product.AvailabilityResponse;
+import com.luxury.wear.service.dto.product.ProductRequestDto;
+import com.luxury.wear.service.dto.product.ProductResponseDto;
 import com.luxury.wear.service.entity.Product;
 import com.luxury.wear.service.service.FileUploadService;
 import com.luxury.wear.service.service.product.ProductService;
@@ -42,8 +44,8 @@ public class ProductController {
 
     @PostMapping
     @Operation(summary = "Create a new product")
-    public ResponseEntity<Product> createProduct(@RequestBody Product product) {
-        Product createdProduct = productService.createProduct(product);
+    public ResponseEntity<ProductResponseDto> createProduct(@RequestBody ProductRequestDto productRequestDto) {
+        ProductResponseDto createdProduct = productService.createProduct(productRequestDto);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdProduct);
     }
 

@@ -1,11 +1,15 @@
 package com.luxury.wear.service.service.product;
 
 import com.luxury.wear.service.commons.Constants;
+import com.luxury.wear.service.controller.ProductController;
+import com.luxury.wear.service.dto.product.ProductRequestDto;
+import com.luxury.wear.service.dto.product.ProductResponseDto;
 import com.luxury.wear.service.entity.Category;
 import com.luxury.wear.service.entity.Image;
 import com.luxury.wear.service.entity.Product;
 import com.luxury.wear.service.exception.EntityAlreadyExistsException;
 import com.luxury.wear.service.exception.ResourceNotFoundException;
+import com.luxury.wear.service.mapper.ProductMapper;
 import com.luxury.wear.service.repository.ProductRepository;
 import com.luxury.wear.service.repository.ReservationRepository;
 import com.luxury.wear.service.service.category.CategoryService;
@@ -25,30 +29,35 @@ public class ProductServiceImpl implements ProductService {
     private final ProductRepository productRepository;
     private final ReservationRepository reservationRepository;
     private final CategoryService categoryService;
+    private final ProductMapper productMapper;
 
     @Override
-    public Product createProduct(Product product) {
+    public ProductResponseDto createProduct(ProductRequestDto productRequestDto) {
 
-        Product existingNameProduct = productRepository.findByName(product.getName()).orElse(null);
+        Product existingNameProduct = productRepository.findByName(productRequestDto.getName()).orElse(null);
         if (existingNameProduct != null) {
-            throw new EntityAlreadyExistsException(Constants.ERROR_PRODUCT_ALREADY_EXISTS_NAME + product.getName());
+            throw new EntityAlreadyExistsException(Constants.ERROR_PRODUCT_ALREADY_EXISTS_NAME + productRequestDto.getName());
         }
 
-        Product existingReferenceProduct = productRepository.findByReference(product.getReference()).orElse(null);
+        Product existingReferenceProduct = productRepository.findByReference(productRequestDto.getReference()).orElse(null);
         if (existingReferenceProduct != null) {
-            throw new EntityAlreadyExistsException(Constants.ERROR_PRODUCT_ALREADY_EXISTS_REFERENCE + product.getReference());
+            throw new EntityAlreadyExistsException(Constants.ERROR_PRODUCT_ALREADY_EXISTS_REFERENCE + productRequestDto.getReference());
         }
 
-        Category existingCategory = categoryService.getCategoryById(product.getCategory().getId());
+        Category existingCategory = categoryService.getCategoryById(productRequestDto.getCategory().getId());
         if (existingCategory == null) {
-            throw new ResourceNotFoundException(Constants.ERROR_CATEGORY_NOT_FOUND_ID + product.getCategory().getId());
+            throw new ResourceNotFoundException(Constants.ERROR_CATEGORY_NOT_FOUND_ID + productRequestDto.getCategory().getId());
         }
 
-        for (Image image : product.getImages()) {
+        Product product = productMapper.toEntity(productRequestDto);
+
+        for (Image image : productRequestDto.getImages()) {
             image.setProduct(product);
         }
 
-        return productRepository.save(product);
+        Product savedProduct = productRepository.save(product);
+
+        return productMapper.toResponseDto(savedProduct);
     }
 
     @Override
