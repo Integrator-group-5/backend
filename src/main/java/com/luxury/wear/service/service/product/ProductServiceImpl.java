@@ -1,7 +1,6 @@
 package com.luxury.wear.service.service.product;
 
 import com.luxury.wear.service.commons.Constants;
-import com.luxury.wear.service.controller.ProductController;
 import com.luxury.wear.service.dto.product.ProductRequestDto;
 import com.luxury.wear.service.dto.product.ProductResponseDto;
 import com.luxury.wear.service.entity.Category;
