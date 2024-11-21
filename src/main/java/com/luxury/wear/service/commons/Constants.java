@@ -2,6 +2,9 @@ package com.luxury.wear.service.commons;
 
 public class Constants {
 
+    // File Operations
+    public static final String CATEGORY_UPLOAD_DIR = "public/img/categories";
+
     // Validation Messages
     public static final String FIRST_NAME = "First Name";
     public static final String LAST_NAME = "Last Name";
