@@ -4,6 +4,9 @@ public class Constants {
 
     // File Operations
     public static final String CATEGORY_UPLOAD_DIR = "public/img/categories";
+    public static final String PRODUCT_UPLOAD_DIR = "public/img/products";
+
+
 
     // Validation Messages
     public static final String FIRST_NAME = "First Name";

@@ -1,7 +1,9 @@
 package com.luxury.wear.service.controller;
 
+import com.luxury.wear.service.commons.Constants;
 import com.luxury.wear.service.dto.product.AvailabilityResponse;
 import com.luxury.wear.service.entity.Product;
+import com.luxury.wear.service.service.FileUploadService;
 import com.luxury.wear.service.service.product.ProductService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -12,24 +14,31 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import com.luxury.wear.service.service.reservation.ReservationService;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.time.LocalDate;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/v1/products")
 @AllArgsConstructor
+@Slf4j
 @Tag(name = "Product", description = "Endpoints for managing products")
 public class ProductController {
 
     private final ProductService productService;
     private final ReservationService reservationService;
+    private final FileUploadService fileUploadService;
 
     @PostMapping
     @Operation(summary = "Create a new product")
@@ -154,5 +163,30 @@ public class ProductController {
         product.setProductId(id);
         Product updatedProduct = productService.updateProduct(product);
         return ResponseEntity.status(HttpStatus.OK).body(updatedProduct);
+    }
+
+    @PostMapping("/upload")
+    @Operation(summary = "Upload an image")
+    public ResponseEntity<Map<String, String>> uploadImage(
+            @RequestParam("file") MultipartFile file,
+            @RequestParam("name") String name,
+            @RequestParam("category") String category) {
+
+        Map<String, String> response = new HashMap<>();
+        try {
+            String filePath = fileUploadService.uploadFile(file, name, Constants.PRODUCT_UPLOAD_DIR + "/" + category);
+            response.put("response", filePath.replace("public/", "/")); // Example for generating a relative path
+            return ResponseEntity.status(HttpStatus.CREATED).body(response);
+
+        } catch (IllegalArgumentException e) {
+            response.put("response", e.getMessage());
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
+
+        } catch (IOException e) {
+            String errorMessage = "Error saving file.";
+            response.put("response", errorMessage);
+            log.error(errorMessage, e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
+        }
     }
 }
