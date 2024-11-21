@@ -21,8 +21,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
-@RestController
-@RequestMapping("/api/v1/categories/upload")
+/*@RestController
+@RequestMapping("/api/v1/categories/upload")*/
 @Slf4j
 @Tag(name = "Image Upload", description = "Endpoints for uploading category images")
 public class ImageUploadController {
