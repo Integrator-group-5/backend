@@ -3,6 +3,11 @@ package com.luxury.wear.service.controller;
 import com.luxury.wear.service.entity.Size;
 import com.luxury.wear.service.service.size.SizeService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.ArraySchema;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -23,6 +28,15 @@ public class SizeController {
 
     @GetMapping
     @Operation(summary = "Get all sizes")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "List of sizes",
+                    content = @Content(mediaType = "application/json",
+                            array = @ArraySchema(schema = @Schema(implementation = Size.class)))),
+            @ApiResponse(responseCode = "500", description = "Internal server error.",
+                    content = @Content(mediaType = "application/json",
+                            schema = @Schema(type = "string",
+                                    example = "An error occurred while processing your request.")))
+    })
     public ResponseEntity<List<Size>> getAllCategories() {
         List<Size> products = sizeService.getAllSizes();
         return ResponseEntity.status(HttpStatus.OK).body(products);
