@@ -16,10 +16,12 @@ INSERT INTO category (name, description, cover_id) VALUES
 
 -- Insert sizes
 INSERT INTO size (id, size) VALUES
-    (1, 'S'),
-    (2, 'M'),
-    (3, 'L'),
-    (4, 'XL');
+    (1, 'XS'),
+    (2, 'S'),
+    (3, 'M'),
+    (4, 'L'),
+    (5, 'XL'),
+    (6, 'XXL');
 
 -- Insert products
 
@@ -242,12 +244,16 @@ INSERT INTO image (url, product_id) VALUES
 INSERT INTO product_has_size (product_id, size_id) VALUES
     (1, 1),
     (1, 2),
+    (1, 6),
     (2, 3),
     (2, 4),
+    (2, 5),
     (3, 1),
     (3, 4),
+    (3, 6),
     (4, 1),
     (4, 2),
+    (4, 5),
     (5, 4),
     (5, 2),
     (6, 2),
@@ -257,60 +263,88 @@ INSERT INTO product_has_size (product_id, size_id) VALUES
 INSERT INTO product_has_size (product_id, size_id) VALUES
     (7, 1),
     (7, 2),
+    (7, 6),
     (8, 3),
     (8, 4),
+    (8, 6),
     (9, 1),
     (9, 4),
     (10, 1),
     (10, 2),
+    (10, 5),
     (11, 4),
     (11, 2),
+    (11, 5),
     (12, 2),
+    (12, 6),
     (12, 3);
 
 -- Category: Quinces
 INSERT INTO product_has_size (product_id, size_id) VALUES
     (13, 1),
     (13, 2),
+    (13, 5),
     (14, 3),
     (14, 4),
+    (14, 6),
     (15, 1),
     (15, 4),
+    (15, 5),
     (16, 1),
     (16, 2),
+    (16, 6),
     (17, 4),
     (17, 2),
+    (17, 5),
     (18, 2),
+    (18, 6),
     (18, 3);
 
 -- Category: Dama de honor
 INSERT INTO product_has_size (product_id, size_id) VALUES
     (19, 1),
     (19, 2),
+    (19, 5),
+    (19, 6),
     (20, 3),
     (20, 4),
+    (20, 5),
     (21, 1),
     (21, 4),
+    (21, 6),
     (22, 1),
     (22, 2),
+    (22, 5),
+    (22, 6),
     (23, 4),
     (23, 2),
+    (23, 5),
     (24, 2),
+    (24, 6),
     (24, 3);
 
 -- Category: Grado
 INSERT INTO product_has_size (product_id, size_id) VALUES
     (25, 1),
     (25, 2),
+    (25, 3),
+    (25, 5),
+    (25, 6),
     (26, 3),
+    (26, 5),
     (26, 4),
     (27, 1),
+    (27, 6),
     (27, 4),
     (28, 1),
     (28, 2),
+    (28, 5),
+    (28, 6),
     (29, 4),
     (29, 2),
+    (29, 6),
     (30, 2),
+    (30, 5),
     (30, 3);
 
 -- Insert users
