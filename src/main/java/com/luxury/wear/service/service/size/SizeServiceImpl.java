@@ -1,6 +1,8 @@
 package com.luxury.wear.service.service.size;
 
+import com.luxury.wear.service.commons.Constants;
 import com.luxury.wear.service.entity.Size;
+import com.luxury.wear.service.exception.ResourceNotFoundException;
 import com.luxury.wear.service.repository.SizeRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -16,5 +18,12 @@ public class SizeServiceImpl implements SizeService {
     @Override
     public List<Size> getAllSizes() {
         return sizeRepository.findAll();
+    }
+
+    @Override
+    public Size getSizeById(Long id) {
+        return sizeRepository.findById(id).orElseThrow(
+                () -> new ResourceNotFoundException(Constants.ERROR_SIZE_NOT_FOUND_ID + id)
+        );
     }
 }
