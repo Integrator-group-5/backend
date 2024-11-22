@@ -8,9 +8,9 @@ import com.luxury.wear.service.entity.User;
 import com.luxury.wear.service.exception.EntityAlreadyExistsException;
 import com.luxury.wear.service.exception.ResourceNotFoundException;
 import com.luxury.wear.service.mapper.UserMapper;
+import com.luxury.wear.service.repository.ProductRepository;
 import com.luxury.wear.service.repository.UserRepository;
 import com.luxury.wear.service.roles.UserRole;
-import com.luxury.wear.service.service.product.ProductService;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -27,7 +27,7 @@ public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final BCryptPasswordEncoder passwordEncoder;
     private final UserMapper userMapper;
-    private final ProductService productService;
+    private final ProductRepository productRepository;
 
     @Override
     public UserResponseDto createUser(UserRequestDto userRequestDto) {
@@ -133,7 +133,8 @@ public class UserServiceImpl implements UserService {
         User existingUser = userRepository.findByEmail(email)
                 .orElseThrow(() -> new ResourceNotFoundException(Constants.ERROR_USER_NOT_FOUND_EMAIL + email));
 
-        Product existingProduct = productService.GetProductByID(productId);
+        Product existingProduct = productRepository.findById(productId)
+                .orElseThrow(() -> new ResourceNotFoundException(Constants.ERROR_PRODUCT_NOT_FOUND_ID + email));
 
         // Toggle favorite logic
         List<Product> favoriteProducts = existingUser.getFavoriteProducts();
