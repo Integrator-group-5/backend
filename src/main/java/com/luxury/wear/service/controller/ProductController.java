@@ -167,16 +167,8 @@ public class ProductController {
         return ResponseEntity.ok(response);
     }
 
-/*    @PutMapping("/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<Product> updateProduct(@PathVariable Long id, @RequestBody Product product) {
-        product.setProductId(id);
-        Product updatedProduct = productService.updateProduct(product);
-        return ResponseEntity.status(HttpStatus.OK).body(updatedProduct);
-    }*/
-
-    @PutMapping
-    public ResponseEntity<Product> updateProduct(@RequestBody Product product) {
-        Long id = productService.getProductByReference(product.getReference()).getProductId();
         product.setProductId(id);
         Product updatedProduct = productService.updateProduct(product);
         return ResponseEntity.status(HttpStatus.OK).body(updatedProduct);
