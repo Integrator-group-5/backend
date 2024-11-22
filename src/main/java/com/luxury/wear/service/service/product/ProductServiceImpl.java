@@ -129,10 +129,10 @@ public class ProductServiceImpl implements ProductService {
         existingProduct.setColor(newProductData.getColor());
         existingProduct.setDesigner(newProductData.getDesigner());
         existingProduct.setPrice(newProductData.getPrice());
-        existingProduct.setImages(newProductData.getImages());
+//        existingProduct.setImages(newProductData.getImages());
         existingProduct.setCategory(newProductData.getCategory());
-        existingProduct.setSizes(newProductData.getSizes());
-        List<Image> existingImages = existingProduct.getImages();
+//        existingProduct.setSizes(newProductData.getSizes());
+/*        List<Image> existingImages = existingProduct.getImages();
         List<Image> newImages = newProductData.getImages();
         // Eliminar imágenes que ya no están presentes
         existingImages.removeIf(image -> !newImages.contains(image));
@@ -143,7 +143,7 @@ public class ProductServiceImpl implements ProductService {
                 existingImages.add(newImage);
             }
         }
-        existingProduct.setImages(existingImages);
+        existingProduct.setImages(existingImages);*/
 
         return productRepository.save(existingProduct);
     }
