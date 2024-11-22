@@ -8,6 +8,7 @@ import com.luxury.wear.service.service.FileUploadService;
 import com.luxury.wear.service.service.product.ProductService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.media.ArraySchema;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -43,6 +44,20 @@ public class ProductController {
 
     @PostMapping
     @Operation(summary = "Create a new product")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "201", description = "Product created successfully.",
+                    content = @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = ProductResponseDto.class))),
+            @ApiResponse(responseCode = "409", description = "Product already exists.",
+                    content = @Content(mediaType = "application/json",
+                            schema = @Schema(type = "string", example = "Product with name 'Vestido Azul' already exists."))),
+            @ApiResponse(responseCode = "409", description = "Product reference already exists.",
+                    content = @Content(mediaType = "application/json",
+                            schema = @Schema(type = "string", example = "Product with reference 'C-451' already exists."))),
+            @ApiResponse(responseCode = "500", description = "Internal server error.",
+                    content = @Content(mediaType = "application/json",
+                            schema = @Schema(type = "string", example = "An error occurred while processing your request.")))
+    })
     public ResponseEntity<ProductResponseDto> createProduct(@RequestBody ProductRequestDto productRequestDto) {
         ProductResponseDto createdProduct = productService.createProduct(productRequestDto);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdProduct);
@@ -50,13 +65,35 @@ public class ProductController {
 
     @GetMapping("/{id}")
     @Operation(summary = "Get a product by id")
-    public ResponseEntity<ProductResponseDto> getProductById(@PathVariable Long id) {
-        ProductResponseDto product = productService.getProductById(id);
-        return ResponseEntity.ok(product);
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Successfully retrieved product by id.",
+                    content = @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = ProductResponseDto.class))),
+            @ApiResponse(responseCode = "404", description = "Product not found.",
+                    content = @Content(mediaType = "application/json",
+                            schema = @Schema(type = "string", example = "Product not found with id: '1'."))),
+            @ApiResponse(responseCode = "500", description = "Internal server error.",
+                    content = @Content(mediaType = "application/json",
+                            schema = @Schema(type = "string", example = "An error occurred while processing your request.")))
+    })
+    public ResponseEntity<ProductResponseDto> getProductById(@PathVariable("id") Long id) {
+        ProductResponseDto existingProduct = productService.getProductById(id);
+        return ResponseEntity.status(HttpStatus.OK).body(existingProduct);
     }
 
     @GetMapping("/by-reference/{reference}")
     @Operation(summary = "Get a product by reference")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Successfully retrieved product by reference.",
+                    content = @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = ProductResponseDto.class))),
+            @ApiResponse(responseCode = "404", description = "Product not found.",
+                    content = @Content(mediaType = "application/json",
+                            schema = @Schema(type = "string", example = "Product not found with reference: 'C-451'."))),
+            @ApiResponse(responseCode = "500", description = "Internal server error.",
+                    content = @Content(mediaType = "application/json",
+                            schema = @Schema(type = "string", example = "An error occurred while processing your request.")))
+    })
     public ResponseEntity<ProductResponseDto> getProductByReference(@PathVariable("reference") String reference) {
         ProductResponseDto existingProduct = productService.getProductByReference(reference);
         return ResponseEntity.status(HttpStatus.OK).body(existingProduct);
@@ -71,9 +108,13 @@ public class ProductController {
 
     @GetMapping
     @Operation(summary = "Get all products")
+    @ApiResponse(
+            responseCode = "200", description = "Successfully retrieved all products.",
+            content = @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = ProductResponseDto.class)))
+    )
     public ResponseEntity<List<ProductResponseDto>> getAllProducts() {
         List<ProductResponseDto> products = productService.getAllProducts();
-        return ResponseEntity.ok(products);
+        return ResponseEntity.status(HttpStatus.OK).body(products);
     }
 
     @GetMapping("/paginated")
@@ -127,6 +168,10 @@ public class ProductController {
 
     @GetMapping("/top-rents")
     @Operation(summary = "Get all random products")
+    @ApiResponse(
+            responseCode = "200", description = "Successfully retrieved all random products.",
+            content = @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = ProductResponseDto.class)))
+    )
     public ResponseEntity<List<ProductResponseDto>> getAllTopProducts() {
         List<ProductResponseDto> topProducts = productService.getAllTopProducts();
         return ResponseEntity.status(HttpStatus.OK).body(topProducts);
@@ -140,7 +185,17 @@ public class ProductController {
 
     @DeleteMapping("/delete-product/{id}")
     @Operation(summary = "Delete a product by id")
-    public ResponseEntity<Void> deleteProduct(@PathVariable Long id) {
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "204", description = "Product deleted successfully.",
+                    content = @Content(mediaType = "application/json")),
+            @ApiResponse(responseCode = "404", description = "Product not found.",
+                    content = @Content(mediaType = "application/json",
+                            schema = @Schema(type = "string", example = "Product not found with id: '1'."))),
+            @ApiResponse(responseCode = "500", description = "Internal server error.",
+                    content = @Content(mediaType = "application/json",
+                            schema = @Schema(type = "string", example = "An error occurred while processing your request.")))
+    })
+    public ResponseEntity<Void> deleteProduct(@PathVariable("id") Long id) {
         productService.deleteProductById(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
