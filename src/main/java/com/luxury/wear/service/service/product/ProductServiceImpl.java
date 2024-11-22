@@ -33,10 +33,7 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public ProductResponseDto createProduct(ProductRequestDto productRequestDto) {
 
-        Product existingNameProduct = productRepository.findByName(productRequestDto.getName()).orElse(null);
-        if (existingNameProduct != null) {
-            throw new EntityAlreadyExistsException(Constants.ERROR_PRODUCT_ALREADY_EXISTS_NAME + productRequestDto.getName());
-        }
+        validateProductNameUniqueness(productRequestDto.getName());
 
         Product existingReferenceProduct = productRepository.findByReference(productRequestDto.getReference()).orElse(null);
         if (existingReferenceProduct != null) {
@@ -69,6 +66,20 @@ public class ProductServiceImpl implements ProductService {
     public Product getProductByReference(String reference) {
         return productRepository.findByReference(reference)
                 .orElseThrow(() -> new ResourceNotFoundException(Constants.ERROR_PRODUCT_NOT_FOUND_REFERENCE + reference));
+    }
+
+    private void validateProductNameUniqueness(String productName) {
+        productRepository.findByName(productName).ifPresent(product -> {
+            throw new EntityAlreadyExistsException(
+                    Constants.ERROR_PRODUCT_ALREADY_EXISTS_NAME + productName
+            );
+        });
+    }
+
+    @Override
+    public Product getProductByName(String productName) {
+        return productRepository.findByName(productName)
+                .orElseThrow(() -> new ResourceNotFoundException(Constants.ERROR_PRODUCT_NOT_FOUND_NAME + productName));
     }
 
     @Override

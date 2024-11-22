@@ -18,6 +18,8 @@ public interface ProductService {
 
     Product getProductByReference(String reference);
 
+    Product getProductByName(String productName);
+
     List<Product> getAllProducts();
 
     Page<Product> getAllProducts(Pageable pageable);

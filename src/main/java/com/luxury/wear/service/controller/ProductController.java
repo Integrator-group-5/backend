@@ -63,6 +63,13 @@ public class ProductController {
         return ResponseEntity.status(HttpStatus.OK).body(existingProduct);
     }
 
+    @GetMapping("/by-name/{name}")
+    @Operation(summary = "Get a product by name")
+    public ResponseEntity<Product> getProductByName(@PathVariable("name") String name) {
+        Product existingProduct = productService.getProductByName(name);
+        return ResponseEntity.status(HttpStatus.OK).body(existingProduct);
+    }
+
     @GetMapping
     @Operation(summary = "Get all products")
     public ResponseEntity<List<Product>> getAllProducts() {

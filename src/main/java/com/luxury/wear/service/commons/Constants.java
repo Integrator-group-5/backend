@@ -39,6 +39,7 @@ public class Constants {
 
     public static final String ERROR_PRODUCT_NOT_FOUND_ID = "Product not found with Id: ";
     public static final String ERROR_PRODUCT_NOT_FOUND_REFERENCE = "Product not found with reference: ";
+    public static final String ERROR_PRODUCT_NOT_FOUND_NAME = "Product not found with name: ";
     public static final String ERROR_PRODUCT_ALREADY_EXISTS_NAME = "Product already exists with name: ";
     public static final String ERROR_PRODUCT_ALREADY_EXISTS_REFERENCE = "Product already exists with reference: ";
 
