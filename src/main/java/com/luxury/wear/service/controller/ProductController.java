@@ -1,7 +1,10 @@
 package com.luxury.wear.service.controller;
 
+import com.luxury.wear.service.commons.Constants;
 import com.luxury.wear.service.dto.product.AvailabilityResponse;
-import com.luxury.wear.service.entity.Product;
+import com.luxury.wear.service.dto.product.ProductRequestDto;
+import com.luxury.wear.service.dto.product.ProductResponseDto;
+import com.luxury.wear.service.service.FileUploadService;
 import com.luxury.wear.service.service.product.ProductService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -13,31 +16,38 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import com.luxury.wear.service.service.reservation.ReservationService;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.time.LocalDate;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/v1/products")
 @AllArgsConstructor
+@Slf4j
 @Tag(name = "Product", description = "Endpoints for managing products")
 public class ProductController {
 
     private final ProductService productService;
     private final ReservationService reservationService;
+    private final FileUploadService fileUploadService;
 
     @PostMapping
     @Operation(summary = "Create a new product")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "201", description = "Product created successfully.",
                     content = @Content(mediaType = "application/json",
-                            schema = @Schema(implementation = Product.class))),
+                            schema = @Schema(implementation = ProductResponseDto.class))),
             @ApiResponse(responseCode = "409", description = "Product already exists.",
                     content = @Content(mediaType = "application/json",
                             schema = @Schema(type = "string", example = "Product with name 'Vestido Azul' already exists."))),
@@ -48,8 +58,8 @@ public class ProductController {
                     content = @Content(mediaType = "application/json",
                             schema = @Schema(type = "string", example = "An error occurred while processing your request.")))
     })
-    public ResponseEntity<Product> createProduct(@RequestBody Product product) {
-        Product createdProduct = productService.createProduct(product);
+    public ResponseEntity<ProductResponseDto> createProduct(@RequestBody ProductRequestDto productRequestDto) {
+        ProductResponseDto createdProduct = productService.createProduct(productRequestDto);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdProduct);
     }
 
@@ -58,7 +68,7 @@ public class ProductController {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Successfully retrieved product by id.",
                     content = @Content(mediaType = "application/json",
-                            schema = @Schema(implementation = Product.class))),
+                            schema = @Schema(implementation = ProductResponseDto.class))),
             @ApiResponse(responseCode = "404", description = "Product not found.",
                     content = @Content(mediaType = "application/json",
                             schema = @Schema(type = "string", example = "Product not found with id: '1'."))),
@@ -66,8 +76,8 @@ public class ProductController {
                     content = @Content(mediaType = "application/json",
                             schema = @Schema(type = "string", example = "An error occurred while processing your request.")))
     })
-    public ResponseEntity<Product> getProductById(@PathVariable("id") Long id) {
-        Product existingProduct = productService.GetProductByID(id);
+    public ResponseEntity<ProductResponseDto> getProductById(@PathVariable("id") Long id) {
+        ProductResponseDto existingProduct = productService.getProductById(id);
         return ResponseEntity.status(HttpStatus.OK).body(existingProduct);
     }
 
@@ -76,7 +86,7 @@ public class ProductController {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Successfully retrieved product by reference.",
                     content = @Content(mediaType = "application/json",
-                            schema = @Schema(implementation = Product.class))),
+                            schema = @Schema(implementation = ProductResponseDto.class))),
             @ApiResponse(responseCode = "404", description = "Product not found.",
                     content = @Content(mediaType = "application/json",
                             schema = @Schema(type = "string", example = "Product not found with reference: 'C-451'."))),
@@ -84,8 +94,15 @@ public class ProductController {
                     content = @Content(mediaType = "application/json",
                             schema = @Schema(type = "string", example = "An error occurred while processing your request.")))
     })
-    public ResponseEntity<Product> getProductByReference(@PathVariable("reference") String reference) {
-        Product existingProduct = productService.getProductByReference(reference);
+    public ResponseEntity<ProductResponseDto> getProductByReference(@PathVariable("reference") String reference) {
+        ProductResponseDto existingProduct = productService.getProductByReference(reference);
+        return ResponseEntity.status(HttpStatus.OK).body(existingProduct);
+    }
+
+    @GetMapping("/by-name/{name}")
+    @Operation(summary = "Get a product by name")
+    public ResponseEntity<ProductResponseDto> getProductByName(@PathVariable("name") String name) {
+        ProductResponseDto existingProduct = productService.getProductByName(name);
         return ResponseEntity.status(HttpStatus.OK).body(existingProduct);
     }
 
@@ -93,10 +110,10 @@ public class ProductController {
     @Operation(summary = "Get all products")
     @ApiResponse(
             responseCode = "200", description = "Successfully retrieved all products.",
-            content = @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = Product.class)))
+            content = @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = ProductResponseDto.class)))
     )
-    public ResponseEntity<List<Product>> getAllProducts() {
-        List<Product> products = productService.getAllProducts();
+    public ResponseEntity<List<ProductResponseDto>> getAllProducts() {
+        List<ProductResponseDto> products = productService.getAllProducts();
         return ResponseEntity.status(HttpStatus.OK).body(products);
     }
 
@@ -116,7 +133,7 @@ public class ProductController {
                     content = @Content(mediaType = "application/json",
                             schema = @Schema(type = "string", example = "An error occurred while processing your request.")))
     })
-    public ResponseEntity<Page<Product>> getAllProductsPaginated(
+    public ResponseEntity<Page<ProductResponseDto>> getAllProductsPaginated(
             @Parameter(description = "Page number to retrieve (0-based index)", example = "0")
             @RequestParam(defaultValue = "0") int page,
 
@@ -136,14 +153,14 @@ public class ProductController {
             @RequestParam(defaultValue = "") String search) {
 
         Pageable pageable = PageRequest.of(page, size);
-        Page<Product> products = productService.getAllProducts(pageable);
+        Page<ProductResponseDto> products;
 
-        if (category != null && !category.isEmpty()) {
+        if (!category.isEmpty()) {
             products = productService.getProductsByCategory(category, pageable);
-        }
-
-        if (startDate != null && endDate != null && (search != null && !search.isEmpty())) {
+        } else if (startDate != null && endDate != null && !search.isEmpty()) {
             products = productService.getAvailableProducts(startDate, endDate, search, pageable);
+        } else {
+            products = productService.getAllProducts(pageable);
         }
 
         return ResponseEntity.status(HttpStatus.OK).body(products);
@@ -153,11 +170,17 @@ public class ProductController {
     @Operation(summary = "Get all random products")
     @ApiResponse(
             responseCode = "200", description = "Successfully retrieved all random products.",
-            content = @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = Product.class)))
+            content = @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = ProductResponseDto.class)))
     )
-    public ResponseEntity<List<Product>> getAllTopProducts() {
-        List<Product> topProducts = productService.getAllTopProducts();
+    public ResponseEntity<List<ProductResponseDto>> getAllTopProducts() {
+        List<ProductResponseDto> topProducts = productService.getAllTopProducts();
         return ResponseEntity.status(HttpStatus.OK).body(topProducts);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<ProductResponseDto> updateProduct(@PathVariable Long id, @RequestBody ProductRequestDto productRequestDto) {
+        ProductResponseDto updatedProduct = productService.updateProduct(id, productRequestDto);
+        return ResponseEntity.ok(updatedProduct);
     }
 
     @DeleteMapping("/delete-product/{id}")
@@ -204,11 +227,28 @@ public class ProductController {
         return ResponseEntity.ok(response);
     }
 
-    @PutMapping("/{id}")
-    @Operation(summary = "Update a product by id")
-    public ResponseEntity<Product> updateProduct(@PathVariable Long id, @RequestBody Product product) {
-        product.setProductId(id);
-        Product updatedProduct = productService.updateProduct(product);
-        return ResponseEntity.status(HttpStatus.OK).body(updatedProduct);
+    @PostMapping("/upload")
+    @Operation(summary = "Upload an image")
+    public ResponseEntity<Map<String, String>> uploadImage(
+            @RequestParam("file") MultipartFile file,
+            @RequestParam("name") String name,
+            @RequestParam("category") String category) {
+
+        Map<String, String> response = new HashMap<>();
+        try {
+            String filePath = fileUploadService.uploadFile(file, name, Constants.PRODUCT_UPLOAD_DIR + "/" + category);
+            response.put("response", filePath.replace("public/", "/")); // Example for generating a relative path
+            return ResponseEntity.status(HttpStatus.CREATED).body(response);
+
+        } catch (IllegalArgumentException e) {
+            response.put("response", e.getMessage());
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
+
+        } catch (IOException e) {
+            String errorMessage = "Error saving file.";
+            response.put("response", errorMessage);
+            log.error(errorMessage, e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
+        }
     }
 }
