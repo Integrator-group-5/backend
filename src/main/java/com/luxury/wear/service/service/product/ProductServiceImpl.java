@@ -5,12 +5,14 @@ import com.luxury.wear.service.dto.product.ProductRequestDto;
 import com.luxury.wear.service.dto.product.ProductResponseDto;
 import com.luxury.wear.service.entity.Category;
 import com.luxury.wear.service.entity.Product;
+import com.luxury.wear.service.entity.Size;
 import com.luxury.wear.service.exception.EntityAlreadyExistsException;
 import com.luxury.wear.service.exception.ResourceNotFoundException;
 import com.luxury.wear.service.mapper.ProductMapper;
 import com.luxury.wear.service.repository.ProductRepository;
 import com.luxury.wear.service.repository.ReservationRepository;
 import com.luxury.wear.service.service.category.CategoryService;
+import com.luxury.wear.service.service.size.SizeService;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -28,6 +30,7 @@ public class ProductServiceImpl implements ProductService {
     private final ReservationRepository reservationRepository;
     private final CategoryService categoryService;
     private final ProductMapper productMapper;
+    private final SizeService sizeService;
 
     @Override
     public ProductResponseDto createProduct(ProductRequestDto productRequestDto) {
@@ -104,6 +107,12 @@ public class ProductServiceImpl implements ProductService {
         if (existingCategory == null) {
             throw new ResourceNotFoundException(Constants.ERROR_CATEGORY_NOT_FOUND_ID + productRequestDto.getCategory().getId());
         }
+
+        existingProduct.clearSizes();
+        productRequestDto.getSizes().forEach(size -> {
+            Size existingSize = sizeService.getSizeById(size.getId());
+            existingProduct.addSize(existingSize);
+        });
 
         Product updatedProduct = productMapper.updateEntity(existingProduct, productRequestDto);
         Product savedProduct = productRepository.save(updatedProduct);
