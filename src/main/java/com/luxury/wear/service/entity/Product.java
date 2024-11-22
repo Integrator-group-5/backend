@@ -62,4 +62,12 @@ public class Product {
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnore
     private List<Reservation> reservations = new ArrayList<>();
+
+    public void clearSizes() {
+        sizes.clear();
+    }
+
+    public void addSize(Size size) {
+        sizes.add(size);
+    }
 }
