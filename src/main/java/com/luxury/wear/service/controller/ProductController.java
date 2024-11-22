@@ -4,7 +4,6 @@ import com.luxury.wear.service.commons.Constants;
 import com.luxury.wear.service.dto.product.AvailabilityResponse;
 import com.luxury.wear.service.dto.product.ProductRequestDto;
 import com.luxury.wear.service.dto.product.ProductResponseDto;
-import com.luxury.wear.service.entity.Product;
 import com.luxury.wear.service.service.FileUploadService;
 import com.luxury.wear.service.service.product.ProductService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -51,30 +50,30 @@ public class ProductController {
 
     @GetMapping("/{id}")
     @Operation(summary = "Get a product by id")
-    public ResponseEntity<Product> getProductById(@PathVariable("id") Long id) {
-        Product existingProduct = productService.GetProductByID(id);
-        return ResponseEntity.status(HttpStatus.OK).body(existingProduct);
+    public ResponseEntity<ProductResponseDto> getProductById(@PathVariable Long id) {
+        ProductResponseDto product = productService.getProductById(id);
+        return ResponseEntity.ok(product);
     }
 
     @GetMapping("/by-reference/{reference}")
     @Operation(summary = "Get a product by reference")
-    public ResponseEntity<Product> getProductByReference(@PathVariable("reference") String reference) {
-        Product existingProduct = productService.getProductByReference(reference);
+    public ResponseEntity<ProductResponseDto> getProductByReference(@PathVariable("reference") String reference) {
+        ProductResponseDto existingProduct = productService.getProductByReference(reference);
         return ResponseEntity.status(HttpStatus.OK).body(existingProduct);
     }
 
     @GetMapping("/by-name/{name}")
     @Operation(summary = "Get a product by name")
-    public ResponseEntity<Product> getProductByName(@PathVariable("name") String name) {
-        Product existingProduct = productService.getProductByName(name);
+    public ResponseEntity<ProductResponseDto> getProductByName(@PathVariable("name") String name) {
+        ProductResponseDto existingProduct = productService.getProductByName(name);
         return ResponseEntity.status(HttpStatus.OK).body(existingProduct);
     }
 
     @GetMapping
     @Operation(summary = "Get all products")
-    public ResponseEntity<List<Product>> getAllProducts() {
-        List<Product> products = productService.getAllProducts();
-        return ResponseEntity.status(HttpStatus.OK).body(products);
+    public ResponseEntity<List<ProductResponseDto>> getAllProducts() {
+        List<ProductResponseDto> products = productService.getAllProducts();
+        return ResponseEntity.ok(products);
     }
 
     @GetMapping("/paginated")
@@ -93,7 +92,7 @@ public class ProductController {
                     content = @Content(mediaType = "application/json",
                             schema = @Schema(type = "string", example = "An error occurred while processing your request.")))
     })
-    public ResponseEntity<Page<Product>> getAllProductsPaginated(
+    public ResponseEntity<Page<ProductResponseDto>> getAllProductsPaginated(
             @Parameter(description = "Page number to retrieve (0-based index)", example = "0")
             @RequestParam(defaultValue = "0") int page,
 
@@ -113,14 +112,14 @@ public class ProductController {
             @RequestParam(defaultValue = "") String search) {
 
         Pageable pageable = PageRequest.of(page, size);
-        Page<Product> products = productService.getAllProducts(pageable);
+        Page<ProductResponseDto> products;
 
-        if (category != null && !category.isEmpty()) {
+        if (!category.isEmpty()) {
             products = productService.getProductsByCategory(category, pageable);
-        }
-
-        if (startDate != null && endDate != null && (search != null && !search.isEmpty())) {
+        } else if (startDate != null && endDate != null && !search.isEmpty()) {
             products = productService.getAvailableProducts(startDate, endDate, search, pageable);
+        } else {
+            products = productService.getAllProducts(pageable);
         }
 
         return ResponseEntity.status(HttpStatus.OK).body(products);
@@ -128,14 +127,20 @@ public class ProductController {
 
     @GetMapping("/top-rents")
     @Operation(summary = "Get all random products")
-    public ResponseEntity<List<Product>> getAllTopProducts() {
-        List<Product> topProducts = productService.getAllTopProducts();
+    public ResponseEntity<List<ProductResponseDto>> getAllTopProducts() {
+        List<ProductResponseDto> topProducts = productService.getAllTopProducts();
         return ResponseEntity.status(HttpStatus.OK).body(topProducts);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<ProductResponseDto> updateProduct(@PathVariable Long id, @RequestBody ProductRequestDto productRequestDto) {
+        ProductResponseDto updatedProduct = productService.updateProduct(id, productRequestDto);
+        return ResponseEntity.ok(updatedProduct);
     }
 
     @DeleteMapping("/delete-product/{id}")
     @Operation(summary = "Delete a product by id")
-    public ResponseEntity<Void> deleteProduct(@PathVariable("id") Long id) {
+    public ResponseEntity<Void> deleteProduct(@PathVariable Long id) {
         productService.deleteProductById(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
@@ -165,13 +170,6 @@ public class ProductController {
         AvailabilityResponse response = new AvailabilityResponse(unavailableDates);
 
         return ResponseEntity.ok(response);
-    }
-
-    @PutMapping("/{id}")
-    public ResponseEntity<Product> updateProduct(@PathVariable Long id, @RequestBody Product product) {
-        product.setProductId(id);
-        Product updatedProduct = productService.updateProduct(product);
-        return ResponseEntity.status(HttpStatus.OK).body(updatedProduct);
     }
 
     @PostMapping("/upload")

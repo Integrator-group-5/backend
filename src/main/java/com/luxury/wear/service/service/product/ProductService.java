@@ -2,7 +2,6 @@ package com.luxury.wear.service.service.product;
 
 import com.luxury.wear.service.dto.product.ProductRequestDto;
 import com.luxury.wear.service.dto.product.ProductResponseDto;
-import com.luxury.wear.service.entity.Product;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -14,23 +13,23 @@ public interface ProductService {
     // CRUD operations
     ProductResponseDto createProduct(ProductRequestDto productRequestDto);
 
-    Product GetProductByID(Long id);
+    ProductResponseDto getProductById(Long id);
 
-    Product getProductByReference(String reference);
+    ProductResponseDto getProductByReference(String reference);
 
-    Product getProductByName(String productName);
+    ProductResponseDto getProductByName(String name);
 
-    List<Product> getAllProducts();
+    List<ProductResponseDto> getAllProducts();
 
-    Page<Product> getAllProducts(Pageable pageable);
+    Page<ProductResponseDto> getAllProducts(Pageable pageable);
 
-    List<Product> getAllTopProducts();
+    List<ProductResponseDto> getAllTopProducts();
 
-    Page<Product> getProductsByCategory(String categoryName, Pageable pageable);
+    Page<ProductResponseDto> getProductsByCategory(String categoryName, Pageable pageable);
 
-    Product updateProduct(Product product);
+    ProductResponseDto updateProduct(Long id, ProductRequestDto productRequestDto);
 
     void deleteProductById(Long id);
 
-    Page<Product> getAvailableProducts(LocalDate startDate, LocalDate endDate, String search, Pageable pageable);
+    Page<ProductResponseDto> getAvailableProducts(LocalDate startDate, LocalDate endDate, String search, Pageable pageable);
 }

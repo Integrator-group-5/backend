@@ -46,4 +46,18 @@ public class ProductMapper {
                 .sizes(productRequestDto.getSizes())
                 .build();
     }
+
+    public Product updateEntity(Product existingProduct, ProductRequestDto productRequestDto) {
+        existingProduct.setName(productRequestDto.getName());
+        existingProduct.setReference(productRequestDto.getReference());
+        existingProduct.setDescription(productRequestDto.getDescription());
+        existingProduct.setMaterial(productRequestDto.getMaterial());
+        existingProduct.setColor(productRequestDto.getColor());
+        existingProduct.setDesigner(productRequestDto.getDesigner());
+        existingProduct.setPrice(productRequestDto.getPrice());
+        existingProduct.setCategory(productRequestDto.getCategory());
+//        existingProduct.setSizes(productRequestDto.getSizes());
+//        existingProduct.setImages(productRequestDto.getImages());
+        return existingProduct;
+    }
 }
