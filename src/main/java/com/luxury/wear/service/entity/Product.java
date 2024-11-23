@@ -70,4 +70,12 @@ public class Product {
     public void addSize(Size size) {
         sizes.add(size);
     }
+
+    public void clearImages() {
+        images.clear();
+    }
+
+    public void addImage(Image image) {
+        images.add(image);
+    }
 }
