@@ -22,13 +22,15 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     Optional<Product> findByName(String name);
 
     @Query("""
-            SELECT p FROM Product p 
-            WHERE p.id NOT IN :unavailableProductIds 
-              AND (LOWER(p.name) LIKE LOWER(CONCAT('%', :search, '%'))
-                   OR LOWER(p.color) LIKE LOWER(CONCAT('%', :search, '%'))
-                   OR LOWER(p.designer) LIKE LOWER(CONCAT('%', :search, '%'))
-                   OR LOWER(p.reference) LIKE LOWER(CONCAT('%', :search, '%')))
-            """)
+        SELECT p FROM Product p
+        WHERE p.id NOT IN :unavailableProductIds
+          AND (LOWER(p.name) LIKE LOWER(CONCAT('%', :search, '%'))
+               OR LOWER(p.reference) LIKE LOWER(CONCAT('%', :search, '%'))
+               OR LOWER(p.description) LIKE LOWER(CONCAT('%', :search, '%'))
+               OR LOWER(p.material) LIKE LOWER(CONCAT('%', :search, '%'))
+               OR LOWER(p.color) LIKE LOWER(CONCAT('%', :search, '%'))
+               OR LOWER(p.designer) LIKE LOWER(CONCAT('%', :search, '%')))
+        """)
     Page<Product> findAvailableProductsWithSearch(
             @Param("unavailableProductIds") List<Long> unavailableProductIds,
             @Param("search") String search,
