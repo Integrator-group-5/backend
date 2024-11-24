@@ -106,14 +106,19 @@ public class ProductServiceImpl implements ProductService {
         Product existingProduct = productRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(Constants.ERROR_PRODUCT_NOT_FOUND_ID + id));
 
-        existingProduct.clearSizes();
-        productRequestDto.getSizes().forEach(size -> {
-            Size existingSize = sizeService.getSizeById(size.getId());
-            existingProduct.addSize(existingSize);
-        });
-        existingProduct.clearImages();
-        productRequestDto.getImages().forEach(image -> image.setProduct(existingProduct));
-        productRequestDto.getImages().forEach(image -> existingProduct.addImage(image));
+        if (productRequestDto.getSizes() != null && !productRequestDto.getSizes().isEmpty()) {
+            existingProduct.clearSizes();
+            productRequestDto.getSizes().forEach(size -> {
+                Size existingSize = sizeService.getSizeById(size.getId());
+                existingProduct.addSize(existingSize);
+            });
+        }
+
+        if (productRequestDto.getImages() != null && !productRequestDto.getImages().isEmpty()) {
+            existingProduct.clearImages();
+            productRequestDto.getImages().forEach(image -> image.setProduct(existingProduct));
+            productRequestDto.getImages().forEach(image -> existingProduct.addImage(image));
+        }
 
         Product updatedProduct = productMapper.updateEntity(existingProduct, productRequestDto);
         Product savedProduct = productRepository.save(updatedProduct);
