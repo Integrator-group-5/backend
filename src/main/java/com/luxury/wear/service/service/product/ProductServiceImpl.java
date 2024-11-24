@@ -100,11 +100,13 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public ProductResponseDto updateProduct(Long id, ProductRequestDto productRequestDto) {
+        Product existingProduct = productRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException(Constants.ERROR_PRODUCT_NOT_FOUND_ID + id));
+
+        fillMissingFields(productRequestDto, existingProduct);
         validateUpdateProductNameUniqueness(productRequestDto.getName(), id);
         validateUpdateProductReferenceUniqueness(productRequestDto.getReference(), id);
         validateCategoryExistence(productRequestDto.getCategory().getId());
-        Product existingProduct = productRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException(Constants.ERROR_PRODUCT_NOT_FOUND_ID + id));
 
         if (productRequestDto.getSizes() != null && !productRequestDto.getSizes().isEmpty()) {
             existingProduct.clearSizes();
@@ -113,7 +115,6 @@ public class ProductServiceImpl implements ProductService {
                 existingProduct.addSize(existingSize);
             });
         }
-
         if (productRequestDto.getImages() != null && !productRequestDto.getImages().isEmpty()) {
             existingProduct.clearImages();
             productRequestDto.getImages().forEach(image -> image.setProduct(existingProduct));
@@ -164,6 +165,39 @@ public class ProductServiceImpl implements ProductService {
         Category existingCategory = categoryService.getCategoryById(categoryId);
         if (existingCategory == null) {
             throw new ResourceNotFoundException(Constants.ERROR_CATEGORY_NOT_FOUND_ID + categoryId);
+        }
+    }
+
+    private void fillMissingFields(ProductRequestDto productRequestDto, Product existingProduct) {
+        if (productRequestDto.getName() == null) {
+            productRequestDto.setName(existingProduct.getName());
+        }
+        if (productRequestDto.getReference() == null) {
+            productRequestDto.setReference(existingProduct.getReference());
+        }
+        if (productRequestDto.getDescription() == null) {
+            productRequestDto.setDescription(existingProduct.getDescription());
+        }
+        if (productRequestDto.getMaterial() == null) {
+            productRequestDto.setMaterial(existingProduct.getMaterial());
+        }
+        if (productRequestDto.getColor() == null) {
+            productRequestDto.setColor(existingProduct.getColor());
+        }
+        if (productRequestDto.getDesigner() == null) {
+            productRequestDto.setDesigner(existingProduct.getDesigner());
+        }
+        if (productRequestDto.getPrice() == null) {
+            productRequestDto.setPrice(existingProduct.getPrice());
+        }
+        if (productRequestDto.getCategory() == null) {
+            productRequestDto.setCategory(existingProduct.getCategory());
+        }
+        if (productRequestDto.getSizes() == null) {
+            productRequestDto.setSizes(existingProduct.getSizes());
+        }
+        if (productRequestDto.getImages() == null) {
+            productRequestDto.setImages(existingProduct.getImages());
         }
     }
 }
