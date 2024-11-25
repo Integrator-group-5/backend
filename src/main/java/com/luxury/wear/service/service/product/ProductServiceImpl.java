@@ -5,6 +5,7 @@ import com.luxury.wear.service.dto.product.ProductRequestDto;
 import com.luxury.wear.service.dto.product.ProductResponseDto;
 import com.luxury.wear.service.entity.Category;
 import com.luxury.wear.service.entity.Product;
+import com.luxury.wear.service.entity.Reservation;
 import com.luxury.wear.service.entity.Size;
 import com.luxury.wear.service.exception.EntityAlreadyExistsException;
 import com.luxury.wear.service.exception.ResourceNotFoundException;
@@ -13,13 +14,21 @@ import com.luxury.wear.service.repository.ProductRepository;
 import com.luxury.wear.service.repository.ReservationRepository;
 import com.luxury.wear.service.service.category.CategoryService;
 import com.luxury.wear.service.service.size.SizeService;
+import jakarta.persistence.criteria.Join;
+import jakarta.persistence.criteria.JoinType;
+import jakarta.persistence.criteria.Predicate;
+import jakarta.persistence.criteria.Root;
+import jakarta.persistence.criteria.Subquery;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
+import org.springframework.data.web.PagedResourcesAssembler;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -31,6 +40,7 @@ public class ProductServiceImpl implements ProductService {
     private final CategoryService categoryService;
     private final ProductMapper productMapper;
     private final SizeService sizeService;
+    private final PagedResourcesAssembler<ProductResponseDto> pagedResourcesAssembler;
 
     @Override
     public ProductResponseDto createProduct(ProductRequestDto productRequestDto) {
@@ -135,10 +145,55 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Page<ProductResponseDto> getAvailableProducts(LocalDate startDate, LocalDate endDate, String search, Pageable pageable) {
-        List<Long> unavailableProductIds = reservationRepository.findUnavailableProductIds(startDate, endDate);
-        return productRepository.findAvailableProductsWithSearch(unavailableProductIds, search, pageable)
-                .map(productMapper::toResponseDto);
+    public Page<ProductResponseDto> getAvailableProducts(LocalDate startDate, LocalDate endDate, String searchString, Pageable pageable) {
+        Specification<Product> specification = (root, query, cb) -> {
+            List<Predicate> predicates = new ArrayList<>();
+
+            // Search String Predicate
+            if (searchString != null && !searchString.trim().isEmpty()) {
+                String pattern = "%" + searchString.trim().toLowerCase() + "%";
+
+                List<Predicate> searchPredicates = new ArrayList<>();
+                searchPredicates.add(cb.like(cb.lower(root.get("name")), pattern));
+                searchPredicates.add(cb.like(cb.lower(root.get("reference")), pattern));
+                searchPredicates.add(cb.like(cb.lower(root.get("description")), pattern));
+                searchPredicates.add(cb.like(cb.lower(root.get("material")), pattern));
+                searchPredicates.add(cb.like(cb.lower(root.get("color")), pattern));
+                searchPredicates.add(cb.like(cb.lower(root.get("designer")), pattern));
+
+                // Join with Category
+                Join<Product, Category> categoryJoin = root.join("category", JoinType.LEFT);
+                searchPredicates.add(cb.like(cb.lower(categoryJoin.get("name")), pattern));
+
+                // Join with Sizes
+//                Join<Product, Size> sizeJoin = root.joinList("sizes", JoinType.LEFT);
+                Join<Product, Size> sizeJoin = root.join("sizes", JoinType.LEFT);
+                searchPredicates.add(cb.like(cb.lower(sizeJoin.get("size")), pattern));
+
+                predicates.add(cb.or(searchPredicates.toArray(new Predicate[0])));
+            }
+
+            // Availability Predicate
+            if (startDate != null && endDate != null) {
+                Subquery<Long> subquery = query.subquery(Long.class);
+                Root<Reservation> reservationRoot = subquery.from(Reservation.class);
+                subquery.select(reservationRoot.get("product").get("productId"));
+                Predicate reservationOverlap = cb.and(
+                        cb.equal(reservationRoot.get("product").get("productId"), root.get("productId")),
+                        cb.lessThanOrEqualTo(reservationRoot.get("startDate"), endDate),
+                        cb.greaterThanOrEqualTo(reservationRoot.get("endDate"), startDate)
+                );
+                subquery.where(reservationOverlap);
+
+                predicates.add(cb.not(root.get("productId").in(subquery)));
+            }
+
+            assert query != null;
+            query.distinct(true);
+            return cb.and(predicates.toArray(new Predicate[0]));
+        };
+
+        return productRepository.findAll(specification, pageable).map(productMapper::toResponseDto);
     }
 
     private void validateProductNameUniqueness(String productName) {
