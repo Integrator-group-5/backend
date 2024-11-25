@@ -178,6 +178,24 @@ public class ProductController {
     }
 
     @PutMapping("/{id}")
+    @Operation(summary = "Update a product by id")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Product updated successfully.",
+                    content = @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = ProductResponseDto.class))),
+            @ApiResponse(responseCode = "404-PRODUCT", description = "Product not found.",
+                    content = @Content(mediaType = "application/json",
+                            schema = @Schema(type = "string", example = "Product not found with id: '1'."))),
+            @ApiResponse(responseCode = "404-CATEGORY", description = "Category not found.",
+                    content = @Content(mediaType = "application/json",
+                            schema = @Schema(type = "string", example = "Category not found with id: '1'."))),
+            @ApiResponse(responseCode = "404-SIZE", description = "Size not found.",
+                    content = @Content(mediaType = "application/json",
+                            schema = @Schema(type = "string", example = "Size not found with id: '1'."))),
+            @ApiResponse(responseCode = "500", description = "Internal server error.",
+                    content = @Content(mediaType = "application/json",
+                            schema = @Schema(type = "string", example = "An error occurred while processing your request.")))
+    })
     public ResponseEntity<ProductResponseDto> updateProduct(@PathVariable Long id, @RequestBody ProductRequestDto productRequestDto) {
         ProductResponseDto updatedProduct = productService.updateProduct(id, productRequestDto);
         return ResponseEntity.ok(updatedProduct);

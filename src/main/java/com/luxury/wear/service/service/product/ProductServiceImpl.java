@@ -13,6 +13,7 @@ import com.luxury.wear.service.mapper.ProductMapper;
 import com.luxury.wear.service.repository.ProductRepository;
 import com.luxury.wear.service.repository.ReservationRepository;
 import com.luxury.wear.service.service.category.CategoryService;
+import com.luxury.wear.service.service.size.SizeService;
 import jakarta.persistence.criteria.Join;
 import jakarta.persistence.criteria.JoinType;
 import jakarta.persistence.criteria.Predicate;
@@ -38,6 +39,7 @@ public class ProductServiceImpl implements ProductService {
     private final ReservationRepository reservationRepository;
     private final CategoryService categoryService;
     private final ProductMapper productMapper;
+    private final SizeService sizeService;
     private final PagedResourcesAssembler<ProductResponseDto> pagedResourcesAssembler;
 
     @Override
@@ -111,9 +113,22 @@ public class ProductServiceImpl implements ProductService {
         Product existingProduct = productRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(Constants.ERROR_PRODUCT_NOT_FOUND_ID + id));
 
-        Category existingCategory = categoryService.getCategoryById(productRequestDto.getCategory().getId());
-        if (existingCategory == null) {
-            throw new ResourceNotFoundException(Constants.ERROR_CATEGORY_NOT_FOUND_ID + productRequestDto.getCategory().getId());
+        fillMissingFields(productRequestDto, existingProduct);
+        validateUpdateProductNameUniqueness(productRequestDto.getName(), id);
+        validateUpdateProductReferenceUniqueness(productRequestDto.getReference(), id);
+        validateCategoryExistence(productRequestDto.getCategory().getId());
+
+        if (productRequestDto.getSizes() != null && !productRequestDto.getSizes().isEmpty()) {
+            existingProduct.clearSizes();
+            productRequestDto.getSizes().forEach(size -> {
+                Size existingSize = sizeService.getSizeById(size.getId());
+                existingProduct.addSize(existingSize);
+            });
+        }
+        if (productRequestDto.getImages() != null && !productRequestDto.getImages().isEmpty()) {
+            existingProduct.clearImages();
+            productRequestDto.getImages().forEach(image -> image.setProduct(existingProduct));
+            productRequestDto.getImages().forEach(image -> existingProduct.addImage(image));
         }
 
         Product updatedProduct = productMapper.updateEntity(existingProduct, productRequestDto);
@@ -185,5 +200,59 @@ public class ProductServiceImpl implements ProductService {
         productRepository.findByName(productName).ifPresent(existing -> {
             throw new EntityAlreadyExistsException(Constants.ERROR_PRODUCT_ALREADY_EXISTS_NAME + productName);
         });
+    }
+
+    private void validateUpdateProductReferenceUniqueness(String productReference, Long id) {
+        Product existingProduct = productRepository.findByReference(productReference).orElse(null);
+        if (existingProduct != null && !existingProduct.getProductId().equals(id)) {
+            throw new EntityAlreadyExistsException(Constants.ERROR_PRODUCT_ALREADY_EXISTS_REFERENCE + productReference);
+        }
+    }
+
+    private void validateUpdateProductNameUniqueness(String productName, Long id) {
+        Product existingProduct = productRepository.findByName(productName).orElse(null);
+        if (existingProduct != null && !existingProduct.getProductId().equals(id)) {
+            throw new EntityAlreadyExistsException(Constants.ERROR_PRODUCT_ALREADY_EXISTS_NAME + productName);
+        }
+    }
+
+    private void validateCategoryExistence(Long categoryId) {
+        Category existingCategory = categoryService.getCategoryById(categoryId);
+        if (existingCategory == null) {
+            throw new ResourceNotFoundException(Constants.ERROR_CATEGORY_NOT_FOUND_ID + categoryId);
+        }
+    }
+
+    private void fillMissingFields(ProductRequestDto productRequestDto, Product existingProduct) {
+        if (productRequestDto.getName() == null) {
+            productRequestDto.setName(existingProduct.getName());
+        }
+        if (productRequestDto.getReference() == null) {
+            productRequestDto.setReference(existingProduct.getReference());
+        }
+        if (productRequestDto.getDescription() == null) {
+            productRequestDto.setDescription(existingProduct.getDescription());
+        }
+        if (productRequestDto.getMaterial() == null) {
+            productRequestDto.setMaterial(existingProduct.getMaterial());
+        }
+        if (productRequestDto.getColor() == null) {
+            productRequestDto.setColor(existingProduct.getColor());
+        }
+        if (productRequestDto.getDesigner() == null) {
+            productRequestDto.setDesigner(existingProduct.getDesigner());
+        }
+        if (productRequestDto.getPrice() == null) {
+            productRequestDto.setPrice(existingProduct.getPrice());
+        }
+        if (productRequestDto.getCategory() == null) {
+            productRequestDto.setCategory(existingProduct.getCategory());
+        }
+        if (productRequestDto.getSizes() == null) {
+            productRequestDto.setSizes(existingProduct.getSizes());
+        }
+        if (productRequestDto.getImages() == null) {
+            productRequestDto.setImages(existingProduct.getImages());
+        }
     }
 }

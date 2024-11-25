@@ -7,4 +7,6 @@ import java.util.List;
 public interface SizeService {
 
     List<Size> getAllSizes();
+
+    Size getSizeById(Long id);
 }

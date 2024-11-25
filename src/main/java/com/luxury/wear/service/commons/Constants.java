@@ -44,4 +44,6 @@ public class Constants {
     public static final String ERROR_PRODUCT_ALREADY_EXISTS_REFERENCE = "Product already exists with reference: ";
 
     public static final String ERROR_CATEGORY_NOT_FOUND_ID = "Category not found with Id: ";
+
+    public static final String ERROR_SIZE_NOT_FOUND_ID = "Size not found with Id: ";
 }
