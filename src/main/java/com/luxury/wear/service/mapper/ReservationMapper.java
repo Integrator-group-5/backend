@@ -15,8 +15,8 @@ public class ReservationMapper {
 
         return new ReservationResponseDto(
                 reservation.getId(),
-                reservation.getUser().getEmail(),
                 reservation.getProduct().getName(),
+                reservation.getUser().getEmail(),
                 reservation.getStartDate(),
                 reservation.getEndDate(),
                 reservation.getTotalCost()
