@@ -1,12 +1,17 @@
 package com.luxury.wear.service.service.reservation;
 
+import com.luxury.wear.service.dto.reservation.ReservationRequestDto;
+import com.luxury.wear.service.dto.reservation.ReservationResponseDto;
 import com.luxury.wear.service.entity.Product;
 import com.luxury.wear.service.entity.Reservation;
 import com.luxury.wear.service.entity.User;
+import com.luxury.wear.service.mapper.ReservationMapper;
 import com.luxury.wear.service.repository.ProductRepository;
 import com.luxury.wear.service.repository.ReservationRepository;
 import com.luxury.wear.service.repository.UserRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -22,36 +27,51 @@ public class ReservationServiceImpl implements ReservationService {
     private final ReservationRepository reservationRepository;
     private final ProductRepository productRepository;
     private final UserRepository userRepository;
+    private final ReservationMapper reservationMapper;
 
     @Override
-    public Reservation createReservation(String productName, String userEmail, LocalDate startDate, LocalDate endDate) {
+    public ReservationResponseDto createReservation(String userEmail, ReservationRequestDto reservationRequestDto) {
 
-        Product product = productRepository.findByName(productName)
+        Product product = productRepository.findByName(reservationRequestDto.getProductName())
                 .orElseThrow(() -> new IllegalArgumentException("Product not found"));
 
         User user = userRepository.findByEmail(userEmail)
                 .orElseThrow(() -> new IllegalArgumentException("User not found"));
 
-        if (!isAvailable(product.getProductId(), startDate, endDate)) {
+        if (!isAvailable(product.getProductId(), reservationRequestDto.getStartDate(), reservationRequestDto.getEndDate())) {
             throw new IllegalStateException("Product is not available for the selected dates");
         }
 
         BigDecimal totalCost = product.getPrice()
-                .multiply(BigDecimal.valueOf(ChronoUnit.DAYS.between(startDate, endDate)));
+                .multiply(BigDecimal.valueOf(ChronoUnit.DAYS.between(reservationRequestDto.getStartDate(), reservationRequestDto.getEndDate())));
 
-        Reservation reservation = new Reservation();
+        Reservation reservation = reservationMapper.toEntity(reservationRequestDto);
         reservation.setUser(user);
         reservation.setProduct(product);
-        reservation.setStartDate(startDate);
-        reservation.setEndDate(endDate);
         reservation.setTotalCost(totalCost);
 
-        return reservationRepository.save(reservation);
+        Reservation savedReservation = reservationRepository.save(reservation);
+
+        return reservationMapper.toResponseDto(savedReservation);
     }
 
     @Override
     public boolean isAvailable(Long productId, LocalDate startDate, LocalDate endDate) {
         return reservationRepository.findConflictingReservations(productId, startDate, endDate).isEmpty();
+    }
+
+    @Override
+    public List<ReservationResponseDto> getUserReservationsById(Long userId) {
+        return reservationRepository.findByUserUserId(userId)
+                .stream()
+                .map(reservationMapper::toResponseDto)
+                .toList();
+    }
+
+    @Override
+    public Page<ReservationResponseDto> getAllReservationsPaginated(Pageable pageable) {
+        return reservationRepository.findAll(pageable)
+                .map(reservationMapper::toResponseDto);
     }
 
     @Override
