@@ -24,7 +24,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
-import org.springframework.data.web.PagedResourcesAssembler;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -40,7 +39,7 @@ public class ProductServiceImpl implements ProductService {
     private final CategoryService categoryService;
     private final ProductMapper productMapper;
     private final SizeService sizeService;
-    private final PagedResourcesAssembler<ProductResponseDto> pagedResourcesAssembler;
+
 
     @Override
     public ProductResponseDto createProduct(ProductRequestDto productRequestDto) {
