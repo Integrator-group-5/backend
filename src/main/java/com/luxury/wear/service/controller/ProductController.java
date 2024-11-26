@@ -15,6 +15,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import com.luxury.wear.service.service.reservation.ReservationService;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
@@ -58,7 +59,7 @@ public class ProductController {
                     content = @Content(mediaType = "application/json",
                             schema = @Schema(type = "string", example = "An error occurred while processing your request.")))
     })
-    public ResponseEntity<ProductResponseDto> createProduct(@RequestBody ProductRequestDto productRequestDto) {
+    public ResponseEntity<ProductResponseDto> createProduct(@RequestBody @Valid ProductRequestDto productRequestDto) {
         ProductResponseDto createdProduct = productService.createProduct(productRequestDto);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdProduct);
     }
