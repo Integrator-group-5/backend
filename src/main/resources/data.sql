@@ -8,7 +8,7 @@ INSERT INTO cover (url) VALUES
 
 -- Insert categories
 INSERT INTO category (name, description, cover_id) VALUES
-    ('Cóctel', 'Vestidos elegantes y modernos, ideales para eventos semiformales.', 1),
+    ('Coctel', 'Vestidos elegantes y modernos, ideales para eventos semiformales.', 1),
     ('Novias', 'Vestidos únicos y románticos, perfectos para el día de la boda.', 2),
     ('Quinces', 'Vestidos de gala amplios y elegantes para celebrar los quince años.', 3),
     ('Dama honor', 'Vestidos coordinados y sencillos para acompañantes de la novia.', 4),

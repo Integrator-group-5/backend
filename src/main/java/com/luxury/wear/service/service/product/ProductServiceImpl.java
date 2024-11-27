@@ -11,7 +11,7 @@ import com.luxury.wear.service.exception.EntityAlreadyExistsException;
 import com.luxury.wear.service.exception.ResourceNotFoundException;
 import com.luxury.wear.service.mapper.ProductMapper;
 import com.luxury.wear.service.repository.ProductRepository;
-import com.luxury.wear.service.repository.ReservationRepository;
+import com.luxury.wear.service.repository.UserRepository;
 import com.luxury.wear.service.service.category.CategoryService;
 import com.luxury.wear.service.service.size.SizeService;
 import jakarta.persistence.criteria.Join;
@@ -19,6 +19,7 @@ import jakarta.persistence.criteria.JoinType;
 import jakarta.persistence.criteria.Predicate;
 import jakarta.persistence.criteria.Root;
 import jakarta.persistence.criteria.Subquery;
+import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -35,7 +36,7 @@ import java.util.List;
 public class ProductServiceImpl implements ProductService {
 
     private final ProductRepository productRepository;
-    private final ReservationRepository reservationRepository;
+    private final UserRepository userRepository;
     private final CategoryService categoryService;
     private final ProductMapper productMapper;
     private final SizeService sizeService;
@@ -90,20 +91,21 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Page<ProductResponseDto> getAllProducts(Pageable pageable) {
-        return productRepository.findAll(pageable)
+        return productRepository.findAllByDeletedFalse(pageable)
                 .map(productMapper::toResponseDto);
     }
 
     @Override
     public List<ProductResponseDto> getAllTopProducts() {
-        return productRepository.findAllRandom(PageRequest.of(0, 6)).stream()
+        return productRepository.findAllTopProductsByDeletedFalse(PageRequest.of(0, 6))
+                .stream()
                 .map(productMapper::toResponseDto)
                 .toList();
     }
 
     @Override
     public Page<ProductResponseDto> getProductsByCategory(String categoryName, Pageable pageable) {
-        return productRepository.findByCategory_Name(categoryName, pageable)
+        return productRepository.findByCategory_NameAndDeletedFalse(categoryName, pageable)
                 .map(productMapper::toResponseDto);
     }
 
@@ -135,18 +137,27 @@ public class ProductServiceImpl implements ProductService {
         return productMapper.toResponseDto(savedProduct);
     }
 
+    @Transactional
     @Override
     public void deleteProductById(Long id) {
-        if (!productRepository.existsById(id)) {
-            throw new ResourceNotFoundException(Constants.ERROR_PRODUCT_NOT_FOUND_ID + id);
-        }
-        productRepository.deleteById(id);
+        Product product = productRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Product not found with ID: " + id));
+
+        // Mark the product as deleted
+        product.setDeleted(true);
+        productRepository.save(product);
+
+        // Remove the product from all users' favorites
+        userRepository.removeProductFromFavorites(id);
     }
 
     @Override
     public Page<ProductResponseDto> getAvailableProducts(LocalDate startDate, LocalDate endDate, String searchString, Pageable pageable) {
         Specification<Product> specification = (root, query, cb) -> {
             List<Predicate> predicates = new ArrayList<>();
+
+        // Exclude Deleted Products
+        predicates.add(cb.isFalse(root.get("deleted")));
 
             // Search String Predicate
             if (searchString != null && !searchString.trim().isEmpty()) {
