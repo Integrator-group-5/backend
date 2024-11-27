@@ -91,20 +91,21 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Page<ProductResponseDto> getAllProducts(Pageable pageable) {
-        return productRepository.findAll(pageable)
+        return productRepository.findAllByDeletedFalse(pageable)
                 .map(productMapper::toResponseDto);
     }
 
     @Override
     public List<ProductResponseDto> getAllTopProducts() {
-        return productRepository.findAllRandom(PageRequest.of(0, 6)).stream()
+        return productRepository.findAllTopProductsByDeletedFalse(PageRequest.of(0, 6))
+                .stream()
                 .map(productMapper::toResponseDto)
                 .toList();
     }
 
     @Override
     public Page<ProductResponseDto> getProductsByCategory(String categoryName, Pageable pageable) {
-        return productRepository.findByCategory_Name(categoryName, pageable)
+        return productRepository.findByCategory_NameAndDeletedFalse(categoryName, pageable)
                 .map(productMapper::toResponseDto);
     }
 
@@ -154,6 +155,9 @@ public class ProductServiceImpl implements ProductService {
     public Page<ProductResponseDto> getAvailableProducts(LocalDate startDate, LocalDate endDate, String searchString, Pageable pageable) {
         Specification<Product> specification = (root, query, cb) -> {
             List<Predicate> predicates = new ArrayList<>();
+
+        // Exclude Deleted Products
+        predicates.add(cb.isFalse(root.get("deleted")));
 
             // Search String Predicate
             if (searchString != null && !searchString.trim().isEmpty()) {
