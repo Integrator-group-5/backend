@@ -11,7 +11,7 @@ import com.luxury.wear.service.exception.EntityAlreadyExistsException;
 import com.luxury.wear.service.exception.ResourceNotFoundException;
 import com.luxury.wear.service.mapper.ProductMapper;
 import com.luxury.wear.service.repository.ProductRepository;
-import com.luxury.wear.service.repository.ReservationRepository;
+import com.luxury.wear.service.repository.UserRepository;
 import com.luxury.wear.service.service.category.CategoryService;
 import com.luxury.wear.service.service.size.SizeService;
 import jakarta.persistence.criteria.Join;
@@ -19,6 +19,7 @@ import jakarta.persistence.criteria.JoinType;
 import jakarta.persistence.criteria.Predicate;
 import jakarta.persistence.criteria.Root;
 import jakarta.persistence.criteria.Subquery;
+import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -35,7 +36,7 @@ import java.util.List;
 public class ProductServiceImpl implements ProductService {
 
     private final ProductRepository productRepository;
-    private final ReservationRepository reservationRepository;
+    private final UserRepository userRepository;
     private final CategoryService categoryService;
     private final ProductMapper productMapper;
     private final SizeService sizeService;
@@ -135,12 +136,18 @@ public class ProductServiceImpl implements ProductService {
         return productMapper.toResponseDto(savedProduct);
     }
 
+    @Transactional
     @Override
     public void deleteProductById(Long id) {
-        if (!productRepository.existsById(id)) {
-            throw new ResourceNotFoundException(Constants.ERROR_PRODUCT_NOT_FOUND_ID + id);
-        }
-        productRepository.deleteById(id);
+        Product product = productRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Product not found with ID: " + id));
+
+        // Mark the product as deleted
+        product.setDeleted(true);
+        productRepository.save(product);
+
+        // Remove the product from all users' favorites
+        userRepository.removeProductFromFavorites(id);
     }
 
     @Override
