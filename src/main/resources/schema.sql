@@ -23,6 +23,7 @@ CREATE TABLE IF NOT EXISTS product (
     color VARCHAR(50),
     designer VARCHAR(100),
     price DECIMAL(10, 2) NOT NULL,
+    deleted BOOLEAN DEFAULT FALSE NOT NULL,
     category_id BIGINT NOT NULL,
     FOREIGN KEY (category_id) REFERENCES category(id) ON DELETE CASCADE
 );
@@ -32,6 +33,12 @@ CREATE INDEX idx_product_name ON product (name);
 CREATE INDEX idx_product_color ON product (color);
 CREATE INDEX idx_product_designer ON product (designer);
 CREATE INDEX idx_product_reference ON product (reference);
+
+-- Composite index for the `product` table
+CREATE INDEX idx_product_name_deleted ON product (name, deleted);
+CREATE INDEX idx_product_reference_deleted ON product (reference, deleted);
+CREATE INDEX idx_product_color_deleted ON product (color, deleted);
+
 
 -- Create the 'size' table
 CREATE TABLE IF NOT EXISTS size (

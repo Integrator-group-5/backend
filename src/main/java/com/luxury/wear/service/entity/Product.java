@@ -63,6 +63,9 @@ public class Product {
     @JsonIgnore
     private List<Reservation> reservations = new ArrayList<>();
 
+    @Column(nullable = false)
+    private boolean deleted = false;
+
     public void clearSizes() {
         sizes.clear();
     }
