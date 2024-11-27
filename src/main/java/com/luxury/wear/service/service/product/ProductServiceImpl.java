@@ -29,7 +29,13 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
@@ -204,6 +210,51 @@ public class ProductServiceImpl implements ProductService {
         };
 
         return productRepository.findAll(specification, pageable).map(productMapper::toResponseDto);
+    }
+
+    @Override
+    public Set<String> extractKeywords() {
+        List<Product> products = productRepository.findAll();
+
+        Set<String> keywords = new HashSet<>();
+
+        for (Product product : products) {
+            // Add the full product name
+            if (product.getName() != null) {
+                keywords.add(product.getName().toLowerCase());
+            }
+
+            // Add tokenized words from the product name
+            keywords.addAll(tokenize(product.getName()));
+
+            // Add other attributes: material, color, designer, category
+            Optional.ofNullable(product.getMaterial()).ifPresent(material -> keywords.add(material.toLowerCase()));
+            Optional.ofNullable(product.getColor()).ifPresent(color -> keywords.add(color.toLowerCase()));
+            Optional.ofNullable(product.getDesigner()).ifPresent(designer -> keywords.add(designer.toLowerCase()));
+            if (product.getCategory() != null && product.getCategory().getName() != null) {
+                keywords.add(product.getCategory().getName().toLowerCase());
+            }
+        }
+
+        // Filter for unique and relevant keywords
+        return keywords.stream()
+                .filter(keyword -> keyword.length() > 2) // Remove very short words
+                .collect(Collectors.toSet());
+    }
+
+    /**
+     * Tokenizes a string into individual words, avoiding null issues.
+     *
+     * @param input The input string.
+     * @return A list of tokenized words.
+     */
+    private List<String> tokenize(String input) {
+        if (input == null || input.isEmpty()) {
+            return Collections.emptyList();
+        }
+        return Arrays.stream(input.toLowerCase().split("\\s+")) // Split by spaces
+                .filter(word -> word.length() > 2) // Remove short tokens
+                .collect(Collectors.toList());
     }
 
     private void validateProductNameUniqueness(String productName) {

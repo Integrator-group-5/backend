@@ -31,6 +31,7 @@ import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 @RestController
 @RequestMapping("/api/v1/products")
@@ -269,5 +270,13 @@ public class ProductController {
             log.error(errorMessage, e);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
         }
+    }
+
+    @GetMapping("/keywords")
+    @Operation(summary = "Get dynamically generated keywords")
+    @ApiResponse(responseCode = "200", description = "Successfully retrieved keywords.")
+    public ResponseEntity<Set<String>> getKeywords() {
+        Set<String> keywords = productService.extractKeywords();
+        return ResponseEntity.ok(keywords);
     }
 }

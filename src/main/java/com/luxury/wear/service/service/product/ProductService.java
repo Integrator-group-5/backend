@@ -7,6 +7,7 @@ import org.springframework.data.domain.Pageable;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Set;
 
 public interface ProductService {
 
@@ -32,4 +33,6 @@ public interface ProductService {
     void deleteProductById(Long id);
 
     Page<ProductResponseDto> getAvailableProducts(LocalDate startDate, LocalDate endDate, String search, Pageable pageable);
+
+    Set<String> extractKeywords();
 }
