@@ -368,45 +368,45 @@ INSERT INTO app_user (first_name, last_name, email, password, user_role) VALUES
 -- Insert reservations
 -- User: Luis Pérez
 INSERT INTO reservation (user_id, product_id, start_date, end_date, total_cost) VALUES
-(11, 1, '2024-11-20', '2024-11-22', 400000), -- 2 days * 200000 (Product: Hollywood)
-(11, 7, '2024-12-01', '2024-12-03', 5000000); -- 2 days * 2500000 (Product: Camelia)
+(11, 1, '2024-11-27', '2024-11-29', 400000), -- 2 days * 200000 (Product: Hollywood)
+(11, 7, '2024-12-04', '2024-12-06', 5000000); -- 2 days * 2500000 (Product: Camelia)
 
 -- User: María Gómez
 INSERT INTO reservation (user_id, product_id, start_date, end_date, total_cost) VALUES
-(12, 2, '2024-11-15', '2024-11-18', 450000), -- 3 days * 150000 (Product: Brianna)
-(12, 8, '2024-12-05', '2024-12-10', 14000000); -- 5 days * 2800000 (Product: Flor de Lirio)
+(12, 2, '2024-12-11', '2024-12-14', 450000), -- 3 days * 150000 (Product: Brianna)
+(12, 8, '2024-12-18', '2024-12-23', 14000000); -- 5 days * 2800000 (Product: Flor de Lirio)
 
 -- User: Sofia Martínez
 INSERT INTO reservation (user_id, product_id, start_date, end_date, total_cost) VALUES
-(13, 3, '2024-11-25', '2024-11-28', 900000), -- 3 days * 300000 (Product: Gold Party)
-(13, 13, '2024-12-01', '2024-12-02', 1800000); -- 2 days * 900000 (Product: Sueño de quince)
+(13, 3, '2024-12-25', '2024-12-28', 900000), -- 3 days * 300000 (Product: Gold Party)
+(13, 13, '2025-01-01', '2025-01-02', 1800000); -- 2 days * 900000 (Product: Sueño de quince)
 
 -- User: Carlos Ruiz
 INSERT INTO reservation (user_id, product_id, start_date, end_date, total_cost) VALUES
-(14, 4, '2024-11-10', '2024-11-13', 1080000), -- 4 days * 270000 (Product: Esplendor Dorado)
-(14, 19, '2024-12-01', '2024-12-05', 2250000); -- 5 days * 450000 (Product: Niebla de medianoche)
+(14, 4, '2025-01-08', '2025-01-11', 1080000), -- 4 days * 270000 (Product: Esplendor Dorado)
+(14, 19, '2025-01-15', '2025-01-19', 2250000); -- 5 days * 450000 (Product: Niebla de medianoche)
 
 -- User: Ana López
 INSERT INTO reservation (user_id, product_id, start_date, end_date, total_cost) VALUES
-(15, 5, '2024-11-22', '2024-11-23', 440000), -- 2 days * 220000 (Product: Luz de Medianoche)
-(15, 25, '2024-12-10', '2024-12-12', 600000); -- 2 days * 300000 (Product: Destello Plateado)
+(15, 5, '2025-01-22', '2025-01-23', 440000), -- 2 days * 220000 (Product: Luz de Medianoche)
+(15, 25, '2025-01-29', '2025-01-31', 600000); -- 2 days * 300000 (Product: Destello Plateado)
 
 -- User: David Blanco
 INSERT INTO reservation (user_id, product_id, start_date, end_date, total_cost) VALUES
-(7, 6, '2024-11-16', '2024-11-17', 500000), -- 2 days * 250000 (Product: Esencia Esmeralda)
-(7, 26, '2024-12-03', '2024-12-05', 690000); -- 3 days * 230000 (Product: Primavera Azul)
+(7, 6, '2025-02-05', '2025-02-06', 500000), -- 2 days * 250000 (Product: Esencia Esmeralda)
+(7, 26, '2025-02-12', '2025-02-14', 690000); -- 3 days * 230000 (Product: Primavera Azul)
 
 -- User: Claudia Heredia
 INSERT INTO reservation (user_id, product_id, start_date, end_date, total_cost) VALUES
-(6, 11, '2024-11-18', '2024-11-20', 5400000), -- 3 days * 1800000 (Product: Primavera Floral)
-(6, 12, '2024-12-06', '2024-12-07', 6000000); -- 2 days * 3000000 (Product: Eterna Elegancia)
+(6, 11, '2025-02-19', '2025-02-21', 5400000), -- 3 days * 1800000 (Product: Primavera Floral)
+(6, 12, '2025-02-26', '2025-02-27', 6000000); -- 2 days * 3000000 (Product: Eterna Elegancia)
 
 -- User: Ingrid Munera Valencia
 INSERT INTO reservation (user_id, product_id, start_date, end_date, total_cost) VALUES
-(8, 15, '2024-11-23', '2024-11-27', 4600000), -- 4 days * 1150000 (Product: Noche de Estrellas)
-(8, 20, '2024-12-08', '2024-12-09', 700000); -- 2 days * 350000 (Product: Amanecer Coral)
+(8, 15, '2025-03-05', '2025-03-09', 4600000), -- 4 days * 1150000 (Product: Noche de Estrellas)
+(8, 20, '2025-03-12', '2025-03-13', 700000); -- 2 days * 350000 (Product: Amanecer Coral)
 
 -- User: Victor Falconí
 INSERT INTO reservation (user_id, product_id, start_date, end_date, total_cost) VALUES
-(10, 28, '2024-11-29', '2024-11-30', 460000), -- 2 days * 230000 (Product: Estrella Plateada)
-(10, 30, '2024-12-12', '2024-12-14', 750000); -- 3 days * 250000 (Product: Atardecer Dorado)
+(10, 28, '2025-03-19', '2025-03-20', 460000), -- 2 days * 230000 (Product: Estrella Plateada)
+(10, 30, '2025-03-26', '2025-03-28', 750000); -- 3 days * 250000 (Product: Atardecer Dorado)
