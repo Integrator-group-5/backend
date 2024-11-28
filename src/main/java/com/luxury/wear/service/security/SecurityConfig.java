@@ -28,6 +28,7 @@ public class SecurityConfig {
                         // Endpoints accessible without authentication
                         .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll() // Allow all OPTIONS requests
                         .requestMatchers("/auth/**").permitAll()
+                        .requestMatchers("/api/v1/countries/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/v1/products", "/api/v1/products/{id}", "/api/v1/products/paginated", "/api/v1/products/top-rents", "api/v1/products/by-reference/{reference}", "api/v1/products/by-name/{name}", "/api/v1/products/{id}/availability").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/v1/categories", "/api/v1/categories/{id}", "/api/v1/categories/paginated").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/v1/sizes").permitAll()

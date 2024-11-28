@@ -92,10 +92,23 @@ CREATE TABLE IF NOT EXISTS reservation (
 CREATE INDEX idx_reservation_date_range ON reservation (start_date, end_date);
 CREATE INDEX idx_reservation_product_id ON reservation (product_id);
 
-CREATE TABLE user_favorites (
+CREATE TABLE IF NOT EXISTS user_favorites (
     user_id BIGINT NOT NULL,
     product_id BIGINT NOT NULL,
     PRIMARY KEY (user_id, product_id),
     FOREIGN KEY (user_id) REFERENCES app_user(user_id),
     FOREIGN KEY (product_id) REFERENCES product(product_id)
+);
+
+CREATE TABLE IF NOT EXISTS country (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    code VARCHAR(3) NOT NULL UNIQUE,
+    name VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS country_departments (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    country_id BIGINT NOT NULL,
+    department VARCHAR(255) NOT NULL,
+    FOREIGN KEY (country_id) REFERENCES country(id) ON DELETE CASCADE
 );
