@@ -9,6 +9,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+
 @Component
 @Slf4j
 public class LoadAdmin implements CommandLineRunner {
@@ -41,7 +43,7 @@ public class LoadAdmin implements CommandLineRunner {
             }
 
             String encodedPassword = passwordEncoder.encode(adminPassword);
-            User user = new User(null, "admin", "admin", adminEmail, encodedPassword, UserRole.ADMIN, null);
+            User user = new User(null, "admin", "admin", null, null, adminEmail, encodedPassword, UserRole.ADMIN, new ArrayList<>(), new ArrayList<>());
             userRepository.save(user);
             log.info("Admin user created successfully.");
 
