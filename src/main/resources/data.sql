@@ -357,7 +357,7 @@ INSERT INTO app_user (first_name, last_name, email, password, user_role) VALUES
     ('Claudia', 'Heredia', 'cheredia@mail.com', 'hashedPassword', 'ADMIN'),
     ('David', 'Blanco', 'davidb@mail.com', 'hashedPassword', 'ADMIN'),
     ('Ingrid', 'Munera Valencia', 'ingridmv@mail.com', 'hashedPassword', 'ADMIN'),
-    ('Karenpe', 'Perez', 'karenpe1@mail.com', 'hashedPassword', 'ADMIN'),
+    ('Karen', 'Perez', 'karenpe1@mail.com', 'hashedPassword', 'ADMIN'),
     ('Victor', 'Falconí', 'victorf@mail.com', 'hashedPassword', 'ADMIN'),
     ('Luis', 'Pérez', 'luis.perez@mail.com', 'hashedPassword', 'USER'),
     ('María', 'Gómez', 'maria.gomez@mail.com', 'hashedPassword', 'USER'),
@@ -365,51 +365,64 @@ INSERT INTO app_user (first_name, last_name, email, password, user_role) VALUES
     ('Carlos', 'Ruiz', 'carlos.ruiz@mail.com', 'hashedPassword', 'USER'),
     ('Ana', 'López', 'analopez@mail.com', 'hashedPassword', 'USER');
 
+-- Insert addresses
+INSERT INTO address (country, province, city, address, postal_code, user_id) VALUES
+    ('USA', 'California', 'Los Angeles', '123 Main St', '90001', 11), -- Luis Pérez
+    ('USA', 'New York', 'New York', '456 Park Ave', '10001', 12), -- María Gómez
+    ('USA', 'Texas', 'Houston', '789 Elm St', '77001', 13), -- Sofia Martínez
+    ('USA', 'Florida', 'Miami', '321 Ocean Dr', '33101', 14), -- Carlos Ruiz
+    ('USA', 'Illinois', 'Chicago', '654 Lake Shore Dr', '60601', 15), -- Ana López
+    ('USA', 'California', 'San Francisco', '987 Mission St', '94101', 7), -- David Blanco
+    ('USA', 'Nevada', 'Las Vegas', '111 Vegas Blvd', '89101', 6), -- Claudia Heredia
+    ('USA', 'Colorado', 'Denver', '222 Rockies Rd', '80201', 8), -- Ingrid Munera Valencia
+    ('USA', 'Georgia', 'Atlanta', '333 Peach St', '30301', 10); -- Victor Falconí
+
+
 -- Insert reservations
 -- User: Luis Pérez
-INSERT INTO reservation (user_id, product_id, start_date, end_date, total_cost) VALUES
-(11, 1, '2024-11-27', '2024-11-29', 400000), -- 2 days * 200000 (Product: Hollywood)
-(11, 7, '2024-12-04', '2024-12-06', 5000000); -- 2 days * 2500000 (Product: Camelia)
+INSERT INTO reservation (user_id, product_id, address_id, dni, phone_number, start_date, end_date, total_cost) VALUES
+(11, 1, 1, 'LUIS123456', '555-1111', '2024-11-27', '2024-11-29', 400000),  -- 2 days * 200000 (Product: Hollywood)
+(11, 7, 1, 'LUIS123456', '555-1111', '2024-12-04', '2024-12-06', 5000000); -- 2 days * 2500000 (Product: Camelia)
 
 -- User: María Gómez
-INSERT INTO reservation (user_id, product_id, start_date, end_date, total_cost) VALUES
-(12, 2, '2024-12-11', '2024-12-14', 450000), -- 3 days * 150000 (Product: Brianna)
-(12, 8, '2024-12-18', '2024-12-23', 14000000); -- 5 days * 2800000 (Product: Flor de Lirio)
+INSERT INTO reservation (user_id, product_id, address_id, dni, phone_number, start_date, end_date, total_cost) VALUES
+(12, 2, 2, 'MARIA654321', '555-2222', '2024-12-11', '2024-12-14', 450000),   -- 3 days * 150000 (Product: Brianna)
+(12, 8, 2, 'MARIA654321', '555-2222', '2024-12-18', '2024-12-23', 14000000); -- 5 days * 2800000 (Product: Flor de Lirio)
 
 -- User: Sofia Martínez
-INSERT INTO reservation (user_id, product_id, start_date, end_date, total_cost) VALUES
-(13, 3, '2024-12-25', '2024-12-28', 900000), -- 3 days * 300000 (Product: Gold Party)
-(13, 13, '2025-01-01', '2025-01-02', 1800000); -- 2 days * 900000 (Product: Sueño de quince)
+INSERT INTO reservation (user_id, product_id, address_id, dni, phone_number, start_date, end_date, total_cost) VALUES
+(13, 3, 3, 'SOFIA987654', '555-3333', '2024-12-25', '2024-12-28', 900000),  -- 3 days * 300000 (Product: Gold Party)
+(13, 13, 3, 'SOFIA987654', '555-3333', '2025-01-01', '2025-01-02', 1800000); -- 2 days * 900000 (Product: Sueño de quince)
 
 -- User: Carlos Ruiz
-INSERT INTO reservation (user_id, product_id, start_date, end_date, total_cost) VALUES
-(14, 4, '2025-01-08', '2025-01-11', 1080000), -- 4 days * 270000 (Product: Esplendor Dorado)
-(14, 19, '2025-01-15', '2025-01-19', 2250000); -- 5 days * 450000 (Product: Niebla de medianoche)
+INSERT INTO reservation (user_id, product_id, address_id, dni, phone_number, start_date, end_date, total_cost) VALUES
+(14, 4, 4, 'CARLOS456789', '555-4444', '2025-01-08', '2025-01-11', 1080000),  -- 4 days * 270000 (Product: Esplendor Dorado)
+(14, 19, 4, 'CARLOS456789', '555-4444', '2025-01-15', '2025-01-19', 2250000); -- 5 days * 450000 (Product: Niebla de medianoche)
 
 -- User: Ana López
-INSERT INTO reservation (user_id, product_id, start_date, end_date, total_cost) VALUES
-(15, 5, '2025-01-22', '2025-01-23', 440000), -- 2 days * 220000 (Product: Luz de Medianoche)
-(15, 25, '2025-01-29', '2025-01-31', 600000); -- 2 days * 300000 (Product: Destello Plateado)
+INSERT INTO reservation (user_id, product_id, address_id, dni, phone_number, start_date, end_date, total_cost) VALUES
+(15, 5, 5, 'ANA654789', '555-5555', '2025-01-22', '2025-01-23', 440000),  -- 2 days * 220000 (Product: Luz de Medianoche)
+(15, 25, 5, 'ANA654789', '555-5555', '2025-01-29', '2025-01-31', 600000); -- 2 days * 300000 (Product: Destello Plateado)
 
 -- User: David Blanco
-INSERT INTO reservation (user_id, product_id, start_date, end_date, total_cost) VALUES
-(7, 6, '2025-02-05', '2025-02-06', 500000), -- 2 days * 250000 (Product: Esencia Esmeralda)
-(7, 26, '2025-02-12', '2025-02-14', 690000); -- 3 days * 230000 (Product: Primavera Azul)
+INSERT INTO reservation (user_id, product_id, address_id, dni, phone_number, start_date, end_date, total_cost) VALUES
+(7, 6, 6, 'DAVID123987', '555-6666', '2025-02-05', '2025-02-06', 500000),  -- 2 days * 250000 (Product: Esencia Esmeralda)
+(7, 26, 6, 'DAVID123987', '555-6666', '2025-02-12', '2025-02-14', 690000); -- 3 days * 230000 (Product: Primavera Azul)
 
 -- User: Claudia Heredia
-INSERT INTO reservation (user_id, product_id, start_date, end_date, total_cost) VALUES
-(6, 11, '2025-02-19', '2025-02-21', 5400000), -- 3 days * 1800000 (Product: Primavera Floral)
-(6, 12, '2025-02-26', '2025-02-27', 6000000); -- 2 days * 3000000 (Product: Eterna Elegancia)
+INSERT INTO reservation (user_id, product_id, address_id, dni, phone_number, start_date, end_date, total_cost) VALUES
+(6, 11, 7, 'CLAUDIA456123', '555-7777', '2025-02-19', '2025-02-21', 5400000), -- 3 days * 1800000 (Product: Primavera Floral)
+(6, 12, 7, 'CLAUDIA456123', '555-7777', '2025-02-26', '2025-02-27', 6000000); -- 2 days * 3000000 (Product: Eterna Elegancia)
 
 -- User: Ingrid Munera Valencia
-INSERT INTO reservation (user_id, product_id, start_date, end_date, total_cost) VALUES
-(8, 15, '2025-03-05', '2025-03-09', 4600000), -- 4 days * 1150000 (Product: Noche de Estrellas)
-(8, 20, '2025-03-12', '2025-03-13', 700000); -- 2 days * 350000 (Product: Amanecer Coral)
+INSERT INTO reservation (user_id, product_id, address_id, dni, phone_number, start_date, end_date, total_cost) VALUES
+(8, 15, 8, 'INGRID789123', '555-8888', '2025-03-05', '2025-03-09', 4600000),  -- 4 days * 1150000 (Product: Noche de Estrellas)
+(8, 20, 8, 'INGRID789123', '555-8888', '2025-03-12', '2025-03-13', 700000);   -- 2 days * 350000 (Product: Amanecer Coral)
 
 -- User: Victor Falconí
-INSERT INTO reservation (user_id, product_id, start_date, end_date, total_cost) VALUES
-(10, 28, '2025-03-19', '2025-03-20', 460000), -- 2 days * 230000 (Product: Estrella Plateada)
-(10, 30, '2025-03-26', '2025-03-28', 750000); -- 3 days * 250000 (Product: Atardecer Dorado)
+INSERT INTO reservation (user_id, product_id, address_id, dni, phone_number, start_date, end_date, total_cost) VALUES
+(10, 28, 9, 'VICTOR321654', '555-9999', '2025-03-19', '2025-03-20', 460000), -- 2 days * 230000 (Product: Estrella Plateada)
+(10, 30, 9, 'VICTOR321654', '555-9999', '2025-03-26', '2025-03-28', 750000); -- 3 days * 250000 (Product: Atardecer Dorado)
 
 -- Insert countries
 INSERT INTO country (code, name) VALUES
