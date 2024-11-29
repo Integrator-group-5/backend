@@ -453,32 +453,33 @@ INSERT INTO country_departments (country_id, department) VALUES
 ((SELECT id FROM country WHERE code = 'CO'), 'Vaupés'),
 ((SELECT id FROM country WHERE code = 'CO'), 'Vichada');
 
--- Departments for Ecuador
+-- Departments for Peru
 INSERT INTO country_departments (country_id, department) VALUES
-((SELECT id FROM country WHERE code = 'EC'), 'Azuay'),
-((SELECT id FROM country WHERE code = 'EC'), 'Bolívar'),
-((SELECT id FROM country WHERE code = 'EC'), 'Cañar'),
-((SELECT id FROM country WHERE code = 'EC'), 'Carchi'),
-((SELECT id FROM country WHERE code = 'EC'), 'Chimborazo'),
-((SELECT id FROM country WHERE code = 'EC'), 'Cotopaxi'),
-((SELECT id FROM country WHERE code = 'EC'), 'El Oro'),
-((SELECT id FROM country WHERE code = 'EC'), 'Esmeraldas'),
-((SELECT id FROM country WHERE code = 'EC'), 'Galápagos'),
-((SELECT id FROM country WHERE code = 'EC'), 'Guayas'),
-((SELECT id FROM country WHERE code = 'EC'), 'Imbabura'),
-((SELECT id FROM country WHERE code = 'EC'), 'Loja'),
-((SELECT id FROM country WHERE code = 'EC'), 'Los Ríos'),
-((SELECT id FROM country WHERE code = 'EC'), 'Manabí'),
-((SELECT id FROM country WHERE code = 'EC'), 'Morona Santiago'),
-((SELECT id FROM country WHERE code = 'EC'), 'Napo'),
-((SELECT id FROM country WHERE code = 'EC'), 'Orellana'),
-((SELECT id FROM country WHERE code = 'EC'), 'Pastaza'),
-((SELECT id FROM country WHERE code = 'EC'), 'Pichincha'),
-((SELECT id FROM country WHERE code = 'EC'), 'Santa Elena'),
-((SELECT id FROM country WHERE code = 'EC'), 'Santo Domingo de los Tsáchilas'),
-((SELECT id FROM country WHERE code = 'EC'), 'Sucumbíos'),
-((SELECT id FROM country WHERE code = 'EC'), 'Tungurahua'),
-((SELECT id FROM country WHERE code = 'EC'), 'Zamora Chinchipe');
+((SELECT id FROM country WHERE code = 'PE'), 'Amazonas'),
+((SELECT id FROM country WHERE code = 'PE'), 'Áncash'),
+((SELECT id FROM country WHERE code = 'PE'), 'Apurímac'),
+((SELECT id FROM country WHERE code = 'PE'), 'Arequipa'),
+((SELECT id FROM country WHERE code = 'PE'), 'Ayacucho'),
+((SELECT id FROM country WHERE code = 'PE'), 'Cajamarca'),
+((SELECT id FROM country WHERE code = 'PE'), 'Callao'),
+((SELECT id FROM country WHERE code = 'PE'), 'Cusco'),
+((SELECT id FROM country WHERE code = 'PE'), 'Huancavelica'),
+((SELECT id FROM country WHERE code = 'PE'), 'Huánuco'),
+((SELECT id FROM country WHERE code = 'PE'), 'Ica'),
+((SELECT id FROM country WHERE code = 'PE'), 'Junín'),
+((SELECT id FROM country WHERE code = 'PE'), 'La Libertad'),
+((SELECT id FROM country WHERE code = 'PE'), 'Lambayeque'),
+((SELECT id FROM country WHERE code = 'PE'), 'Lima'),
+((SELECT id FROM country WHERE code = 'PE'), 'Loreto'),
+((SELECT id FROM country WHERE code = 'PE'), 'Madre de Dios'),
+((SELECT id FROM country WHERE code = 'PE'), 'Moquegua'),
+((SELECT id FROM country WHERE code = 'PE'), 'Pasco'),
+((SELECT id FROM country WHERE code = 'PE'), 'Piura'),
+((SELECT id FROM country WHERE code = 'PE'), 'Puno'),
+((SELECT id FROM country WHERE code = 'PE'), 'San Martín'),
+((SELECT id FROM country WHERE code = 'PE'), 'Tacna'),
+((SELECT id FROM country WHERE code = 'PE'), 'Tumbes'),
+((SELECT id FROM country WHERE code = 'PE'), 'Ucayali');
 
 -- Departments for Ecuador
 INSERT INTO country_departments (country_id, department) VALUES
