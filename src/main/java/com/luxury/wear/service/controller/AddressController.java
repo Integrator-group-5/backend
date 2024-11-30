@@ -1,5 +1,6 @@
 package com.luxury.wear.service.controller;
 
+import com.luxury.wear.service.dto.address.AddressResponseDto;
 import com.luxury.wear.service.entity.Address;
 import com.luxury.wear.service.entity.Category;
 import com.luxury.wear.service.service.address.AddressService;
@@ -28,7 +29,7 @@ public class AddressController {
 
     private final AddressService addressService;
 
-    @GetMapping
+    @GetMapping("/by-user")
     @Operation(summary = "Get all addresses that belong to an User")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "List of all addresses",
@@ -39,8 +40,8 @@ public class AddressController {
                             schema = @Schema(type = "string",
                                     example = "An error occurred while processing your request.")))
     })
-    public ResponseEntity<List<Address>> getUserAddressesByEmail(Authentication authentication) {
-        List<Address> addresses = addressService.getUserAddressesByEmail(authentication.getName());
+    public ResponseEntity<List<AddressResponseDto>> getUserAddressesByEmail(Authentication authentication) {
+        List<AddressResponseDto> addresses = addressService.getUserAddressesByEmail(authentication.getName());
         return ResponseEntity.status(HttpStatus.OK).body(addresses);
     }
 }
