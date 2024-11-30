@@ -31,10 +31,6 @@ public class Reservation {
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    private String firstName;
-
-    private String lastName;
-
     private String dni;
 
     private String phoneNumber;
