@@ -43,7 +43,7 @@ public class LoadAdmin implements CommandLineRunner {
             }
 
             String encodedPassword = passwordEncoder.encode(adminPassword);
-            User user = new User(null, "admin", "admin", null, null, adminEmail, encodedPassword, UserRole.ADMIN, new ArrayList<>(), new ArrayList<>());
+            User user = new User(null, "admin", "admin", "123456789", "321654987", adminEmail, encodedPassword, UserRole.ADMIN, new ArrayList<>(), new ArrayList<>());
             userRepository.save(user);
             log.info("Admin user created successfully.");
 
