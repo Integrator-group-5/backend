@@ -357,13 +357,14 @@ INSERT INTO app_user (first_name, last_name, email, password, user_role) VALUES
     ('Claudia', 'Heredia', 'cheredia@mail.com', 'hashedPassword', 'ADMIN'),
     ('David', 'Blanco', 'davidb@mail.com', 'hashedPassword', 'ADMIN'),
     ('Ingrid', 'Munera Valencia', 'ingridmv@mail.com', 'hashedPassword', 'ADMIN'),
-    ('Karen', 'Perez', 'karenpe1@mail.com', 'hashedPassword', 'ADMIN'),
-    ('Victor', 'Falconí', 'victorf@mail.com', 'hashedPassword', 'ADMIN'),
     ('Luis', 'Pérez', 'luis.perez@mail.com', 'hashedPassword', 'USER'),
+    ('Victor', 'Falconí', 'victorf@mail.com', 'hashedPassword', 'ADMIN'),
+    ('Karen', 'Perez', 'karenpe1@mail.com', 'hashedPassword', 'ADMIN'),
     ('María', 'Gómez', 'maria.gomez@mail.com', 'hashedPassword', 'USER'),
     ('Sofia', 'Martínez', 'sofia.m@mail.com', 'hashedPassword', 'USER'),
     ('Carlos', 'Ruiz', 'carlos.ruiz@mail.com', 'hashedPassword', 'USER'),
-    ('Ana', 'López', 'analopez@mail.com', 'hashedPassword', 'USER');
+    ('Ana', 'López', 'analopez@mail.com', 'hashedPassword', 'USER'),
+    ('Admin', 'Luxury Wear', 'admin@mail.com', 'hashedPassword', 'ADMIN');
 
 -- Insert addresses
 INSERT INTO address (country, province, city, address, postal_code, user_id) VALUES
@@ -375,7 +376,11 @@ INSERT INTO address (country, province, city, address, postal_code, user_id) VAL
     ('USA', 'California', 'San Francisco', '987 Mission St', '94101', 7), -- David Blanco
     ('USA', 'Nevada', 'Las Vegas', '111 Vegas Blvd', '89101', 6), -- Claudia Heredia
     ('USA', 'Colorado', 'Denver', '222 Rockies Rd', '80201', 8), -- Ingrid Munera Valencia
-    ('USA', 'Georgia', 'Atlanta', '333 Peach St', '30301', 10); -- Victor Falconí
+    ('USA', 'Georgia', 'Atlanta', '333 Peach St', '30301', 10), -- Victor Falconí
+    ('USA', 'Florida', 'Miami', '321 Ocean Dr', '33101', 7), -- David Blanco
+    ('USA', 'Georgia', 'Atlanta', '333 Peach St', '30301', 16), -- Admin User
+    ('USA', 'California', 'San Francisco', '987 Mission St', '94101', 16), -- Admin User
+    ('USA', 'Nevada', 'Las Vegas', '111 Vegas Blvd', '89101', 16); -- Admin User
 
 
 -- Insert reservations
