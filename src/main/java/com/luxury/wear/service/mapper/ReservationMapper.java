@@ -2,7 +2,10 @@ package com.luxury.wear.service.mapper;
 
 import com.luxury.wear.service.dto.reservation.ReservationRequestDto;
 import com.luxury.wear.service.dto.reservation.ReservationResponseDto;
+import com.luxury.wear.service.entity.Address;
+import com.luxury.wear.service.entity.Product;
 import com.luxury.wear.service.entity.Reservation;
+import com.luxury.wear.service.entity.User;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -23,15 +26,20 @@ public class ReservationMapper {
         );
     }
 
-    public Reservation toEntity(ReservationRequestDto reservationRequestDto) {
-        if (reservationRequestDto == null) {
+    public Reservation toEntity(ReservationRequestDto dto, User user, Product product, Address address) {
+        if (dto == null) {
             return null;
         }
 
         return Reservation.builder()
-                .startDate(reservationRequestDto.getStartDate())
-                .endDate(reservationRequestDto.getEndDate())
-                .totalCost(reservationRequestDto.getTotalCost())
+                .phoneNumber(dto.getPhoneNumber())
+                .dni(dto.getDni())
+                .startDate(dto.getStartDate())
+                .endDate(dto.getEndDate())
+                .totalCost(dto.getTotalCost())
+                .user(user)
+                .product(product)
+                .address(address)
                 .build();
     }
 }
