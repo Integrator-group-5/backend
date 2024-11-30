@@ -2,13 +2,17 @@ package com.luxury.wear.service.service.reservation;
 
 import com.luxury.wear.service.dto.reservation.ReservationRequestDto;
 import com.luxury.wear.service.dto.reservation.ReservationResponseDto;
+import com.luxury.wear.service.entity.Address;
 import com.luxury.wear.service.entity.Product;
 import com.luxury.wear.service.entity.Reservation;
 import com.luxury.wear.service.entity.User;
 import com.luxury.wear.service.mapper.ReservationMapper;
+import com.luxury.wear.service.repository.AddressRepository;
 import com.luxury.wear.service.repository.ProductRepository;
 import com.luxury.wear.service.repository.ReservationRepository;
 import com.luxury.wear.service.repository.UserRepository;
+import com.luxury.wear.service.service.address.AddressService;
+import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -28,15 +32,18 @@ public class ReservationServiceImpl implements ReservationService {
     private final ProductRepository productRepository;
     private final UserRepository userRepository;
     private final ReservationMapper reservationMapper;
+    private final AddressService addressService;
+    private final AddressRepository addressRepository;
 
+    @Transactional
     @Override
     public ReservationResponseDto createReservation(String userEmail, ReservationRequestDto reservationRequestDto) {
 
         Product product = productRepository.findByName(reservationRequestDto.getProductName())
-                .orElseThrow(() -> new IllegalArgumentException("Product not found"));
+                .orElseThrow(() -> new IllegalArgumentException("Product with name " + reservationRequestDto.getProductName() + " not found"));
 
         User user = userRepository.findByEmail(userEmail)
-                .orElseThrow(() -> new IllegalArgumentException("User not found"));
+                .orElseThrow(() -> new IllegalArgumentException("User with email " + userEmail + " not found"));
 
         if (!isAvailable(product.getProductId(), reservationRequestDto.getStartDate(), reservationRequestDto.getEndDate())) {
             throw new IllegalStateException("Product is not available for the selected dates");
@@ -45,9 +52,31 @@ public class ReservationServiceImpl implements ReservationService {
         BigDecimal totalCost = product.getPrice()
                 .multiply(BigDecimal.valueOf(ChronoUnit.DAYS.between(reservationRequestDto.getStartDate(), reservationRequestDto.getEndDate())));
 
-        Reservation reservation = reservationMapper.toEntity(reservationRequestDto);
-        reservation.setUser(user);
-        reservation.setProduct(product);
+        Address address = null;
+
+        if (reservationRequestDto.getSaveData()) {
+            user.setDni(reservationRequestDto.getDni());
+            user.setPhoneNumber(reservationRequestDto.getPhoneNumber());
+            userRepository.save(user);
+
+            Long addressId = reservationRequestDto.getAddressId();
+
+            if (addressId != null && addressId > 0) {
+                address = addressRepository.findById(addressId)
+                        .orElseThrow(() -> new IllegalArgumentException("Address with ID " + addressId + " not found"));
+
+                if (!address.getUser().getUserId().equals(user.getUserId())) {
+                    throw new IllegalStateException("Address does not belong to the user");
+                }
+
+                addressService.updateAddress(addressId, reservationRequestDto);
+            } else {
+                address = addressService.createAddress(reservationRequestDto, user);
+                user.getAddresses().add(address);
+            }
+        }
+
+        Reservation reservation = reservationMapper.toEntity(reservationRequestDto, user, product, address);
         reservation.setTotalCost(totalCost);
 
         Reservation savedReservation = reservationRepository.save(reservation);
