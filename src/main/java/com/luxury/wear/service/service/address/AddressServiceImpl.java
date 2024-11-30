@@ -7,6 +7,8 @@ import com.luxury.wear.service.repository.AddressRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @AllArgsConstructor
 public class AddressServiceImpl implements AddressService {
@@ -42,5 +44,10 @@ public class AddressServiceImpl implements AddressService {
         existingAddress.setPostalCode(requestDto.getPostalCode());
 
         addressRepository.save(existingAddress);
+    }
+
+    @Override
+    public List<Address> getUserAddressesByEmail(String email) {
+        return  addressRepository.findByUserEmail(email);
     }
 }
