@@ -1,8 +1,10 @@
 package com.luxury.wear.service.service.address;
 
+import com.luxury.wear.service.dto.address.AddressResponseDto;
 import com.luxury.wear.service.dto.reservation.ReservationRequestDto;
 import com.luxury.wear.service.entity.Address;
 import com.luxury.wear.service.entity.User;
+import com.luxury.wear.service.mapper.AddressMapper;
 import com.luxury.wear.service.repository.AddressRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -14,6 +16,7 @@ import java.util.List;
 public class AddressServiceImpl implements AddressService {
 
     private final AddressRepository addressRepository;
+    private final AddressMapper addressMapper;
 
     @Override
     public Address createAddress(ReservationRequestDto requestDto, User user) {
@@ -47,7 +50,10 @@ public class AddressServiceImpl implements AddressService {
     }
 
     @Override
-    public List<Address> getUserAddressesByEmail(String email) {
-        return  addressRepository.findByUserEmail(email);
+    public List<AddressResponseDto> getUserAddressesByEmail(String email) {
+        return  addressRepository.findByUserEmail(email)
+                .stream()
+                .map(addressMapper::toResponseDto)
+                .toList();
     }
 }
