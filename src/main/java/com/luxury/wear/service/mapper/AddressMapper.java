@@ -18,8 +18,8 @@ public class AddressMapper {
                 address.getCountry(),
                 address.getProvince(),
                 address.getCity(),
-                address.getDetail(),
                 address.getAddress(),
+                address.getDetail(),
                 address.getPostalCode()
         );
     }
