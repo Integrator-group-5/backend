@@ -36,7 +36,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             "/swagger-ui/**", List.of("GET"),
             "/v3/api-docs/**", List.of("GET"),
             "/api/v1/categories", List.of("GET"),
-            "/api/v1/categories/{id}", List.of("GET"),
+            "/api/v1/addresses/{countryName}/pickup-sites", List.of("GET"),
             "/api/v1/sizes", List.of("GET"),
             "/public/**", List.of("GET"),
             "/h2-console/**", List.of("GET", "POST", "PUT", "DELETE")

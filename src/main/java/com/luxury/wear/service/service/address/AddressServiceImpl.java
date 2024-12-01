@@ -8,6 +8,7 @@ import com.luxury.wear.service.repository.AddressRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -53,5 +54,39 @@ public class AddressServiceImpl implements AddressService {
                 .stream()
                 .map(addressMapper::toResponseDto)
                 .toList();
+    }
+
+    public AddressResponseDto getAddressById(Long id) {
+        return addressRepository.findById(id)
+                .map(addressMapper::toResponseDto)
+                .orElseThrow(() -> new IllegalArgumentException("Address not found with id: " + id));
+    }
+
+    @Override
+    public List<AddressResponseDto> getPickupPointByCountryName(String countryName) {
+        List<AddressResponseDto> addresses = new ArrayList<>();
+        switch (countryName) {
+            case "Colombia" -> {
+                addresses.add(getAddressById(1L));
+                addresses.add(getAddressById(2L));
+                addresses.add(getAddressById(3L));
+            }
+            case "Perú" -> {
+                addresses.add(getAddressById(4L));
+                addresses.add(getAddressById(5L));
+                addresses.add(getAddressById(6L));
+            }
+            case "Ecuador" -> {
+                addresses.add(getAddressById(7L));
+                addresses.add(getAddressById(8L));
+                addresses.add(getAddressById(9L));
+            }
+            case "México" -> {
+                addresses.add(getAddressById(10L));
+                addresses.add(getAddressById(11L));
+                addresses.add(getAddressById(12L));
+            }
+        }
+        return addresses;
     }
 }

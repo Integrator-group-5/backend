@@ -13,4 +13,6 @@ public interface AddressService {
     void updateAddress(Long addressId, ReservationRequestDto reservationRequestDto);
 
     List<AddressResponseDto> getUserAddressesByEmail(String email);
+
+    List<AddressResponseDto> getPickupPointByCountryName(String countryName);
 }

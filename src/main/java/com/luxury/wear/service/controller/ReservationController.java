@@ -1,10 +1,7 @@
 package com.luxury.wear.service.controller;
 
-import com.luxury.wear.service.dto.product.ProductRequestDto;
-import com.luxury.wear.service.dto.product.ProductResponseDto;
 import com.luxury.wear.service.dto.reservation.ReservationRequestDto;
 import com.luxury.wear.service.dto.reservation.ReservationResponseDto;
-import com.luxury.wear.service.dto.user.UserResponseDto;
 import com.luxury.wear.service.service.reservation.ReservationService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
