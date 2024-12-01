@@ -52,7 +52,7 @@ public class ReservationServiceImpl implements ReservationService {
         BigDecimal totalCost = product.getPrice()
                 .multiply(BigDecimal.valueOf(ChronoUnit.DAYS.between(reservationRequestDto.getStartDate(), reservationRequestDto.getEndDate())));
 
-        Address address = null;
+        Address address = addressService.createAddress(reservationRequestDto);
 
         if (reservationRequestDto.getSaveData()) {
             user.setDni(reservationRequestDto.getDni());
@@ -71,8 +71,9 @@ public class ReservationServiceImpl implements ReservationService {
 
                 addressService.updateAddress(addressId, reservationRequestDto);
             } else {
-                address = addressService.createAddress(reservationRequestDto, user);
                 user.getAddresses().add(address);
+                address.setUser(user);
+                addressRepository.save(address);
             }
         }
 

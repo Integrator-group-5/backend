@@ -84,7 +84,7 @@ CREATE TABLE IF NOT EXISTS address (
     address VARCHAR(255) NOT NULL,
     detail VARCHAR(255),
     postal_code VARCHAR(20),
-    user_id BIGINT NOT NULL,
+    user_id BIGINT,
     CONSTRAINT fk_address_user FOREIGN KEY (user_id) REFERENCES app_user(user_id) ON DELETE CASCADE
 );
 
@@ -97,7 +97,7 @@ CREATE TABLE IF NOT EXISTS reservation (
     user_id BIGINT NOT NULL,
     product_id BIGINT NOT NULL,
     address_id BIGINT NOT NULL,
-    dni VARCHAR(255)  NOT NULL,
+    dni VARCHAR(255) NOT NULL,
     phone_number VARCHAR(255) NOT NULL,
     start_date DATE NOT NULL,
     end_date DATE NOT NULL,

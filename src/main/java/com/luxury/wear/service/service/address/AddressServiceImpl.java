@@ -3,7 +3,6 @@ package com.luxury.wear.service.service.address;
 import com.luxury.wear.service.dto.address.AddressResponseDto;
 import com.luxury.wear.service.dto.reservation.ReservationRequestDto;
 import com.luxury.wear.service.entity.Address;
-import com.luxury.wear.service.entity.User;
 import com.luxury.wear.service.mapper.AddressMapper;
 import com.luxury.wear.service.repository.AddressRepository;
 import lombok.AllArgsConstructor;
@@ -19,7 +18,7 @@ public class AddressServiceImpl implements AddressService {
     private final AddressMapper addressMapper;
 
     @Override
-    public Address createAddress(ReservationRequestDto requestDto, User user) {
+    public Address createAddress(ReservationRequestDto requestDto) {
         Address address = Address.builder()
                 .country(requestDto.getCountry())
                 .province(requestDto.getProvince())
@@ -27,7 +26,6 @@ public class AddressServiceImpl implements AddressService {
                 .address(requestDto.getAddress())
                 .detail(requestDto.getDetail())
                 .postalCode(requestDto.getPostalCode())
-                .user(user)
                 .build();
 
         return addressRepository.save(address);
