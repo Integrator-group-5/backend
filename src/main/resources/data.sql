@@ -371,32 +371,32 @@ INSERT INTO app_user (first_name, last_name, email, password, user_role) VALUES
 INSERT INTO address (country, province, city, address, postal_code) VALUES
     ('Colombia', 'Cundinamarca', 'Los Angeles', 'Primer Centro fisico Colombia', '90001'),
     ('Colombia', 'Antioquia', 'New York', 'Segundo Centro fisico Colombia', '10001'),
-    ('Colombia', 'Texas', 'Houston', 'Tercer Centro fisico Colombia', '77001'),
-    ('Perú', 'Florida', 'Miami', 'Primer Centro fisico Perú', '33101'),
-    ('Perú', 'Illinois', 'Chicago', 'Segundo Centro fisico Perú', '60601'),
-    ('Perú', 'California', 'San Francisco', 'Tercer Centro fisico Perú', '94101'),
-    ('Ecuador', 'Nevada', 'Las Vegas', 'Primer Centro fisico Ecuador', '89101'),
-    ('Ecuador', 'Colorado', 'Denver', 'Segundo Centro fisico Ecuador', '80201'),
-    ('Ecuador', 'Georgia', 'Atlanta', 'Tercer Centro fisico Ecuador', '30301'),
-    ('México', 'Florida', 'Miami', 'Primer Centro fisico México', '33101'),
-    ('México', 'Georgia', 'Atlanta', 'Segundo Centro fisico México', '30301'),
-    ('México', 'Nevada', 'Las Vegas', 'Tercer Centro fisico México', '89101');
+    ('Colombia', 'Santander', 'Houston', 'Tercer Centro fisico Colombia', '77001'),
+    ('Perú', 'Lima', 'Miami', 'Primer Centro fisico Perú', '33101'),
+    ('Perú', 'Ayacucho', 'Chicago', 'Segundo Centro fisico Perú', '60601'),
+    ('Perú', 'Arequipa', 'San Francisco', 'Tercer Centro fisico Perú', '94101'),
+    ('Ecuador', 'Carchi', 'Las Vegas', 'Primer Centro fisico Ecuador', '89101'),
+    ('Ecuador', 'Pichincha', 'Denver', 'Segundo Centro fisico Ecuador', '80201'),
+    ('Ecuador', 'Chimborazo', 'Atlanta', 'Tercer Centro fisico Ecuador', '30301'),
+    ('México', 'Ciudad de México', 'Miami', 'Primer Centro fisico México', '33101'),
+    ('México', 'Oaxaca', 'Atlanta', 'Segundo Centro fisico México', '30301'),
+    ('México', 'Guanajuato', 'Las Vegas', 'Tercer Centro fisico México', '89101');
 
 -- Insert addresses
 INSERT INTO address (country, province, city, address, postal_code, user_id) VALUES
-    ('USA', 'California', 'Los Angeles', '123 Main St', '90001', 11), -- Luis Pérez
-    ('USA', 'New York', 'New York', '456 Park Ave', '10001', 12), -- María Gómez
-    ('USA', 'Texas', 'Houston', '789 Elm St', '77001', 13), -- Sofia Martínez
-    ('USA', 'Florida', 'Miami', '321 Ocean Dr', '33101', 14), -- Carlos Ruiz
-    ('USA', 'Illinois', 'Chicago', '654 Lake Shore Dr', '60601', 15), -- Ana López
-    ('USA', 'California', 'San Francisco', '987 Mission St', '94101', 7), -- David Blanco
-    ('USA', 'Nevada', 'Las Vegas', '111 Vegas Blvd', '89101', 6), -- Claudia Heredia
-    ('USA', 'Colorado', 'Denver', '222 Rockies Rd', '80201', 8), -- Ingrid Munera Valencia
-    ('USA', 'Georgia', 'Atlanta', '333 Peach St', '30301', 10), -- Victor Falconí
-    ('USA', 'Florida', 'Miami', '321 Ocean Dr', '33101', 7), -- David Blanco
-    ('USA', 'Georgia', 'Atlanta', '333 Peach St', '30301', 16), -- Admin User
-    ('USA', 'California', 'San Francisco', '987 Mission St', '94101', 16), -- Admin User
-    ('USA', 'Nevada', 'Las Vegas', '111 Vegas Blvd', '89101', 16); -- Admin User
+    ('Colombia', 'Cundinamarca', 'Los Angeles', '123 Main St', '90001', 11), -- Karen Pérez
+    ('México', 'Ciudad de México', 'New York', '456 Park Ave', '10001', 12), -- María Gómez
+    ('México', 'Oaxaca', 'Houston', '789 Elm St', '77001', 13), -- Sofia Martínez
+    ('Ecuador', 'Chimborazo', 'Miami', '321 Ocean Dr', '33101', 14), -- Carlos Ruiz
+    ('Ecuador', 'Pichincha', 'Chicago', '654 Lake Shore Dr', '60601', 15), -- Ana López
+    ('Colombia', 'Santander', 'San Francisco', '987 Mission St', '94101', 7), -- David Blanco
+    ('Perú', 'Arequipa', 'Las Vegas', '111 Vegas Blvd', '89101', 6), -- Claudia Heredia
+    ('Colombia', 'Antioquia', 'Denver', '222 Rockies Rd', '80201', 8), -- Ingrid Munera Valencia
+    ('Perú', 'Lima', 'Atlanta', '333 Peach St', '30301', 10), -- Victor Falconí
+    ('Colombia', 'Antioquia', 'Miami', '321 Ocean Dr', '33101', 7), -- David Blanco
+    ('Perú', 'Ayacucho', 'Atlanta', '333 Peach St', '30301', 16), -- Admin User
+    ('Ecuador', 'Carchi', 'San Francisco', '987 Mission St', '94101', 16), -- Admin User
+    ('Colombia', 'Valle del Cauca', 'Las Vegas', '111 Vegas Blvd', '89101', 16); -- Admin User
 
 
 -- Insert reservations
