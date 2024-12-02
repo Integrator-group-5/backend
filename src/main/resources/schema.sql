@@ -70,7 +70,6 @@ CREATE TABLE IF NOT EXISTS app_user (
     last_name VARCHAR(255) NOT NULL,
     dni VARCHAR(255),
     phone_number VARCHAR(255),
-    username VARCHAR(255) UNIQUE,
     email VARCHAR(255) UNIQUE NOT NULL,
     password VARCHAR(255),
     user_role VARCHAR(255) CHECK (user_role IN ('USER', 'ADMIN'))
