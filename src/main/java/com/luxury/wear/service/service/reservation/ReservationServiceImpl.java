@@ -66,11 +66,13 @@ public class ReservationServiceImpl implements ReservationService {
                 address = addressRepository.findById(addressId)
                         .orElseThrow(() -> new IllegalArgumentException("Address with ID " + addressId + " not found"));
 
-                if (!address.getUser().getUserId().equals(user.getUserId())) {
-                    throw new IllegalStateException("Address does not belong to the user");
-                }
+                if (!reservationRequestDto.getShipping()) {
+                    if (!address.getUser().getUserId().equals(user.getUserId())) {
+                        throw new IllegalStateException("Address does not belong to the user");
+                    }
 
-                addressService.updateAddress(addressId, reservationRequestDto);
+                    addressService.updateAddress(addressId, reservationRequestDto);
+                }
             } else {
                 user.getAddresses().add(address);
                 address.setUser(user);

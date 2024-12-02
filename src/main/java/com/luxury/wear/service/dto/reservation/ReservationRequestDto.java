@@ -23,6 +23,9 @@ public class ReservationRequestDto {
 
     private Boolean saveData;
 
+    @JsonProperty("envio")
+    private Boolean shipping;
+
     @JsonProperty("cedula")
     private String dni;
 
