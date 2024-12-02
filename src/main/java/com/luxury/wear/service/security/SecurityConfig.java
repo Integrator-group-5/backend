@@ -34,6 +34,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.GET, "/api/v1/sizes").permitAll()
                         .requestMatchers("/h2-console/**", "/v3/api-docs/**", "/webjars/swagger-ui/**", "/swagger-ui/**").permitAll()
                         .requestMatchers("/public/**").permitAll()
+                        .requestMatchers("/api/v1/addresses/{countryName}/pickup-sites").permitAll()
 
                         // Endpoints requiring authentication with USER or ADMIN roles
                         .requestMatchers(HttpMethod.GET, "/api/v1/users/email", "/api/v1/users/{id}").hasAnyRole("USER", "ADMIN")

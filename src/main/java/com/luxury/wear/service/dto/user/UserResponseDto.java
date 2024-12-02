@@ -21,5 +21,11 @@ public class UserResponseDto {
 
     private String email;
 
+    @JsonProperty("cedula")
+    private String dni;
+
+    @JsonProperty("telefono")
+    private String phoneNumber;
+
     private UserRole userRole;
 }

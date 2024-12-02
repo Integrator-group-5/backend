@@ -30,7 +30,11 @@ public class User {
     @JsonProperty("last_name")
     private String lastName;
 
-    @Column(unique = true)
+    private String dni;
+
+    private String phoneNumber;
+
+    @Column(unique = true, nullable = false)
     private String email;
 
     private String password;
@@ -45,4 +49,7 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "product_id")
     )
     private List<Product> favoriteProducts;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Address> addresses;
 }
