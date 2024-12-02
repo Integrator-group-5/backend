@@ -94,30 +94,6 @@ public class ReservationController {
         return ResponseEntity.status(HttpStatus.OK).body(userReservations);
     }
 
-    @GetMapping("/user-reservations-list")
-    @Operation(
-            summary = "Get list of reservations by user",
-            description = "Retrieves a paginated list of all the reservations that belong to an user."
-    )
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Successfully retrieved user's reservations.",
-                    content = @Content(mediaType = "application/json",
-                            schema = @Schema(implementation = Page.class))),
-            @ApiResponse(responseCode = "401", description = "Unauthorized. User is not authenticated.",
-                    content = @Content(mediaType = "application/json",
-                            schema = @Schema(type = "string", example = "Unauthorized access."))),
-            @ApiResponse(responseCode = "404", description = "User not found.",
-                    content = @Content(mediaType = "application/json",
-                            schema = @Schema(type = "string", example = "User not found."))),
-            @ApiResponse(responseCode = "500", description = "Internal server error.",
-                    content = @Content(mediaType = "application/json",
-                            schema = @Schema(type = "string", example = "An error occurred while processing your request.")))
-    })
-    public ResponseEntity<List<ReservationResponseDto>> getFavoriteProducts(Authentication authentication) {
-        List<ReservationResponseDto> userReservations = reservationService.getUserReservationsByUserEmail(authentication.getName());
-        return ResponseEntity.status(HttpStatus.OK).body(userReservations);
-    }
-
     @GetMapping("/paginated")
     @Operation(summary = "Get all reservations paginated with default page size of 6")
     public ResponseEntity<Page<ReservationResponseDto>> getAllUsersPaginated(
