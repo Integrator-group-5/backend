@@ -12,6 +12,8 @@ public interface ReservationService {
 
     ReservationResponseDto createReservation(String userEmail, ReservationRequestDto reservationRequestDto);
 
+    ReservationResponseDto getReservationById(Long id);
+
     boolean isAvailable(Long productId, LocalDate startDate, LocalDate endDate);
 
     List<ReservationResponseDto> getUserReservationsByUserEmail(String email);

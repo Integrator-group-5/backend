@@ -6,6 +6,7 @@ import com.luxury.wear.service.entity.Address;
 import com.luxury.wear.service.entity.Product;
 import com.luxury.wear.service.entity.Reservation;
 import com.luxury.wear.service.entity.User;
+import com.luxury.wear.service.exception.ResourceNotFoundException;
 import com.luxury.wear.service.mapper.ReservationMapper;
 import com.luxury.wear.service.repository.AddressRepository;
 import com.luxury.wear.service.repository.ProductRepository;
@@ -83,6 +84,13 @@ public class ReservationServiceImpl implements ReservationService {
         Reservation savedReservation = reservationRepository.save(reservation);
 
         return reservationMapper.toResponseDto(savedReservation);
+    }
+
+    @Override
+    public ReservationResponseDto getReservationById(Long id) {
+        return reservationRepository.findById(id)
+                .map(reservationMapper::toResponseDto)
+                .orElseThrow(() -> new ResourceNotFoundException("Reservation not found with ID: " + id));
     }
 
     @Override
