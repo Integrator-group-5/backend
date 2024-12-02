@@ -53,31 +53,39 @@ public class ReservationServiceImpl implements ReservationService {
         BigDecimal totalCost = product.getPrice()
                 .multiply(BigDecimal.valueOf(ChronoUnit.DAYS.between(reservationRequestDto.getStartDate(), reservationRequestDto.getEndDate())));
 
-        Address address = addressService.createAddress(reservationRequestDto);
+        Address address = null;
 
-        if (reservationRequestDto.getSaveData()) {
-            user.setDni(reservationRequestDto.getDni());
-            user.setPhoneNumber(reservationRequestDto.getPhoneNumber());
-            userRepository.save(user);
+        if (reservationRequestDto.getShipping()) {
 
-            Long addressId = reservationRequestDto.getAddressId();
+            if (reservationRequestDto.getSaveData()) {
+                user.setDni(reservationRequestDto.getDni());
+                user.setPhoneNumber(reservationRequestDto.getPhoneNumber());
+                userRepository.save(user);
 
-            if (addressId != null && addressId > 0) {
-                address = addressRepository.findById(addressId)
-                        .orElseThrow(() -> new IllegalArgumentException("Address with ID " + addressId + " not found"));
+                Long addressId = reservationRequestDto.getAddressId();
 
-                if (!reservationRequestDto.getShipping()) {
+                if (addressId != null && addressId > 0) {
+                    address = addressRepository.findById(addressId)
+                            .orElseThrow(() -> new IllegalArgumentException("Address with ID " + addressId + " not found"));
+
                     if (!address.getUser().getUserId().equals(user.getUserId())) {
                         throw new IllegalStateException("Address does not belong to the user");
                     }
 
                     addressService.updateAddress(addressId, reservationRequestDto);
+                } else {
+                    address = addressService.createAddress(reservationRequestDto);
+                    user.getAddresses().add(address);
+                    address.setUser(user);
+                    addressRepository.save(address);
                 }
             } else {
-                user.getAddresses().add(address);
-                address.setUser(user);
-                addressRepository.save(address);
+                address = addressService.createAddress(reservationRequestDto);
             }
+        } else {
+            Long storeId = reservationRequestDto.getStoreId();
+            address = addressRepository.findById(storeId)
+                    .orElseThrow(() -> new IllegalArgumentException("Store with ID " + storeId + " not found"));
         }
 
         Reservation reservation = reservationMapper.toEntity(reservationRequestDto, user, product, address);

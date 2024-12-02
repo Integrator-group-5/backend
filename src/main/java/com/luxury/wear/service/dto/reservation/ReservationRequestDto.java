@@ -34,6 +34,9 @@ public class ReservationRequestDto {
 
     private Long addressId;
 
+    @JsonProperty("tiendaId")
+    private Long storeId;
+
     @JsonProperty("pais")
     private String country;
 
