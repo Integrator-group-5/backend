@@ -349,25 +349,25 @@ INSERT INTO product_has_size (product_id, size_id) VALUES
 
 -- Insert users
 INSERT INTO app_user (first_name, last_name, email, password, user_role) VALUES
-    ('Tineo', 'Tineo', 'tineojf@mail.com', 'hashedPassword', 'ADMIN'),
-    ('Andrea', 'G', 'andreaaGM@mail.com', 'hashedPassword', 'ADMIN'),
-    ('Avril', 'Tihista', 'avril@mail.com', 'hashedPassword', 'ADMIN'),
-    ('Helen', 'Bernal', 'helen.b@mail.com', 'hashedPassword', 'ADMIN'),
-    ('Carol', 'Velez', 'carolv@mail.com', 'hashedPassword', 'ADMIN'),
-    ('Claudia', 'Heredia', 'cheredia@mail.com', 'hashedPassword', 'ADMIN'),
-    ('David', 'Blanco', 'davidb@mail.com', 'hashedPassword', 'ADMIN'),
-    ('Ingrid', 'Munera Valencia', 'ingridmv@mail.com', 'hashedPassword', 'ADMIN'),
-    ('Luis', 'Pérez', 'luis.perez@mail.com', 'hashedPassword', 'USER'),
-    ('Victor', 'Falconí', 'victorf@mail.com', 'hashedPassword', 'ADMIN'),
-    ('Karen', 'Perez', 'karenpe1@mail.com', 'hashedPassword', 'ADMIN'),
-    ('María', 'Gómez', 'maria.gomez@mail.com', 'hashedPassword', 'USER'),
-    ('Sofia', 'Martínez', 'sofia.m@mail.com', 'hashedPassword', 'USER'),
-    ('Carlos', 'Ruiz', 'carlos.ruiz@mail.com', 'hashedPassword', 'USER'),
-    ('Ana', 'López', 'analopez@mail.com', 'hashedPassword', 'USER'),
-    ('Admin', 'Luxury Wear', 'admin@mail.com', 'hashedPassword', 'ADMIN');
+    ('Karen', 'Perez', 'karenpe1@mail.com', 'hashedPassword', 'ADMIN'),     -- 1
+    ('Ingrid', 'Munera', 'ingridmv@mail.com', 'hashedPassword', 'ADMIN'),   -- 2
+    ('David', 'Blanco', 'davidb@mail.com', 'hashedPassword', 'ADMIN'),      -- 3
+    ('Carol', 'Velez', 'carolv@mail.com', 'hashedPassword', 'ADMIN'),       -- 4
+    ('Claudia', 'Heredia', 'cheredia@mail.com', 'hashedPassword', 'ADMIN'), -- 5
+    ('Tineo', 'Tineo', 'tineojf@mail.com', 'hashedPassword', 'ADMIN'),      -- 6
+    ('Victor', 'Falconí', 'victorf@mail.com', 'hashedPassword', 'ADMIN'),   -- 7
+    ('Andrea', 'G', 'andreaaGM@mail.com', 'hashedPassword', 'ADMIN'),       -- 8
+    ('Helen', 'Bernal', 'helen.b@mail.com', 'hashedPassword', 'ADMIN'),     -- 9
+    ('Avril', 'Tihista', 'avril@mail.com', 'hashedPassword', 'ADMIN'),      -- 10
+    ('Luis', 'Pérez', 'luis.perez@mail.com', 'hashedPassword', 'USER'),     -- 11
+    ('María', 'Gómez', 'maria.gomez@mail.com', 'hashedPassword', 'USER'),   -- 12
+    ('Sofia', 'Martínez', 'sofia.m@mail.com', 'hashedPassword', 'USER'),    -- 13
+    ('Carlos', 'Ruiz', 'carlos.ruiz@mail.com', 'hashedPassword', 'USER'),   -- 14
+    ('Ana', 'López', 'analopez@mail.com', 'hashedPassword', 'USER'),        -- 15
+    ('Admin', 'Luxury Wear', 'admin@mail.com', 'hashedPassword', 'ADMIN');  -- 16
 
 
--- Insertar ubicaciones de recogida corregidas en centros comerciales
+-- Insert reserve pickup locations
 INSERT INTO address (country, province, city, address, detail, postal_code) VALUES
     -- Colombia
     ('Colombia', 'Cundinamarca', 'Bogotá', 'Cra. 10 #11-20', 'Centro Comercial Andino, Local 205', '110111'),
@@ -387,85 +387,103 @@ INSERT INTO address (country, province, city, address, detail, postal_code) VALU
     -- México
     ('México', 'Ciudad de México', 'Ciudad de México', 'Av. Paseo de la Reforma 300', 'Centro Comercial Reforma 222, Piso 3', '06600'),
     ('México', 'Jalisco', 'Guadalajara', 'Av. Vallarta 2345', 'La Gran Plaza Fashion Mall, Local 45', '44110'),
-    ('México', 'Nuevo León', 'Monterrey', 'Av. Constitución 450', 'Plaza Fiesta San Agustín, Piso 2, Local 22', '64000');
+    ('México', 'Nuevo León', 'Monterrey', 'Av. Constitución 450', 'Plaza Fiesta San Agustín, Piso 2, Local 22', '64000'),
+
+    -- Uruguay
+    ('Uruguay', 'Montevideo', 'Montevideo', 'Av. 18 de Julio 1234', 'Centro Comercial Tres Cruces, Local 45', '11200'),
+    ('Uruguay', 'Maldonado', 'Punta del Este', 'Av. Gorlero 567', 'Shopping Punta Carretas, Segundo Piso', '20100'),
+    ('Uruguay', 'Salto', 'Salto', 'Cl. Uruguay 789', 'Cerca de la Plaza Artigas', '50000');
 
 
--- Insertar direcciones de envío corregidas
+-- Insert user addresses
 INSERT INTO address (country, province, city, address, detail, postal_code, user_id) VALUES
     -- Colombia
-    ('Colombia', 'Cundinamarca', 'Bogotá', 'Cl. 26 #85-45', 'Apt. 5B', '110111', 11), -- Karen Pérez
-    ('Colombia', 'Antioquia', 'Medellín', 'Cl. 10A Sur #34-28', 'Casa #45', '050021', 8), -- Ingrid Munera Valencia
-    ('Colombia', 'Santander', 'Bucaramanga', 'Av. Quebrada Seca #25-15', 'Tercer Piso', '680001', 7), -- David Blanco
-    ('Colombia', 'Valle del Cauca', 'Cali', 'Av. 6 Norte #14-24', 'Apt. 3A, Edificio Palma Real', '760045', 16),  -- Admin User
-
-    -- México
-    ('México', 'Ciudad de México', 'Ciudad de México', 'Av. Insurgentes Sur 3000', 'Suite 202', '04530', 12),  -- María Gómez
-    ('México', 'Jalisco', 'Guadalajara', 'Av. México 1234', 'Piso 4, Oficina 12', '44600', 13), -- Sofia Martínez
-    ('México', 'Nuevo León', 'Monterrey', 'Av. Fundidora 987', 'Cerca de la Macroplaza', '64000', 7), -- David Blanco
-
-    -- Ecuador
-    ('Ecuador', 'Pichincha', 'Quito', 'Av. 6 de Diciembre 200', 'Apt. 10C', '170501', 15),  -- Ana López
-    ('Ecuador', 'Guayas', 'Guayaquil', 'Av. del Bombero 456', 'Segundo Piso', '090112', 14), -- Carlos Ruiz
-    ('Ecuador', 'Azuay', 'Cuenca', 'Cl. Benigno Malo #33-15', 'Detrás del Parque Central', '010101', 16),  -- Admin User
+    ('Colombia', 'Cundinamarca', 'Bogotá', 'Cl. 26 #85-45', 'Apt. 5B', '110111', 1),                            -- Karen Pérez   16
+    ('Colombia', 'Antioquia', 'Medellín', 'Cl. 10A Sur #34-28', 'Casa #45', '050021', 2),                       -- Ingrid Munera 17
+    ('Colombia', 'Santander', 'Bucaramanga', 'Av. Quebrada Seca #25-15', 'Tercer Piso', '680001', 3),           -- David Blanco  18
+    ('Colombia', 'Valle del Cauca', 'Cali', 'Av. 6 Norte #14-24', 'Apt. 3A, Edificio Palma Real', '760045', 4), -- Carol Velez   19
 
     -- Perú
-    ('Perú', 'Lima', 'Lima', 'Cl. Los Pinos 345', 'Cerca al Parque Kennedy', '15034', 10), -- Victor Falconí
-    ('Perú', 'Cusco', 'Cusco', 'Plaza Mayor #22', 'Habitación 3B', '08002', 16),  -- Admin User
-    ('Perú', 'Arequipa', 'Arequipa', 'Av. Ejército 145', 'Entrada Principal', '04014', 6);  -- Claudia Heredia
+    ('Perú', 'Lima', 'Lima', 'Cl. Los Pinos 345', 'Cerca al Parque Kennedy', '15034', 5),                        -- Claudia Heredia 20
+    ('Perú', 'Cusco', 'Cusco', 'Plaza Mayor #22', 'Habitación 3B', '08002', 6),                                  -- Tineo           21
+    ('Perú', 'Arequipa', 'Arequipa', 'Av. Ejército 145', 'Entrada Principal', '04014', 7),                       -- Victor Falconí  22
+
+    -- México
+    ('México', 'Ciudad de México', 'Ciudad de México', 'Av. Insurgentes Sur 3000', 'Suite 202', '04530', 8),     -- Andrea G     23
+    ('México', 'Jalisco', 'Guadalajara', 'Av. México 1234', 'Piso 4, Oficina 12', '44600', 3),                   -- David Blanco 24
+    ('México', 'Nuevo León', 'Monterrey', 'Av. Fundidora 987', 'Cerca de la Macroplaza', '64000', 16),           -- Admin User   25
+
+    -- Ecuador
+    ('Ecuador', 'Pichincha', 'Quito', 'Av. 6 de Diciembre 200', 'Apt. 10C', '170501', 9),                        -- Helen Bernal 26
+    ('Ecuador', 'Guayas', 'Guayaquil', 'Av. del Bombero 456', 'Segundo Piso', '090112', 11),                     -- Carlos Ruiz  27
+    ('Ecuador', 'Azuay', 'Cuenca', 'Cl. Benigno Malo #33-15', 'Detrás del Parque Central', '010101', 16),        -- Admin User   28
+
+    -- Uruguay
+    ('Uruguay', 'Montevideo', 'Montevideo', 'Cl. Sarandí 456', 'Apartamento 3B', '11000', 10),                   -- Avril Tihista 29
+    ('Uruguay', 'Canelones', 'Las Piedras', 'Av. Artigas 789', 'Casa #12, Barrio Jardines', '90200', 12),        -- María Gómez   30
+    ('Uruguay', 'Rocha', 'La Paloma', 'Cl. Principal 123', 'Frente al Faro', '27001', 16);                       -- Admin User    31
+
 
 -- Insert reservations
 -- User: Karen Pérez
 INSERT INTO reservation (user_id, product_id, address_id, dni, phone_number, start_date, end_date, total_cost) VALUES
-(11, 1, 13, 'LUIS123456', '555-1111', '2024-11-27', '2024-11-29', 400000),  -- 2 days * 200000 (Product: Hollywood)
-(11, 7, 13, 'LUIS123456', '555-1111', '2024-12-04', '2024-12-06', 5000000); -- 2 days * 2500000 (Product: Camelia)
-
--- User: María Gómez
-INSERT INTO reservation (user_id, product_id, address_id, dni, phone_number, start_date, end_date, total_cost) VALUES
-(12, 2, 14, 'MARIA654321', '555-2222', '2024-12-11', '2024-12-14', 450000),   -- 3 days * 150000 (Product: Brianna)
-(12, 8, 14, 'MARIA654321', '555-2222', '2024-12-18', '2024-12-23', 14000000); -- 5 days * 2800000 (Product: Flor de Lirio)
-
--- User: Sofia Martínez
-INSERT INTO reservation (user_id, product_id, address_id, dni, phone_number, start_date, end_date, total_cost) VALUES
-(13, 3, 15, 'SOFIA987654', '555-3333', '2024-12-25', '2024-12-28', 900000),  -- 3 days * 300000 (Product: Gold Party)
-(13, 13, 15, 'SOFIA987654', '555-3333', '2025-01-01', '2025-01-02', 1800000); -- 2 days * 900000 (Product: Sueño de quince)
-
--- User: Carlos Ruiz
-INSERT INTO reservation (user_id, product_id, address_id, dni, phone_number, start_date, end_date, total_cost) VALUES
-(14, 4, 16, 'CARLOS456789', '555-4444', '2025-01-08', '2025-01-11', 1080000),  -- 4 days * 270000 (Product: Esplendor Dorado)
-(14, 19, 16, 'CARLOS456789', '555-4444', '2025-01-15', '2025-01-19', 2250000); -- 5 days * 450000 (Product: Niebla de medianoche)
-
--- User: Ana López
-INSERT INTO reservation (user_id, product_id, address_id, dni, phone_number, start_date, end_date, total_cost) VALUES
-(15, 5, 17, 'ANA654789', '555-5555', '2025-01-22', '2025-01-23', 440000),  -- 2 days * 220000 (Product: Luz de Medianoche)
-(15, 25, 17, 'ANA654789', '555-5555', '2025-01-29', '2025-01-31', 600000); -- 2 days * 300000 (Product: Destello Plateado)
-
--- User: David Blanco
-INSERT INTO reservation (user_id, product_id, address_id, dni, phone_number, start_date, end_date, total_cost) VALUES
-(7, 6, 18, 'DAVID123987', '555-6666', '2025-02-05', '2025-02-06', 500000),  -- 2 days * 250000 (Product: Esencia Esmeralda)
-(7, 26, 18, 'DAVID123987', '555-6666', '2025-02-12', '2025-02-14', 690000); -- 3 days * 230000 (Product: Primavera Azul)
-
--- User: Claudia Heredia
-INSERT INTO reservation (user_id, product_id, address_id, dni, phone_number, start_date, end_date, total_cost) VALUES
-(6, 11, 19, 'CLAUDIA456123', '555-7777', '2025-02-19', '2025-02-21', 5400000), -- 3 days * 1800000 (Product: Primavera Floral)
-(6, 12, 19, 'CLAUDIA456123', '555-7777', '2025-02-26', '2025-02-27', 6000000); -- 2 days * 3000000 (Product: Eterna Elegancia)
+(1, 1, 16, '1750960242', '3391604785', '2024-11-27', '2024-11-29', 400000),  -- 2 days * 200000 (Product: Hollywood)
+(1, 7, 16, '1750960242', '3391604785', '2024-12-04', '2024-12-06', 5000000); -- 2 days * 2500000 (Product: Camelia)
 
 -- User: Ingrid Munera Valencia
 INSERT INTO reservation (user_id, product_id, address_id, dni, phone_number, start_date, end_date, total_cost) VALUES
-(8, 15, 20, 'INGRID789123', '555-8888', '2025-03-05', '2025-03-09', 4600000),  -- 4 days * 1150000 (Product: Noche de Estrellas)
-(8, 20, 20, 'INGRID789123', '555-8888', '2025-03-12', '2025-03-13', 700000);   -- 2 days * 350000 (Product: Amanecer Coral)
+(2, 15, 17, '1337122203', '3938934706', '2025-03-05', '2025-03-09', 4600000),  -- 4 days * 1150000 (Product: Noche de Estrellas)
+(2, 20, 17, '1337122203', '3938934706', '2025-03-12', '2025-03-13', 700000);   -- 2 days * 350000  (Product: Amanecer Coral)
 
--- User: Victor Falconí
+-- User: David Blanco
 INSERT INTO reservation (user_id, product_id, address_id, dni, phone_number, start_date, end_date, total_cost) VALUES
-(10, 28, 21, 'VICTOR321654', '555-9999', '2025-03-19', '2025-03-20', 460000), -- 2 days * 230000 (Product: Estrella Plateada)
-(10, 30, 21, 'VICTOR321654', '555-9999', '2025-03-26', '2025-03-28', 750000); -- 3 days * 250000 (Product: Atardecer Dorado)
+(3, 6, 18, '1133142117', '3797972085', '2025-02-05', '2025-02-06', 500000),  -- 2 days * 250000 (Product: Esencia Esmeralda)
+(3, 26, 24, '1133142117', '3797972085', '2025-02-12', '2025-02-14', 690000); -- 3 days * 230000 (Product: Primavera Azul)
 
+-- User: Carol Velez
+INSERT INTO reservation (user_id, product_id, address_id, dni, phone_number, start_date, end_date, total_cost) VALUES
+(4, 28, 19, '1623270670', '3744140483', '2025-03-19', '2025-03-20', 460000), -- 2 days * 230000 (Product: Estrella Plateada)
+(4, 30, 19, '1623270670', '3744140483', '2025-03-26', '2025-03-28', 750000); -- 3 days * 250000 (Product: Atardecer Dorado)
+
+-- User: Claudia Heredia
+INSERT INTO reservation (user_id, product_id, address_id, dni, phone_number, start_date, end_date, total_cost) VALUES
+(5, 11, 20, '3672696891', '9601282184', '2025-02-19', '2025-02-21', 5400000), -- 3 days * 1800000 (Product: Primavera Floral)
+(5, 12, 20, '3672696891', '9601282184', '2025-02-26', '2025-02-27', 6000000); -- 2 days * 3000000 (Product: Eterna Elegancia)
+
+-- User: Franco Tineo
+INSERT INTO reservation (user_id, product_id, address_id, dni, phone_number, start_date, end_date, total_cost) VALUES
+(6, 4, 21, '3036229325', '8363299215', '2025-01-08', '2025-01-11', 1080000),  -- 4 days * 270000 (Product: Esplendor Dorado)
+(6, 19, 21, '3036229325', '8363299215', '2025-01-15', '2025-01-19', 2250000); -- 5 days * 450000 (Product: Niebla de medianoche)
+
+-- User: Andrea
+INSERT INTO reservation (user_id, product_id, address_id, dni, phone_number, start_date, end_date, total_cost) VALUES
+(8, 3, 23, '8219915363', '6190889653', '2024-12-25', '2024-12-28', 900000),  -- 3 days * 300000 (Product: Gold Party)
+(8, 13, 23, '8219915363', '6190889653', '2025-01-01', '2025-01-02', 1800000); -- 2 days * 900000 (Product: Sueño de quince)
+
+-- User: Helen Bernal
+INSERT INTO reservation (user_id, product_id, address_id, dni, phone_number, start_date, end_date, total_cost) VALUES
+(9, 2, 26, '9125753992', '9210150183', '2024-12-11', '2024-12-14', 450000),   -- 3 days * 150000 (Product: Brianna)
+(9, 8, 26, '9125753992', '9210150183', '2024-12-18', '2024-12-23', 14000000); -- 5 days * 2800000 (Product: Flor de Lirio)
+
+-- User: Avril Tihista
+INSERT INTO reservation (user_id, product_id, address_id, dni, phone_number, start_date, end_date, total_cost) VALUES
+(10, 5, 29, '2963881152', '5638548832', '2025-01-22', '2025-01-23', 440000),  -- 2 days * 220000 (Product: Luz de Medianoche)
+(10, 25, 29, '2963881152', '5638548832', '2025-01-29', '2025-01-31', 600000); -- 2 days * 300000 (Product: Destello Plateado)
+
+-- User: Admin
+INSERT INTO reservation (user_id, product_id, address_id, dni, phone_number, start_date, end_date, total_cost) VALUES
+(16, 28, 25, '1203975868', '3177761234', '2024-12-19', '2024-12-20', 460000),  -- 2 days * 230000  (Product: Estrella Plateada)
+(16, 30, 28, '1203975868', '3177761234', '2024-12-26', '2024-12-28', 750000),  -- 3 days * 250000  (Product: Atardecer Dorado)
+(16, 15, 31, '1203975868', '3177761234', '2024-12-05', '2024-12-09', 4600000), -- 4 days * 1150000 (Product: Noche de Estrellas)
+(16, 20, 3, '1203975868', '3177761234', '2024-12-12', '2024-12-13', 700000);   -- 2 days * 350000  (Product: Amanecer Coral)
 
 -- Insert countries
 INSERT INTO country (code, name) VALUES
 ('CO', 'Colombia'),
 ('PE', 'Perú'),
 ('EC', 'Ecuador'),
-('MX', 'México');
+('MX', 'México'),
+('UY', 'Uruguay');
 
 -- Departments for Colombia
 INSERT INTO country_departments (country_id, department) VALUES
@@ -591,3 +609,25 @@ INSERT INTO country_departments (country_id, department) VALUES
 ((SELECT id FROM country WHERE code = 'MX'), 'Veracruz'),
 ((SELECT id FROM country WHERE code = 'MX'), 'Yucatán'),
 ((SELECT id FROM country WHERE code = 'MX'), 'Zacatecas');
+
+-- Insertar departamentos de Uruguay
+INSERT INTO country_departments (country_id, department) VALUES
+((SELECT id FROM country WHERE code = 'UY'), 'Artigas'),
+((SELECT id FROM country WHERE code = 'UY'), 'Canelones'),
+((SELECT id FROM country WHERE code = 'UY'), 'Cerro Largo'),
+((SELECT id FROM country WHERE code = 'UY'), 'Colonia'),
+((SELECT id FROM country WHERE code = 'UY'), 'Durazno'),
+((SELECT id FROM country WHERE code = 'UY'), 'Flores'),
+((SELECT id FROM country WHERE code = 'UY'), 'Florida'),
+((SELECT id FROM country WHERE code = 'UY'), 'Lavalleja'),
+((SELECT id FROM country WHERE code = 'UY'), 'Maldonado'),
+((SELECT id FROM country WHERE code = 'UY'), 'Montevideo'),
+((SELECT id FROM country WHERE code = 'UY'), 'Paysandú'),
+((SELECT id FROM country WHERE code = 'UY'), 'Río Negro'),
+((SELECT id FROM country WHERE code = 'UY'), 'Rivera'),
+((SELECT id FROM country WHERE code = 'UY'), 'Rocha'),
+((SELECT id FROM country WHERE code = 'UY'), 'Salto'),
+((SELECT id FROM country WHERE code = 'UY'), 'San José'),
+((SELECT id FROM country WHERE code = 'UY'), 'Soriano'),
+((SELECT id FROM country WHERE code = 'UY'), 'Tacuarembó'),
+((SELECT id FROM country WHERE code = 'UY'), 'Treinta y Tres');
