@@ -1,6 +1,8 @@
 package com.luxury.wear.service.repository;
 
 import com.luxury.wear.service.entity.Reservation;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -24,5 +26,7 @@ public interface ReservationRepository extends JpaRepository<Reservation, Long> 
     @Query("SELECT r FROM Reservation r WHERE r.product.id = :productId")
     List<Reservation> findByProductId(@Param("productId") Long productId);
 
-    List<Reservation> findByUserUserId(Long userId);
+    List<Reservation> findByUserEmail(String email);
+
+    Page<Reservation> findByUserEmail(String email, Pageable pageable);
 }

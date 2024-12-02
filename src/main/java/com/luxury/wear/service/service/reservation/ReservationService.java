@@ -14,7 +14,9 @@ public interface ReservationService {
 
     boolean isAvailable(Long productId, LocalDate startDate, LocalDate endDate);
 
-    List<ReservationResponseDto> getUserReservationsById(Long userId);
+    List<ReservationResponseDto> getUserReservationsByUserEmail(String email);
+
+    Page<ReservationResponseDto> getUserReservationsByUserEmail(String email, Pageable pageable);
 
     Page<ReservationResponseDto> getAllReservationsPaginated(Pageable pageable);
 

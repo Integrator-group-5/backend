@@ -91,11 +91,17 @@ public class ReservationServiceImpl implements ReservationService {
     }
 
     @Override
-    public List<ReservationResponseDto> getUserReservationsById(Long userId) {
-        return reservationRepository.findByUserUserId(userId)
+    public List<ReservationResponseDto> getUserReservationsByUserEmail(String email) {
+        return reservationRepository.findByUserEmail(email)
                 .stream()
                 .map(reservationMapper::toResponseDto)
                 .toList();
+    }
+
+    @Override
+    public Page<ReservationResponseDto> getUserReservationsByUserEmail(String email, Pageable pageable) {
+        return reservationRepository.findByUserEmail(email, pageable)
+                .map(reservationMapper::toResponseDto);
     }
 
     @Override
