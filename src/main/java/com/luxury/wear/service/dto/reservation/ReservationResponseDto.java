@@ -13,6 +13,7 @@ import java.time.LocalDate;
 public class ReservationResponseDto {
 
     private Long id;
+    private String reservationCode;
     private String productName;
     private String userEmail;
     private LocalDate startDate;

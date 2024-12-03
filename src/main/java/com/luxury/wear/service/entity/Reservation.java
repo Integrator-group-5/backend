@@ -51,4 +51,7 @@ public class Reservation {
 
     @Column(nullable = false)
     private BigDecimal totalCost;
+
+    @Column(nullable = false, unique = true, updatable = false)
+    private String reservationCode;
 }

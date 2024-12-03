@@ -22,8 +22,10 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
@@ -59,9 +61,17 @@ public class ReservationServiceImpl implements ReservationService {
 
         Reservation reservation = reservationMapper.toEntity(reservationRequestDto, user, product, address);
         reservation.setTotalCost(calculateTotalCost(product, reservationRequestDto));
+        reservation.setReservationCode(generateReservationCode());
 
         return reservationMapper.toResponseDto(reservationRepository.save(reservation));
     }
+
+    private String generateReservationCode() {
+        String timestamp = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyyMMdd"));
+        String randomString = UUID.randomUUID().toString().substring(0, 6).toUpperCase();
+        return "RES-" + timestamp + "-" + randomString;
+    }
+
 
     private Address processAddress(ReservationRequestDto reservationRequestDto, User user) {
         if (reservationRequestDto.getSaveData()) {
