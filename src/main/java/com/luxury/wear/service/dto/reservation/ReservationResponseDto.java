@@ -19,4 +19,5 @@ public class ReservationResponseDto {
     private LocalDate startDate;
     private LocalDate endDate;
     private BigDecimal totalCost;
+    private Long addressId;
 }

@@ -23,7 +23,8 @@ public class ReservationMapper {
                 reservation.getUser().getEmail(),
                 reservation.getStartDate(),
                 reservation.getEndDate(),
-                reservation.getTotalCost()
+                reservation.getTotalCost(),
+                reservation.getAddress().getId()
         );
     }
 
