@@ -101,6 +101,7 @@ CREATE TABLE IF NOT EXISTS reservation (
     start_date DATE NOT NULL,
     end_date DATE NOT NULL,
     total_cost DECIMAL(10, 2) NOT NULL,
+    reservation_code VARCHAR(255) NOT NULL UNIQUE,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     CONSTRAINT fk_reservation_user FOREIGN KEY (user_id) REFERENCES app_user(user_id) ON DELETE CASCADE,
