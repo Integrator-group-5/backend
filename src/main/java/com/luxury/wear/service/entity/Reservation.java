@@ -54,4 +54,7 @@ public class Reservation {
 
     @Column(nullable = false, unique = true, updatable = false)
     private String reservationCode;
+
+    @Column(nullable = false)
+    private boolean shipping;
 }

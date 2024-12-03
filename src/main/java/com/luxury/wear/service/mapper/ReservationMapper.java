@@ -16,15 +16,28 @@ public class ReservationMapper {
             return null;
         }
 
+        String shippingMethod = reservation.isShipping()
+                ? "Envió a Domicilio"
+                : "Recogida en Tienda";
+
         return new ReservationResponseDto(
                 reservation.getId(),
                 reservation.getReservationCode(),
                 reservation.getProduct().getName(),
                 reservation.getUser().getEmail(),
+                reservation.getDni(),
+                reservation.getPhoneNumber(),
                 reservation.getStartDate(),
                 reservation.getEndDate(),
                 reservation.getTotalCost(),
-                reservation.getAddress().getId()
+                shippingMethod,
+                reservation.getAddress().getId(),
+                reservation.getAddress().getCountry(),
+                reservation.getAddress().getProvince(),
+                reservation.getAddress().getCity(),
+                reservation.getAddress().getAddress(),
+                reservation.getAddress().getDetail(),
+                reservation.getAddress().getPostalCode()
         );
     }
 
@@ -42,6 +55,7 @@ public class ReservationMapper {
                 .user(user)
                 .product(product)
                 .address(address)
+                .shipping(dto.getShipping())
                 .build();
     }
 }
