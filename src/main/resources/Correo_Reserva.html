@@ -5,39 +5,201 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Confirmación de Reserva</title>
   <style>
-    body { font-family: Arial, sans-serif; }
-    .container { padding: 20px; }
-    .header { background-color: #f8f8f8; padding: 10px; text-align: center; }
-    .content { margin-top: 20px; }
-    .footer { margin-top: 20px; text-align: center; font-size: 12px; color: #888; }
+    :root {
+      --dark-purple: #231942;
+      --medium-purple: #5E548E;
+      --light-purple: #9F86C0;
+      --pale-purple: #BE95C4;
+      --soft-pink: #E0B1CB;
+      --background-pink: #F3EFFF;
+      --white: #FFFFFF;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: var(--background-pink);
+      margin: 0;
+      padding: 0;
+      color: black;
+    }
+
+    .container {
+      margin: 0 auto;
+      background: white;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    .contenedorLogo{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .logo{
+      width: 30%;
+    }
+    @media (min-width:700px) {
+      .logo{
+        width: 20%;
+      }
+    }
+    @media (min-width:1024px) {
+      .logo{
+        width: 10%;
+      }
+    }
+    .header {
+      background-color: var(--medium-purple);
+      padding: 20px;
+      text-align: center;
+      color: white;
+    }
+
+    .header h1 {
+      margin: 0;
+      font-size: 24px;
+    }
+
+    .content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+      background-color: var(--background-pink);
+    }
+    .content p{
+      text-align: center;
+    }
+
+    .section-title {
+      font-size: 18px;
+      margin-top: 20px;
+      color: var(--dark-purple);
+    }
+    .table td{
+      padding: .4em 0.1em;
+    }
+    .table td:first-child{
+      font-weight: 700;
+    }
+
+    .details {
+
+      width: 90%;
+      background-color: var(--white);
+      border-radius: 10px;
+      padding: .7em;
+      margin: 10px 0;
+    }
+    @media (min-width:700px) {
+      .details {
+
+      width: 60%;
+      background-color: var(--white);
+      border-radius: 10px;
+      padding: 2em;
+      margin: 10px 0;
+    }
+    }
+    @media (min-width:1024px) {
+      .details {
+
+      width: 50%;
+    }
+    }
+    .table tr{
+      padding: 2em;
+    }
+
+    .details ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .details ul li {
+      margin: 5px 0;
+    }
+
+    .footer {
+      background-color: var(--dark-purple);
+      color: white;
+      text-align: center;
+      padding: 10px;
+      font-size: 14px;
+    }
+
+    .footer a {
+      color: var(--soft-pink);
+      text-decoration: none;
+    }
   </style>
 </head>
 <body>
 <div class="container">
+  <div class="contenedorLogo">
+    <img class="logo" src="/logo.png" alt="LuxuryWearLogo">
+  </div>
   <div class="header">
-    <h1>Confirmación de Reserva</h1>
+    <h1>¡Hola {{firstName}}!</h1>
   </div>
   <div class="content">
-    <p>Estimado/a {{firstName}} {{lastName}},</p>
-    <p>Gracias por su reserva. Aquí están los detalles:</p>
-    <ul>
-      <li>Producto: {{productName}}</li>
-      <li>Fecha de Inicio: {{startDate}} - {{hora}}</li>
-      <li>Fecha de Fin: {{endDate}}</li>
-      <li>Código de Reserva: {{reservationCode}}</li>
-      <li>Número de Teléfono: {{phoneNumber}}</li>
-      <li>Método de Envío: {{shippingMethod}}</li>
-      <li>País: {{country}}</li>
-      <li>Provincia: {{province}}</li>
-      <li>Dirección: {{address}}</li>
-      <li>Detalle: {{detail}}</li>
-      <li>Costo Total: {{totalCost}}</li>
-    </ul>
+    <p>Aquí puedes visualizar los detalles de tu reserva número: {{reservationCode}}</p>
+    <div class="details">
+      <table class="table">
+        <tbody>
+        <tr>
+          <td>Nombre del producto:</td>
+          <td>{{productName}}</td>
+        </tr>
+        <tr>
+          <td>Fecha de entrega:</td>
+          <td>{{startDate}} - {{hora}}</td>
+        </tr>
+        <tr>
+          <td>Fecha de devolución:</td>
+          <td>{{endDate}}</td>
+        </tr>
+        <tr>
+          <td style="color:hsl(255, 52%, 52%);font-size: 1.1em;">Detalles de Envío</td>
+        </tr>
+        <tr>
+          <td>Dirección de envío:</td>
+          <td>{{address}}</td>
+        </tr>
+        <tr>
+          <td>Provincia:</td>
+          <td>{{province}}</td>
+        </tr>
+        <tr>
+          <td>País:</td>
+          <td>{{country}}</td>
+        </tr>
+        <tr>
+          <td>Método de envío:</td>
+          <td> {{shippingMethod}}</td>
+        </tr>
+        <tr>
+          <td>Costo de envío:</td>
+          <td>{{shippingCost}}</td>
+        </tr>
+        <tr>
+          <td>Detalle:</td>
+          <td> {{detail}}</td>
+        </tr>
+        <tr>
+          <td style="color:hsl(255, 52%, 52%);font-size: 1.1em;">Costo</td>
+        </tr>
+        <tr>
+          <td>Costo total:</td>
+          <td>{{totalCost}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
   <div class="footer">
     <p>&copy; 2024 Luxury Wear. Todos los derechos reservados.</p>
-    <p>Dirección de la Empresa: Calle 54 # 94-35, Colombia</p>
-    <p>Teléfono: 3172568457</p>
+    <p>Correo electrónico: <a href="mailto:contacto@luxurywear.com">contacto@luxurywear.com</a></p>
+    <p>Teléfono: +52 123 456 7890</p>
   </div>
 </div>
 </body>

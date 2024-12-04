@@ -159,6 +159,8 @@ public class ReservationServiceImpl implements ReservationService {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
         String formattedTime = now.format(formatter);
 
+        BigDecimal shippingCost = responseDto.getTotalCost().remainder(product.getPrice());
+
         String body = template.replace("{{firstName}}", user.getFirstName())
                 .replace("{{lastName}}", user.getLastName())
                 .replace("{{productName}}", product.getName())
@@ -176,6 +178,7 @@ public class ReservationServiceImpl implements ReservationService {
                 .replace("{{phoneNumberCompany}}", "3172568457")
                 .replace("{{addressCompany}}", "Calle 54 # 94-35")
                 .replace("{{countryCompany}}", "Colombia")
+                .replace("{{shippingCost}}", shippingCost.toString())
                 .replace("{{totalCost}}", responseDto.getTotalCost().toString());
 
         emailService.sendEmail(to, subject, body);
