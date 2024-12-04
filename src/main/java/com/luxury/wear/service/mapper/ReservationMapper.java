@@ -20,10 +20,15 @@ public class ReservationMapper {
                 ? "Envió a Domicilio"
                 : "Recogida en Tienda";
 
+        String productImageUrl = reservation.getProduct() != null && !reservation.getProduct().getImages().isEmpty()
+                ? reservation.getProduct().getImages().get(0).getUrl()
+                : null;
+
         return new ReservationResponseDto(
                 reservation.getId(),
                 reservation.getReservationCode(),
                 reservation.getProduct().getName(),
+                productImageUrl,
                 reservation.getUser().getEmail(),
                 reservation.getDni(),
                 reservation.getPhoneNumber(),

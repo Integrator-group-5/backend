@@ -20,6 +20,8 @@ public class ReservationResponseDto {
 
     private String productName;
 
+    private String productImageUrl;
+
     private String userEmail;
 
     private String dni;
