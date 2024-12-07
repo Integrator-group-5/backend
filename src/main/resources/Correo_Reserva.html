@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Confirmación de Reserva</title>
+</head>
+<body style="font-family: Arial, sans-serif; background-color: #F3EFFF; margin: 0; padding: 0; color: black;">
+<table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color: #F3EFFF;">
+  <tr>
+    <td align="center">
+      <table width="600" cellpadding="0" cellspacing="0" border="0" style="background: white; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+        <tr>
+          <td align="center" style="background-color: #5E548E; padding: 20px; color: white;">
+            <h1 style="margin: 0; font-size: 24px;">¡Hola {{firstName}}!</h1>
+          </td>
+        </tr>
+        <tr>
+          <td align="center" style="padding: 20px; background-color: #F3EFFF;">
+            <p style="text-align: center;">Aquí puedes visualizar los detalles de tu reserva número: {{reservationCode}}</p>
+            <table width="90%" cellpadding="0" cellspacing="0" border="0" style="background-color: #FFFFFF; border-radius: 10px; padding: .7em; margin: 10px 0;">
+              <tbody>
+              <tr>
+                <td style="padding: .4em 0.1em; font-weight: 700;">Nombre del producto:</td>
+                <td style="padding: .4em 0.1em;">{{productName}}</td>
+              </tr>
+              <tr>
+                <td style="padding: .4em 0.1em; font-weight: 700;">Fecha de entrega:</td>
+                <td style="padding: .4em 0.1em;">{{startDate}} - {{hora}}</td>
+              </tr>
+              <tr>
+                <td style="padding: .4em 0.1em; font-weight: 700;">Fecha de devolución:</td>
+                <td style="padding: .4em 0.1em;">{{endDate}}</td>
+              </tr>
+              <tr>
+                <td style="color:hsl(255, 52%, 52%);font-size: 1.1em;">Detalles de Envío</td>
+              </tr>
+              <tr>
+                <td style="padding: .4em 0.1em; font-weight: 700;">Dirección de envío:</td>
+                <td style="padding: .4em 0.1em;">{{address}}</td>
+              </tr>
+              <tr>
+                <td style="padding: .4em 0.1em; font-weight: 700;">Provincia:</td>
+                <td style="padding: .4em 0.1em;">{{province}}</td>
+              </tr>
+              <tr>
+                <td style="padding: .4em 0.1em; font-weight: 700;">País:</td>
+                <td style="padding: .4em 0.1em;">{{country}}</td>
+              </tr>
+              <tr>
+                <td style="padding: .4em 0.1em; font-weight: 700;">Método de envío:</td>
+                <td style="padding: .4em 0.1em;">{{shippingMethod}}</td>
+              </tr>
+              <tr>
+                <td style="padding: .4em 0.1em; font-weight: 700;">Costo de envío:</td>
+                <td style="padding: .4em 0.1em;">{{shippingCost}}</td>
+              </tr>
+              <tr>
+                <td style="padding: .4em 0.1em; font-weight: 700;">Detalle:</td>
+                <td style="padding: .4em 0.1em;">{{detail}}</td>
+              </tr>
+              <tr>
+                <td style="color:hsl(255, 52%, 52%);font-size: 1.1em;">Costo</td>
+              </tr>
+              <tr>
+                <td style="padding: .4em 0.1em; font-weight: 700;">Costo total:</td>
+                <td style="padding: .4em 0.1em;">{{totalCost}}</td>
+              </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+        <tr>
+          <td align="center" style="background-color: #231942; color: white; padding: 10px; font-size: 14px;">
+            <p>&copy; 2024 Luxury Wear. Todos los derechos reservados.</p>
+            <p>Correo electrónico: <a href="mailto:contacto@luxurywear.com" style="color: #E0B1CB; text-decoration: none;">contacto@luxurywear.com</a></p>
+            <p>Teléfono: +52 123 456 7890</p>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+</body>
+</html>

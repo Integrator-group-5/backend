@@ -22,6 +22,7 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
@@ -38,6 +39,7 @@ public class ReservationServiceImpl implements ReservationService {
     private final ReservationMapper reservationMapper;
     private final AddressService addressService;
     private final AddressRepository addressRepository;
+    private final EmailService emailService;
 
     @Transactional
     @Override
@@ -63,7 +65,12 @@ public class ReservationServiceImpl implements ReservationService {
         reservation.setTotalCost(calculateTotalCost(product, reservationRequestDto));
         reservation.setReservationCode(generateReservationCode());
 
-        return reservationMapper.toResponseDto(reservationRepository.save(reservation));
+        ReservationResponseDto responseDto = reservationMapper.toResponseDto(reservationRepository.save(reservation));
+
+        // Enviar correo electrónico con el DTO de respuesta
+        sendReservationEmail(user, product, reservation, responseDto);
+
+        return responseDto;
     }
 
     private String generateReservationCode() {
@@ -140,4 +147,41 @@ public class ReservationServiceImpl implements ReservationService {
                 .distinct()
                 .collect(Collectors.toList());
     }
+
+    private void sendReservationEmail(User user, Product product, Reservation reservation,
+                                      ReservationResponseDto responseDto) {
+        String to = "paty.fer1970@gmail.com"; // Correo del cliente
+        String subject = "Reservation Confirmation " + product.getName();
+        String template = emailService.loadEmailTemplate("Correo_Reserva.html");
+        System.out.println("carolv sendReservationEmail1");
+
+        LocalTime now = LocalTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+        String formattedTime = now.format(formatter);
+
+        BigDecimal shippingCost = responseDto.getTotalCost().remainder(product.getPrice());
+
+        String body = template.replace("{{firstName}}", user.getFirstName())
+                .replace("{{lastName}}", user.getLastName())
+                .replace("{{productName}}", product.getName())
+                .replace("{{startDate}}", reservation.getStartDate().toString())
+                .replace("{{hora}}", formattedTime)
+                .replace("{{endDate}}", reservation.getEndDate().toString())
+                .replace("{{reservationCode}}", responseDto.getReservationCode())
+                .replace("{{phoneNumber}}", responseDto.getPhoneNumber())
+                .replace("{{shippingMethod}}", responseDto.getShippingMethod())
+                .replace("{{country}}", responseDto.getCountry())
+                .replace("{{province}}", responseDto.getProvince())
+                .replace("{{address}}", responseDto.getAddress())
+                .replace("{{detail}}", responseDto.getDetail())
+                .replace("{{company}}", "Luxury Wear")
+                .replace("{{phoneNumberCompany}}", "3172568457")
+                .replace("{{addressCompany}}", "Calle 54 # 94-35")
+                .replace("{{countryCompany}}", "Colombia")
+                .replace("{{shippingCost}}", shippingCost.toString())
+                .replace("{{totalCost}}", responseDto.getTotalCost().toString());
+
+        emailService.sendEmail(to, subject, body);
+    }
+
 }
