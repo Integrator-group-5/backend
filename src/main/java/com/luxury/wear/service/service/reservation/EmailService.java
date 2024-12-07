@@ -13,8 +13,7 @@ import java.io.InputStreamReader;
 @Service
 public class EmailService {
 
-/*    private static final String email = "Luxurywear2024@gmail.com";
-    private static final String code = "iafo alwe xned utip";*/
+
     private static final String email = "luxury.wear122024@gmail.com";
     private static final String code = "iafo alwe xned utip";
 
