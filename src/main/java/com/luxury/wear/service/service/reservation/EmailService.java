@@ -13,8 +13,13 @@ import java.io.InputStreamReader;
 @Service
 public class EmailService {
 
+/*    private static final String email = "Luxurywear2024@gmail.com";
+    private static final String code = "iafo alwe xned utip";*/
+    private static final String email = "carol280696@gmail.com";
+    private static final String code = "hzzt whkn kmir elny";
+
     public void sendEmail(String to, String subject, String body) {
-        String from = "carol280696@gmail.com"; // Correo de origen
+        String from = email; // Correo de origen
         String host = "smtp.gmail.com"; // Servidor SMTP de Gmail
         System.out.println("carolv send1");
         Properties properties = System.getProperties();
@@ -27,7 +32,7 @@ public class EmailService {
         Session session = Session.getDefaultInstance(properties, new javax.mail.Authenticator() {
             protected PasswordAuthentication getPasswordAuthentication() {
                 System.out.println("carolv send3 - inside getPasswordAuthentication");
-                return new PasswordAuthentication("carol280696@gmail.com", "hzzt whkn kmir elny"); // Credenciales de Gmail
+                return new PasswordAuthentication(email, code); // Credenciales de Gmail
             }
         });
         System.out.println("carolv send3");
