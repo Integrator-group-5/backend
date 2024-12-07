@@ -150,10 +150,9 @@ public class ReservationServiceImpl implements ReservationService {
 
     private void sendReservationEmail(User user, Product product, Reservation reservation,
                                       ReservationResponseDto responseDto) {
-        String to = "paty.fer1970@gmail.com"; // Correo del cliente
+        String to = user.getEmail(); // Correo del cliente
         String subject = "Reservation Confirmation " + product.getName();
         String template = emailService.loadEmailTemplate("Correo_Reserva.html");
-        System.out.println("carolv sendReservationEmail1");
 
         LocalTime now = LocalTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
