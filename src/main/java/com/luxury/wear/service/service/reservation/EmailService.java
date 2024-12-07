@@ -21,21 +21,20 @@ public class EmailService {
     public void sendEmail(String to, String subject, String body) {
         String from = email; // Correo de origen
         String host = "smtp.gmail.com"; // Servidor SMTP de Gmail
-        System.out.println("carolv send1");
+
         Properties properties = System.getProperties();
         properties.setProperty("mail.smtp.host", host);
         properties.setProperty("mail.smtp.port", "587");
         properties.setProperty("mail.smtp.auth", "true");
         properties.setProperty("mail.smtp.starttls.enable", "true");
-        System.out.println("carolv send2");
+
         // Autenticación con el servidor SMTP
         Session session = Session.getDefaultInstance(properties, new javax.mail.Authenticator() {
             protected PasswordAuthentication getPasswordAuthentication() {
-                System.out.println("carolv send3 - inside getPasswordAuthentication");
                 return new PasswordAuthentication(email, code); // Credenciales de Gmail
             }
         });
-        System.out.println("carolv send3");
+
         try {
             // Crear el mensaje de correo
             MimeMessage message = new MimeMessage(session);
@@ -43,7 +42,7 @@ public class EmailService {
             message.addRecipient(Message.RecipientType.TO, new InternetAddress(to)); // Establecer el destinatario
             message.setSubject(subject); // Establecer el asunto
             message.setContent(body, "text/html"); // Establecer el contenido del mensaje
-            System.out.println("carolv send4");
+
             // Enviar el mensaje
             Transport.send(message);
             System.out.println("Email sent successfully...");
@@ -51,7 +50,7 @@ public class EmailService {
             mex.printStackTrace();
             throw new RuntimeException("Failed to send email", mex);
         }
-        System.out.println("carolv send");
+
     }
 
     public String loadEmailTemplate(String templateName) {
