@@ -427,28 +427,28 @@ INSERT INTO address (country, province, city, address, detail, postal_code, user
 -- Insert reservations
 -- User: Karen Pérez
 INSERT INTO reservation (user_id, product_id, address_id, dni, phone_number, start_date, end_date, total_cost, reservation_code, shipping) VALUES
-(1, 1, 16, '1750960242', '3391604785', '2024-11-27', '2024-11-29', 400000, 'RES-20241127-ABC123', true),  -- 2 days * 200000 (Product: Hollywood)
-(1, 7, 16, '1750960242', '3391604785', '2024-12-04', '2024-12-06', 50000000, 'RES-20241204-DEF456', true); -- 2 days * 2500000 (Product: Camelia)
+(1, 1, 16, '1750960242', '3391604785', '2024-12-27', '2024-12-29', 400000, 'RES-20241127-ABC123', true),  -- 2 days * 200000 (Product: Hollywood)
+(1, 7, 16, '1750960242', '3391604785', '2024-12-14', '2024-12-16', 50000000, 'RES-20241204-DEF456', true); -- 2 days * 2500000 (Product: Camelia)
 
 -- User: Ingrid Munera Valencia
 INSERT INTO reservation (user_id, product_id, address_id, dni, phone_number, start_date, end_date, total_cost, reservation_code, shipping) VALUES
-(2, 15, 17, '1337122203', '3938934706', '2025-03-05', '2025-03-09', 4600000, 'RES-20250305-GHI789', true),  -- 4 days * 1150000 (Product: Noche de Estrellas)
-(2, 20, 17, '1337122203', '3938934706', '2025-03-12', '2025-03-13', 700000, 'RES-20250312-JKL012', true);   -- 2 days * 350000  (Product: Amanecer Coral)
+(2, 15, 17, '1337122203', '3938934706', '2025-01-05', '2025-01-09', 4600000, 'RES-20250305-GHI789', true),  -- 4 days * 1150000 (Product: Noche de Estrellas)
+(2, 20, 17, '1337122203', '3938934706', '2025-01-12', '2025-01-13', 700000, 'RES-20250312-JKL012', true);   -- 2 days * 350000  (Product: Amanecer Coral)
 
 -- User: David Blanco
 INSERT INTO reservation (user_id, product_id, address_id, dni, phone_number, start_date, end_date, total_cost, reservation_code, shipping) VALUES
-(3, 6, 18, '1133142117', '3797972085', '2025-02-05', '2025-02-06', 500000, 'RES-20250205-MNO345', true),  -- 2 days * 250000 (Product: Esencia Esmeralda)
-(3, 26, 24, '1133142117', '3797972085', '2025-02-12', '2025-02-14', 690000, 'RES-20250212-PQR678', true); -- 3 days * 230000 (Product: Primavera Azul)
+(3, 6, 18, '1133142117', '3797972085', '2025-01-05', '2025-01-06', 500000, 'RES-20250205-MNO345', true),  -- 2 days * 250000 (Product: Esencia Esmeralda)
+(3, 26, 24, '1133142117', '3797972085', '2025-01-12', '2025-01-14', 690000, 'RES-20250212-PQR678', true); -- 3 days * 230000 (Product: Primavera Azul)
 
 -- User: Carol Velez
 INSERT INTO reservation (user_id, product_id, address_id, dni, phone_number, start_date, end_date, total_cost, reservation_code, shipping) VALUES
-(4, 28, 19, '1623270670', '3744140483', '2025-03-19', '2025-03-20', 460000, 'RES-20250319-STU901', true), -- 2 days * 230000 (Product: Estrella Plateada)
-(4, 30, 19, '1623270670', '3744140483', '2025-03-26', '2025-03-28', 750000, 'RES-20250326-VWX234', true); -- 3 days * 250000 (Product: Atardecer Dorado)
+(4, 28, 19, '1623270670', '3744140483', '2025-01-19', '2025-01-20', 460000, 'RES-20250319-STU901', true), -- 2 days * 230000 (Product: Estrella Plateada)
+(4, 30, 19, '1623270670', '3744140483', '2025-01-26', '2025-01-28', 750000, 'RES-20250326-VWX234', true); -- 3 days * 250000 (Product: Atardecer Dorado)
 
 -- User: Claudia Heredia
 INSERT INTO reservation (user_id, product_id, address_id, dni, phone_number, start_date, end_date, total_cost, reservation_code, shipping) VALUES
-(5, 11, 20, '3672696891', '9601282184', '2025-02-19', '2025-02-21', 5400000, 'RES-20250219-YZA567', true), -- 3 days * 1800000 (Product: Primavera Floral)
-(5, 12, 20, '3672696891', '9601282184', '2025-02-26', '2025-02-27', 6000000, 'RES-20250226-BCD890', true); -- 2 days * 3000000 (Product: Eterna Elegancia)
+(5, 11, 20, '3672696891', '9601282184', '2025-01-19', '2025-01-21', 5400000, 'RES-20250219-YZA567', true), -- 3 days * 1800000 (Product: Primavera Floral)
+(5, 12, 20, '3672696891', '9601282184', '2025-01-26', '2025-01-27', 6000000, 'RES-20250226-BCD890', true); -- 2 days * 3000000 (Product: Eterna Elegancia)
 
 -- User: Franco Tineo
 INSERT INTO reservation (user_id, product_id, address_id, dni, phone_number, start_date, end_date, total_cost, reservation_code, shipping) VALUES
@@ -474,7 +474,7 @@ INSERT INTO reservation (user_id, product_id, address_id, dni, phone_number, sta
 INSERT INTO reservation (user_id, product_id, address_id, dni, phone_number, start_date, end_date, total_cost, reservation_code, shipping) VALUES
 (16, 28, 25, '1203975868', '3177761234', '2024-12-19', '2024-12-20', 460000, 'RES-20241219-EFG567', true),  -- 2 days * 230000  (Product: Estrella Plateada)
 (16, 30, 28, '1203975868', '3177761234', '2024-12-26', '2024-12-28', 750000, 'RES-20241226-HIJ890', true),  -- 3 days * 250000  (Product: Atardecer Dorado)
-(16, 15, 31, '1203975868', '3177761234', '2024-12-05', '2024-12-09', 4600000, 'RES-20241205-KLM123', true), -- 4 days * 1150000 (Product: Noche de Estrellas)
+(16, 15, 31, '1203975868', '3177761234', '2024-12-15', '2024-12-19', 4600000, 'RES-20241205-KLM123', true), -- 4 days * 1150000 (Product: Noche de Estrellas)
 (16, 20, 3, '1203975868', '3177761234', '2024-12-12', '2024-12-13', 700000, 'RES-20241212-NOP456', false);   -- 2 days * 350000  (Product: Amanecer Coral)
 
 -- Insert countries
