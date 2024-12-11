@@ -20,12 +20,12 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.text.NumberFormat;
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.time.temporal.ChronoUnit;
 import java.util.List;
+import java.util.Locale;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -62,7 +62,7 @@ public class ReservationServiceImpl implements ReservationService {
                     .orElseThrow(() -> new ResourceNotFoundException("Store address not found"));
 
         Reservation reservation = reservationMapper.toEntity(reservationRequestDto, user, product, address);
-        reservation.setTotalCost(calculateTotalCost(product, reservationRequestDto));
+        reservation.setTotalCost(reservationRequestDto.getTotalCost());
         reservation.setReservationCode(generateReservationCode());
 
         ReservationResponseDto responseDto = reservationMapper.toResponseDto(reservationRepository.save(reservation));
@@ -111,11 +111,6 @@ public class ReservationServiceImpl implements ReservationService {
         }
     }
 
-    private BigDecimal calculateTotalCost(Product product, ReservationRequestDto reservationRequestDto) {
-        return product.getPrice().multiply(BigDecimal.valueOf(
-                ChronoUnit.DAYS.between(reservationRequestDto.getStartDate(), reservationRequestDto.getEndDate())));
-    }
-
     @Override
     public ReservationResponseDto getReservationById(Long id) {
         return reservationRepository.findById(id)
@@ -148,15 +143,10 @@ public class ReservationServiceImpl implements ReservationService {
                 .collect(Collectors.toList());
     }
 
-    private void sendReservationEmail(User user, Product product, Reservation reservation,
-                                      ReservationResponseDto responseDto) {
+    private void sendReservationEmail(User user, Product product, Reservation reservation, ReservationResponseDto responseDto) {
         String to = user.getEmail(); // Correo del cliente
         String subject = "Reservation Confirmation " + product.getName();
         String template = emailService.loadEmailTemplate("Correo_Reserva.html");
-
-        LocalTime now = LocalTime.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
-        String formattedTime = now.format(formatter);
 
         BigDecimal shippingCost = responseDto.getTotalCost().remainder(product.getPrice());
 
@@ -164,7 +154,6 @@ public class ReservationServiceImpl implements ReservationService {
                 .replace("{{lastName}}", user.getLastName())
                 .replace("{{productName}}", product.getName())
                 .replace("{{startDate}}", reservation.getStartDate().toString())
-                .replace("{{hora}}", formattedTime)
                 .replace("{{endDate}}", reservation.getEndDate().toString())
                 .replace("{{reservationCode}}", responseDto.getReservationCode())
                 .replace("{{phoneNumber}}", responseDto.getPhoneNumber())
@@ -177,10 +166,16 @@ public class ReservationServiceImpl implements ReservationService {
                 .replace("{{phoneNumberCompany}}", "3172568457")
                 .replace("{{addressCompany}}", "Calle 54 # 94-35")
                 .replace("{{countryCompany}}", "Colombia")
-                .replace("{{shippingCost}}", shippingCost.toString())
-                .replace("{{totalCost}}", responseDto.getTotalCost().toString());
-
+                .replace("{{shippingCost}}", formatAsCOP(shippingCost))
+                .replace("{{totalCost}}", formatAsCOP(responseDto.getTotalCost()));
         emailService.sendEmail(to, subject, body);
     }
 
+    public String formatAsCOP(BigDecimal amount) {
+        if (amount == null) {
+            throw new IllegalArgumentException("Amount cannot be null");
+        }
+        NumberFormat copFormat = NumberFormat.getCurrencyInstance(new Locale("es", "CO"));
+        return copFormat.format(amount);
+    }
 }
